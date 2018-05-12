@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.titleBlock > div{
+/* 	margin: 0px; */
+/* 	border: 1px solid red; */
+	padding-left : -150px;
+	padding-right : -150px;
+	
+/* 	width: 200px; */
+}
+
+.titleBlock > div > a{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: -100px;
+	margin-left: 0px;
+/* 	border: 1px solid blue; */
+/* 	padding-left : -100px; */
+	width: 243px;
+}
