@@ -9,18 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>後台管理系統</title>
+    <title>後台管理系統 - 商店客訴</title>
 
 	<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 	<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
-	<link href="<c:url value='/backstage/css/backstage.css'/>" rel="stylesheet">
- 
-  
   </head>
   <body>
     <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
     <div class="container">
-      <h1 class="mt-4 mb-3">後台管理系統
+      <h1 class="mt-4 mb-3">>後台管理系統
         <small>Backstage</small>
       </h1> 
       <div class="row">
@@ -35,29 +32,31 @@
       </div>
       <ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">首頁</a></li>
-        <li class="breadcrumb-item active">後台管理系統</li>
+        <li class="breadcrumb-item active">後台系統</li>
       </ol>
 
       <div class="row">
         <div class="col-lg-3 mb-4">
           <div class="list-group"> 
-            <a class="list-group-item pointer replyMessage">回復留言</a>
-            <a class="list-group-item pointer questionManage">問答集管理</a>
-            <a class="list-group-item pointer storeReport">商店客訴</a>
-            <a class="list-group-item pointer productReport">商品客訴</a>
-            <a class="list-group-item pointer videoReport">影片客訴</a>
-            <a class="list-group-item pointer memberReport">會員客訴</a>
-            <a class="list-group-item pointer liveStreamReport">直播客訴</a>
-            <a class="list-group-item pointer homePageManage">首頁管理</a>
-            <a class="list-group-item pointer mallManage">商城管理</a>
-            <a class="list-group-item pointer websiteReport">報表</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/replyMessage">回覆留言</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/questionManage">問答集管理</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/storeReport">商店客訴</a>
+            <a class="list-group-item bg-primary text-white" href="${pageContext.request.contextPath}/backstage/productReport">商品客訴</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/videoReport">影片客訴</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/memberReport">會員客訴</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/liveStreamReport">直播客訴</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/homePageManage">首頁管理</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/mallManage">商城管理</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/websiteReport">報表</a>
     
     
           </div>
         </div>
         <div class="col-lg-9 mb-4">
-          <h2>後台首頁</h2>
-          <p>請從左側列表中選擇功能</p>
+          <h2>商店客訴</h2>
+
+			
+	
         </div>
       </div>
 

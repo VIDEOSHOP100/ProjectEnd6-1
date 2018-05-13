@@ -17,9 +17,9 @@
   <body>
     <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
     <div class="container">
-      <h1 class="mt-4 mb-3">Sidebar Page
-        <small>Subheading</small>
-      </h1> 
+      <h1 class="mt-4 mb-3">後台管理系統
+        <small>Backstage</small>
+      </h1>  
       <div class="row">
         <div class="col-md-11">
         </div>
@@ -38,16 +38,16 @@
       <div class="row">
         <div class="col-lg-3 mb-4">
           <div class="list-group"> 
-            <a class="list-group-item" href="replyMessage">回復留言</a>
-            <a class="list-group-item" href="questionManage">問答集管理</a>
-            <a class="list-group-item" href="storeComplaint">商店客訴</a>
-            <a class="list-group-item" href="productComplaint">商品客訴</a>
-            <a class="list-group-item" href="videoComplaint">影片客訴</a>
-            <a class="list-group-item" href="memberComplaint">會員客訴</a>
-            <a class="list-group-item" href="liveStreamComplaint">直播客訴</a>
-            <a class="list-group-item" href="homePageManage">首頁管理</a>
-            <a class="list-group-item" href="mallManage">商城管理</a>
-            <a class="list-group-item" href="websiteReport">報表</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/replyMessage">回覆留言</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/questionManage">問答集管理</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/storeReport">商店客訴</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/productReport">商品客訴</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/videoReport">影片客訴</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/memberReport">會員客訴</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/liveStreamReport">直播客訴</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/homePageManage">首頁管理</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/mallManage">商城管理</a>
+            <a class="list-group-item" href="${pageContext.request.contextPath}/backstage/websiteReport">報表</a>
     
           </div>
         </div>
