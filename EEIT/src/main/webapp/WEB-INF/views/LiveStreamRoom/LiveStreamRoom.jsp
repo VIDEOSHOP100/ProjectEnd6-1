@@ -25,11 +25,15 @@
   -ms-flex: 1 1 auto;
   flex: 100 100 auto;
   padding: 0.7em 2em 0.7em 1em;
+  
 }
+.hidden{
+  display:none;
+  }
 </style>
 </head>
 <body>
-<p>直播主:${sb.account}</p>
+<p>直播主:${sb.account}</p> 
 <%-- <p>${LiveStream.liveStreamSeqNo}</p> --%>
 
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
@@ -39,12 +43,14 @@
       <!-- Page Heading/Breadcrumbs -->
        
       <h1 class="mt-4 mb-3">
-      ${sb.account}  
+      ${sb.account}
+  
         <small>的直播間</small>
         <small>開始時間:${sb.liveStart}</small>
 <%-- 		<small>結束時間:${sb.liveEnd}</small> --%> 
-      </h1>
 
+      </h1>
+   <p class="hidden">${sb.liveStreamSeqNo}</p>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="<c:url value='/' />">首頁</a>
@@ -61,8 +67,8 @@
                 <h2>${sb.streamName}</h2>
         </div>
         <div class="col-lg-6">
-          	<div class="chat-sidebar">
-				<div class="sidebar-name">
+          	<div class="chat-sidebara">
+				<div class="sidebar-namea">
 			<div class="card mb-4">
 
             <h5 class="card-header">Stream Chat</h5>
@@ -80,7 +86,8 @@
             				<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
               </div>
                 <div class="input-group">
-                <input type="text" class="form-control" placeholder="傳送訊息">
+                <input id="catch-account" type="hidden" name = "account" value= "${LoginOK.account}">
+                <input type="text" class="form-control chat-message" placeholder="傳送訊息">
                 <span class="input-group-btn">
                   <button class="btn btn-secondary" type="button">聊天</button>
                 </span>
@@ -219,7 +226,7 @@
 
 
 					<form:form  id="Auction" method="POST" action="${pageContext.request.contextPath}/Auction" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
-					<form:input id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
+					<form:input class="seqNo" id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
 					aucBegin<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
 					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br>
 					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br>
@@ -274,6 +281,7 @@
 <!--// 叫價表格 -->
 <%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
 <%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </body>

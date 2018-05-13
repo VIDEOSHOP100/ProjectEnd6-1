@@ -69,13 +69,16 @@ public class AuctionItemSelectController {
 		
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
+		InputLiveStreamTimeBean getseq = InputLiveStreamTimeService.getLiveStreamsByAccount(account);
 		
-		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList = InputLiveStreamTimeService.getNewLiveSeqNo(account);
-		for(InputLiveStreamTimeBean InputLiveStreamTimeBean: InputLiveStreamTimeBeanList) {
-		Integer livestreamseqno = InputLiveStreamTimeBean.getLiveStreamSeqNo();
+//		List<InputLiveStreamTimeBean> InputLiveStreamTimeBeanList = InputLiveStreamTimeService.getNewLiveSeqNo(account);
+		
+//		for(InputLiveStreamTimeBean InputLiveStreamTimeBean: InputLiveStreamTimeBeanList) {
+//		Integer livestreamseqno = InputLiveStreamTimeBean.getLiveStreamSeqNo();
 //		InputLiveStreamTimeBean.setAccount(account);
-		ab.setLiveStreamSeqNo(livestreamseqno);
-		}
+//		}
+		ab.setLiveStreamSeqNo(getseq.getLiveStreamSeqNo()); 
+
 		List<ProductSaleBean> AllProductList = productSaleService.getByAccount(account);
 		
 		Map<Integer,String> productNameMap = new HashMap<Integer,String>(); 
