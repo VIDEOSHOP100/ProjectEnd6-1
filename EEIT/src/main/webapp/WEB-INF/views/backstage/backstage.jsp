@@ -41,21 +41,21 @@
       <div class="row">
         <div class="col-lg-3 mb-4">
           <div class="list-group"> 
-            <a class="list-group-item pointer replyMessage">回復留言</a>
-            <a class="list-group-item pointer questionManage">問答集管理</a>
-            <a class="list-group-item pointer storeReport">商店客訴</a>
-            <a class="list-group-item pointer productReport">商品客訴</a>
-            <a class="list-group-item pointer videoReport">影片客訴</a>
-            <a class="list-group-item pointer memberReport">會員客訴</a>
-            <a class="list-group-item pointer liveStreamReport">直播客訴</a>
-            <a class="list-group-item pointer homePageManage">首頁管理</a>
-            <a class="list-group-item pointer mallManage">商城管理</a>
-            <a class="list-group-item pointer websiteReport">報表</a>
+            <a class="list-group-item pointer text-primary replyMessage">回復留言</a>
+            <a class="list-group-item pointer text-primary questionManage">問答集管理</a>
+            <a class="list-group-item pointer text-primary storeReport">商店客訴</a>
+            <a class="list-group-item pointer text-primary productReport">商品客訴</a>
+            <a class="list-group-item pointer text-primary videoReport">影片客訴</a>
+            <a class="list-group-item pointer text-primary memberReport">會員客訴</a>
+            <a class="list-group-item pointer text-primary liveStreamReport">直播客訴</a>
+            <a class="list-group-item pointer text-primary homePageManage">首頁管理</a>
+            <a class="list-group-item pointer text-primary mallManage">商城管理</a>
+            <a class="list-group-item pointer text-primary websiteReport">報表</a>
     
     
           </div>
         </div>
-        <div class="col-lg-9 mb-4">
+        <div class="col-lg-9 mb-4" id="content">
           <h2>後台首頁</h2>
           <p>請從左側列表中選擇功能</p>
         </div>
@@ -67,6 +67,6 @@
         <p class="m-0 text-center text-white">Copyright &copy; IIITube 2018</p>
       </div>
     </footer>
-
+		<script src="<c:url value='/backstage/js/backstage.js'/> "></script>
   </body>
 </html>
