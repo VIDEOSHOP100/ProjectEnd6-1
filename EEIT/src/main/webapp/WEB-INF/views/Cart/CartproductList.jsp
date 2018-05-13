@@ -25,6 +25,7 @@
 	rel="stylesheet">
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	
 </head>
 <body>
 	<!-- Navigation -->
@@ -38,7 +39,7 @@
 		</h1>
 
 		<!-- Portfolio Item Row -->
-		<div class="row">
+		<div class="">
 			<div class="card">
 				<div class="card-header">${getMemberBean.account}的購物清單</div>
 				<div class="card-body">
@@ -99,7 +100,10 @@
 							</tr>
 						</tfoot>
 					</table>
-
+					<br>
+					<a href="${pageContext.request.contextPath}/goMarketHomePage">繼續購買</a>
+					<br>
+					<a href="${pageContext.request.contextPath}/order.do">馬上結帳</a>
 					<!-- 	刪除影片表格	-------------------------- -->
 					<div id="delete-dialog-form" title="刪除資料">
 						<p class="validateTips">確認刪除此資料?</p>

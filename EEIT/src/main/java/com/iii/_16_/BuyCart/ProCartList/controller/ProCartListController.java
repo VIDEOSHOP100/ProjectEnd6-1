@@ -96,7 +96,6 @@ public class ProCartListController {
 		}
 		int updatedate = 0;
 		
-		System.out.println("njjjjj"+cartlistb);
 		ProCartListBean deletebean = procartlistservice.getByCartId(cartlistb.getProCartListSeqNo());
 		ProCartListBean deletebean2 = new ProCartListBean(cartlistb.getProCartListSeqNo(), deletebean.getProductSeqNo(), deletebean.getProductCount(), cartlistb.getProductStatus(), cartlistb.getAccount());
 		MemberBean member = (MemberBean)session.getAttribute("LoginOK");
