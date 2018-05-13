@@ -22,15 +22,52 @@ $(document).ready(function() {
                 right = 220
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus"><a href="#"><i class="far fa-smile"></i></a></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus popup"><div class="myPopup">貼圖</div><button class="btn imageButton"><i class="fas fa-image"></i></button><button class="btn stickerButton"><i class="far fa-smile"></i></button><button class="btn fileButton"><i class="far fa-file-alt"></i></button></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
+                $.ajax({
+        			type: "GET",
+        			url: "/EEIT/Sticker",
+        			timeout: 600000,
+        			success: function (datareturn) {
+        				alert("aaaa")
+        				var docFrag = $(document.createDocumentFragment());
+        				$.each(datareturn.stickerBeanList, function (idx,data) {
+        					var cell1 = $('<img class="stickerSend" height="75px" width="75px" src=/EEIT/getImage/sticker/'+ data.stickerSeqNo +' name="'+ data.stickerSeqNo +'"> ')
+        					
+        					docFrag.append(cell1);
+        				})
+        				$('#' + id + '1').find('.myPopup').append(docFrag);
+        			},
+        			error: function (e) {
+        				console.log("ERROR : ", e);
+        				alert(e);
+        			}
+        		})
             } else {
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus"><a href="#"><i class="far fa-smile"></i></a></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus popup"><div class="myPopup"><p>貼圖</p></div><button class="btn imageButton"><i class="fas fa-image"></i></button><button class="btn stickerButton"><i class="far fa-smile"></i></button><button class="btn fileButton"><i class="far fa-file-alt"></i></button></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
+                $.ajax({
+        			type: "GET",
+        			url: "/EEIT/Sticker",
+        			timeout: 600000,
+        			success: function (datareturn) {
+        				var docFrag = $(document.createDocumentFragment());
+        				$.each(datareturn.stickerBeanList, function (idx,data) {
+        					var cell1 = $('<img class="stickerSend" height="75px" width="75px" src=/EEIT/getImage/sticker/'+ data.stickerSeqNo +' name="'+ data.stickerSeqNo +'"> ')
+        					
+        					docFrag.append(cell1);
+        				})
+        				$('#' + id + '1').find('.myPopup').append(docFrag);
+        			},
+        			error: function (e) {
+        				console.log("ERROR : ", e);
+        				alert(e);
+        			}
+        		})
             }
             selectAllMessage(id);
         }
@@ -78,7 +115,7 @@ $(document).ready(function() {
         {
 			if($.trim($(this).val())!=""){
 				var receiverAccount = $.trim($(this).parents('.box').find('.receiverAccount').text())
-				send(senderAccount,receiverAccount,$(this).val());
+				send(senderAccount,receiverAccount,$(this).val(),"text");
                 $(this).val(" ")
 			}
         }
@@ -108,9 +145,21 @@ $(document).ready(function() {
 					var commentTime = new Date(data.messageDate);
 					var time = commentTime.getFullYear() + '-' + ( commentTime.getMonth() + 1 ) + '-' + commentTime.getDate() + "  " + commentTime.getHours() + ":" + commentTime.getMinutes() + ":" + commentTime.getSeconds()
 					if(data.account == senderAccount){
-						 cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + data.account + ": " + data.messageArticle + '</p>')
+						if(data.messageType == 'text'){
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + data.account + ": " + data.messageArticle + '</p>')
+						}else if(data.messageType == 'sticker'){
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<img class="stickerSend" height="75px" width="75px" src="/EEIT/getImage/sticker/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+						}else if(data.messageType == 'image'){
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<img class="stickerSend" height="75px" width="75px" src="/EEIT/getImage/messageImage/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+						}
 					}else if(data.account == receiverAccount){
-						 cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">'+ data.account + ": " + data.messageArticle + '</p>')
+						if(data.messageType == 'text'){
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">'+ data.account + ": " + data.messageArticle + '</p>')
+						}else if(data.messageType == 'sticker'){
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<img class="stickerSend" height="75px" width="75px" src="/EEIT/getImage/sticker/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+						}else if(data.messageType == 'image'){
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<img class="stickerSend" height="75px" width="75px" src="/EEIT/getImage/messageImage/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+						}
 					}
 					docFrag.append(cell1);
 				})
@@ -145,7 +194,7 @@ $(document).ready(function() {
         		secondAccount = senderAccount
         	}
 	        stompClient.subscribe('/target/message/subscription/' + firstAccount + "/" + secondAccount , function(messagereturn){
-	            addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).receiverAccount,JSON.parse(messagereturn.body).messageArticle)
+	            addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).receiverAccount,JSON.parse(messagereturn.body).messageArticle,JSON.parse(messagereturn.body).messageType)
 	        });
         })
 
@@ -187,7 +236,7 @@ $(document).ready(function() {
     })
     
     
-    function send(senderAccount, receiverAccount, messageArticle){
+    function send(senderAccount, receiverAccount, messageArticle, messageType){
     	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
     	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()
     	var firstAccount;
@@ -201,14 +250,19 @@ $(document).ready(function() {
     	}
 		var roomNumber = $('.roomNumber').val();
 		var name = $(this).parents('div').find('.message').val();
-		stompClient.send("/app/messageSystem/" + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':messageArticle, 'account':senderAccount, 'receiverAccount': receiverAccount}));
+		stompClient.send("/app/messageSystem/" + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':messageArticle, 'account':senderAccount, 'receiverAccount': receiverAccount, "messageType" : messageType}));
 	}
 	
-	function addMessage(account, receiverAccount, messageArticle){
+	function addMessage(account, receiverAccount, messageArticle, messageType){
 		if(account == senderAccount){
 			if($('#' + receiverAccount +'1>.box-body').length>0){
-				
-				$('#' + receiverAccount +'1>.box-body').append('<p class="me">'+ account + ": "+ messageArticle +'</p>')
+				if(messageType == 'sticker'){
+					$('#' + receiverAccount +'1>.box-body').append('<p class="me"><img height="75px" width="75px" src="/EEIT/getImage/sticker/'+ messageArticle +'" name="'+ messageArticle +'"></p>')
+				}else if(messageType == 'text'){
+					$('#' + receiverAccount +'1>.box-body').append('<p class="me">'+ account + ": "+ messageArticle +'</p>')
+				}else if(messageType == 'image'){
+					$('#' + receiverAccount +'1>.box-body').append('<p class="me"><img height="75px" width="75px" src="/EEIT/getImage/messageImage/'+ messageArticle +'" name="'+ messageArticle +'"></p>')
+				}
 				if($('#' + receiverAccount +'1').is('.box-close')){
 					$('#' + receiverAccount +'1').find('.box-head').addClass('box-headAlert')
 				}
@@ -218,7 +272,13 @@ $(document).ready(function() {
 			}
 		}else if(account != senderAccount){
 			if($('#' + account +'1>.box-body').length > 0){
-				$('#' + account +'1>.box-body').append('<p class="him">'+ account + ": "+ messageArticle +'</p>')
+				if(messageType == 'sticker'){
+					$('#' + account +'1>.box-body').append('<p class="him"><img height="75px" width="75px" src="/EEIT/getImage/sticker/'+ messageArticle +'" name="'+ messageArticle +'"></p>')
+				}else if(messageType == 'text'){
+					$('#' + account +'1>.box-body').append('<p class="him">'+ account + ": "+ messageArticle +'</p>')
+				}else if(messageType == 'image'){
+					$('#' + account +'1>.box-body').append('<p class="him"><img height="75px" width="75px" src="/EEIT/getImage/messageImage/'+ messageArticle +'" name="'+ messageArticle +'"></p>')
+				}
 				if($('#' + account +'1').is('.box-close')){
 					$('#' + account +'1').find('.box-head').addClass('box-headAlert')
 				}
@@ -258,5 +318,108 @@ $(document).ready(function() {
 		element.scrollTop(scrollHeight,200);
 
 	}
+	
+	$(document).on('click','.messagePlus .stickerButton',function(){
+		var thisButton = $(this);
+		myFunction(thisButton)
+	})
+	
+	function myFunction(thisButton) {
+	    var popup = thisButton.parents(".messagePlus").find(".myPopup");
+	    if(popup.is('.show')){
+	    	popup.removeClass('show')
+	    }else if(!popup.is('.show')){
+	    	popup.addClass('show')
+	    }
+	}
+	
+	//貼圖點擊觸發事件
+	$(document).on("click",".stickerSend",function(){
+		var stickerSeqNo = $(this).attr('name')
+		var receiverAccount = $.trim($(this).parents('.box').find('.receiverAccount').text());
+    	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
+    	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()
+    	var firstAccount;
+        var secondAccount; 
+    	if(senderAccountFistWord > receiverAccountFistWord ){
+    		firstAccount = senderAccount
+            secondAccount = receiverAccount
+    	}else if(senderAccountFistWord < receiverAccountFistWord){
+    		firstAccount = receiverAccount
+    		secondAccount = senderAccount
+    	}
+		stompClient.send("/app/messageSystem/" + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':stickerSeqNo, 'account':senderAccount, 'receiverAccount': receiverAccount, "messageType" : "sticker" }));
+//		$('#' + 'micky' +'1>.box-body').append('<p class="me">'+ '<img class="" height="50px" width="50px" src="'+ $(this).attr('src') +'">' +'</p>')
+		updateScroll();
+	})
+	
+	//圖片傳送點擊觸發事件
+	$(document).on("click",".imageButton",function(){
+		dialogMessageImageInsert.dialog("open");
+		var receiverAccount = $.trim($(this).parents('.box').find('.receiverAccount').text());
+		$('#imageReceiverAccount').val(receiverAccount)
+	})
+	dialogMessageImageInsert = $("#insert-messageImage-form").dialog({
+		autoOpen: false,
+		height: 170,
+		width: 600,
+		modal: true,
+		buttons: {
+			"確認傳送": insertMessageImage,
+			"取消": function() {
+				dialogMessageImageInsert.dialog( "close" );
+			}
+		},
+		close: function() {
+			form[0].reset();
+		}
+	});
+	function insertMessageImage(){
+		var form = $('#insertMessageImageForm')[0];
+		var data = new FormData(form);
+		if($.trim($("#messageImage").val()) != ""){
+			$.ajax({
+	    		type: "POST",
+	    		cache: false,
+		        contentType: false,
+		        processData: false,
+				enctype: 'multipart/form-data',
+	    		url: "/EEIT/MessageImage/",
+	    		data: data,
+	    		timeout: 600000,
+	    		success: function (data) {
+	    			var receiverAccount = $('#imageReceiverAccount').val()
+	    			var messageImageSeqNo = data.messageImageSeqNo
+	    	    	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
+	    	    	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()
+	    	    	var firstAccount;
+	    	        var secondAccount; 
+	    	    	if(senderAccountFistWord > receiverAccountFistWord ){
+	    	    		firstAccount = senderAccount
+	    	            secondAccount = receiverAccount
+	    	    	}else if(senderAccountFistWord < receiverAccountFistWord){
+	    	    		firstAccount = receiverAccount
+	    	    		secondAccount = senderAccount
+	    	    	}
+	    			stompClient.send("/app/messageSystem/" + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':messageImageSeqNo, 'account':senderAccount, 'receiverAccount': receiverAccount, "messageType" : "image" }));
+	    			dialogMessageImageInsert.dialog( "close" );
+	    		},
+	    		error: function (e) {
+	    			console.log("ERROR : ", e);
+	    			alert(e);
+	    		}
+	    	});
+		}else{
+			alert('請選取圖片')
+		}
+	}
+	
+	//檔案傳送點擊觸發事件
+	$(document).on("click",".fileButton",function(){
+		alert('file')
+	})
+	var form = dialogMessageImageInsert.find( "form" ).on( "submit", function( event ) {
+	      event.preventDefault();
+	});
 })
 	//以上聊天室-------------------------------------------------------------------
