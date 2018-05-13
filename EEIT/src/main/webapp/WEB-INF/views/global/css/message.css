@@ -145,26 +145,30 @@
 }
 
 .box-message>input {
-	width: 89%;
+	width: 66.7%;
 	height: 23px;
 	display: inline-block;
 }
 
 .box-message > .messagePlus {
-	width: 11%;
+	width: 33.3%;
 	height: 23px;
-	display: inline-block;
+/* 	display: inline-block; */
 	background-color: white;
 	float: right;
 }
 
-.box-message > .messagePlus > button {
+.box-message > .messagePlus > .btn {
 /* 	background-color: #4a0080; */
 /* 	color : #4a0080; */
+/* 	display: inline-block; */
+/* 	width: 10px; */
+	height: 23px;
+/* 	float: right; */
 }
 
 
-.box-message > .messagePlus > button {
+.box-message > .messagePlus > .btn {
 	-moz-box-shadow:inset 0px 1px 0px 0px #e184f3;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #e184f3;
 	box-shadow:inset 0px 1px 0px 0px #e184f3;
@@ -187,7 +191,7 @@
 	text-decoration:none;
 	text-shadow:0px 1px 0px #9b14b3;
 }
-.box-message > .messagePlus > button:hover {
+.box-message > .messagePlus > .btn:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a20dbd), color-stop(1, #c123de));
 	background:-moz-linear-gradient(top, #a20dbd 5%, #c123de 100%);
 	background:-webkit-linear-gradient(top, #a20dbd 5%, #c123de 100%);
@@ -197,7 +201,7 @@
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a20dbd', endColorstr='#c123de',GradientType=0);
 	background-color:#a20dbd;
 }
-.box-message > .messagePlus > a:active {
+.box-message > .messagePlus > .btn:active {
 	position:relative;
 	top:1px;
 }
