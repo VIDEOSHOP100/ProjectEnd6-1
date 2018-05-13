@@ -22,7 +22,7 @@ $(document).ready(function() {
                 right = 220
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus popup"><div class="myPopup">貼圖</div><button class="btn imageButton"><i class="fas fa-image"></i></button><button class="btn stickerButton"><i class="far fa-smile"></i></button><button class="btn fileButton"><i class="far fa-file-alt"></i></button></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus popup"><div class="myPopup">貼圖</div><button class="btn imageButton"><i class="fas fa-image"></i></button><button class="btn stickerButton"><i class="far fa-smile"></i></button><button class="btn fileButton"><i class="far fa-file-alt"></i></button><button class="btn videoButton"><i class="fas fa-video"></i></button></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
                 $.ajax({
@@ -47,7 +47,7 @@ $(document).ready(function() {
             } else {
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus popup"><div class="myPopup"><p>貼圖</p></div><button class="btn imageButton"><i class="fas fa-image"></i></button><button class="btn stickerButton"><i class="far fa-smile"></i></button><button class="btn fileButton"><i class="far fa-file-alt"></i></button></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus popup"><div class="myPopup"><p>貼圖</p></div><button class="btn imageButton"><i class="fas fa-image"></i></button><button class="btn stickerButton"><i class="far fa-smile"></i></button><button class="btn fileButton"><i class="far fa-file-alt"></i></button><button class="btn videoButton"><i class="fas fa-video"></i></button></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
                 $.ajax({
@@ -148,17 +148,31 @@ $(document).ready(function() {
 						if(data.messageType == 'text'){
 							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + data.account + ": " + data.messageArticle + '</p>')
 						}else if(data.messageType == 'sticker'){
-							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<img class="stickerSend" height="75px" width="75px" src="/EEIT/getImage/sticker/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<img height="75px" width="75px" src="/EEIT/getImage/sticker/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
 						}else if(data.messageType == 'image'){
-							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<img class="stickerSend" height="75px" width="75px" src="/EEIT/getImage/messageImage/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<i class="fas fa-images"></i><a class="messageFile" href="/EEIT/getFile/messageImage/'+ data.messageArticle + '"><img height="150px" width="120px" src="/EEIT/getImage/messageImage/'+ data.messageArticle +'" name="'+ data.messageArticle +'"></a>')
+						}else if(data.messageType == 'file'){
+							var key = data.messageArticle.indexOf(',')
+							var seqNo = data.messageArticle.substring(0, key)
+							var fileName = data.messageArticle.substring(key + 1)
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<a class="messageFile" href="/EEIT/getFile/messageFile/'+ seqNo +'" name="'+ seqNo +'"><i class="far fa-file"></i>'+ fileName +'</a></p>')
+						}else if(data.messageType == 'video'){
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<video controls="controls" class="messageVideo" height="150px" width="200px" src="/EEIT/getVideo/messageVideo/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
 						}
 					}else if(data.account == receiverAccount){
 						if(data.messageType == 'text'){
 							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">'+ data.account + ": " + data.messageArticle + '</p>')
 						}else if(data.messageType == 'sticker'){
-							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<img class="stickerSend" height="75px" width="75px" src="/EEIT/getImage/sticker/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<img  height="75px" width="75px" src="/EEIT/getImage/sticker/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
 						}else if(data.messageType == 'image'){
-							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<img class="stickerSend" height="75px" width="75px" src="/EEIT/getImage/messageImage/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<i class="fas fa-images"></i><a class="messageFile" href="/EEIT/getFile/messageImage/'+ data.messageArticle + '"><img height="150px" width="120px" src="/EEIT/getImage/messageImage/'+ data.messageArticle +'" name="'+ data.messageArticle +'"></a>')
+						}else if(data.messageType == 'file'){
+							var key = data.messageArticle.indexOf(',')
+							var seqNo = data.messageArticle.substring(0, key)
+							var fileName = data.messageArticle.substring(key + 1)
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<a class="messageFile" href="/EEIT/getFile/messageFile/'+ seqNo +'" name="'+ seqNo +'"><i class="far fa-file"></i>'+ fileName +'</a></p>')
+						}else if(data.messageType == 'video'){
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<video controls="controls" class="messageVideo" height="150px" width="200px" src="/EEIT/getVideo/messageVideo/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
 						}
 					}
 					docFrag.append(cell1);
@@ -261,8 +275,18 @@ $(document).ready(function() {
 				}else if(messageType == 'text'){
 					$('#' + receiverAccount +'1>.box-body').append('<p class="me">'+ account + ": "+ messageArticle +'</p>')
 				}else if(messageType == 'image'){
-					$('#' + receiverAccount +'1>.box-body').append('<p class="me"><img height="75px" width="75px" src="/EEIT/getImage/messageImage/'+ messageArticle +'" name="'+ messageArticle +'"></p>')
+					$('#' + receiverAccount +'1>.box-body').append('<p class="me"><i class="fas fa-images"></i><a class="messageFile" href="/EEIT/getFile/messageImage/'+ messageArticle + '"><img height="150px" width="120px" src="/EEIT/getImage/messageImage/'+ messageArticle +'" name="'+ messageArticle +'"></a></p>')
+				}else if(messageType == 'file'){
+					var key = messageArticle.indexOf(',')
+					var seqNo = messageArticle.substring(0, key)
+					var fileName = messageArticle.substring(key+1)
+					$('#' + receiverAccount +'1>.box-body').append('<p class="me"><a class="messageFile" href="/EEIT/getFile/messageFile/'+ seqNo +'" name="'+ seqNo +'"><i class="far fa-file"></i>'+ fileName +'</a></p>')
+				}else if(messageType == 'video'){
+					$('#' + receiverAccount +'1>.box-body').append('<p class="me"><video controls="controls" height="150px" width="200px" class="messageVideo" src="/EEIT/getVideo/messageVideo/'+ messageArticle + '"></p>')
 				}
+				
+				
+				
 				if($('#' + receiverAccount +'1').is('.box-close')){
 					$('#' + receiverAccount +'1').find('.box-head').addClass('box-headAlert')
 				}
@@ -277,7 +301,14 @@ $(document).ready(function() {
 				}else if(messageType == 'text'){
 					$('#' + account +'1>.box-body').append('<p class="him">'+ account + ": "+ messageArticle +'</p>')
 				}else if(messageType == 'image'){
-					$('#' + account +'1>.box-body').append('<p class="him"><img height="75px" width="75px" src="/EEIT/getImage/messageImage/'+ messageArticle +'" name="'+ messageArticle +'"></p>')
+					$('#' + account +'1>.box-body').append('<p class="him"><i class="fas fa-images"></i><a class="messageFile" href="/EEIT/getFile/messageImage/'+ messageArticle + '"><img height="150px" width="120px" src="/EEIT/getImage/messageImage/'+ messageArticle +'" name="'+ messageArticle +'"></a></p>')
+				}else if(messageType == 'file'){
+					var key = messageArticle.indexOf(',')
+					var seqNo = messageArticle.substring(0, key)
+					var fileName = messageArticle.substring(key+1)
+					$('#' + account +'1>.box-body').append('<p class="him"><a class="messageFile" href="/EEIT/getFile/messageFile/'+ seqNo +'" name="'+ seqNo +'"><i class="far fa-file"></i>'+ fileName +'</a></p>')
+				}else if(messageType == 'video'){
+					$('#' + account +'1>.box-body').append('<p class="him"><video controls="controls" height="150px" width="200px" class="messageVideo" src="/EEIT/getVideo/messageVideo/'+ messageArticle + '"></p>')
 				}
 				if($('#' + account +'1').is('.box-close')){
 					$('#' + account +'1').find('.box-head').addClass('box-headAlert')
@@ -416,8 +447,130 @@ $(document).ready(function() {
 	
 	//檔案傳送點擊觸發事件
 	$(document).on("click",".fileButton",function(){
-		alert('file')
+		dialogMessageFileInsert.dialog("open");
+		var receiverAccount = $.trim($(this).parents('.box').find('.receiverAccount').text());
+		$('#fileReceiverAccount').val(receiverAccount)
 	})
+	dialogMessageFileInsert = $("#insert-messageFile-form").dialog({
+		autoOpen: false,
+		height: 170,
+		width: 600,
+		modal: true,
+		buttons: {
+			"確認傳送": insertMessageFile,
+			"取消": function() {
+				dialogMessageFileInsert.dialog( "close" );
+			}
+		},
+		close: function() {
+			form[0].reset();
+		}
+	});
+	function insertMessageFile(){
+		var form = $('#insertMessageFileForm')[0];
+		var data = new FormData(form);
+		if($.trim($("#messageFile").val()) != ""){
+			$.ajax({
+	    		type: "POST",
+	    		cache: false,
+		        contentType: false,
+		        processData: false,
+				enctype: 'multipart/form-data',
+	    		url: "/EEIT/MessageFile/",
+	    		data: data,
+	    		timeout: 600000,
+	    		success: function (data) {
+	    			var receiverAccount = $('#fileReceiverAccount').val()
+	    			var messageImageSeqNo = data.messageFileSeqNo
+	    	    	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
+	    	    	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()
+	    	    	var firstAccount;
+	    	        var secondAccount; 
+	    	    	if(senderAccountFistWord > receiverAccountFistWord ){
+	    	    		firstAccount = senderAccount
+	    	            secondAccount = receiverAccount
+	    	    	}else if(senderAccountFistWord < receiverAccountFistWord){
+	    	    		firstAccount = receiverAccount
+	    	    		secondAccount = senderAccount
+	    	    	}
+	    	    	var messageFileName = data.messageFileName;
+	    			stompClient.send("/app/messageSystem/" + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':messageImageSeqNo + ',' + messageFileName, 'account':senderAccount, 'receiverAccount': receiverAccount, "messageType" : "file" }));
+	    			dialogMessageFileInsert.dialog( "close" );
+	    		},
+	    		error: function (e) {
+	    			console.log("ERROR : ", e);
+	    			alert(e);
+	    		}
+	    	});
+		}else{
+			alert('請選取檔案')
+		}
+	}
+	
+	//點擊影片觸發事件
+	$(document).on("click",".videoButton",function(){
+		dialogMessageVideoInsert.dialog("open");
+		var receiverAccount = $.trim($(this).parents('.box').find('.receiverAccount').text());
+		$('#videoReceiverAccount').val(receiverAccount)
+	})
+	dialogMessageVideoInsert = $("#insert-messageVideo-form").dialog({
+		autoOpen: false,
+		height: 170,
+		width: 600,
+		modal: true,
+		buttons: {
+			"確認傳送": insertMessageVideo,
+			"取消": function() {
+				dialogMessageVideoInsert.dialog( "close" );
+			}
+		},
+		close: function() {
+			form[0].reset();
+		}
+	});
+	function insertMessageVideo(){
+		var form = $('#insertMessageVideoForm')[0];
+		var data = new FormData(form);
+		if($.trim($("#messageVideo").val()) != ""){
+			$.ajax({
+	    		type: "POST",
+	    		cache: false,
+		        contentType: false,
+		        processData: false,
+				enctype: 'multipart/form-data',
+	    		url: "/EEIT/MessageVideo/",
+	    		data: data,
+	    		timeout: 600000,
+	    		success: function (data) {
+	    			var receiverAccount = $('#videoReceiverAccount').val()
+	    			var messageVideoSeqNo = data.messageVideoSeqNo
+	    	    	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
+	    	    	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()
+	    	    	var firstAccount;
+	    	        var secondAccount; 
+	    	    	if(senderAccountFistWord > receiverAccountFistWord ){
+	    	    		firstAccount = senderAccount
+	    	            secondAccount = receiverAccount
+	    	    	}else if(senderAccountFistWord < receiverAccountFistWord){
+	    	    		firstAccount = receiverAccount
+	    	    		secondAccount = senderAccount
+	    	    	}
+	    			stompClient.send("/app/messageSystem/" + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':messageVideoSeqNo, 'account':senderAccount, 'receiverAccount': receiverAccount, "messageType" : "video" }));
+	    			dialogMessageVideoInsert.dialog( "close" );
+	    		},
+	    		error: function (e) {
+	    			console.log("ERROR : ", e);
+	    			alert(e);
+	    		}
+	    	});
+		}else{
+			alert('請選取影片')
+		}
+	}
+	
+	
+	
+	
 	var form = dialogMessageImageInsert.find( "form" ).on( "submit", function( event ) {
 	      event.preventDefault();
 	});

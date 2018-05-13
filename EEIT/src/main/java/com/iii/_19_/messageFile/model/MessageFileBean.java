@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "MessageFile")
@@ -15,25 +19,30 @@ public class MessageFileBean {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer messageFileSeqNo;
 	private String messageFileName;
-	private String messageFileFileName;
-	private String messageFileFilePath;
+	private String messageFileOriginalName;
+	private String messageFilePath;
 	private String messageFileType;
 	private String messageFileStatus;
 	private Integer messageFileScore;
 	private Timestamp messageFileUploadDate;
 
-	public MessageFileBean(Integer messageFileSeqNo, String messageFileName, String messageFileFileName,
-			String messageFileFilePath, String messageFileType, String messageFileStatus, Integer messageFileScore,
-			Timestamp messageFileUploadDate) {
+	@Transient
+	@XmlTransient
+	private MultipartFile messageFile;
+
+	public MessageFileBean(Integer messageFileSeqNo, String messageFileName, String messageFileOriginalName,
+			String messageFilePath, String messageFileType, String messageFileStatus, Integer messageFileScore,
+			Timestamp messageFileUploadDate, MultipartFile messageFile) {
 		super();
 		this.messageFileSeqNo = messageFileSeqNo;
 		this.messageFileName = messageFileName;
-		this.messageFileFileName = messageFileFileName;
-		this.messageFileFilePath = messageFileFilePath;
+		this.messageFileOriginalName = messageFileOriginalName;
+		this.messageFilePath = messageFilePath;
 		this.messageFileType = messageFileType;
 		this.messageFileStatus = messageFileStatus;
 		this.messageFileScore = messageFileScore;
 		this.messageFileUploadDate = messageFileUploadDate;
+		this.messageFile = messageFile;
 	}
 
 	public MessageFileBean() {
@@ -57,20 +66,20 @@ public class MessageFileBean {
 		this.messageFileName = messageFileName;
 	}
 
-	public String getMessageFileFileName() {
-		return messageFileFileName;
+	public String getMessageFileOriginalName() {
+		return messageFileOriginalName;
 	}
 
-	public void setMessageFileFileName(String messageFileFileName) {
-		this.messageFileFileName = messageFileFileName;
+	public void setMessageFileOriginalName(String messageFileOriginalName) {
+		this.messageFileOriginalName = messageFileOriginalName;
 	}
 
-	public String getMessageFileFilePath() {
-		return messageFileFilePath;
+	public String getMessageFilePath() {
+		return messageFilePath;
 	}
 
-	public void setMessageFileFilePath(String messageFileFilePath) {
-		this.messageFileFilePath = messageFileFilePath;
+	public void setMessageFilePath(String messageFilePath) {
+		this.messageFilePath = messageFilePath;
 	}
 
 	public String getMessageFileType() {
@@ -105,12 +114,21 @@ public class MessageFileBean {
 		this.messageFileUploadDate = messageFileUploadDate;
 	}
 
+	public MultipartFile getMessageFile() {
+		return messageFile;
+	}
+
+	public void setMessageFile(MultipartFile messageFile) {
+		this.messageFile = messageFile;
+	}
+
 	@Override
 	public String toString() {
 		return "MessageFileBean [messageFileSeqNo=" + messageFileSeqNo + ", messageFileName=" + messageFileName
-				+ ", messageFileFileName=" + messageFileFileName + ", messageFileFilePath=" + messageFileFilePath
+				+ ", messageFileOriginalName=" + messageFileOriginalName + ", messageFilePath=" + messageFilePath
 				+ ", messageFileType=" + messageFileType + ", messageFileStatus=" + messageFileStatus
-				+ ", messageFileScore=" + messageFileScore + ", messageFileUploadDate=" + messageFileUploadDate + "]";
+				+ ", messageFileScore=" + messageFileScore + ", messageFileUploadDate=" + messageFileUploadDate
+				+ ", messageFile=" + messageFile + "]";
 	}
 
 }

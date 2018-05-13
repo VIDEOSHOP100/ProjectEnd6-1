@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.iii._19_.messageFile.model.MessageFileBean;
 import com.iii._19_.messageImage.model.MessageImageBean;
+import com.iii._19_.messageVideo.model.MessageVideoBean;
 
 @ControllerAdvice
 public class GlobalController {
@@ -14,6 +15,7 @@ public class GlobalController {
 	public void getAttribute(Map<String,Object> map) {
 		map.put("messageImageBean", new MessageImageBean());
 		map.put("messageFileBean", new MessageFileBean());
+		map.put("messageVideoBean", new MessageVideoBean());
 		
 	}
 }

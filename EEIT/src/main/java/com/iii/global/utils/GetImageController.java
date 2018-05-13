@@ -29,6 +29,8 @@ import com.iii._16_.PersonShop.bean.PersonShopBean;
 import com.iii._16_.PersonShop.service.PersonShopService;
 import com.iii._16_.ProductSale.ProductPicture.model.ProPicBean;
 import com.iii._16_.ProductSale.ProductPicture.model.ProPicService;
+import com.iii._19_.messageFile.model.MessageFileBean;
+import com.iii._19_.messageFile.model.MessageFileService;
 import com.iii._19_.messageImage.model.MessageImageBean;
 import com.iii._19_.messageImage.model.MessageImageService;
 import com.iii._19_.sticker.model.StickerBean;
@@ -59,6 +61,9 @@ public class GetImageController {
 	
 	@Autowired
 	private MessageImageService messageImageService;
+	
+	@Autowired
+	private MessageFileService messageFileService;
 
 	@Autowired
 	InputLiveStreamTimeService inputLiveStreamTimeService;
