@@ -158,13 +158,13 @@
 	float: right;
 }
 
-/* .box-message > .messagePlus > button { */
+.box-message > .messagePlus > button {
 /* 	background-color: #4a0080; */
-/* /* 	color : #4a0080; */ */
-/* } */
+/* 	color : #4a0080; */
+}
 
 
-.box-message > .messagePlus > a {
+.box-message > .messagePlus > button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #e184f3;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #e184f3;
 	box-shadow:inset 0px 1px 0px 0px #e184f3;
@@ -176,21 +176,18 @@
 	background:linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c123de', endColorstr='#a20dbd',GradientType=0);
 	background-color:#c123de;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
 	border:1px solid #a511c0;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:15px;
+	font-size:8px;
 	font-weight:bold;
-	padding:6px 24px;
+	padding:6px 10px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #9b14b3;
 }
-.box-message > .messagePlus > a:hover {
+.box-message > .messagePlus > button:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a20dbd), color-stop(1, #c123de));
 	background:-moz-linear-gradient(top, #a20dbd 5%, #c123de 100%);
 	background:-webkit-linear-gradient(top, #a20dbd 5%, #c123de 100%);
@@ -296,3 +293,60 @@
 	display: none;
 }
 /* 以下聊天室------------------------------------------------------------------- */
+
+
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup div {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup div::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}

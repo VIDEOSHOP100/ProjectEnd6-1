@@ -20,7 +20,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.LoginService;
@@ -28,10 +27,10 @@ import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 import com.iii._16_.PersonShop.service.PersonShopService;
-import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
-import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 import com.iii._16_.ProductSale.ProductPicture.model.ProPicBean;
 import com.iii._16_.ProductSale.ProductPicture.model.ProPicService;
+import com.iii._19_.sticker.model.StickerBean;
+import com.iii._19_.sticker.model.StickerService;
 import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageDAO;
 
@@ -49,6 +48,10 @@ public class GetImageController {
 	
 	@Autowired
 	private ProPicService propicservice;
+	
+	@Autowired
+	private StickerService stickerService;
+	
 	@Autowired
 	ServletContext context;
 
@@ -85,7 +88,10 @@ public class GetImageController {
 			}
 		}else if(dataType.equals("LiveCoverPath")) {
 			InputLiveStreamTimeBean inputLiveStreamTimeBean = inputLiveStreamTimeService.getLiveStreamsBySeqNo(Integer.parseInt(pk));
-		path =	inputLiveStreamTimeBean.getLiveCoverPath();
+			path = inputLiveStreamTimeBean.getLiveCoverPath();
+		}else if(dataType.equalsIgnoreCase("sticker")) {
+			StickerBean stickerBean = stickerService.getStickerBySeqNo(Integer.parseInt(pk));
+			path = stickerBean.getStickerFilePath();
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -115,7 +121,7 @@ public class GetImageController {
 	@RequestMapping(value = "/getImageTest/{num}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse response,@PathVariable String num) {
 		String path = null;
-		path = "C:\\EEITfinal\\repository\\ProjectOne\\EEIT\\src\\main\\webapp\\WEB-INF\\views\\marketIndex\\images\\"+num+".jpg";
+		path = "C:\\EEIT\\repository\\ProjectOne\\EEIT\\src\\main\\webapp\\WEB-INF\\views\\marketIndex\\images\\"+num+".jpg";
 		HttpHeaders headers = new HttpHeaders();
 		int len = 0;
 		byte[] media = null;
