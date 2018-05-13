@@ -140,36 +140,36 @@ $( function() {
 	        contentType: false,
 	        processData: false,
 			success: function (data) {
-				$.getJSON('SelectInsertVideo.do', {}, function (datas) {	 
-					var docFrag = $(document.createDocumentFragment());
-					var dor = $('.divOutsideRow');
-					$.each(datas, function (idx,product) {
-						var cell1 = $('<a></a>').attr("href","<c:url value='/_07_watchHistory/watchHistory.do?videoSeqNo=" + product.seqNo +"&userAccount=" + product.videoUploaderAccount + "' />")
-						var cell2 = $('<img></img>').addClass("d-flex mr-3 picVideo").attr({height:"200px" , width:"400px", src:"/iiiProject3/_01_global/getImage?videoSeqNo=" + product.seqNo +"&type=VIDEO"	}) 
-						var cell1 = cell1.append(cell2)
-						var cell3 = $('<div></div>').addClass("media-body videoDatas").attr({href:"<c:url value='/_07_watchHistory/watchHistory.do?videoSeqNo=" + product.seqNo +"&userAccount=" + product.videoUploaderAccount + "' />"});
-						var cell17 = $('<a></a>').attr("href","<c:url value='/_07_watchHistory/watchHistory.do?videoSeqNo=" + product.seqNo +"&userAccount=" + product.videoUploaderAccount + "' />")
-						var cell4 = $('<h5></h5>').attr("class","mt-0").text(product.videoTitle);
-						var cell17 = cell17.append(cell4)
-						var cell5 = $('<p></p>').attr("class","seqNo" ).text(product.seqNo);
-						var cell6 = $('<p></p>').text("觀看次數:" + product.videoViews);
-						var cell7 = $('<p></p>').text("影片上傳日期時間:" + product.videoUploadDate);
-						var cell8 = $('<p></p>').attr("class","videoTypeOutSide" ).text("影片種類:");
-						var cell18 = $('<p></p>').addClass("videoType").text(product.videoType);
-						var cell9 = $('<p></p>').text("影片喜歡數:" + product.videoLikes);
-						var cell10 = $('<p></p>').text("影片不喜歡數:" + product.videoUnlikes);
-						var cell11 = $('<p></p>').text("影片播放清單類別:" + product.videoUploaderType);
-						var cell12 = $('<p></p>').attr("class","videoDescriptionOutSide" ).text("影片描述:")
-						var cell19 = $('<p></p>').addClass("videoDescription").text(product.videoDescription);
-						var cell13 = cell3.append([cell17,cell5,cell6,cell7,cell8,cell18,cell9,cell10,cell11,cell12,cell19])
-						var cell1 = $('<div></div>').addClass("media mb-4").append([cell1,cell13])
-						var cell14 = $('<div></div>').attr("class","col-md-10").append([cell1])
-						var cell15 = $('<div></div>').attr("class","col-md-2").html('<button class="btn btn-info create-user"><i class="fas fa-edit"></i></button><button class="btn btn-danger delete-video"><i class="fas fa-trash-alt"></i></button>')
-						var cell16 = $('<div></div>').attr("class","col-md-12 row divOutside").append([cell14,cell15])
-						docFrag.append(cell16);
-					})
-					dor.prepend(docFrag);
-				})
+//				$.getJSON('SelectInsertVideo.do', {}, function (datas) {	 
+//					var docFrag = $(document.createDocumentFragment());
+//					var dor = $('.divOutsideRow');
+//					$.each(datas, function (idx,product) {
+//						var cell1 = $('<a></a>').attr("href","<c:url value='/_07_watchHistory/watchHistory.do?videoSeqNo=" + product.seqNo +"&userAccount=" + product.videoUploaderAccount + "' />")
+//						var cell2 = $('<img></img>').addClass("d-flex mr-3 picVideo").attr({height:"200px" , width:"400px", src:"/iiiProject3/_01_global/getImage?videoSeqNo=" + product.seqNo +"&type=VIDEO"	}) 
+//						var cell1 = cell1.append(cell2)
+//						var cell3 = $('<div></div>').addClass("media-body videoDatas").attr({href:"<c:url value='/_07_watchHistory/watchHistory.do?videoSeqNo=" + product.seqNo +"&userAccount=" + product.videoUploaderAccount + "' />"});
+//						var cell17 = $('<a></a>').attr("href","<c:url value='/_07_watchHistory/watchHistory.do?videoSeqNo=" + product.seqNo +"&userAccount=" + product.videoUploaderAccount + "' />")
+//						var cell4 = $('<h5></h5>').attr("class","mt-0").text(product.videoTitle);
+//						var cell17 = cell17.append(cell4)
+//						var cell5 = $('<p></p>').attr("class","seqNo" ).text(product.seqNo);
+//						var cell6 = $('<p></p>').text("觀看次數:" + product.videoViews);
+//						var cell7 = $('<p></p>').text("影片上傳日期時間:" + product.videoUploadDate);
+//						var cell8 = $('<p></p>').attr("class","videoTypeOutSide" ).text("影片種類:");
+//						var cell18 = $('<p></p>').addClass("videoType").text(product.videoType);
+//						var cell9 = $('<p></p>').text("影片喜歡數:" + product.videoLikes);
+//						var cell10 = $('<p></p>').text("影片不喜歡數:" + product.videoUnlikes);
+//						var cell11 = $('<p></p>').text("影片播放清單類別:" + product.videoUploaderType);
+//						var cell12 = $('<p></p>').attr("class","videoDescriptionOutSide" ).text("影片描述:")
+//						var cell19 = $('<p></p>').addClass("videoDescription").text(product.videoDescription);
+//						var cell13 = cell3.append([cell17,cell5,cell6,cell7,cell8,cell18,cell9,cell10,cell11,cell12,cell19])
+//						var cell1 = $('<div></div>').addClass("media mb-4").append([cell1,cell13])
+//						var cell14 = $('<div></div>').attr("class","col-md-10").append([cell1])
+//						var cell15 = $('<div></div>').attr("class","col-md-2").html('<button class="btn btn-info create-user"><i class="fas fa-edit"></i></button><button class="btn btn-danger delete-video"><i class="fas fa-trash-alt"></i></button>')
+//						var cell16 = $('<div></div>').attr("class","col-md-12 row divOutside").append([cell14,cell15])
+//						docFrag.append(cell16);
+//					})
+//					dor.prepend(docFrag);
+//				})
 				dialoginsert.dialog( "close" );
 				$('#videoFileInsert').empty();
 				$('#videoTitleInsert').empty();
