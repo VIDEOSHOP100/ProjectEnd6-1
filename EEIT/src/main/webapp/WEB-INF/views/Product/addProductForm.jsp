@@ -108,11 +108,10 @@
 							<label>商品付款方式: <span style="color: red">*</span></label>
 							<form:select class="form-control" id="proPayTypeSeqNo" path="proPayTypeSeqNo">
 								<form:option value="1">WebATM</form:option>
-								<form:option value="2">信用卡付款(歐付寶)</form:option>
+								<form:option value="2">信用卡付款</form:option>
 								<form:option value="3">ATM轉帳</form:option>
-								<form:option value="4">貨到付款</form:option>
-								<form:option value="5">面交</form:option>
-								
+								<form:option value="4">線上支付(歐付寶)</form:option>
+								<form:option value="5">貨到付款</form:option>								
 							</form:select>
 						</div>
 					</div>
