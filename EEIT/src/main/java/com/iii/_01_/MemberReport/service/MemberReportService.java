@@ -8,4 +8,7 @@ public interface MemberReportService {
 
 	public List<MemberReportBean> getAllMemberReport();
 	
+	public void saveMemberReportBean(MemberReportBean memberReportBean);
+	
+	
 }

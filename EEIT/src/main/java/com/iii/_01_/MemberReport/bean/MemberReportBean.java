@@ -7,19 +7,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "MemberReport")
 public class MemberReportBean {
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer memberReportSeqNo;
 	private String accountFrom;
 	private String accountTo;
 	private String reportTitle;
 	private String reportContent;
-	private String reportTime;
+	private Timestamp reportTime;
 	private String imageName;
 	private String imagePath;
 	private String reportStatus;
@@ -31,7 +34,7 @@ public class MemberReportBean {
 	}
 
 	public MemberReportBean(Integer memberReportSeqNo, String accountFrom, String accountTo, String reportTitle,
-			String reportContent, String reportTime, String imageName, String imagePath, String reportStatus,
+			String reportContent, Timestamp reportTime, String imageName, String imagePath, String reportStatus,
 			Timestamp replyTime, String replyContent) {
 		super();
 		this.memberReportSeqNo = memberReportSeqNo;
@@ -88,11 +91,11 @@ public class MemberReportBean {
 		this.reportContent = reportContent;
 	}
 
-	public String getReportTime() {
+	public Timestamp getReportTime() {
 		return reportTime;
 	}
 
-	public void setReportTime(String reportTime) {
+	public void setReportTime(Timestamp reportTime) {
 		this.reportTime = reportTime;
 	}
 
@@ -138,6 +141,10 @@ public class MemberReportBean {
 
 	public Integer getMemberReportSeqNo() {
 		return memberReportSeqNo;
+	}
+
+	public void setMemberReportSeqNo(Integer memberReportSeqNo) {
+		this.memberReportSeqNo = memberReportSeqNo;
 	}
 
 }

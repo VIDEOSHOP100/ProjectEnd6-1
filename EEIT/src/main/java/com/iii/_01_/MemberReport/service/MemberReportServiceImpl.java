@@ -21,4 +21,9 @@ public class MemberReportServiceImpl implements MemberReportService {
 		return dao.getAllMemberReportBean();
 	}
 
+	@Override
+	public void saveMemberReportBean(MemberReportBean memberReportBean) {
+		dao.saveMemberReportBean(memberReportBean);
+	}
+
 }

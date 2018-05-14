@@ -1,12 +1,20 @@
 package com.iii._01_.MemberReport.controller;
 
+import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.MemberReport.bean.MemberReportBean;
 import com.iii._01_.MemberReport.service.MemberReportService;
 
@@ -16,15 +24,33 @@ public class MemberReportController {
 	@Autowired
 	MemberReportService memberReportService;
 	
-	
-	
-	@RequestMapping("/backstage/memberReport")
-	public String getmemberReport(Model model) {
-		List<MemberReportBean> list = memberReportService.getAllMemberReport();
-		model.addAttribute("MemberReportList",list);
-		return "/backstage/memberReport";
+	@RequestMapping(value = "/memberReport" ,method = RequestMethod.POST)
+	public @ResponseBody String saveMemberReport(
+			@RequestParam("accountTo")String accountTo,
+			@RequestParam("reportTitle")String reportTitle,
+			@RequestParam("reportContent")String reportContent,
+			HttpSession session) {
+		
+		MemberBean memberForm =	(MemberBean) session.getAttribute("LoginOK");
+		String accountFrom = memberForm.getAccount();
+		Timestamp reportTime = new java.sql.Timestamp(System.currentTimeMillis());
+		String reportStatus ="已檢舉";
+		
+		MemberReportBean mrb = new MemberReportBean(0, accountFrom, accountTo, reportTitle, reportContent, reportTime, null, null, reportStatus, null, null);
+		
+		memberReportService.saveMemberReportBean(mrb);
+		
+	return "";	
 	}
 	
-	
+	@RequestMapping(value= "/getAllMemberReport",method = RequestMethod.GET)
+	public @ResponseBody List<MemberReportBean> getAllMemberReport() {
+		List<MemberReportBean> list = memberReportService.getAllMemberReport();
+		System.out.println("getAllMemberReport here");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("memberReportList", list);
+		
+		return list;
+	}
 	
 }
