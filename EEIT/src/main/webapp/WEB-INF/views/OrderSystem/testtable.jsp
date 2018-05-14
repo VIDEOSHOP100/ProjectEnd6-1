@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<% response.setCharacterEncoding("big5"); %>
+<%-- <% response.setCharacterEncoding("big5"); %> --%>
 <html>
   <head>
     <title>eShop 模擬購物網站超商取貨</title>
@@ -16,7 +16,7 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td height="84" align="center">
-          <div style="font-size:28px"><br><b> <font size=6 color=red>模擬</font> 購物網站超商取貨</b><br><br></div>
+          <div style="font-size:28px"><br><h2> <font size=6 color=red></font> 7-11超商取貨</h2><br><br></div>
           <img src="http://www.ezship.com.tw/images/store_step.gif" border="0">
         </td>
       </tr>
@@ -57,12 +57,14 @@
                                 <td width='10%'><div align=right><b>數量</b></div></td>
                                 <td width='12%'><div align=right><b>小計</b></div></td>
                               </tr>
+<!--                               forEach -->
                               <tr bgcolor=FFFFFF>
-                                <td height=20><div align=left><font color=#003399><span>炫光時鐘收音機</span></font></div></td>
+                                <td height=20><div align=left><font color=#003399><span>取得商品名稱</span></font></div></td>
                                 <td><div align=right><span>299</span></div></td>
                                 <td align=right>1</td>
                                 <td align=right><span>299</span></td>
                               </tr>
+<!--                               forEach -->
                               <tr bgcolor=FFFFFF>
                                 <td height=20 align=left><font color=000000>運費</font></td>
                                 <td></td>
@@ -72,7 +74,7 @@
                               <tr bgcolor=FFFFFF>
                                 <td height=20></td>
                                 <td></td>
-                                <td colspan=2 align=right><font color=#FF3300><b>消費總金額　299</b></font></td>
+                                <td colspan=2 align=right><font color=#FF3300><b>消費總金額　需要加總</b></font></td>
                               </tr>
                             </table>
                             <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
@@ -82,7 +84,7 @@
                               </tr>
                               <tr>
                                 <td width="10" bgcolor="#c2c2c2"> </td>
-                                <td bgcolor="#c2c2c2"><span class="title"><b>填寫付款人資料</b></span></td>
+                                <td bgcolor="#c2c2c2"><span class="title"><>填寫付款人資料</b></span></td>
                               </tr>
                             </table>
                             <table width=100% border=0 bgcolor='#c2c2c2' cellspacing=1 cellpadding=5>

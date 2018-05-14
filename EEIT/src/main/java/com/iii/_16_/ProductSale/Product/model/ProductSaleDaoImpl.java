@@ -58,5 +58,9 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	}
 	
 	
+	public List<ProductSaleBean> findbyAuctionNo(String auctionSeqNo) throws SQLException {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductSaleBean WHERE auctionSeqNo = :auctionSeqNo",ProductSaleBean.class).setParameter("auctionSeqNo", auctionSeqNo).list();
+	}
 
 }

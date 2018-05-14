@@ -98,6 +98,7 @@ var liveStreamSeqNo = $('.seqNo').val();
 //  stompClient.subscribe('/target/livechat/subscription/'+liveStreamSeqNo,function(messagereturn){
 //      addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).liveStreamArticle)
 //  });
+
 //console.log("asdasd");
 //console.log(stompClient); 
 //聊天室
@@ -125,3 +126,4 @@ function updateScroll(){
 
 
 })
+
