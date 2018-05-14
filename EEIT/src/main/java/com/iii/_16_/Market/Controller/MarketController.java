@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._09_.addproduct.model.ProductBean;
@@ -45,5 +46,13 @@ public class MarketController {
 		map.put("productbeans", productlist);
 		
 		return "marketIndex/Mindex";
+	}
+	
+	@RequestMapping(value="recept")
+	public void getshipment(@RequestParam("rv_name") String name) {
+		System.out.println("name = " + name);
+		
+		
+		
 	}
 }

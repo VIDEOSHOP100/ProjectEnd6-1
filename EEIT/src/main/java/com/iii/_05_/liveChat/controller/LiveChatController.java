@@ -27,22 +27,23 @@ public class LiveChatController {
 	@MessageMapping("livechat/{liveStreamSeqNo}")
 	@SendTo("/target/livechat/subscription/{liveStreamSeqNo}")
 	public LiveChatBean liveStreamChat(LiveChatBean LiveChatBean,
-			@DestinationVariable("liveStreamSeqNo") String liveStreamSeqNo,
-			@DestinationVariable("account") String account
+			@DestinationVariable("liveStreamSeqNo") Integer liveStreamSeqNo
+//			@DestinationVariable("account") String account
 			) {
 		System.out.println("----------------------------------------------------------------");
 		System.out.println(liveStreamSeqNo);
-		System.out.println(account);
+//		System.out.println(account);
 		System.out.println("----------------------------------------------------------------");
 		System.out.println("broadcastMessage");
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		LiveChatBean.setLiveChatDate(now);
 		LiveChatBean.setLiveChatStatus("1");
-		
+		LiveChatBean.setLiveChatType("1");
+		LiveChatBean.setLiveStreamSeqNo(liveStreamSeqNo);
 //		InputLiveStreamTimeBean getseq = InputLiveStreamTimeService.getLiveStreamsByAccount(account);
 //		System.out.println("before = " + LiveChatBean);
-		int livechatSeqNo = LiveChatService.saveliveChat(LiveChatBean);
-//		LiveChatBean.setLiveStreamSeqNo(liveStreamSeqNo);
+		LiveChatService.saveliveChat(LiveChatBean);
+
 //		System.out.println("after = " + messageBean);
 		return LiveChatBean;
 	}

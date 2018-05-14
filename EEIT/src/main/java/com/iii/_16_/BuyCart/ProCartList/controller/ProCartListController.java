@@ -43,8 +43,7 @@ public class ProCartListController {
 
 	//點選購物車按鈕，送回使用者帳號 來搜尋 購物車清單中 含有當前使用的購物明細
 	@RequestMapping(value = "/getCart/{account}", method = RequestMethod.GET)
-	public String getCart(@PathVariable("account") String id, @ModelAttribute("MemberBean") MemberBean mb,
-			Map<String, Object> map, HttpSession session) throws SQLException {
+	public String getCart(Map<String, Object> map, HttpSession session) throws SQLException {
 			//此方法回傳使用者帳號account  Ex.bob放入購物車的物品
 			MemberBean memberbean = (MemberBean)session.getAttribute("LoginOK");
 			String account = memberbean.getAccount();

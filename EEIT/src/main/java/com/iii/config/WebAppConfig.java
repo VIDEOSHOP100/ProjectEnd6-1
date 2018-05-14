@@ -76,6 +76,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
  		registry.addResourceHandler("/LiveStreamRoom/**").addResourceLocations("/WEB-INF/views/LiveStreamRoom/");
 		registry.addResourceHandler("/Cart/**").addResourceLocations("/WEB-INF/views/Cart/");
 		registry.addResourceHandler("/backstage/**").addResourceLocations("/WEB-INF/views/backstage/");
+		registry.addResourceHandler("/OrderSystem/**").addResourceLocations("/WEB-INF/views/OrderSystem/");
 
 		
 		

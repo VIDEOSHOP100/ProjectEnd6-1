@@ -3,7 +3,7 @@
  */
 
 $(document).ready(function() {	
-	
+	var account = $('#catch-account').val();
 	$('.deleteBlock').click(function(){
 		var thisDeleteButton = $(this) 
 		var liveStreamSeqNo = thisDeleteButton.val();
@@ -26,7 +26,7 @@ $(document).ready(function() {
 		});
 	})
 
-})
+
 
 
 //websocket 
@@ -35,18 +35,20 @@ $(document).ready(function() {
 //	var uploaderAccountList;
 //	var notificationKey 
 
-function send(account, liveStreamArticle){
+function send(account, liveChatArticle){
     	var senderAccountFistWord = account.substring(0,1).charCodeAt()
     	var liveStreamSeqNo = $('.seqNo').val();
 
 		var roomNumber = $('.roomNumber').val();
-
+//alert(liveChatArticle);
+//alert(account);
 		var name = $(this).parents('div').find('.message').val();
-		stompClient.send("/app/livechat/" + liveStreamSeqNo , {}, JSON.stringify({ 'liveStreamArticle':liveStreamArticle, 'account':account}));
+		stompClient.send("/app/livechat/" + liveStreamSeqNo , {}, JSON.stringify({ 'liveChatArticle':liveChatArticle, 'account':account}));
+		
 	}
 //var chatmessage = $('.chat-message').val(); 
 //alert(chatmessage);
-var account = $('#catch-account').val();
+
 $(document).on('keyup','.input-group>input',function(e){
 
 //	alert(account);
@@ -62,22 +64,13 @@ $(document).on('keyup','.input-group>input',function(e){
     
 });
  
-//
-//function addMessage(account, receiverAccount, messageArticle, messageType){
-//	if(account == senderAccount){
-//		if($('#' + receiverAccount +'1>.box-body').length>0){
-//			if(messageType == 'sticker'){
-//				$('#' + receiverAccount +'1>.box-body').append('<p class="me"><img class="stickerSend" height="75px" width="75px" src="/EEIT/getImage/sticker/'+ messageArticle +'" name="'+ messageArticle +'"></p>')
-//			}else if(messageType == 'text'){
-//				$('#' + receiverAccount +'1>.box-body').append('<p class="me">'+ account + ": "+ messageArticle +'</p>')
-//			}
-//			if($('#' + receiverAccount +'1').is('.box-close')){
-//				$('#' + receiverAccount +'1').find('.box-head').addClass('box-headAlert')
-//			}
-//		}else if($('#' + receiverAccount +'1>.box-body').length==0){
-//			
-//			$('#' + receiverAccount).addClass('sidebarUserButtonAlert')
-//		}
+
+function addMessage(account,liveChatArticle){
+
+				$('.card-bodycontroller').append('<div class="chatBlock"><p class="chatrow">'+ account + ": "+ liveChatArticle +'</p></div>')
+
+//	updateScroll();
+}
 //	}else if(account != senderAccount){
 //		if($('#' + account +'1>.box-body').length > 0){
 //			if(messageType == 'sticker'){
@@ -92,8 +85,7 @@ $(document).on('keyup','.input-group>input',function(e){
 //			$('#' + account).addClass('sidebarUserButtonAlert')
 //		}
 //	}
-//	updateScroll();
-//}
+
 
 
 
@@ -106,10 +98,32 @@ var liveStreamSeqNo = $('.seqNo').val();
 //  stompClient.subscribe('/target/livechat/subscription/'+liveStreamSeqNo,function(messagereturn){
 //      addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).liveStreamArticle)
 //  });
-console.log("asdasd"); 
+
+//console.log("asdasd");
 //console.log(stompClient); 
-  stompClient.subscribe('/target/livechat/subscription/' + liveStreamSeqNo , function(messagereturn){
-      addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).receiverAccount,JSON.parse(messagereturn.body).messageArticle,JSON.parse(messagereturn.body).messageType)
-  });
-  
-        
+//聊天室
+stompClient.connect({}, function(frame) {
+    console.log('Connected: ' + frame);
+    stompClient.subscribe('/target/livechat/subscription/' + liveStreamSeqNo , function(messagereturn){
+    	addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).liveChatArticle)
+    	updateScroll()
+    });
+});
+function updateScroll(){
+	var element = $('.card-bodycontroller')
+	var scrollHeight = element.prop("scrollHeight");
+	element.scrollTop(scrollHeight,200);
+
+}
+//顯示物品
+
+//stompClient.connect({}, function(frame) {
+//    console.log('Connected: ' + frame);
+//    stompClient.subscribe('/target/proshow/subscription/' + liveStreamSeqNo , function(messagereturn){
+//    	addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).liveChatArticle)
+//    });
+//});
+
+
+})
+
