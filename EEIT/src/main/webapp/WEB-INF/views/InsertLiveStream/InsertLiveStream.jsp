@@ -336,6 +336,7 @@ font-family: 'Poiret One', cursive;
             </div>
         </div>
         <!--  End Modal -->
+        <%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
         	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="<c:url value='/InsertLiveStream/js/InsertLiveStream.js'/>"></script>
 

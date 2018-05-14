@@ -34,7 +34,6 @@
 	/* 		text-align:left; */
 	
 }
-
 .videoBlock a {
 	color: black;
 }
@@ -49,15 +48,11 @@
 }
 </style>
 </head>
-
 <body>
-
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-
 	<input value="${LoginOK.account}" class="account" type="hidden">
 	<header>
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-		
 		<ol class="carousel-indicators">
 			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -67,7 +62,7 @@
 			<div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
 				<iframe width="1950" height="700"
 					src="https://www.youtube.com/embed/FhUgjzdCflQ?autoplay=1"
-					frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					frameborder="0"; encrypted-media" allowfullscreen></iframe>
 				<div class="carousel-caption d-none d-md-block">
 					<h3>First Slide</h3>
 					<p>This is a description for the first slide.</p>
@@ -103,14 +98,12 @@
 		</a>
 	</div>
 	</header>
-
 	<div class="container">
 		<h1>
 		<a href="<c:url value='/hotVideo' />">
 			熱門影片
 		</a>
 		</h1>
-
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${hotVideos}">
 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
@@ -148,7 +141,6 @@
 			最新影片
 		</a>
 		</h1>
-
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${newVideos}">
 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
@@ -180,15 +172,11 @@
 			</c:forEach>
 		</div>
 		<c:forEach var="videoTypes" items="${sortedVideos}">
-<%-- 			<c:set target="${showVideoBean2}" property="videoType" --%>
-<%-- 				value="${videoTypes.videoType }" /> --%>
-
 			<h1>
 				<a href="<c:url value='/videoType/${videoTypes[0].videoType}' />">
 					<c:out value="${videoTypes[0].videoType}" />
 				</a>
 			</h1>
-			
 			<div class="row">
 				<c:forEach var="aVideoBean" items="${videoTypes}">
 					<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
@@ -227,13 +215,7 @@
 			Website 2018</p>
 	</div>
 	</footer>
-	
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
-<%-- 	<%@ include file="/WEB-INF/views/global/fragment/notification.jsp" %> --%>
-	
-	
-	
-	
 	<script src="<c:url value='/global/js/index.js'/> "></script>
 
 </body>

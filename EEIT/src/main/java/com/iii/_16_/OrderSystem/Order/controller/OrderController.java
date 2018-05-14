@@ -78,12 +78,10 @@ public class OrderController {
 	}
 	
 	
-	
-	
 	@RequestMapping(value = "/gotoseven", method = RequestMethod.GET)
 	public String checkOutToSeven() {
 		System.out.println("checkout");
-	
+		
 		return "OrderSystem/testtable";
 	}
 }

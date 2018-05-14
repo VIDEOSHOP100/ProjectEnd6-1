@@ -42,5 +42,30 @@ $(document).ready(function(){
 	})
 	
 	
+	$('#reportSubmit').click(function(){
+		
+		var reportTitle = $('#reportTitle').val();
+		var reportContent = $('#reportContent').val();
+
+		$.ajax({
+			type:"POST",
+			url:"/EEIT/memberReport",
+			data:{accountTo:othersideaccount , reportTitle:reportTitle , reportContent,reportContent},
+			timeout: 600000,
+			success:function(){
+				$('#memberReportButton').attr("disabled","disabled").text("已檢舉");
+				$('#cancel').trigger("click");
+				
+			},
+			error: function (e) {
+				console.log("ERROR : ", e);
+				alert(e);
+			}
+		})
+		
+	})
+	
+	
+	
 	
 })
