@@ -107,7 +107,7 @@ var liveStreamSeqNo = $('.seqNo').val();
 //      addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).liveStreamArticle)
 //  });
 console.log("asdasd"); 
-console.log(stompClient); 
+//console.log(stompClient); 
   stompClient.subscribe('/target/livechat/subscription/' + liveStreamSeqNo , function(messagereturn){
       addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).receiverAccount,JSON.parse(messagereturn.body).messageArticle,JSON.parse(messagereturn.body).messageType)
   });
