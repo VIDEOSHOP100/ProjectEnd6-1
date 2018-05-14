@@ -35,6 +35,8 @@ public class ProductSaleBean {
 	private Integer picSeqNo;
 	private String account;
 	
+	private Integer auctionStatus;
+	
 	@Transient
 	private MultipartFile picFile;//v
 	
@@ -43,6 +45,19 @@ public class ProductSaleBean {
 	}
 	
 	
+	
+	public Integer getAuctionStatus() {
+		return auctionStatus;
+	}
+
+
+
+	public void setAuctionStatus(Integer auctionStatus) {
+		this.auctionStatus = auctionStatus;
+	}
+
+
+
 	public Integer getPicSeqNo() {
 		return picSeqNo;
 	}

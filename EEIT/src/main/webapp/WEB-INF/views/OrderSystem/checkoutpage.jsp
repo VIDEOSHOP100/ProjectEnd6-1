@@ -26,11 +26,9 @@
 	<!-- 訂單資料 --------------------------------------------------------------------------------------->
 	<div class="">
 		<div class="card">
-			<div class="card-header">${getMemberBean.account}的購物清單</div>
+			<div class="card-header">${getMemberBean.account}的訂單資訊</div>
 			<div class="card-body">
-				<button id="buttonAdd" type="button" class="btn btn-success">
-					<i class="fas fa-cart-plus"></i>
-				</button>
+		
 				<!-- 每頁不同的內容從這裡開始 -->
 				<table id="productTable" class="table table-condensed">
 					<thead>
@@ -100,27 +98,43 @@
 	<div class="container-fluid">
 		<section class="container">
 		<div class="container-page">
-			<div class="col-md-6">
+			<div class="col-md-6" id="upform">
 				<h3 class="dark-grey">訂購人資訊</h3>
 
 				<div class="form-group col-lg-6">
 					<label>訂購人姓名</label> <input type="text" name=""
-						class="form-control" id="" value="">
+						class="form-control" id="upName" value="">
 				</div>
 
 				<div class="form-group col-lg-6">
 					<label>訂購人電話</label> <input type="text" name=""
-						class="form-control" id="" value="">
+						class="form-control" id="upTel" value="">
 				</div>
 
 				<div class="form-group col-lg-6">
-					<label>訂購人 Email</label> <input type="password" name=""
-						class="form-control" id="" value="">
+					<label>訂購人 Email</label> <input type="text" name=""
+						class="form-control" id="upMail" value="">
 				</div>
 
-				<div class="form-group col-lg-6">
-					<label>訂購人 地址</label> <input type="" name="" class="form-control"
-						id="" value="">
+				<div class="form-group col-lg-4">
+					<label>訂購人 地址</label> 
+					
+					<label>縣/市</label> <select class="form-control" id="sel1">
+					    <option>1</option>
+					    <option>2</option>
+					    <option>3</option>
+					    <option>4</option>
+					  </select>
+					<label>區域</label> <select class="form-control" id="sel1">
+					    <option>1</option>
+					    <option>2</option>
+					    <option>3</option>
+					    <option>4</option>
+					  </select>
+				</div>
+				<div class="form-group col-lg-8">
+					<input type="text" name="" class="form-control"
+						id="upAdder" value="">
 				</div>
 
 				<!-- 				<div class="col-sm-6"> -->
@@ -132,29 +146,30 @@
 			<div class="col-md-6">
 				<h3 class="dark-grey">收貨人資訊</h3>
 
+				
 				<div class="col-sm-6">
-					<input type="checkbox" class="checkbox" />同訂購人
+					<input type="button" class="btn-success down" value="資料同上" />
 				</div>
 
 
 				<div class="form-group col-lg-6">
 					<label>收貨人姓名</label> <input type="text" name=""
-						class="form-control" id="" value="">
+						class="form-control" id="downName" value="">
 				</div>
 
 				<div class="form-group col-lg-6">
 					<label>收貨人電話</label> <input type="text" name=""
-						class="form-control" id="" value="">
+						class="form-control" id="downTel" value="">
 				</div>
 
 				<div class="form-group col-lg-6">
-					<label>收貨人 Email</label> <input type="password" name=""
-						class="form-control" id="" value="">
+					<label>收貨人 Email</label> <input type="text" name=""
+						class="form-control" id="downEmail" value="">
 				</div>
 
 				<div class="form-group col-lg-6">
-					<label>收貨人 地址</label> <input type="" name="" class="form-control"
-						id="" value="">
+					<label>收貨人 地址</label> <input type="text" name="" class="form-control"
+						id="downAddr" value="">
 				</div>
 
 				<div class="col-sm-6">
@@ -220,7 +235,6 @@
 	</div>
 
 
-	<!-- 訂購人表單 -->
-
+<script src="<c:url value='/OrderSystem/js/order.js'/> "></script>
 </body>
 </html>
