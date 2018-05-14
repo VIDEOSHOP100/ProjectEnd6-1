@@ -1,6 +1,4 @@
-$(document)
-		.ready(
-				function() {
+$(document).ready(function() {
 					// delete------------------------------------------------------------------------------------------
 					var selectedDeletedSeqNo;
 					var selectedtbodyOutside;

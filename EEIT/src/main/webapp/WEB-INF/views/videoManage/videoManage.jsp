@@ -13,7 +13,7 @@
 	  <meta name="author" content="">
 	
 	  <title>管理影片</title>
-	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
+<!-- 	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css">  -->
 <!-- 	  <link rel="stylesheet" href="/resources/demos/style.css"> -->
 	  <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 	  <link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
