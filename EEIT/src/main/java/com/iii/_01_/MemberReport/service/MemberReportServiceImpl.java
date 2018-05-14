@@ -15,7 +15,7 @@ public class MemberReportServiceImpl implements MemberReportService {
 
 	@Autowired
 	MemberReportDAO dao;
-	
+
 	@Override
 	public List<MemberReportBean> getAllMemberReport() {
 		return dao.getAllMemberReportBean();
@@ -24,6 +24,12 @@ public class MemberReportServiceImpl implements MemberReportService {
 	@Override
 	public void saveMemberReportBean(MemberReportBean memberReportBean) {
 		dao.saveMemberReportBean(memberReportBean);
+	}
+
+	@Override
+	public MemberReportBean getMemberReportBeanBymemberReportSeqNo(Integer memberReportSeqNo) {
+
+		return dao.getMemberReportBeanByMemberReportSeqNo(memberReportSeqNo);
 	}
 
 }

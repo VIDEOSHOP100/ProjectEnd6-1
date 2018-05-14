@@ -125,7 +125,7 @@
 					</div>
 						<div class="modal-footer">
 							
-							<button type="button" class="btn btn-secondary"
+							<button type="button" class="btn btn-secondary" id ="cancel"
 							
 							data-dismiss="modal">取消</button>
 							<button id="reportSubmit" type="button" class="btn btn-warning">確認檢舉</button>

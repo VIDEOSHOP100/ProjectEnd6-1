@@ -39,7 +39,7 @@
       </ol>
 
       <div class="row">
-        <div class="col-lg-3 mb-4">
+        <div class="col-lg-2 mb-4">
           <div class="list-group"> 
             <a class="list-group-item pointer text-primary replyMessage">回復留言</a>
             <a class="list-group-item pointer text-primary questionManage">問答集管理</a>
@@ -55,7 +55,7 @@
     
           </div>
         </div>
-        <div class="col-lg-9 mb-4" id="content">
+        <div class="col-lg-10 mb-4" id="content">
           <h2>後台首頁</h2>
           <p>請從左側列表中選擇功能</p>
         </div>

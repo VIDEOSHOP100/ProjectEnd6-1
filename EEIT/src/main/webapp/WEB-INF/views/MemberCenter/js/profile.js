@@ -54,6 +54,7 @@ $(document).ready(function(){
 			timeout: 600000,
 			success:function(){
 				$('#memberReportButton').attr("disabled","disabled").text("已檢舉");
+				$('#cancel').trigger("click");
 				
 			},
 			error: function (e) {
