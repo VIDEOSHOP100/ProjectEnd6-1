@@ -83,10 +83,6 @@
 						</tr>
 					</tfoot>
 				</table>
-				<br> <a
-					href="${pageContext.request.contextPath}/goMarketHomePage">繼續購買</a>
-				<br> <a href="${pageContext.request.contextPath}/order.do">馬上結帳</a>
-
 			</div>
 		</div>
 	</div>
@@ -116,20 +112,19 @@
 						class="form-control" id="upMail" value="">
 				</div>
 
-				<div class="form-group col-lg-4">
+				<div class="form-group col-lg-3">
 					<label>訂購人 地址</label> 
+					<br>
+				
 					
-					<label>縣/市</label> <select class="form-control" id="sel1">
-					    <option>1</option>
-					    <option>2</option>
-					    <option>3</option>
-					    <option>4</option>
-					  </select>
-					<label>區域</label> <select class="form-control" id="sel1">
-					    <option>1</option>
-					    <option>2</option>
-					    <option>3</option>
-					    <option>4</option>
+			<span>縣/市</span><select class="form-control" id="sel1">
+								<option value="">請選擇</option>
+    							<c:forEach var="itemone" items="${citylist}">  
+    		   					 <option id="op1" value="${itemone}">${itemone}</option>  
+   			 					</c:forEach>  
+						     </select>  
+					<span>區域</span> <select class="form-control" id="sel2">
+					
 					  </select>
 				</div>
 				<div class="form-group col-lg-8">
