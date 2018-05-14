@@ -81,24 +81,16 @@ ul li {
 #ctrl2 {
 	text-align: right;
 }
-#MyBlog{
 
-    position: fixed;  /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
-
-    top: 50%;  /*設置垂直位置*/
-
-    right: -100px;  /*設置水平位置，依所放的內容多寡需要自行手動調整*/
-
-    background: #ffffff;  /*背景顏色*/
-
-    padding: 10px 20px;
-
-    border-radius: 10px;  /*圓角*/
-
-    -moz-border-radius: 10px;
-
-    -webkit-border-radius: 10px;
-
+#MyBlog {
+	position: fixed; /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
+	top: 50%; /*設置垂直位置*/
+	right: -100px; /*設置水平位置，依所放的內容多寡需要自行手動調整*/
+	background: #ffffff; /*背景顏色*/
+	padding: 10px 20px;
+	border-radius: 10px; /*圓角*/
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 </style>
 </head>
@@ -112,117 +104,120 @@ ul li {
 
 
 
-		<!-- Page Content -->
-		<div class="container">
-					
-			<!-- Jumbotron Header -->
-			<header class="jumbotron my-4">
-			<div class="banner" id="banner3">
-				<div class="move" id="move2">
-					<ul>
-						<li><img src="getImageTest/product01" alt="" width="1500"
-							height="500px"></li>
-						<li><img src="getImageTest/product02" alt="" width="1500"
-							height="500px"></li>
-						<li><img src="getImageTest/product03" alt="" width="1500"
-							height="500px"></li>
-						<li><img src="getImageTest/product04" alt="" width="1500"
-							height="500px"></li>
-						<li><img src="getImageTest/product05" alt="" width="1500"
-							height="500px"></li>
-					</ul>
-				</div>
-				<div class="ctrl" id="ctrl2"></div>
-			</div>
-			<a href="#" class="btn btn-primary btn-lg">Call to action!</a> </header>
+	<!-- Page Content -->
+	<div class="container">
 
-			<!-- Page Features -->
-			
-			<%@ include file="/WEB-INF/views/Cart/carticonRight.jsp"%>
-			
-			<div class="row text-center" style="width: 1200px; margin: 0 auto;">
-				<c:forEach var="product" items="${productbeans}">
-					<div class="col-lg-3 col-md-6 mb-4">
-						<div class="card">
-							<img class="card-img-top"
-								src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}"
-								width="500px" height="238px" alt="">
-							<div class="card-body">
-								<h4 class="card-title">${product.proName}</h4>
-								<p class="card-text">限時特價 ＞＞${product.proPrice }</p>
-								<p class="card-text">${product.proDescription }</p>
-							</div>
-							<div class="card-footer">
-								<a
-									href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"
-									class="btn btn-primary">點我購買~</a>
-							</div>
+		<!-- Jumbotron Header -->
+		<header class="jumbotron my-4">
+		<div class="banner" id="banner3">
+			<div class="move" id="move2">
+				<ul>
+					<li><img src="getImageTest/product01" alt="" width="1500"
+						height="500px"></li>
+					<li><img src="getImageTest/product02" alt="" width="1500"
+						height="500px"></li>
+					<li><img src="getImageTest/product03" alt="" width="1500"
+						height="500px"></li>
+					<li><img src="getImageTest/product04" alt="" width="1500"
+						height="500px"></li>
+					<li><img src="getImageTest/product05" alt="" width="1500"
+						height="500px"></li>
+				</ul>
+			</div>
+			<div class="ctrl" id="ctrl2"></div>
+		</div>
+		<a href="#" class="btn btn-primary btn-lg">Call to action!</a> </header>
+
+		<!-- Page Features -->
+
+		<%@ include file="/WEB-INF/views/Cart/carticonRight.jsp"%>
+
+		<div class="row text-center" style="width: 1200px; margin: 0 auto;">
+			<c:forEach var="product" items="${productbeans}">
+				<div class="col-lg-3 col-md-6 mb-4">
+					<div class="card">
+						<img class="card-img-top"
+							src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}"
+							width="500px" height="238px" alt="">
+						<div class="card-body">
+							<h4 class="card-title">${product.proName}</h4>
+							<p class="card-text">限時特價 ＞＞${product.proPrice }</p>
+							<p class="card-text">${product.proDescription }</p>
+						</div>
+						<div class="card-footer">
+							<a
+								href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"
+								class="btn btn-primary">點我購買~</a>
 						</div>
 					</div>
-				</c:forEach>	
-			</div>
-			<!-- /.row -->
-
+				</div>
+			</c:forEach>
 		</div>
-		<!-- /.container -->
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
 
 
-		
-		
-		<a href="CartList">測試購物車</a>
-		<a href="sale.do">商品上架</a> <br> <a href="testmarket">測試商店首頁</a> <br>
 
-		<br> <a href="goPersonHomePage">登入之後的商店首頁</a> <br> <br>
 
-		<c:if test="${empty LoginOK}">
-			<li class="nav-item">
-				<button class="btn btn-success" type="button" data-toggle="modal"
-					data-target="#poplogin">
-					我要賣東西</a>
-				</button>
-			</li>
-			<li>&nbsp;</li>
-		</c:if>
-		<c:if test="${not empty LoginOK}">
-			<li class="nav-item">
-				<button class="btn btn-info" type="button" data-toggle="modal">
-					<a href="Pshop.do">我要賣東西</a>
-				</button>
-			</li>
-			<li>&nbsp;</li>
-		</c:if>
-		
-		
-		<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2018</p>s
+	<a href="sale.do">商品上架</a>
+	<br>
+	<a href="testmarket">測試商店首頁</a>
+	<br>
+	<a href="goPersonHomePage">登入之後的商店首頁</a>
+	<br>
+	<br>
 
-	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-	<script type="text/javascript"
-		src="<c:url value='/global/js/myscroll.js'/>"></script>
-	<script type="text/javascript">
-		$(function() {
-			// 调用
-			$('#banner1').myscroll({
-				picEl : $('#move'), //图片父级，不传默认为banner内第1个div
-				ctrlEl : $('#ctrl'), //控制条父级，包括小圆点和左右箭头，不传默认为banner内第2个div
-				libs : true, //是否创建底部小圆点，true || false,不传默认true
-				arrows : true, //是否创建左右箭头，true || false,不传默认true
-				autoPlay : true, //是否自动播放，true || false,不传默认true
-				time : 1000, //自动播放间隔时间，true || false,不传默认2000
-				speed : 400, //图片切换速度，不传默认400
-				effect : 'left' //轮播的改变方式 top||left||fade，不传默认left
-			});
-			$('#banner2').myscroll({
-				effect : 'top'
-			});
-			$('#banner3').myscroll({
-				time : 1500,
-				effect : 'fade'
-			});
-		})
-	</script>
+	<c:if test="${empty LoginOK}">
+		<li class="nav-item">
+			<button class="btn btn-success" type="button" data-toggle="modal"
+				data-target="#poplogin">
+				我要賣東西</a>
+			</button>
+		</li>
+		<li>&nbsp;</li>
+	</c:if>
+	<c:if test="${not empty LoginOK}">
+		<li class="nav-item">
+			<button class="btn btn-info" type="button" data-toggle="modal">
+				<a href="Pshop.do">我要賣東西</a>
+			</button>
+		</li>
+		<li>&nbsp;</li>
+	</c:if>
 
+
+	<footer class="py-5 bg-dark">
+	<div class="container">
+		<p class="m-0 text-center text-white">Copyright &copy; Your
+			Website 2018</p>
+		s
+
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script type="text/javascript"
+			src="<c:url value='/global/js/myscroll.js'/>"></script>
+		<script type="text/javascript">
+			$(function() {
+				// 调用
+				$('#banner1').myscroll({
+					picEl : $('#move'), //图片父级，不传默认为banner内第1个div
+					ctrlEl : $('#ctrl'), //控制条父级，包括小圆点和左右箭头，不传默认为banner内第2个div
+					libs : true, //是否创建底部小圆点，true || false,不传默认true
+					arrows : true, //是否创建左右箭头，true || false,不传默认true
+					autoPlay : true, //是否自动播放，true || false,不传默认true
+					time : 1000, //自动播放间隔时间，true || false,不传默认2000
+					speed : 400, //图片切换速度，不传默认400
+					effect : 'left' //轮播的改变方式 top||left||fade，不传默认left
+				});
+				$('#banner2').myscroll({
+					effect : 'top'
+				});
+				$('#banner3').myscroll({
+					time : 1500,
+					effect : 'fade'
+				});
+			})
+		</script>
 </body>
 </html>

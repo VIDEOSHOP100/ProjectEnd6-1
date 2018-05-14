@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@Table(name = "Product_1")
+@Table(name = "Product")
 public class ProductSaleBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

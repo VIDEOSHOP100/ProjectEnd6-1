@@ -23,13 +23,6 @@ public class MarketController {
 	@Autowired
 	private ProductSaleService productservice;
 
-
-	@RequestMapping("/marketindex")
-	public String welcomeMarket(Map<String, Object> map) {
-		// map.put("productBean", new productBean());
-		return "marketIndex/Mindex";
-	}
-
 	@RequestMapping("/gettestboot")
 	public String getProducthot() {
 

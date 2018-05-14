@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iii._19_.messageVideo.model.MessageVideoBean;
+import com.iii._19_.messageVideo.model.MessageVideoService;
 import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageDAO;
 
@@ -27,7 +29,10 @@ import com.iii._19_.videoManage.model.VideoManageDAO;
 public class GetVideoController {
 	@Autowired
 	private VideoManageDAO videoManageDAO;
-
+	
+	@Autowired
+	private MessageVideoService messageVideoService;
+	
 	@Autowired
 	ServletContext context;
 
@@ -38,6 +43,9 @@ public class GetVideoController {
 		if (dataType.equals("video")) {
 			VideoBean vb = videoManageDAO.getVideo(seqNo);
 			path = vb.getVideoFilePath();
+		} else if(dataType.equalsIgnoreCase("messageVideo")) {
+			MessageVideoBean messageVideoBean = messageVideoService.selectMessageVideoBySeqNo(seqNo);
+			path = messageVideoBean.getMessageVideoPath();
 		}
 		HttpHeaders headers = new HttpHeaders();
 		int len = 0;

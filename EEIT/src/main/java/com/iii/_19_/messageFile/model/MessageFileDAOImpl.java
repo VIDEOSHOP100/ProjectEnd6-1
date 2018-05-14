@@ -4,8 +4,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class MessageFileDAOImpl implements MessageFileDAO{
 	@Autowired
 	SessionFactory sessionFactory;
@@ -20,7 +22,7 @@ public class MessageFileDAOImpl implements MessageFileDAO{
 	@Override
 	public MessageFileBean selectMessageFileBySeqNo(Integer messageFileSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM MessageFileBean WHERE messageFileSeqNo = :messageFileSeqNo",MessageFileBean.class).setParameter("messageFileSeqNo", messageFileSeqNo).uniqueResult();
+		return session.createQuery("FROM MessageFileBean WHERE messageFileSeqNo = :messageFileSeqNo and messageFileStatus = '1'",MessageFileBean.class).setParameter("messageFileSeqNo", messageFileSeqNo).uniqueResult();
 	}
 
 	@Override

@@ -41,6 +41,24 @@
 				</fieldset>
 			</form:form>
 		</div>
+		<div id="insert-messageFile-form" title="檔案">
+			<form:form id="insertMessageFileForm" ENCTYPE="multipart/form-data" modelAttribute="messageFileBean" method="POST">
+				<fieldset>
+					<input type="hidden" id="fileReceiverAccount">
+					<form:input path="messageFile" type="file" name="messageFile" id="messageFile" class="text ui-widget-content ui-corner-all"/>
+					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
+				</fieldset>
+			</form:form>
+		</div>
+		<div id="insert-messageVideo-form" title="影片">
+			<form:form id="insertMessageVideoForm" ENCTYPE="multipart/form-data" modelAttribute="messageVideoBean" method="POST">
+				<fieldset>
+					<input type="hidden" id="videoReceiverAccount">
+					<form:input path="messageVideo" type="file" name="messageVideo" id="messageVideo" class="text ui-widget-content ui-corner-all"/>
+					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
+				</fieldset>
+			</form:form>
+		</div>
 	</c:if>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
