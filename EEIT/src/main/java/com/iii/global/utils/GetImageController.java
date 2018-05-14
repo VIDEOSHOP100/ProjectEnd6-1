@@ -29,6 +29,8 @@ import com.iii._16_.PersonShop.bean.PersonShopBean;
 import com.iii._16_.PersonShop.service.PersonShopService;
 import com.iii._16_.ProductSale.ProductPicture.model.ProPicBean;
 import com.iii._16_.ProductSale.ProductPicture.model.ProPicService;
+import com.iii._19_.messageImage.model.MessageImageBean;
+import com.iii._19_.messageImage.model.MessageImageService;
 import com.iii._19_.sticker.model.StickerBean;
 import com.iii._19_.sticker.model.StickerService;
 import com.iii._19_.videoManage.model.VideoBean;
@@ -54,6 +56,9 @@ public class GetImageController {
 	
 	@Autowired
 	ServletContext context;
+	
+	@Autowired
+	private MessageImageService messageImageService;
 
 	@Autowired
 	InputLiveStreamTimeService inputLiveStreamTimeService;
@@ -92,6 +97,9 @@ public class GetImageController {
 		}else if(dataType.equalsIgnoreCase("sticker")) {
 			StickerBean stickerBean = stickerService.getStickerBySeqNo(Integer.parseInt(pk));
 			path = stickerBean.getStickerFilePath();
+		}else if(dataType.equalsIgnoreCase("messageImage")) {
+			MessageImageBean messageImageBean = messageImageService.selectMessageImageBySeqNo(Integer.parseInt(pk));
+			path = messageImageBean.getMessageImageFilePath();
 		}
 		
 		HttpHeaders headers = new HttpHeaders();
