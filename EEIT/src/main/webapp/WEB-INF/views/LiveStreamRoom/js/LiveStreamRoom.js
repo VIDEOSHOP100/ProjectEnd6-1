@@ -71,6 +71,7 @@ function addMessage(account,liveChatArticle){
 
 //	updateScroll();
 }
+
 //	}else if(account != senderAccount){
 //		if($('#' + account +'1>.box-body').length > 0){
 //			if(messageType == 'sticker'){
@@ -101,13 +102,18 @@ var liveStreamSeqNo = $('.seqNo').val();
 
 //console.log("asdasd");
 //console.log(stompClient); 
-//聊天室
+//聊天室開始----------------------------------
 stompClient.connect({}, function(frame) {
     console.log('Connected: ' + frame);
     stompClient.subscribe('/target/livechat/subscription/' + liveStreamSeqNo , function(messagereturn){
     	addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).liveChatArticle)
     	updateScroll()
     });
+//聊天室結束----------------------------------
+    
+//取商品開始----------------------------------
+    
+//取商品結束--------------------------------------- 
 });
 function updateScroll(){
 	var element = $('.card-bodycontroller')
@@ -115,14 +121,9 @@ function updateScroll(){
 	element.scrollTop(scrollHeight,200);
 
 }
-//顯示物品
 
-//stompClient.connect({}, function(frame) {
-//    console.log('Connected: ' + frame);
-//    stompClient.subscribe('/target/proshow/subscription/' + liveStreamSeqNo , function(messagereturn){
-//    	addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).liveChatArticle)
-//    });
-//});
+
+
 
 
 })

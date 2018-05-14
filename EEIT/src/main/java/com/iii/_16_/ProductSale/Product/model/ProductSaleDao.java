@@ -3,6 +3,8 @@ package com.iii._16_.ProductSale.Product.model;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
+
 
 
 public interface ProductSaleDao {
@@ -20,4 +22,7 @@ public interface ProductSaleDao {
 	
 	int insertGetId(ProductSaleBean pdb); 
 	
+	public List<ProductSaleBean> getAllProByStatus(String account,Integer status);
+	
+	ProductSaleBean getOneProBySeqNo(Integer ProductSeqNo);
 }

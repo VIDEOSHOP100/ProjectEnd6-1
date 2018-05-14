@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iii._01_.Member.bean.MemberBean;
+import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectService;
 import com.iii._05_.Bid.model.BidBean;
 import com.iii._05_.Bid.model.BidService;
 import com.iii._19_.videoManage.model.VideoBean;
@@ -28,6 +29,9 @@ public class BidController {
 	
 	@Autowired
 	BidService bidService;
+	
+	@Autowired
+	AuctionItemSelectService AuctionItemSelectService;
 	
 	@RequestMapping(value = "/Bid", method = RequestMethod.POST)
 	public String Bid(@ModelAttribute("BidBean") BidBean bb, BindingResult result,

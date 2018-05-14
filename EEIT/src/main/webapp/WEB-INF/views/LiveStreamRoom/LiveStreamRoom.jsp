@@ -118,8 +118,8 @@
 						</c:if>
 							  <c:if test="${LoginOK.account == sb.account}">		
 <!-- 			<div class="col-lg-1"> -->
-			<button type="button" value="${sb.liveStreamSeqNo}" class="btn btn-outline-info deleteBlock col-md-auto"><i class="fas fa-ban"></i>&nbsp;&nbsp;關閉直播</button>
-<!--             </div>  -->
+			<button type="button" value="${sb.liveStreamSeqNo}" class="btn btn-outline-info addBidButton deleteBlock col-md-auto"><i class="fas fa-ban"></i>&nbsp;&nbsp;關閉直播</button>
+<!--             </div>  --> 
 			</c:if>	
 						
 <!--       <h2>叫價</h2><div class="col-md-2 addBidDiv"> -->
@@ -134,11 +134,28 @@
 			
 	
       <div class="row">
+
+<c:forEach var="AllProducta" items="${AllProduct}"> 
+        <div class="col-lg-4 mb-4 proitemcontroller">
+          <div class="card h-100 text-center">
+            <img class="card-img-top img750" src="${pageContext.request.contextPath}/getImage/Product/${AllProducta.auctionPic}" alt=""> 
+            <div class="card-body">
+              <h4 class="card-title">品名：${AllProducta.proName}</h4>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">${AllProducta.proDescription}</p>
+              <p class="card-text">價錢：${AllProducta.proPrice}</p>
+            </div>
+            <div class="card-footer">
+              <a href="#">name@example.com</a>
+            </div>
+          </div>
+        </div>
+ </c:forEach>
         <div class="col-lg-4 mb-4">
           <div class="card h-100 text-center">
             <img class="card-img-top" src="http://placehold.it/750x450" alt="">
             <div class="card-body">
-              <h4 class="card-title">Team Member</h4>
+              <h4 class="card-title"></h4>
               <h6 class="card-subtitle mb-2 text-muted">Position</h6>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
             </div>
@@ -147,32 +164,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100 text-center">
-            <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Team Member</h4>
-              <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#">name@example.com</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100 text-center">
-            <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Team Member</h4>
-              <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#">name@example.com</a>
-            </div>
-          </div>
-        </div>
+
       </div>
       <!-- /.row -->
 
