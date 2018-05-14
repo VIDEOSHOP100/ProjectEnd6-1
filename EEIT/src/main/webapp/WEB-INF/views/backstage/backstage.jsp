@@ -20,7 +20,7 @@
   <body>
     <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
     <div class="container">
-      <h1 class="mt-4 mb-3">後台管理系統
+      <h1 class="mt-4 mb-3 font-weight-bold">後台管理系統
         <small>Backstage</small>
       </h1> 
       <div class="row">

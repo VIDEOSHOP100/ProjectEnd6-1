@@ -18,13 +18,13 @@ $(document).ready(function () {
                 timeout: 600000,
   
                 success: function (data) {
-                    var tab = $('<table></table>').addClass('table table-striped').html('<thead><tr><th>投訴編號</th><th>投訴人</th><th>被投訴人</th><th>標題</th><th>投訴時間</th><th>投訴狀態</th></tr></thead><tbody></tbody>');
+                    var tab = $('<table></table>').addClass('table table-striped').html('<thead><tr><th class="text-center ">投訴編號</th><th>投訴人</th><th>被投訴人</th><th>標題</th><th>投訴時間</th><th>投訴狀態</th></tr></thead><tbody></tbody>');
                     $('#content>h2').after(tab);
                         var docFrag = $(document.createDocumentFragment());
                         console.log(data);
                         $.each(data, function (idx,MemberReport) {
 
-                            var cell1 = $('<td></td>').text(MemberReport.memberReportSeqNo).addClass('pointer text-primary');
+                            var cell1 = $('<td></td>').text(MemberReport.memberReportSeqNo).addClass('pointer text-primary text-center');
                             var cell2 = $('<td></td>').text(MemberReport.accountFrom);
                             var cell3 = $('<td></td>').text(MemberReport.accountTo);
                             var cell4 = $('<td></td>').text(MemberReport.reportTitle);
