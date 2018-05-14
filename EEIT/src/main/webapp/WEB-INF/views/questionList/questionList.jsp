@@ -32,7 +32,7 @@
       </ol>
 
       <div class="mb-4" id="accordion" role="tablist" aria-multiselectable="true">
-	        <c:forEach items = "${allQuestionList }" var="questionListBean"></c:forEach>
+	        <c:forEach items = "${allQuestionList }" var="questionListBean">
 	        <div class="card">
 	          <div class="card-header" role="tab" id="headingOne">
 	            <h5 class="mb-0">
@@ -46,7 +46,7 @@
 	            </div>
 	          </div>
 	        </div>
-        
+        	</c:forEach>
 		</div>	
     </div>
     <!-- /.container -->
