@@ -13,23 +13,38 @@
 <style>
 
   
-.card-bodycontroller{ 
- 	width: 100%; 
-	height: 407px;  
-	background-color: white; 
- 	overflow: auto; 
- 	list-style: none; 
- 	margin: 0; 
-/* 	padding: 0; */
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 100 100 auto;
-  padding: 0.7em 2em 0.7em 1em;
+/* .card-bodycontroller{  */
+/*  	width: 100%;  */
+/* 	height: 407px;   */
+/* 	background-color: white;  */
+/*  	overflow: auto;  */
+/*  	list-style: none;  */
+/*  	margin: 0;  */
+/* /* 	padding: 0; */ */
+/*   -webkit-box-flex: 1; */
+/*   -ms-flex: 1 1 auto; */
+/*   flex: 100 100 auto; */
+/*   padding: 0.7em 2em 0.7em 1em; */
   
-}
-.hidden{
-  display:none;
-  }
+/* } */
+/* .hidden{ */
+/*   display:none; */
+/*   } */
+  
+/* .chatrow{ */
+/* 	float: right; */
+/* 	background: #0084ff; */
+/* 	color: #fff; */
+/* /* 	margin-left: 100px; */ */
+/* 	padding: 10px; */
+/* 	margin-bottom: 2px; */
+	
+/* 	/*              height: auto; */ */
+/* } */
+/* .chatBlock{ */
+/* 	display: block; */
+/* 	overflow: auto; */
+/* } */
 </style>
 </head>
 <body>
@@ -73,17 +88,8 @@
 
             <h5 class="card-header">Stream Chat</h5>
             <div class="card-bodycontroller">
-            		<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            			<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            				<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            					<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>	
-            					<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            						<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            							<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            	<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            		<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            			<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            				<p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            	
+            	
               </div>
                 <div class="input-group">
                 <input id="catch-account" type="hidden" name = "account" value= "${LoginOK.account}">
