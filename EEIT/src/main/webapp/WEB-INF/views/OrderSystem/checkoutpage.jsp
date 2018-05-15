@@ -28,7 +28,7 @@
 		<div class="card">
 			<div class="card-header">${getMemberBean.account}的訂單資訊</div>
 			<div class="card-body">
-		
+
 				<!-- 每頁不同的內容從這裡開始 -->
 				<table id="productTable" class="table table-condensed">
 					<thead>
@@ -113,23 +113,19 @@
 				</div>
 
 				<div class="form-group col-lg-3">
-					<label>訂購人 地址</label> 
-					<br>
-				
-					
-			<span>縣/市</span><select class="form-control" id="sel1">
-								<option value="">請選擇</option>
-    							<c:forEach var="itemone" items="${citylist}">  
-    		   					 <option id="op1" value="${itemone}">${itemone}</option>  
-   			 					</c:forEach>  
-						     </select>  
-					<span>區域</span> <select class="form-control" id="sel2">
-					
-					  </select>
+					<label>訂購人 地址</label> <br> <span>縣/市</span><select
+						class="form-control" id="sel1">
+						<option value="">請選擇</option>
+						<c:forEach var="itemone" items="${citylist}">
+							<option id="op1" value="${itemone}">${itemone}</option>
+						</c:forEach>
+					</select> <span>區域</span> <select class="form-control" id="sel2">
+						<option id="op2" value="">請選擇</option>
+					</select>
 				</div>
 				<div class="form-group col-lg-8">
-					<input type="text" name="" class="form-control"
-						id="upAdder" value="">
+					<input type="text" name="textaddr" class="form-control" id="upAddr"
+						value="">
 				</div>
 
 				<!-- 				<div class="col-sm-6"> -->
@@ -141,7 +137,7 @@
 			<div class="col-md-6">
 				<h3 class="dark-grey">收貨人資訊</h3>
 
-				
+
 				<div class="col-sm-6">
 					<input type="button" class="btn-success down" value="資料同上" />
 				</div>
@@ -163,8 +159,8 @@
 				</div>
 
 				<div class="form-group col-lg-6">
-					<label>收貨人 地址</label> <input type="text" name="" class="form-control"
-						id="downAddr" value="">
+					<label>收貨人 地址</label> <input type="text" name=""
+						class="form-control" id="downAddr" value="">
 				</div>
 
 				<div class="col-sm-6">
@@ -189,8 +185,8 @@
 				</div>
 
 			</div>
-			
-				<div class="col-md-6">
+
+			<div class="col-md-6">
 				<h3 class="dark-grey">取貨方式</h3>
 
 				<div class="col-sm-6">
@@ -223,14 +219,16 @@
 			<!-- 				</p> -->
 
 			<button type="submit" class="btn btn-primary">送出訂單</button>
-				<button type="button" class="btn btn-primary" ><a href="${pageContext.request.contextPath}/gotoseven">送出711訂單</a></button>
+			<button type="button" class="btn btn-primary">
+				<a href="${pageContext.request.contextPath}/gotoseven">送出711訂單</a>
+			</button>
 			<!-- 			</div> -->
 		</div>
 		</section>
 	</div>
 
 
-<script src="<c:url value='/OrderSystem/js/order.js'/> "></script>
+	<script src="<c:url value='/OrderSystem/js/order.js'/> "></script>
 </body>
 
 </html>
