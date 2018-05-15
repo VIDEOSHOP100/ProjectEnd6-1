@@ -75,9 +75,11 @@ public class InputLiveStreamTimeController {
 		 
 		InputLiveStreamTimeBean.setLiveStreamView(InputLiveStreamTimeBean.getLiveStreamView()+1);
 		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
+		//產品 get product by account
 		int status = 1;
+		InputLiveStreamTimeBean gpa = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
 		
-		List<ProductSaleBean> AllProduct = productSaleService.getAllProByStatus(account, status);
+		List<ProductSaleBean> AllProduct = productSaleService.getAllProByStatus(gpa.getAccount(), status);
 		for(ProductSaleBean pb :AllProduct ) {
 			pb.getPicSeqNo();
 		}
