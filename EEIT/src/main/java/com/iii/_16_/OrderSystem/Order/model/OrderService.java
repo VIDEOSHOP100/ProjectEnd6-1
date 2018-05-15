@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.iii._16_.BuyCart.ProCartList.model.ProCartListBean;
-import com.iii._16_.BuyCart.ProCartList.model.ProCartListDaoImpl;
+
 
 @Service
 public class OrderService {
@@ -21,5 +20,15 @@ public class OrderService {
 			return result;
 		}
 		return null;
+	}
+	@Transactional
+	public int insertGetId(OrderBean bean) throws SQLException {
+		int result = 0;
+		if (bean != null) {
+		result = dao.insertGetId(bean);
+		
+			return result;
+		}
+		return 0;
 	}
 }

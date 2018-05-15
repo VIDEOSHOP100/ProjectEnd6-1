@@ -103,4 +103,24 @@ public class ProCartListController {
 		return "killone";
 	}
 	
+	
+	@RequestMapping(value = "/getcartcount/{account}", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> getCartCount(@PathVariable String account) throws SQLException {
+		System.out.println("購物車商品數");
+		Map<String, Object> result = new HashMap<String, Object>();
+		List<ProCartListBean> productlist2 = new ArrayList<>();
+		// 撈出該帳號  status為1的商品數
+		int count=0;
+		System.out.println("誰在購物  ==  "+account);
+		List<ProCartListBean> productlist = procartlistservice.getByAccountStatus(account);
+		for (ProCartListBean product : productlist) {
+			productlist2.add(product);
+			count++;
+		}
+		result.put("productcount", count);
+		return result;
+	}
+
+	
+	
 }

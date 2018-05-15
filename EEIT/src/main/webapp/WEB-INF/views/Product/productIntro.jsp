@@ -20,7 +20,7 @@
 <body>
 	<!-- Navigation -->
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
-	<%@ include file="/WEB-INF/views/Cart/carticonRight.jsp"%>
+
 	<!-- Page Content -->
 	<div class="container">
 
@@ -135,9 +135,9 @@
 						count : count
 					},
 					timeout : 600000,
-
-					success : function(data) {
+					success : function(data,result) {
 						alert("已加入購物車");
+						location.reload();  
 					},
 					error : function(e) {
 

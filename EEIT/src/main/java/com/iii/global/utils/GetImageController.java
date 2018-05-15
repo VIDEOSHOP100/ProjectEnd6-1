@@ -134,7 +134,7 @@ public class GetImageController {
 	@RequestMapping(value = "/getImageTest/{num}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse response,@PathVariable String num) {
 		String path = null;
-		path = "C:\\EEIT\\repository\\ProjectOne\\EEIT\\src\\main\\webapp\\WEB-INF\\views\\marketIndex\\images\\"+num+".jpg";
+		path = "C:\\EEITfinal\\repository\\ProjectEnd6-1\\EEIT\\src\\main\\webapp\\WEB-INF\\views\\marketIndex\\images\\"+num+".jpg";
 		HttpHeaders headers = new HttpHeaders();
 		int len = 0;
 		byte[] media = null;
