@@ -26,12 +26,7 @@
       <div class="row">
         <div class="col-md-11">
         </div>
-        <div class="col-md-1">
-          <a href="<c:url value='/managerLogout'/>">
-            <button class="btn btn-danger float-right">管理員登出</button>
-          </a>
-        </div>
- 
+
       </div>
       <ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">首頁</a></li>

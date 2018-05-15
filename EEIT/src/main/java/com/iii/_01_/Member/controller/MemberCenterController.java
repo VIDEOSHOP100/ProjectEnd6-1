@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.iii._01_.Friend.service.FriendService;
 import com.iii._01_.Member.bean.MemberBean;
@@ -51,4 +52,15 @@ public class MemberCenterController {
 		}
 		return "MemberCenter/profile";
 	}
+	
+	@RequestMapping(value = "/adviceReport" , method=RequestMethod.GET)
+	public String getAdviceReport(Model model) {
+		
+		
+		
+		
+		return "/MemberCenter/adviceReport";
+	}
+	
+	
 }

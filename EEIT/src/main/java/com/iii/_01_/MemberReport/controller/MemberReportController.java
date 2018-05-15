@@ -1,9 +1,7 @@
 package com.iii._01_.MemberReport.controller;
 
 import java.sql.Timestamp;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -58,4 +56,18 @@ public class MemberReportController {
 		return memberReportService.getMemberReportBeanBymemberReportSeqNo(memberReportSeqNo);
 	}
 
+	@RequestMapping(value = "/memberReport" , method=RequestMethod.PUT)
+	public @ResponseBody void updatememberReport(@RequestParam("replyContent")String replyContent ,  @RequestParam("memberReportSeqNo")Integer memberReportSeqNo) {
+		
+		MemberReportBean mrb = memberReportService.getMemberReportBeanBymemberReportSeqNo(memberReportSeqNo);
+		
+		Timestamp replyTime = new java.sql.Timestamp(System.currentTimeMillis());
+		mrb.setReplyTime(replyTime);
+		mrb.setReplyContent(replyContent);
+		mrb.setReportStatus("已處理");
+		memberReportService.updateMemberReportBean(mrb);
+		
+	}
+	
+	
 }
