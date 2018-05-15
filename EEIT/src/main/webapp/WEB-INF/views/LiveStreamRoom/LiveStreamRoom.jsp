@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 <link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/>" rel="stylesheet">
 <style>
 
@@ -128,8 +129,14 @@
 </div> 
 <!-- 					</div>	 -->
 
-
-
+<form:form  id="Bid" method="POST" action="Bid/${productSeqNo}" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data">
+<form:select  path="productSeqNo">
+								  <form:options class="productSeqNo" items="${AllProductList}" />
+							</form:select>
+</form:form> 
+<div class="input-Bid">
+<input type="text" class="form-control Bid-message" placeholder="請輸入價格">
+</div> 
 	
 			
 	
@@ -244,38 +251,39 @@
 	</div>
 <!--// 拍賣表格 -->
 <!-- 叫價表格 -->
-<div class="modal fade" id="addBidForm" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">叫價</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
+<!-- <div class="modal fade" id="addBidForm" tabindex="-1" role="dialog" -->
+<!-- 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
+<!-- 		<div class="modal-dialog modal-dialog-centered" role="document"> -->
+<!-- 			<div class="modal-content"> -->
+<!-- 				<div class="modal-header"> -->
+<!-- 					<h5 class="modal-title" id="exampleModalLongTitle">叫價</h5> -->
+<!-- 					<button type="button" class="close" data-dismiss="modal" -->
+<!-- 						aria-label="Close"> -->
+<!-- 						<span aria-hidden="true">&times;</span> -->
+<!-- 					</button> -->
+<!-- 				</div> -->
+<!-- 				<div class="modal-body"> -->
 					
 
-					<form:form  id="Bid" method="POST" action="${pageContext.request.contextPath}/Bid" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data" > 
+<%-- 					<form:form  id="Bid" method="POST" action="Bid/${productSeqNo}" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data" >  --%>
 					
-<%-- 					bidTime<form:input id="regAcc" path="bidTime" type="text" class="form-control input-sm"/><br> --%>
-					輸入價格<form:input id="bidPrice" path="bidPrice" type="text" class="form-control input-sm"/><br>
-		
-					
-				</div>
+<%-- 					bidTime<form:input id="regAcc" path="bidTime" type="text" class="form-control input-sm"/><br>  --%>
+<%-- 					輸入價格<form:input id="bidPrice" path="bidPrice" type="text" class="form-control input-sm"/><br> --%>
+<%-- 							<form:select class="productSeqNo" path="productSeqNo"> --%>
+<%-- 								  <form:options items="${AllProductList}" /> --%>
+<%-- 							</form:select> --%>
+<!-- 				</div> -->
 				
 
-				<div class="modal-footer">
-				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p>
-					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="註冊"/>
-				</div>
-					</form:form>
-			</div>
-		</div>
-	</div>
+<!-- 				<div class="modal-footer"> -->
+<%-- 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p> --%>
+<!-- 					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button> -->
+<!-- 					<input type="submit" class="btn btn-primary" value="註冊"/> -->
+<!-- 				</div> -->
+<%-- 					</form:form> --%>
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 <!--// 叫價表格 -->
 <%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
 <%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>

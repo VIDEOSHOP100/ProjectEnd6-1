@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="<c:url value='/InsertLiveStream/css/bootstrap-datetimepicker.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
@@ -225,11 +226,11 @@ font-family: 'Poiret One', cursive;
 				</div>
 				<div class="modal-body">
 
-
-					<form:form  id="Auction" method="POST" action="${pageContext.request.contextPath}/Auction" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
+<%--${pageContext.request.contextPath}/Auction --%>
+					<form:form  id="Auction" method="POST" action="" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
 					<form:input id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
-					aucBegin<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
-					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br>
+					aucBegin<input id="datetimepicker4" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
+					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm aucEnd" placeholder="2018-05-06 18:00:00"/><br>
 <%-- 					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br> --%>
 						
 			 				<form:select path="productSeqNo">
@@ -242,7 +243,7 @@ font-family: 'Poiret One', cursive;
 				<div class="modal-footer">
 <%-- 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p> --%>
 					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="註冊"/>
+					<input type="submit" class="btn btn-primary" id="sub" value="註冊"/>
 				</div>
 					</form:form>
 					
@@ -337,9 +338,11 @@ font-family: 'Poiret One', cursive;
         </div>
         <!--  End Modal -->
         <%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
+
+
         	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="<c:url value='/InsertLiveStream/js/InsertLiveStream.js'/>"></script>
-
+<script src="<c:url value='/InsertLiveStream/js/bootstrap-datetimepicker.js'/>"></script>
 
 	<footer class="py-5 bg-dark">
 	<div class="container">

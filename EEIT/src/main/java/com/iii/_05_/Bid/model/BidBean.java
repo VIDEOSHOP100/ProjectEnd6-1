@@ -19,6 +19,7 @@ public class BidBean {
 	private Timestamp bidTime;
 	private String bidPrice;
 	private String account;
+	private Integer productSeqNo;
 	
 
 	public BidBean(Integer auctionSeqNo, Timestamp bidTime, String bidPrice,String account) {
@@ -70,6 +71,14 @@ public class BidBean {
 	}
 	public void setBidPrice(String bidPrice) {
 		this.bidPrice = bidPrice;
+	}
+
+	public Integer getProductSeqNo() {
+		return productSeqNo;
+	}
+
+	public void setProductSeqNo(Integer productSeqNo) {
+		this.productSeqNo = productSeqNo;
 	}
 	
 	

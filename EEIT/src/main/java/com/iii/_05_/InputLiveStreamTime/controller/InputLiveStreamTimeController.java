@@ -83,6 +83,15 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb :AllProduct ) {
 			pb.getPicSeqNo();
 		}
+		//BID產品選擇器
+		List<ProductSaleBean> AllProductList = productSaleService.getAllProByStatus(gpa.getAccount(), status);
+		
+		Map<Integer,String> productNameMap = new HashMap<Integer,String>(); 
+		for(ProductSaleBean pb : AllProductList) {
+			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
+		}
+
+		map.put("AllProductList", productNameMap);
 //		map.put("hb", LiveStreamHistoryBean);
 		map.put("AllProduct", AllProduct);
 		map.put("sb", InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo));
