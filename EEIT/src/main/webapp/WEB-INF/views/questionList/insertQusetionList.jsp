@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form action="video" method="POST" modelAttribute="video">
+	<form:form action="/EEIT/QuestionList" method="POST" modelAttribute="questionListBean">
 		questionListSeqNo:<form:input path="questionListSeqNo"></form:input><br/>
 		questionListTitle:<form:input path="questionListTitle"></form:input><br/>
 		questionListArticle:<form:input path="questionListArticle"></form:input><br/>
