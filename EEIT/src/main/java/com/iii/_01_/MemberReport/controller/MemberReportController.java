@@ -64,7 +64,7 @@ public class MemberReportController {
 		Timestamp replyTime = new java.sql.Timestamp(System.currentTimeMillis());
 		mrb.setReplyTime(replyTime);
 		mrb.setReplyContent(replyContent);
-		
+		mrb.setReportStatus("已處理");
 		memberReportService.updateMemberReportBean(mrb);
 		
 	}
