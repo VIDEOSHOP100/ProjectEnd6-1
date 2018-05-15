@@ -10,10 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form action="/EEIT/QuestionList/1019" method="POST">
-		<input type="hidden" name="_method" value="DELETE" />
-		<input type="submit" value="確定刪除"/>
-	</form:form>
+
+	<a href = "${pageContext.request.contextPath}/QuestionList/addQuestionList">addQuestionList</a>
+	<a href = "${pageContext.request.contextPath}/QuestionList/deleteQusetionList">deleteQuestionList</a>
+	<a href = "${pageContext.request.contextPath}/QuestionList/insertQuestionList">insertQuestionList</a>
+	<a href = "${pageContext.request.contextPath}/QuestionList/updateQuestionList">updateQuestionList</a>
 
 </body>
 </html>
