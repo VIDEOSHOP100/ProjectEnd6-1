@@ -1,12 +1,16 @@
 $(document).ready(function () {
 
-    $('.list-group-item').click(function () {
+    $('.list-group-item').click(selectCategory);
+    		
+    var title; 
+    		
+    	function selectCategory() {
 
         $('.list-group-item').removeClass('bg-primary').removeClass('text-white').addClass('text-primary');
         $(this).removeClass('text-primary').addClass('bg-primary').addClass('text-white');
         $('#content').empty();
 
-        var title = $(this).text();
+        title = $(this).text();
 
         $('#content').prepend($('<h2></h2>').text(title));
         $('#content> p').remove();
@@ -42,43 +46,89 @@ $(document).ready(function () {
                 },
 
                 error: function (xhr, ajaxOptions, thrownError) {
-                    if (xhr.status == 404) {
                         alert(thrownError);
-                    }
                 },
             })
 
         }
 
-    })
+    }
     
 //   ---------------------------------以上功能列選擇------------------------------------- 
+
     
+    	var mrSN;
     
-    $('.memberReportSeqNo').click(function(){
-    	alert("DD");
-    	var mrSN = $(this).text();
-    	alert(mrSN);
-    	
+    $(document).on("click",'.memberReportSeqNo',function(){
+    	mrSN = $(this).text();
+    	    	
     	$('#content').empty();
-    	
-    	
+    	    	
     	$.ajax({
     		
     		type:"GET",
-    		url:"/EEIT/memberReport/" + meSN,
-    		dataType: "json",
+    		url:"/EEIT/memberReport/" + mrSN,
     		
     		success:function(data){
+    			var ret = new Date(data.reportTime);
+    			var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
+    			var format = $('<container></container>').html(
+    					'<row>' +
+    						'<div class="col-lg-8">' +
+    							'<h2 class="mt-4">' + data.reportTitle + '</h2>' +
+    							'<p class="lead"> 檢舉人 : ' +  
+    							'<a href="/EEIT/profile/' +data.accountFrom + '">' + data.accountFrom + '</a>' + 
+    							'  被檢舉人 : ' + 
+    							'<a href="/EEIT/profile/' +data.accountTo + '">' + data.accountTo + '</a>' +
+    							'</p>' +
+    							'<p>Posted on' + formated + '</p><hr>' +
+    							'<p>' + data.reportContent +'</p><hr>' +
+    							'<div class="card my-4"><h5 class="card-header">回覆檢舉</h5><div class="card-body">' +
+    							'<form:form method="POST" action="/replyMemberReport" modelAttribute="MemberReportBean" class = "form-horizontal">' + 
+    							'<textarea id="replyMRContent" path="replyContent" class="form-control" rows="3"></textarea>' + 
+    							'<button class = "btn btn-primary" id = "replyMemberReportButton">回覆檢舉</button>' +
+    							'</form>' +
+    						'<div>' +
+    					'</row>'
     			
-    			alert(data);
-    			
+    				) 
+    					
+    				$('#content').append(format);
+      				
     		},
     		error: function (xhr, ajaxOptions, thrownError) {
         
                 alert(thrownError);
             
         },
+   
+    		
+    	})
+  	
+    })
+    
+    
+    $(document).on("click",'#replyMemberReportButton',function(){
+    	
+    	
+    	var reply = $('#replyMRContent').text();
+    	
+    	$.ajax({
+    		
+    		type:"POST",
+    		url:"/EEIT/memberReport",
+    		data:{ _method : "PUT" ,memberReportSeqNo:mrSN ,replyContent:reply},
+    		
+    		success:function(){
+    			
+    			
+    			
+    			
+    		},
+    		error:function(e){
+    			alert(e);
+    		}
+    		
     		
     		
     		
@@ -87,18 +137,7 @@ $(document).ready(function () {
     	})
     	
     	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    
-    
     })
-    
-    
     
     
     
