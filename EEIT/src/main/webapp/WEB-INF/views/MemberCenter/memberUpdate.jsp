@@ -122,12 +122,8 @@
 	</div>
 	<!-- /.container -->
 	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; IIITube
-			2018</p>
-	</div>
-	</footer>
+
+<%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
 
 	<!-- Contact form JavaScript -->
 

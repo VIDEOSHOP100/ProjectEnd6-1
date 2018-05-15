@@ -67,12 +67,7 @@
 
             </div>
 
-            <footer class="py-5 bg-dark myfooter">
-                <div class="container">
-                    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-                </div>
-            </footer>
-
+<%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
     </body>
 
     </html>
