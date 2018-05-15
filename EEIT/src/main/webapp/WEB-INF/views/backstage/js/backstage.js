@@ -111,7 +111,7 @@ $(document).ready(function () {
     $(document).on("click",'#replyMemberReportButton',function(){
     	
     	
-    	var reply = $('#replyMRContent').text();
+    	var reply = $('#replyMRContent').val();
     	
     	$.ajax({
     		

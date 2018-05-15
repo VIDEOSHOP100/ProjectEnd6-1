@@ -59,8 +59,13 @@ public class MemberReportController {
 	@RequestMapping(value = "/memberReport" , method=RequestMethod.PUT)
 	public @ResponseBody void updatememberReport(@RequestParam("replyContent")String replyContent ,  @RequestParam("memberReportSeqNo")Integer memberReportSeqNo) {
 		
+		MemberReportBean mrb = memberReportService.getMemberReportBeanBymemberReportSeqNo(memberReportSeqNo);
 		
+		Timestamp replyTime = new java.sql.Timestamp(System.currentTimeMillis());
+		mrb.setReplyTime(replyTime);
+		mrb.setReplyContent(replyContent);
 		
+		memberReportService.updateMemberReportBean(mrb);
 		
 	}
 	
