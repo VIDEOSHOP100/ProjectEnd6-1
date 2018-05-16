@@ -13,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._01_.Friend.bean.FriendBean;
 import com.iii._01_.Friend.service.FriendService;
@@ -93,4 +95,18 @@ public class LoginController {
 
 	}
 
+	@RequestMapping("/checkAccPwd")
+	public @ResponseBody Map<String,Boolean> checkAccPwd(@RequestParam("logAcc")String logAcc , @RequestParam("logPwd")String logPwd ){
+		Map<String,Boolean> map = new HashMap<String,Boolean>();
+		
+		if(loginService.checkIDPassword(logAcc, logPwd)!=null) {
+			map.put("loginCheck", true);
+		}else{
+			map.put("loginCheck", false);
+		};
+		
+		return map;
+	}
+	
+	
 }
