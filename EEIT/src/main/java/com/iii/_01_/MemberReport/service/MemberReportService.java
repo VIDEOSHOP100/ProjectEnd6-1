@@ -10,5 +10,7 @@ public interface MemberReportService {
 
 	public void saveMemberReportBean(MemberReportBean memberReportBean);
 
+	public void updateMemberReportBean(MemberReportBean memberReportBean);
+	
 	public MemberReportBean getMemberReportBeanBymemberReportSeqNo(Integer memberReportSeqNo);
 }

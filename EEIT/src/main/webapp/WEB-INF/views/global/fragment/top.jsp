@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Navigation</title>
-
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 
 <!-- Bootstrap core CSS -->
@@ -58,18 +58,7 @@
 					</div>
 				</li>
 				<li class="nav-item">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownPortfolio" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">物流管理</a>
-					<div class="dropdown-menu dropdown-menu-right"
-						 aria-labelledby="navbarDropdownPortfolio">
-						<a class="dropdown-item" href="#">1 Column Portfolio</a> 
-						<a class="dropdown-item loginCheck" href="portfolio-2-col.html">2 Column Portfolio</a>
-						<a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-						<a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-						<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
-					</div></li>
+
 <!-- 				<li class="nav-item"> -->
 <%-- 	            <a class="nav-link" href="${pageContext.request.contextPath}/Contact.do">會員中心</a> --%>
 <!-- 	          </li> -->
@@ -86,7 +75,17 @@
 						<button id="loginButton" class="btn btn-success" type="button" data-toggle="modal" data-target="#poplogin">登入</button>
 					</li>
 				</c:if>
+				
+				
 			</c:if>
+				
+				<c:if test="${! empty ManagerLoginOK}">
+					<li class="nav-item">
+						<a href="<c:url value='/managerLogout'/>">
+            <button class="btn btn-danger float-right">管理員登出</button>
+          </a>
+					</li>
+				</c:if>
 				
 			<!-- 	登入後的導覽列 -->
 			
@@ -130,7 +129,7 @@
 
 					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-danger" type="button" >登出</button></a></li>
 				</c:if>
-				
+
 			</ul>
 		</div>
 	</div>
@@ -195,7 +194,7 @@
 					photo<form:input path="photo" type="file"  accept="image/*"/>
 					
 				</div>
-				
+				<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
 
 				<div class="modal-footer">
 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p>
@@ -229,6 +228,7 @@
 						
 							<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
 							<form:input class ="form-control input-sm" id="logPwd" type="password" path="password" placeholder="password"/><br>
+					<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
 					<a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword"><button  type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button></a>
 
 
@@ -256,6 +256,7 @@
 		
 	</script>
 
-<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
+
 </body>
+
 </html>

@@ -32,4 +32,12 @@ public class MemberReportServiceImpl implements MemberReportService {
 		return dao.getMemberReportBeanByMemberReportSeqNo(memberReportSeqNo);
 	}
 
+	@Override
+	public void updateMemberReportBean(MemberReportBean memberReportBean) {
+		dao.updateMemberReportBean(memberReportBean);
+	}
+	
+	
+	
+
 }

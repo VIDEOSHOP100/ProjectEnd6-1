@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,10 +55,40 @@ public class QuestionListController {
 		return "OK";
 	}
 
+//	@RequestMapping(method = RequestMethod.GET)
+//	public String selectQuestionList(Map<String, Object> map) {
+//		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
+//		map.put("questionListBean", new QuestionListBean());
+//		return "questionList/addQuestionList";
+//	}
 	@RequestMapping(method = RequestMethod.GET)
 	public String selectQuestionList(Map<String, Object> map) {
 		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
-		map.put("questionListBean", new QuestionListBean());
+		map.put("questionListBean", questionListBeanList);
+		return "questionList/questionMain";
+	}
+	
+	//新增
+	@RequestMapping(value = "/addQuestionList" ,method = RequestMethod.GET)
+	public String getQuesListBean(Map<String,Object> map,HttpSession session) {	
+		System.out.println("new");
+		QuestionListBean questionListBean = new QuestionListBean();
+		map.put("questionListBean", questionListBean);
 		return "questionList/addQuestionList";
 	}
+	
+	//刪除標單連結
+	@RequestMapping("/deleteQusetionList")
+	public String deleteQusetionList() {
+		System.out.println("deleteQusetionList");
+		return "questionList/deleteQusetionList";
+	}
+	
+//	@RequestMapping("/addQuestionList")
+//	public String addQusetionList() {
+//		System.out.println("addQuestionList");
+//		return "questionList/addQuestionList";
+//	}
+	
+
 }

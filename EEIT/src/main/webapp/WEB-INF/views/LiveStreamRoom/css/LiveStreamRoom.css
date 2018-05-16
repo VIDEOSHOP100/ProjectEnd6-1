@@ -164,9 +164,23 @@ div#users-contain table td, div#users-contain table th {
 /* 	margin-left: 100px; */
 	padding: 10px;
 	margin-bottom: 2px;
+	border-radius: 8px;
 	
 	/*              height: auto; */
 }
+.bidrow{
+	float: center;
+	background: #ffffb3;
+	color: red;
+/* 	margin-left: 100px; */
+	padding: 10px;
+	margin-bottom: 2px;
+/*  	border: 2px solid red; */
+    border-radius: 8px;
+    font-family: 'Courgette', cursive;
+	/*              height: auto; */
+}
+
 .chatBlock{
 	display: block;
 	overflow: auto;

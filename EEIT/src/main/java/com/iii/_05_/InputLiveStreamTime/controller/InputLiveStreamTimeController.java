@@ -75,12 +75,23 @@ public class InputLiveStreamTimeController {
 		 
 		InputLiveStreamTimeBean.setLiveStreamView(InputLiveStreamTimeBean.getLiveStreamView()+1);
 		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
+		//產品 get product by account
 		int status = 1;
+		InputLiveStreamTimeBean gpa = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
 		
-		List<ProductSaleBean> AllProduct = productSaleService.getAllProByStatus(account, status);
+		List<ProductSaleBean> AllProduct = productSaleService.getAllProByStatus(gpa.getAccount(), status);
 		for(ProductSaleBean pb :AllProduct ) {
 			pb.getPicSeqNo();
 		}
+		//BID產品選擇器
+		List<ProductSaleBean> AllProductList = productSaleService.getAllProByStatus(gpa.getAccount(), status);
+		
+		Map<Integer,String> productNameMap = new HashMap<Integer,String>(); 
+		for(ProductSaleBean pb : AllProductList) {
+			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
+		}
+
+		map.put("AllProductLista", productNameMap);
 //		map.put("hb", LiveStreamHistoryBean);
 		map.put("AllProduct", AllProduct);
 		map.put("sb", InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo));

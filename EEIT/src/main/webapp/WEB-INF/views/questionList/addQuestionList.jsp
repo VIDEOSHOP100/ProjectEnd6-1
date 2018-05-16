@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>	
-	<form:form id="myForm" name = "myForm" action = "QuestionList" ENCTYPE="multipart/form-data"  modelAttribute="questionListBean" method="POST">
+	<form:form id="myForm" name = "myForm" action = "/EEIT/QuestionList" ENCTYPE="multipart/form-data"  modelAttribute="questionListBean" method="POST">
 		<fieldset>
 			<label for="questionListTitle">問題標題</label>
 			<form:input path="questionListTitle" type="text" name="questionListTitle" id="questionListTitle"/>
