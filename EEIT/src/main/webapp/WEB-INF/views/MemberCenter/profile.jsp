@@ -12,11 +12,21 @@
 
 <style>
 .offshow {
-	border: 1px red solid
+	border: 1px black solid;
+	
 }
 .profileTop{
-	width:100% ;
-	height:50%
+	position:absolute;
+	width:100%;
+	z-index:1;
+}
+.memberPhoto{
+	position:absolute;
+    top:170px;
+    left:335px;
+	z-index:2;
+	border:3px white solid;
+	outline:1px gray solid;
 }
 
 </style>
@@ -25,7 +35,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
-	<img src="<c:url value='/MemberCenter/images/profileBanner.jpg'/>" class="profileTop" id = "profileTop">
+	<img src="<c:url value='/MemberCenter/images/cut.png'/>" class="profileTop" id = "profileTop">
 	<input id="account" type="hidden" name="account"
 		value="${LoginOK.account}">
 	<input id="othersideaccount" type="hidden" name="othersideaccount"
@@ -38,9 +48,8 @@
 
 		</div>
 
-		<div class="col-sm-3 myborder">
 
-			<img height="240px" width="240px"
+			<img height="240px" width="240px" class="memberPhoto"
 				src='${pageContext.request.contextPath}/getImage/member/${otherside.account}'>
 			<c:if test="${LoginOK.account != otherside.account}">
 				<c:if test="${!empty LoginOK}">
@@ -71,7 +80,6 @@
 			
 			</c:if>
 			
-		</div>
 
 		<div class="col-md-8">
 

@@ -15,7 +15,14 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-
+<style type="text/css">
+.myfooter {
+	height: 100px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
+</style>
 </head>
 
 <body>
@@ -41,71 +48,71 @@
 		<div class="row">
 			<div class="col-lg-8 mb-4">
 				<form:form action="memberUpdate" modelAttribute="updateMemberBean"
-					enctype="multipart/form-data" method="post">
-					<div class="control-group form-group">
+					class="form-row" enctype="multipart/form-data" method="post">
+					<div class="form-group col-md-6">
 						<div class="controls">
-							<label>account</label>
+							<label>帳號</label>
 							<p>${LoginOK.account}</p>
 						</div>
 					</div>
-						<div class="control-group form-group">
+					<div class="form-group col-md-6">
 						<div class="controls">
-							<label>password<span style="color: red">*</span></label>
+							<small><label>密碼<span style="color: red">*</span></label></small>
 							<form:input type="password" class="form-control" id="password"
 								path="password" />
 						</div>
 					</div>
-					<div class="control-group form-group">
+					<div class="form-group col-md-12">
 						<div class="controls">
-							<label>nick name<span style="color: red">*</span></label>
+							<small><label>暱稱<span style="color: red">*</span></label></small>
 							<form:input type="text" class="form-control" id="nickname"
 								path="nickname" value="${LoginOK.nickname}" />
 						</div>
 					</div>
 
-					<div class="control-group form-group">
+					<div class="form-group col-md-6">
 						<div class="controls">
-							<label>first name<span style="color: red">*</span></label>
+							<small><label>姓氏<span style="color: red">*</span></label></small>
 							<form:input type="text" class="form-control" id="firstname"
 								path="firstname" value="${LoginOK.firstname}" />
 						</div>
 					</div>
 
-					<div class="control-group form-group">
+					<div class="form-group col-md-6">
 						<div class="controls">
-							<label>last name<span style="color: red">*</span></label>
+							<small><label>名字<span style="color: red">*</span></label></small>
 							<form:input type="text" class="form-control" id="lastname"
 								path="lastname" value="${LoginOK.lastname}" />
 						</div>
 					</div>
 
-					<div class="control-group form-group">
+					<div class="form-group col-md-6">
 						<div class="controls">
-							<label>email<span style="color: red">*</span></label>
+							<small><label>電子郵件<span style="color: red">*</span></label></small>
 							<form:input type="text" class="form-control" id="email"
 								path="email" value="${LoginOK.email}" />
 						</div>
 					</div>
 
-					<div class="control-group form-group">
+					<div class="form-group col-md-6">
 						<div class="controls">
-							<label>address<span style="color: red">*</span></label>
+							<small><label>地址<span style="color: red">*</span></label></small>
 							<form:input type="text" class="form-control" id="address"
 								path="address" value="${LoginOK.address}" />
 						</div>
 					</div>
 
-					<div class="control-group form-group">
+					<div class="form-group col-md-6">
 						<div class="controls">
-							<label>phone<span style="color: red">*</span></label>
+							<small><label>電話<span style="color: red">*</span></label></small>
 							<form:input type="text" class="form-control" id="phone"
 								path="phone" value="${LoginOK.phone}" />
 						</div>
 					</div>
 
-					<div class="control-group form-group">
+					<div class="form-group col-md-6">
 						<div class="controls">
-							<label>照片:</label>
+							<small><label>照片:</label></small>
 							<form:input type="file" class="form-control" id="photo"
 								path="photo" accept="image/*" />
 						</div>
@@ -116,6 +123,16 @@
 				</form:form>
 			</div>
 
+			<div class="col-lg-4 mb-4">
+				<div class="row">
+					<div class="col-lg-3"></div>
+					<div class="col-lg-4">
+						<img height="240px" width="240px" class="memberPhoto"
+							src='${pageContext.request.contextPath}/getImage/member/${LoginOK.account}'>
+					</div>
+				</div>
+			</div> 
+
 		</div>
 		<!-- /.row -->
 
@@ -123,7 +140,7 @@
 	<!-- /.container -->
 	<!-- Footer -->
 
-<%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
 
 	<!-- Contact form JavaScript -->
 

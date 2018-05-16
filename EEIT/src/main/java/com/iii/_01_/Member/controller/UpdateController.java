@@ -54,7 +54,7 @@ public class UpdateController {
 	}
 	
 	@RequestMapping(value = "/MemberCenter/memberUpdate" , method = RequestMethod.POST)
-	public String addMemberUpdate(@ModelAttribute("updateMemberBean") MemberBean mb ,BindingResult result ,Model model , HttpServletRequest request ) throws SQLException {
+	public String addMemberUpdate(@ModelAttribute("updateMemberBean") MemberBean mb ,BindingResult result ,Model model , HttpSession session ) throws SQLException {
 			System.out.println("修改:" + mb);
 		
 			Map<String, String> updateErrorMessage = new HashMap<String, String>();
@@ -66,11 +66,11 @@ public class UpdateController {
 			String extPhoto = originalPhotoName.substring(originalPhotoName.lastIndexOf("."));
 		
 			updateService.updateMember(mb, extPhoto, photo);
-			model.addAttribute("updateOK", "資料更新完成!");
-			HttpSession session = request.getSession();
 			session.setAttribute("LoginOK", mb);
+			MemberBean newmb = (MemberBean) session.getAttribute("LoginOK");
+			String account = newmb.getAccount();
 			
-		return "MemberCenter/MemberCenter";
+		return "redirect:/profile/" + account;
 	}
 	
 }
