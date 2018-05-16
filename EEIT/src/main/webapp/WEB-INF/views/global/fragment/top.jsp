@@ -155,49 +155,49 @@
 					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class="form-row" enctype="multipart/form-data"> 
 			 		
 			 			<div class="col-md-6 form-group">
-			 				<small><label for="regAcc">帳號</label></small>
+			 				<small><label for="regAcc">帳號</label><span style="color: red">*(必填)</span></small>
 			 				<form:input id="regAcc" path="account" type="text" class="form-control input-sm" placeholder="account"/>
 			 			</div>
  
 			 			<div class="col-md-6 form-group">
-			 				<small><label for="regPwd">密碼</label></small>
+			 				<small><label for="regPwd">密碼</label><span style="color: red">*</span></small>
 			 				<form:input id="regPwd" path="password" type="password" class="form-control input-sm" placeholder="password"/>
 			 			</div>
 			 			<div class="col-md-12 form-group">
-			 				<small><label for="nickname">暱稱</label></small>
+			 				<small><label for="nickname">暱稱</label><span style="color: red">*</span></small>
 			 				<form:input path="nickname" id="nickname" type="text" class="form-control input-sm " placeholder="nickname"/>
 			 			</div>
 			 		 
 			 			<div class="col-md-6 form-group">
-			 				<small><label for="firstname">姓氏</label></small>
+			 				<small><label for="firstname">姓氏</label><span style="color: red">*</span></small>
 			 				<form:input path="firstname" id="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
 						</div>
 						<div class="col-md-6 form-group"> 
-							<small><label for="lastname">名字</label></small>
+							<small><label for="lastname">名字</label><span style="color: red">*</span></small>
 							 <form:input path="lastname" id="lastname" type="text" class="form-control input-sm " placeholder="last name"/>
 			 			</div>
 							
 						
 			 			<div class="col-md-6 form-group">
-			 				<small><label for="email">電子信箱</label></small>
+			 				<small><label for="email">電子信箱</label><span style="color: red">*</span></small>
 			 				<form:input path="email" id="email" type="email" class="form-control input-sm " placeholder="email"/>
 			 			</div>		
 						 		
 							<div class="col-md-6 form-group">
-							<small><label for="address">地址</label></small>
+							<small><label for="address">地址</label><span style="color: red">*</span></small>
 			 				<form:input path="address" id="address" type="text" class="form-control input-sm " placeholder="address"/>
 			 			</div>
 					
 						<div class="form-group col-md-6">
-							<small><label for="phone">電話號碼</label></small>
+							<small><label for="phone">電話號碼</label><span style="color: red">*</span></small>
 			 				<form:input path="phone" id="phone" type="text" class="form-control input-sm " placeholder="phone"/>
 			 			</div>
 					<div class="form-group col-md-6" >
 					
-					<small><label for="birthday">生日</label></small><form:input path="birthday" id="birthday" type="date" class="form-control input-sm"/>
+					<small><label for="birthday">生日</label><span style="color: red">*</span></small><form:input path="birthday" id="birthday" type="date" class="form-control input-sm"/>
 					</div>
 						<div class="form-group col-md-6">
-					<small><label for="gender">性別</label></small>
+					<small><label for="gender">性別</label><span style="color: red">*</span></small>
 			 				<form:select path="gender" id="gender" >
 								<form:option value="男性"/>	
 								<form:option value="女性"/>	
@@ -205,7 +205,7 @@
 							</form:select>
 			 			</div>
 			 			<div class="form-group col-md-6">
-					<small><label for="photo">照片</label></small>
+					<small><label for="photo">照片</label><span style="color: red">*</span></small>
 					<form:input path="photo" id="photo" type="file"  accept="image/*"/>
 					</div>
 				<div class="form-group">
