@@ -129,9 +129,9 @@
 </div> 
 <!-- 					</div>	 -->
 
-<form:form  id="Bid" method="POST" action="Bid/${productSeqNo}" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data">
-<form:select  path="productSeqNo">
-								  <form:options class="productSeqNo" items="${AllProductList}" />
+<form:form id="Bid" method="POST" action="Bid/${productSeqNo}" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data">
+<form:select path="productSeqNo">
+								  <form:options class="productSeqNo" items="${AllProductLista}" />
 							</form:select>
 </form:form> 
 <div class="input-Bid">

@@ -137,10 +137,7 @@ stompClient.connect({}, function(frame) {
     
 //取商品開始----------------------------------
 	
- 
-    
-
-        stompClient.subscribe('/target/Bid/subscription/' + productSeqNo , function(bidreturn){
+    stompClient.subscribe('/target/Bid/subscription/' + productSeqNo , function(bidreturn){
         	addBid(JSON.parse(bidreturn.body).account,JSON.parse(bidreturn.body).productSeqNo,JSON.parse(bidreturn.body).bidPrice,JSON.parse(bidreturn.body).auctionSeqNo)
 
        });      
