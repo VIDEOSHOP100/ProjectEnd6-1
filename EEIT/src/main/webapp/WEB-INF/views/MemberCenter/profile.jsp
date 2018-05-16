@@ -14,14 +14,20 @@
 .offshow {
 	border: 1px red solid
 }
+.profileTop{
+	width:100% ;
+	height:50%
+}
+
 </style>
 
 </head>
 
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
+	<img src="<c:url value='/MemberCenter/images/profileBanner.jpg'/>" class="profileTop" id = "profileTop">
 	<input id="account" type="hidden" name="account"
-		value="${LoginOK.account }">
+		value="${LoginOK.account}">
 	<input id="othersideaccount" type="hidden" name="othersideaccount"
 		value="${otherside.account}">
 	<div class="container">
@@ -30,23 +36,9 @@
 
 
 
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-			<div class="col-sm-1 offshow">.col-sm-1</div>
-
-
 		</div>
 
-		<div class="col-sm-4 myborder">
+		<div class="col-sm-3 myborder">
 
 			<img height="240px" width="240px"
 				src='${pageContext.request.contextPath}/getImage/member/${otherside.account}'>
@@ -65,11 +57,20 @@
 					<button id="memberReportButton"
 						class="btn btn-warning memberReportButton memberReport"
 						type="button" data-toggle="modal" data-target="#popMemberReport">檢舉會員</button>
-
+					
 
 				</c:if>
-
+				
 			</c:if>
+			
+			<c:if test="${!empty ManagerLoginOK}">
+			
+			<button id="banMemberButton" class="">
+				
+			</button>
+			
+			</c:if>
+			
 		</div>
 
 		<div class="col-md-8">

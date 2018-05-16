@@ -7,13 +7,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>登入</title>
         <style>
-            .test {
-                border: 2px red solid;
-            }
-
-            .rowtest {
-                border: 2px blue solid;
-            }
 
             .myfooter {
                 height: 100px;

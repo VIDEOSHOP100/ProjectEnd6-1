@@ -77,9 +77,9 @@ $(document).ready(function () {
     						'<div class="col-lg-8">' +
     							'<h2 class="mt-4">' + data.reportTitle + '</h2>' +
     							'<p class="lead"> 檢舉人 : ' +  
-    							'<a href="/EEIT/profile/' +data.accountFrom + '">' + data.accountFrom + '</a>' + 
+    							'<a  target="_blank"  href="/EEIT/profile/' +data.accountFrom + '">' + data.accountFrom + '</a>' + 
     							'  被檢舉人 : ' + 
-    							'<a href="/EEIT/profile/' +data.accountTo + '">' + data.accountTo + '</a>' +
+    							'<a  target="_blank" href="/EEIT/profile/' +data.accountTo + '">' + data.accountTo + '</a>' +
     							'</p>' +
     							'<p>Posted on' + formated + '</p><hr>' +
     							'<p>' + data.reportContent +'</p><hr>' +
@@ -120,13 +120,12 @@ $(document).ready(function () {
     		data:{ _method : "PUT" ,memberReportSeqNo:mrSN ,replyContent:reply},
     		
     		success:function(){
-    			
+    		
     			alert('回覆投訴完成!');
     			$('.bg-primary').trigger("click");
-//    			title=$('')
-//    			selectCategory();
-    			
+    		
     		},
+    		
     		error:function(e){
     			alert(e);
     		}
