@@ -4,6 +4,9 @@
 
 $(document).ready(function() {	
 	var account = $('#catch-account').val();
+	var bidPrice = $('.bidPrice').val();
+	var productSeqNo = $('#productSeqNo').val();
+	var liveStreamSeqNo = $('.seqNo').val();
 	$('.deleteBlock').click(function(){
 		var thisDeleteButton = $(this) 
 		var liveStreamSeqNo = thisDeleteButton.val();
@@ -25,8 +28,29 @@ $(document).ready(function() {
 			}
 		});
 	})
-
-
+//	var auctionSeqNo = $('#auctionSeqNo').val();
+//	alert(auctionSeqNo)
+$('.deleteAuction').click(function(){
+		var thisDeleteButton = $(this) 
+		var productSeqNo = $('#auctionSeqNo').val();
+		$.ajax({
+			type: "POST",
+			url: "/EEIT/endAuction",
+			data: {_method : "PUT", productSeqNo : productSeqNo, auctionStatus : 2},
+			timeout: 600000,
+			success: function (data) {
+//				var parentElement = thisDeleteButton.parents('.row')
+//				parentElement.find('.col-md-7').remove();
+//				parentElement.find('.col-md-5').remove();
+				alert("拍賣物品"+productSeqNo+"已賣給"+account);
+				
+			},
+			error: function (e) {
+				console.log("ERROR : ", e);
+				alert(e);
+			}
+		});
+	})
 
 
 //websocket 
@@ -63,34 +87,57 @@ $(document).on('keyup','.input-group>input',function(e){
     }
     
 });
- 
 
+
+
+ //增加會員購買商品到聊天室窗
+//var productSeqNo = $('.productSeqNo').val();
+function addBid(account, productSeqNo,bidPrice,auctionSeqNo){
+	
+	$('.card-bodycontroller').append('<div class="chatBlock"><p class="bidrow">'+"會員"+ account + "叫價: "+ bidPrice +'元</p></div>')
+}
+//增加會員聊天到聊天室窗
 function addMessage(account,liveChatArticle){
 
 				$('.card-bodycontroller').append('<div class="chatBlock"><p class="chatrow">'+ account + ": "+ liveChatArticle +'</p></div>')
 
 //	updateScroll();
 }
-//	}else if(account != senderAccount){
-//		if($('#' + account +'1>.box-body').length > 0){
-//			if(messageType == 'sticker'){
-//				$('#' + account +'1>.box-body').append('<p class="him"><img class="stickerSend" height="75px" width="75px" src="/EEIT/getImage/sticker/'+ messageArticle +'" name="'+ messageArticle +'"></p>')
-//			}else if(messageType == 'text'){
-//				$('#' + account +'1>.box-body').append('<p class="him">'+ account + ": "+ messageArticle +'</p>')
-//			}
-//			if($('#' + account +'1').is('.box-close')){
-//				$('#' + account +'1').find('.box-head').addClass('box-headAlert')
-//			}
-//		}else if($('#' + account +'1>.box-body').length == 0){
-//			$('#' + account).addClass('sidebarUserButtonAlert')
-//		}
-//	}
+
+function sendBid(account, productSeqNo,bidPrice){
+	var senderAccountFistWord = account.substring(0,1).charCodeAt()
+	var liveStreamSeqNo = $('.seqNo').val();
+	var productSeqNo = $('#productSeqNo').val();
+//	var roomNumber = $('.roomNumber').val();
+//alert(liveChatArticle);
+//alert(account);
+//	var name = $(this).parents('div').find('.message').val();
+	stompClient.send("/app/Bid/" + productSeqNo , {}, JSON.stringify({ 'productSeqNo':productSeqNo, 'account':account, 'bidPrice':bidPrice}));
+	
+}   
+//叫價TEXT
+$(document).on('keyup','.input-Bid>input',function(e){
+	var productSeqNo = $('#productSeqNo').val();
+//	alert(account);
+	console.log(e.keyCode);
+    if(e.keyCode == 13)
+    {
+		if($.trim($(this).val())!=""){
+//			var receiverAccount = $.trim($(this).parents('.box').find('.receiverAccount').text())
+			sendBid(account,productSeqNo,$(this).val());
+            $(this).val(" ")
+		}
+    }
+     
+});
 
 
 
 
 
-var liveStreamSeqNo = $('.seqNo').val();
+
+
+//alert(productSeqNo);
 //alert(liveStreamSeqNo);
 //$('.sidebarUserButton').each(function(){
 //
@@ -101,13 +148,23 @@ var liveStreamSeqNo = $('.seqNo').val();
 
 //console.log("asdasd");
 //console.log(stompClient); 
-//聊天室
+//聊天室開始----------------------------------
 stompClient.connect({}, function(frame) {
     console.log('Connected: ' + frame);
     stompClient.subscribe('/target/livechat/subscription/' + liveStreamSeqNo , function(messagereturn){
     	addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).liveChatArticle)
     	updateScroll()
     });
+//聊天室結束----------------------------------
+    
+//取商品開始----------------------------------
+//    var productSeqNo = $('#productSeqNo').val();
+    stompClient.subscribe('/target/Bid/subscription/' + productSeqNo , function(bidreturn){
+    	
+        	addBid(JSON.parse(bidreturn.body).account,JSON.parse(bidreturn.body).productSeqNo,JSON.parse(bidreturn.body).bidPrice)
+
+       });      
+//取商品結束--------------------------------------- 
 });
 function updateScroll(){
 	var element = $('.card-bodycontroller')
@@ -115,14 +172,9 @@ function updateScroll(){
 	element.scrollTop(scrollHeight,200);
 
 }
-//顯示物品
 
-//stompClient.connect({}, function(frame) {
-//    console.log('Connected: ' + frame);
-//    stompClient.subscribe('/target/proshow/subscription/' + liveStreamSeqNo , function(messagereturn){
-//    	addMessage(JSON.parse(messagereturn.body).account,JSON.parse(messagereturn.body).liveChatArticle)
-//    });
-//});
+
+
 
 
 })

@@ -27,7 +27,6 @@
     <body>
         <%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
             <div class="container">
-
                 <h1 class="mt-4 md-3">登入系統</h1>
 
                 <ol class="breadcrumb">
@@ -36,6 +35,7 @@
                     </li>
                     <li class="breadcrumb-item active">登入系統</li>
                 </ol>
+<br><br><br><br><br>
 
                 <div class="row ">
 
@@ -67,12 +67,7 @@
 
             </div>
 
-            <footer class="py-5 bg-dark myfooter">
-                <div class="container">
-                    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-                </div>
-            </footer>
-
+<%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
     </body>
 
     </html>

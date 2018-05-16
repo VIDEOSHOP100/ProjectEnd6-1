@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 @Repository
 public class ProductSaleDaoImpl implements ProductSaleDao {
@@ -62,5 +63,25 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		Session session = factory.getCurrentSession();
 		return session.createQuery("FROM ProductSaleBean WHERE auctionSeqNo = :auctionSeqNo",ProductSaleBean.class).setParameter("auctionSeqNo", auctionSeqNo).list();
 	}
-
+	@Override
+	public List<ProductSaleBean> getAllProByStatus(String account,Integer status) {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductSaleBean WHERE account = :account AND auctionStatus = :status",ProductSaleBean.class).setParameter("account", account).setParameter("status", status).list();
+	}
+	@Override
+	public ProductSaleBean getOneProBySeqNo(Integer productSeqNo) {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductSaleBean WHERE productSeqNo = :productSeqNo AND auctionStatus = '0'",ProductSaleBean.class).setParameter("productSeqNo", productSeqNo).uniqueResult();
+	}
+	@Override
+	public ProductSaleBean getOneProByAucSeqNo(Integer auctionSeqNo) {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductSaleBean WHERE auctionSeqNo = :auctionSeqNo AND auctionStatus = '1'",ProductSaleBean.class).setParameter("auctionSeqNo", auctionSeqNo).uniqueResult();
+	}
+	@Override
+	public ProductSaleBean getOneProBySeqNos1(Integer productSeqNo) {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductSaleBean WHERE productSeqNo = :productSeqNo AND auctionStatus = '1'",ProductSaleBean.class).setParameter("productSeqNo", productSeqNo).uniqueResult();
+	}
+	
 }

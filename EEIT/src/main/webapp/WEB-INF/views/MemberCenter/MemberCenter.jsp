@@ -13,6 +13,6 @@
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	
 	<p>${updateOK}</p>
- 
+ <%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
 </body>
 </html>

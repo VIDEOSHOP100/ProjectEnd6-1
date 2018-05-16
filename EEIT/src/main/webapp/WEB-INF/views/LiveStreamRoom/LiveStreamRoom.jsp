@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 <link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/>" rel="stylesheet">
 <style>
 
@@ -118,27 +119,60 @@
 						</c:if>
 							  <c:if test="${LoginOK.account == sb.account}">		
 <!-- 			<div class="col-lg-1"> -->
-			<button type="button" value="${sb.liveStreamSeqNo}" class="btn btn-outline-info deleteBlock col-md-auto"><i class="fas fa-ban"></i>&nbsp;&nbsp;關閉直播</button>
-<!--             </div>  -->
+			<button type="button" value="${sb.liveStreamSeqNo}" class="btn btn-outline-info addBidButton deleteBlock col-md-auto"><i class="fas fa-ban"></i>&nbsp;&nbsp;關閉直播</button>
+<!--             </div>  --> 
 			</c:if>	
-						
+								  <c:if test="${LoginOK.account == sb.account}">		
+<!-- 			<div class="col-lg-1"> -->
+			<button type="button" class="btn btn-outline-info addBidButton deleteAuction col-md-auto"><i class="fas fa-ban"></i>&nbsp;&nbsp;關閉拍賣</button>
+<!--             </div>  --> 
+			</c:if>	
+							
 <!--       <h2>叫價</h2><div class="col-md-2 addBidDiv"> -->
 <div class="col-lg-1">
 					<button class="btn btn-outline-info addBidButton loginCheck col-md-auto" data-toggle="modal" data-target="#addBidForm"><i class="fas fa-bullhorn"></i>&nbsp;&nbsp;現場喊價</button>
 </div> 
 <!-- 					</div>	 -->
 
-
-
+<form:form id="Bid" method="POST" action="Bid/${productSeqNo}" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data">
+<form:select path="productSeqNo">
+								  <form:options id="productSeqNo" class="productSeqNo" items="${AllProductLista}" />
+								  
+							</form:select>
+							<form:select class="hidden" path="auctionSeqNo">
+								  <form:options id="auctionSeqNo" class="auctionSeqNo" items="${AllProductLista}" />
+								  
+							</form:select>
+</form:form> 
+<div class="input-Bid">
+<input type="text" class="form-control Bid-message" placeholder="請輸入價格">
+</div> 
 	
 			
 	
       <div class="row">
+
+<c:forEach var="AllProducta" items="${AllProduct}"> 
+        <div class="col-lg-4 mb-4 proitemcontroller">
+          <div class="card h-100 text-center">
+            <img class="card-img-top img750" src="${pageContext.request.contextPath}/getImage/Product/${AllProducta.auctionPic}" alt=""> 
+            <div class="card-body">
+              <h4 class="card-title">品名：${AllProducta.proName}</h4>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">${AllProducta.proDescription}</p>
+              <p class="card-text">價錢：${AllProducta.proPrice}</p>
+            </div>
+            <div class="card-footer">
+              <a href="#">name@example.com</a>
+            </div>
+          </div>
+        </div>
+ </c:forEach>
         <div class="col-lg-4 mb-4">
           <div class="card h-100 text-center">
             <img class="card-img-top" src="http://placehold.it/750x450" alt="">
             <div class="card-body">
-              <h4 class="card-title">Team Member</h4>
+              <h4 class="card-title"></h4>
               <h6 class="card-subtitle mb-2 text-muted">Position</h6>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
             </div>
@@ -147,32 +181,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100 text-center">
-            <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Team Member</h4>
-              <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#">name@example.com</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100 text-center">
-            <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Team Member</h4>
-              <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#">name@example.com</a>
-            </div>
-          </div>
-        </div>
+
       </div>
       <!-- /.row -->
 
@@ -252,38 +261,39 @@
 	</div>
 <!--// 拍賣表格 -->
 <!-- 叫價表格 -->
-<div class="modal fade" id="addBidForm" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">叫價</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
+<!-- <div class="modal fade" id="addBidForm" tabindex="-1" role="dialog" -->
+<!-- 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
+<!-- 		<div class="modal-dialog modal-dialog-centered" role="document"> -->
+<!-- 			<div class="modal-content"> -->
+<!-- 				<div class="modal-header"> -->
+<!-- 					<h5 class="modal-title" id="exampleModalLongTitle">叫價</h5> -->
+<!-- 					<button type="button" class="close" data-dismiss="modal" -->
+<!-- 						aria-label="Close"> -->
+<!-- 						<span aria-hidden="true">&times;</span> -->
+<!-- 					</button> -->
+<!-- 				</div> -->
+<!-- 				<div class="modal-body"> -->
 					
 
-					<form:form  id="Bid" method="POST" action="${pageContext.request.contextPath}/Bid" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data" > 
+<%-- 					<form:form  id="Bid" method="POST" action="Bid/${productSeqNo}" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data" >  --%>
 					
-<%-- 					bidTime<form:input id="regAcc" path="bidTime" type="text" class="form-control input-sm"/><br> --%>
-					輸入價格<form:input id="bidPrice" path="bidPrice" type="text" class="form-control input-sm"/><br>
-		
-					
-				</div>
+<%-- 					bidTime<form:input id="regAcc" path="bidTime" type="text" class="form-control input-sm"/><br>  --%>
+<%-- 					輸入價格<form:input id="bidPrice" path="bidPrice" type="text" class="form-control input-sm"/><br> --%>
+<%-- 							<form:select class="productSeqNo" path="productSeqNo"> --%>
+<%-- 								  <form:options items="${AllProductList}" /> --%>
+<%-- 							</form:select> --%>
+<!-- 				</div> -->
 				
 
-				<div class="modal-footer">
-				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p>
-					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="註冊"/>
-				</div>
-					</form:form>
-			</div>
-		</div>
-	</div>
+<!-- 				<div class="modal-footer"> -->
+<%-- 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p> --%>
+<!-- 					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button> -->
+<!-- 					<input type="submit" class="btn btn-primary" value="註冊"/> -->
+<!-- 				</div> -->
+<%-- 					</form:form> --%>
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 <!--// 叫價表格 -->
 <%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
 <%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>

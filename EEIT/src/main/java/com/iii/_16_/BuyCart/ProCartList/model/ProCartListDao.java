@@ -10,7 +10,7 @@ public interface ProCartListDao {
 
 	ProCartListBean update(ProCartListBean cartlist) throws SQLException;
 
-	ProCartListBean delete(ProCartListBean cartlist) throws SQLException;
+	int delete(String account) throws SQLException;
 
 	ProCartListBean findbyPrimaryKey(int id) throws SQLException;
 	

@@ -112,15 +112,15 @@ ul li {
 		<div class="banner" id="banner3">
 			<div class="move" id="move2">
 				<ul>
-					<li><img src="getImageTest/product01" alt="" width="1500"
+					<li><img src="${pageContext.request.contextPath}/getImageTest/product01" alt="" width="1500"
 						height="500px"></li>
-					<li><img src="getImageTest/product02" alt="" width="1500"
+					<li><img src="${pageContext.request.contextPath}/getImageTest/product02" alt="" width="1500"
 						height="500px"></li>
-					<li><img src="getImageTest/product03" alt="" width="1500"
+					<li><img src="${pageContext.request.contextPath}/getImageTest/product03" alt="" width="1500"
 						height="500px"></li>
-					<li><img src="getImageTest/product04" alt="" width="1500"
+					<li><img src="${pageContext.request.contextPath}/getImageTest/product04" alt="" width="1500"
 						height="500px"></li>
-					<li><img src="getImageTest/product05" alt="" width="1500"
+					<li><img src="${pageContext.request.contextPath}/getImageTest/product05" alt="" width="1500"
 						height="500px"></li>
 				</ul>
 			</div>
@@ -130,7 +130,7 @@ ul li {
 
 		<!-- Page Features -->
 
-		<%@ include file="/WEB-INF/views/Cart/carticonRight.jsp"%>
+	
 
 		<div class="row text-center" style="width: 1200px; margin: 0 auto;">
 			<c:forEach var="product" items="${productbeans}">
@@ -141,8 +141,8 @@ ul li {
 							width="500px" height="238px" alt="">
 						<div class="card-body">
 							<h4 class="card-title">${product.proName}</h4>
-							<p class="card-text">限時特價 ＞＞${product.proPrice }</p>
-							<p class="card-text">${product.proDescription }</p>
+							<p class="card-text">限時特價  $NT ${product.proPrice }</p>
+							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription }</p>
 						</div>
 						<div class="card-footer">
 							<a
@@ -198,7 +198,7 @@ ul li {
 		<script type="text/javascript"
 			src="<c:url value='/global/js/myscroll.js'/>"></script>
 		<script type="text/javascript">
-			$(function() {
+		$(function() {
 				// 调用
 				$('#banner1').myscroll({
 					picEl : $('#move'), //图片父级，不传默认为banner内第1个div
@@ -217,7 +217,18 @@ ul li {
 					time : 1500,
 					effect : 'fade'
 				});
+				
+				
+				var len = 15; // 超過50個字以"..."取代
+			    $(".JQellipsis").each(function(i){
+			        if($(this).text().length>len){
+			            $(this).attr("title",$(this).text());
+			            var text=$(this).text().substring(0,len-1)+"...";
+			            $(this).text(text);
+			        }
+			    });
 			})
 		</script>
+	
 </body>
 </html>

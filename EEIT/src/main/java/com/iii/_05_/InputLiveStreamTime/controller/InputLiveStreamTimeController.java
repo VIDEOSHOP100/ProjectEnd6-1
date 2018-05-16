@@ -54,7 +54,7 @@ public class InputLiveStreamTimeController {
 //	}
 //直播間
 	@RequestMapping(value = "/LiveStream/{LiveStreamSeqNo}", method = RequestMethod.GET)
-	public String getLiveStream(@PathVariable("LiveStreamSeqNo") Integer LiveStreamSeqNo, Map<String, Object> map, HttpSession session) {
+	public String getLiveStream(@PathVariable("LiveStreamSeqNo") Integer LiveStreamSeqNo, Map<String, Object> map, HttpSession session) throws SQLException {
 		//無帳號為訪客
 		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
 		String account = null;
@@ -75,8 +75,27 @@ public class InputLiveStreamTimeController {
 		 
 		InputLiveStreamTimeBean.setLiveStreamView(InputLiveStreamTimeBean.getLiveStreamView()+1);
 		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
+		//產品 get product by account
+		int status = 1;
+		InputLiveStreamTimeBean gpa = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
 		
+		List<ProductSaleBean> AllProduct = productSaleService.getAllProByStatus(gpa.getAccount(), status);
+		for(ProductSaleBean pb :AllProduct ) {
+			pb.getPicSeqNo();
+		}
+		//BID產品選擇器
+		List<ProductSaleBean> AllProductList = productSaleService.getAllProByStatus(gpa.getAccount(), status);
+		
+		Map<Integer,String> productNameMap = new HashMap<Integer,String>(); 
+		for(ProductSaleBean pb : AllProductList) {
+			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
+		}
+		
+	
+//		map.put("AuctionSeqNoa", AuctionSeqNoNameMap);
+		map.put("AllProductLista", productNameMap);
 //		map.put("hb", LiveStreamHistoryBean);
+		map.put("AllProduct", AllProduct);
 		map.put("sb", InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo));
 		return "LiveStreamRoom/LiveStreamRoom";
 	}
@@ -110,12 +129,14 @@ public class InputLiveStreamTimeController {
 		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
 //		List<LiveStreamHistoryBean> getHistory = LiveStreamHistoryService.getAllLiveStreamHistory(account);
 //		map.put("getHistory", getHistory);
-		List<ProductSaleBean> AllProductList = productSaleService.getByAccount(account);
+		int status = 0;
+		List<ProductSaleBean> AllProductList = productSaleService.getAllProByStatus(account, status);
 		
 		Map<Integer,String> productNameMap = new HashMap<Integer,String>(); 
 		for(ProductSaleBean pb : AllProductList) {
 			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
 		}
+
 		map.put("AllProductList", productNameMap);
 		map.put("AllLiveStream", AllLiveStreamList);
 		map.put("accountStream", InputLiveStreamTimeService.getLiveStreamsByAccount(account));

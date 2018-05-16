@@ -7,15 +7,17 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.iii._16_.BuyCart.ProCartList.model.ProCartListBean;
 @Repository
 public class OrderDaoImpl implements OrderDao{
 	@Autowired	
 	SessionFactory factory;
 	@Override
-	public OrderBean insert(OrderBean order) throws SQLException {
+	public OrderBean insert(OrderBean bean) throws SQLException {
 		Session session = factory.getCurrentSession();
-		session.save(order);
-		return order;
+		session.save(bean);
+		return bean;
 	}
 
 	@Override
@@ -56,8 +58,10 @@ public class OrderDaoImpl implements OrderDao{
 
 	@Override
 	public int insertGetId(OrderBean order) {
-		// TODO Auto-generated method stub
-		return 0;
+		Session session = factory.getCurrentSession();
+		session.save(order);
+		int id = order.getOrderSeqNo();
+		return id;
 	}
 
 	@Override
@@ -66,5 +70,9 @@ public class OrderDaoImpl implements OrderDao{
 		return null;
 	}
 	
+	public List<OrderBean> findbyAccountReadyPay(String account,Integer orderstatus) throws SQLException {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM OrderBean WHERE account = :account and orderstatus = :orderstatus",OrderBean.class).setParameter("account", account).setParameter("orderstatus", orderstatus).list();
+	}
 
 }

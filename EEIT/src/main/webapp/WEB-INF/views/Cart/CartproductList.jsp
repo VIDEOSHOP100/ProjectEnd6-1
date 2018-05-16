@@ -104,7 +104,7 @@
 					<a href="${pageContext.request.contextPath}/goMarketHomePage">繼續購買</a>
 					<br>
 					<a href="${pageContext.request.contextPath}/order.do">馬上結帳</a>
-					<!-- 	刪除影片表格	-------------------------- -->
+					<!-- 	刪除商品表格	-------------------------- -->
 					<div id="delete-dialog-form" title="刪除資料">
 						<p class="validateTips">確認刪除此資料?</p>
 									<form:form id="deleteForm" name = "deleteForm" modelAttribute="updateCartListBean">

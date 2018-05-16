@@ -1,12 +1,15 @@
-
-//顯示物品 發送
-function send(account, liveChatArticle){
-
-	var liveStreamSeqNo = $('.seqNo').val();
-
-//alert(liveChatArticle);
-//alert(account);
-
-	stompClient.send("/app/proshow/" + liveStreamSeqNo , {}, JSON.stringify({ 'liveChatArticle':liveChatArticle, 'account':account}));
+ 
+$(document).ready(function() {
 	
-}
+	
+	 $(function () {
+         $('#aucBegin').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
+     });
+	 $(function () {
+         $('#aucEnd').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
+     });
+//	 $('#aucEnd').blur(function(){
+//		 alert($('#aucEnd').val())
+//	 })
+	
+})

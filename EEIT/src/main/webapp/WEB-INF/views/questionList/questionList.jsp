@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -21,15 +22,15 @@
 
     <div class="container">
 	  <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-      <h1 class="mt-4 mb-3">FAQ
-        <small>Subheading</small>
+      <h1 class="mt-4 mb-3">客服
+        <small>常見問題集</small>
       </h1>
 
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
-			<a href="index.html">Home</a>
+			<a href="/EEIT">Home</a>
 		</li>
-		<li class="breadcrumb-item active">FAQ</li>
+		<li class="breadcrumb-item active">客服中心</li>
 	</ol>
 
 		<div id="accordion">

@@ -20,18 +20,13 @@
   <body>
     <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
     <div class="container">
-      <h1 class="mt-4 mb-3">後台管理系統
+      <h1 class="mt-4 mb-3 font-weight-bold">後台管理系統
         <small>Backstage</small>
       </h1> 
       <div class="row">
         <div class="col-md-11">
         </div>
-        <div class="col-md-1">
-          <a href="<c:url value='/managerLogout'/>">
-            <button class="btn btn-danger float-right">管理員登出</button>
-          </a>
-        </div>
- 
+
       </div>
       <ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">首頁</a></li>
@@ -39,7 +34,7 @@
       </ol>
 
       <div class="row">
-        <div class="col-lg-3 mb-4">
+        <div class="col-lg-2 mb-4">
           <div class="list-group"> 
             <a class="list-group-item pointer text-primary replyMessage">回復留言</a>
             <a class="list-group-item pointer text-primary questionManage">問答集管理</a>
@@ -55,7 +50,7 @@
     
           </div>
         </div>
-        <div class="col-lg-9 mb-4" id="content">
+        <div class="col-lg-10 mb-4" id="content">
           <h2>後台首頁</h2>
           <p>請從左側列表中選擇功能</p>
         </div>

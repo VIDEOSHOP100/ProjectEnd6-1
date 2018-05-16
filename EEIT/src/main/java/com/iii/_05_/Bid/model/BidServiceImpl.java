@@ -7,10 +7,22 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
+@Transactional
 public class BidServiceImpl implements BidService {
 
 	@Autowired
 	BidDAO BidDAO;
+	
+	
+	
+//	@Transactional
+//	@Override
+//	public BidBean getBidPriceTop(Integer productSeqNo) {
+//		
+//		return BidDAO.getBidByAuctionSeqNo(auctionSeqNo);
+//	}
+//	
+	
 	@Transactional
 	@Override
 	public List<BidBean> getBidByAuctionSeqNo(Integer auctionSeqNo) {
@@ -46,5 +58,12 @@ public class BidServiceImpl implements BidService {
 	
 		BidDAO.deleteBid(BidBean);
 	}
+	@Transactional
+	@Override
+	public BidBean getBidByAuctionSeqNoBidprice(Integer auctionSeqNo) {
+		
+		return BidDAO.getBidByAuctionSeqNoBidprice(auctionSeqNo);
+	}
 
+	
 }

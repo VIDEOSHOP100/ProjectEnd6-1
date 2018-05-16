@@ -35,8 +35,9 @@ public class ProductSaleBean {
 	private Integer picSeqNo;
 	private String account;
 	
-	private Integer auctionStatus;
-	
+	private String auctionStatus;
+	private String auctionPic;
+	private Integer auctionSeqNo;
 	@Transient
 	private MultipartFile picFile;//v
 	
@@ -46,13 +47,28 @@ public class ProductSaleBean {
 	
 	
 	
-	public Integer getAuctionStatus() {
+	
+	public String getAuctionPic() {
+		return auctionPic;
+	}
+
+
+
+
+	public void setAuctionPic(String auctionPic) {
+		this.auctionPic = auctionPic;
+	}
+
+
+
+
+	public String getAuctionStatus() {
 		return auctionStatus;
 	}
 
 
 
-	public void setAuctionStatus(Integer auctionStatus) {
+	public void setAuctionStatus(String auctionStatus) {
 		this.auctionStatus = auctionStatus;
 	}
 
@@ -170,6 +186,16 @@ public class ProductSaleBean {
 	public void setProBrand(String proBrand) {
 		this.proBrand = proBrand;
 	}
+
+	public Integer getAuctionSeqNo() {
+		return auctionSeqNo;
+	}
+
+	public void setAuctionSeqNo(Integer auctionSeqNo) {
+		this.auctionSeqNo = auctionSeqNo;
+	}
+
+
 
 
 	@Override

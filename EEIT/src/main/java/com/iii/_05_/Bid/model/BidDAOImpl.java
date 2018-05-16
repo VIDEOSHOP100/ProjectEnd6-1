@@ -15,6 +15,14 @@ public class BidDAOImpl implements BidDAO {
 	SessionFactory sessionFactory;
 	
 	@Override
+	public BidBean getBidByAuctionSeqNoBidprice(Integer auctionSeqNo) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		return session.createQuery("FROM BidBean WHERE auctionSeqNo = :auctionSeqNo order by bidPrice desc", BidBean.class).setParameter("auctionSeqNo", auctionSeqNo).uniqueResult();
+	}
+
+	
+	@Override
 	public List<BidBean> getBidByAuctionSeqNo(Integer auctionSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
 		

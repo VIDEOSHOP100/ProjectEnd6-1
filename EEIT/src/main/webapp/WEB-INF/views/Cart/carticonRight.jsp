@@ -10,11 +10,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>首頁</title>
-<link
-	href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
-	rel="stylesheet">
-<link href="<c:url value='/global/css/modern-business.css'/>"
-	rel="stylesheet">
+<!-- <link -->
+<%-- 	href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " --%>
+<!-- 	rel="stylesheet"> -->
+<%-- <link href="<c:url value='/global/css/modern-business.css'/>" --%>
+<!-- 	rel="stylesheet"> -->
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/global/css/index2.css'/>">
 
@@ -44,11 +44,13 @@ button {
 
 	<div id="MyBlog" class="fa-4x">
 		<span> 
-		<button type="button" onclick="alert('Hello world!')"><i class="fas fa-cart-plus "></i></button>
-		 <span class="fa-layers-counter" style="background:Tomato">12</span>
+						
+		<a href="${pageContext.request.contextPath}/CartList/getCart/${LoginOK.account}">
+		<button type="button" id="cartbutton"><i class="fas fa-cart-plus "></i></button></a>
+		 <span class="fa-layers-counter" id="counter" style="background:Tomato">0</span>
 		</span>
 	</div>
 
-
+<script src="<c:url value='/Cart/js/carticon.js'/> "></script>
 </body>
 </html>

@@ -55,4 +55,25 @@ public class ProductSaleService {
 	public List<ProductSaleBean> selectAllProduct() throws SQLException{
 		return dao.getALL();
 	}
+	
+	//搜尋所有auctionStatus=0的商品
+		@Transactional
+		public List<ProductSaleBean>  getAllProByStatus(String account,Integer status) throws SQLException{
+			return dao.getAllProByStatus(account,status);
+		}
+		//用productSeqNo搜尋一筆商品(status=0)
+				@Transactional
+				public ProductSaleBean getOneProBySeqNo(Integer productSeqNo) throws SQLException{
+					return dao.getOneProBySeqNo(productSeqNo);
+				}
+				//用AuctionSeqNo搜尋一筆商品
+	@Transactional
+	public ProductSaleBean getOneProByAucSeqNo(Integer auctionSeqNo) throws SQLException{
+	return dao.getOneProByAucSeqNo(auctionSeqNo);
+			}	
+	//用productSeqNo搜尋一筆商品(status=1)
+	@Transactional
+	public ProductSaleBean getOneProBySeqNos1(Integer productSeqNo) throws SQLException{
+		return dao.getOneProBySeqNos1(productSeqNo);
+	}
 }
