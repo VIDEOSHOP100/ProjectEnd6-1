@@ -54,6 +54,7 @@
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/subscriptionUploader">訂閱上傳者</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/watchLaterVideo">稍後觀看</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/InsertLiveStream">直播管理</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/AuctionEnd">得標管理</a>
 						</c:if>
 					</div>
 				</li>

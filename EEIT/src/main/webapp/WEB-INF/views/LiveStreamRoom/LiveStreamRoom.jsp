@@ -122,7 +122,12 @@
 			<button type="button" value="${sb.liveStreamSeqNo}" class="btn btn-outline-info addBidButton deleteBlock col-md-auto"><i class="fas fa-ban"></i>&nbsp;&nbsp;關閉直播</button>
 <!--             </div>  --> 
 			</c:if>	
-						
+								  <c:if test="${LoginOK.account == sb.account}">		
+<!-- 			<div class="col-lg-1"> -->
+			<button type="button" class="btn btn-outline-info addBidButton deleteAuction col-md-auto"><i class="fas fa-ban"></i>&nbsp;&nbsp;關閉拍賣</button>
+<!--             </div>  --> 
+			</c:if>	
+							
 <!--       <h2>叫價</h2><div class="col-md-2 addBidDiv"> -->
 <div class="col-lg-1">
 					<button class="btn btn-outline-info addBidButton loginCheck col-md-auto" data-toggle="modal" data-target="#addBidForm"><i class="fas fa-bullhorn"></i>&nbsp;&nbsp;現場喊價</button>
@@ -132,6 +137,11 @@
 <form:form id="Bid" method="POST" action="Bid/${productSeqNo}" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data">
 <form:select path="productSeqNo">
 								  <form:options id="productSeqNo" class="productSeqNo" items="${AllProductLista}" />
+								  
+							</form:select>
+							<form:select class="hidden" path="auctionSeqNo">
+								  <form:options id="auctionSeqNo" class="auctionSeqNo" items="${AllProductLista}" />
+								  
 							</form:select>
 </form:form> 
 <div class="input-Bid">
