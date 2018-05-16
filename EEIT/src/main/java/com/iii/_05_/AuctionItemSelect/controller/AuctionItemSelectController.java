@@ -24,8 +24,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectBean;
 import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectService;
+import com.iii._05_.Bid.model.BidBean;
+import com.iii._05_.Bid.model.BidService;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
+import com.iii._05_.auctionEnd.model.AuctionEndBean;
+import com.iii._05_.auctionEnd.model.AuctionEndService;
 import com.iii._09_.addproduct.model.ProductBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
@@ -41,12 +45,18 @@ public class AuctionItemSelectController {
 	@Autowired
 	ProductSaleService productSaleService;
 	
+	@Autowired
+	AuctionEndService auctionEndService;
+	
+	
+	@Autowired
+	BidService BidService;
 	//關閉拍賣
 	@RequestMapping(value = "/endAuction",method = RequestMethod.PUT)
 	public @ResponseBody Map<String,String> closeAuction(
 			@RequestParam("productSeqNo") Integer productSeqNo,
 //			@RequestParam("LiveStreamHistorySeqNo") Integer LiveStreamHistorySeqNo,
-			@RequestParam("auctionStatus") String auctionStatus,
+			@RequestParam("auctionStatus") Integer auctionStatus,
 			HttpSession session
 			) throws SQLException {
 
@@ -54,15 +64,31 @@ public class AuctionItemSelectController {
 		
 		ProductSaleBean pb = productSaleService.getOneProBySeqNos1(productSeqNo);
 //		pb.getAuctionSeqNo();
-		pb.setAuctionStatus(0);
+		pb.setAuctionStatus(2);
 		
 		productSaleService.update(pb);
 		
 		List<AuctionItemSelectBean> ab = auctionItemSelectService.getAuctionByAuctionSeqNo(pb.getAuctionSeqNo());
 		for(AuctionItemSelectBean AuctionItemSelectBean: ab) {
-			AuctionItemSelectBean.setAuctionStatus(auctionStatus);
+			AuctionItemSelectBean.setAuctionStatus(2);
 			auctionItemSelectService.updateAuction(AuctionItemSelectBean);
 		}
+		//--------------------------資料塞進AUCTIONEND----------------------------
+		//取得BID(得標)BEAN
+		BidBean BidAucBean = BidService.getBidByAuctionSeqNoBidprice(pb.getAuctionSeqNo());
+	
+		AuctionEndBean AuctionEndBean = new AuctionEndBean();
+//				auctionEndService.getAuctionEndByProductSeqNo(productSeqNo);
+			//取得+設置得標者帳號
+			AuctionEndBean.setAccount(BidAucBean.getAccount());
+			//取得+設置得標價格
+			AuctionEndBean.setProPrice(BidAucBean.getBidPrice());
+			//取得現在時間
+			Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+			AuctionEndBean.setProTime(now);
+			//取得+設置得標物ID
+			AuctionEndBean.setProductSeqNo(BidAucBean.getProductSeqNo());
+			auctionEndService.saveAuctionEnd(AuctionEndBean);
 		
 		Map<String, String> map = new HashMap<String,String>();
 		map.put("status", "success");
@@ -136,7 +162,7 @@ public class AuctionItemSelectController {
 //			ab.setProductSeqNo(pb.getProductSeqNo());
 //		}
 		
-		ab.setAuctionStatus("1");
+		ab.setAuctionStatus(1);
 		ab.setAccount(account);
 	
 //		ab.setLiveStreamSeqNo(Integer.parseInt(target2));

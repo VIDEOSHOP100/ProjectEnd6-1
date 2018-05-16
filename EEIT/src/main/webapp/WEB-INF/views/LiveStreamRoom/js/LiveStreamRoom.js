@@ -36,7 +36,7 @@ $('.deleteAuction').click(function(){
 		$.ajax({
 			type: "POST",
 			url: "/EEIT/endAuction",
-			data: {_method : "PUT", productSeqNo : productSeqNo, auctionStatus : '0'},
+			data: {_method : "PUT", productSeqNo : productSeqNo, auctionStatus : 2},
 			timeout: 600000,
 			success: function (data) {
 //				var parentElement = thisDeleteButton.parents('.row')

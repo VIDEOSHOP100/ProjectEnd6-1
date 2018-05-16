@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
+@Transactional
 public class BidServiceImpl implements BidService {
 
 	@Autowired
@@ -56,6 +57,12 @@ public class BidServiceImpl implements BidService {
 	public void deleteBid(BidBean BidBean) {
 	
 		BidDAO.deleteBid(BidBean);
+	}
+	@Transactional
+	@Override
+	public BidBean getBidByAuctionSeqNoBidprice(Integer auctionSeqNo) {
+		
+		return BidDAO.getBidByAuctionSeqNoBidprice(auctionSeqNo);
 	}
 
 	

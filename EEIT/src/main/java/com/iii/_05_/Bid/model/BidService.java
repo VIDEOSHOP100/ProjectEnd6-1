@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface BidService {
 	
+	public BidBean getBidByAuctionSeqNoBidprice(Integer auctionSeqNo);
+	
 //	public BidBean getBidPriceTop(Integer productSeqNo);
 	
 	public List<BidBean> getBidByAuctionSeqNo(Integer auctionSeqNo);
