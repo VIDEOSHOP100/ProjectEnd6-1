@@ -64,7 +64,7 @@ public class ProductSaleController {
 		
 		Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
 		psb.setProDate(ts);
-		psb.setAuctionStatus("0");
+		psb.setAuctionStatus(0);
 		psb.setAuctionSeqNo(0);
 		psb.setAuctionPic("0");
 		// 得到一個multipart文件 並取出檔名(originalFilename)
