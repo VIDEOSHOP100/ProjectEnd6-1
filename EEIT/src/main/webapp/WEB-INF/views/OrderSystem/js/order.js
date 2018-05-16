@@ -64,33 +64,31 @@ $(document).ready(function(){
 	$('#confirmorder').click(function(){
 		var account = $('#selectacc').val()
 		
-		alert("確定送出訂單....購物車資料寫入訂單資料庫  =  "+account)
-//		
-//		$.ajax({
-//			type : "POST",
-//			cache : false,
-//			contentType : false,
-//			processData : false,
-//			enctype : 'multipart/form-data',
-//			url : "/EEIT/orderProduct",
-//			
-//			timeout : 600000,
-//			success : function(data) {
-//				console.log("SUCCESS : ", data);
-//				
-//				
-//			},
-//			error : function(e) {
-//				console.log("ERROR : ", e);
-//				alert("ajax error");
-//				
-//				
-//			}
-//
-//		});
-		//跳出隱藏的form表單
-		//在jsphidden一個 購物車的form  
-		//送出的同時用ajax  insert到一個  訂單成立的 product table 
+		
+		
+		$.ajax({
+			type : "POST",
+			cache : false,
+			contentType : false,
+			processData : false,
+			enctype : 'multipart/form-data',
+			url : "/EEIT/allpay/checkout/",
+			
+			timeout : 600000,
+			success : function(data) {
+				console.log("SUCCESS : ", data);
+				
+				
+			},
+			error : function(e) {
+				console.log("ERROR : ", e);
+				alert("ajax error");
+				
+				
+			}
+
+		});
+	
 		
 	
 	})

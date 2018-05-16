@@ -43,7 +43,7 @@
 						</div>
 
 						<div class="form-group col-lg-6">
-							<label>訂購人手機</label>
+							 <label  for="upTel">訂購人手機</label>
 							<form:input type="text" path="ordererTel" name="upTel"
 								class="form-control" id="upTel" value="${param.ordererTel}" />
 						</div>
@@ -153,9 +153,9 @@
 						</div>
 
 						<div class="col-sm-6">
-							<form:radiobutton name="pay" class="checkbox"
+							<form:radiobutton id="paycredit" class="checkbox"
 								path="proPayTypeSeqNo" value="2" />
-							信用卡付款
+							<label for="paycredit">信用卡付款</label>
 						</div>
 
 						<div class="col-sm-6">

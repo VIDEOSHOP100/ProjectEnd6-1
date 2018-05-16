@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.iii._16_.BuyCart.ProCartList.model.ProCartListBean;
 @Repository
 public class OrderDaoImpl implements OrderDao{
 	@Autowired	
@@ -68,5 +70,9 @@ public class OrderDaoImpl implements OrderDao{
 		return null;
 	}
 	
+	public List<OrderBean> findbyAccountReadyPay(String account,Integer orderstatus) throws SQLException {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM OrderBean WHERE account = :account and orderstatus = :orderstatus",OrderBean.class).setParameter("account", account).setParameter("orderstatus", orderstatus).list();
+	}
 
 }

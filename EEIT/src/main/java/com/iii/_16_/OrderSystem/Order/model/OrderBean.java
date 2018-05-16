@@ -28,8 +28,15 @@ public class OrderBean {
 	private Integer proPayTypeSeqNo;
 	private Integer proTransportSeqNo;
 	private java.util.Date orderTime;
+	private Integer orderStatus;
 	
 	
+	public Integer getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(Integer orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 	public Integer getOrdererHomeTel() {
 		return ordererHomeTel;
 	}
@@ -121,31 +128,37 @@ public class OrderBean {
 		this.proTransportSeqNo = proTransportSeqNo;
 	}
 
-	@Override
-	public String toString() {
-		return "OrderBean [orderSeqNo=" + orderSeqNo + ", orderproductNum=" + orderproductNum + ", ordererName="
-				+ ordererName + ", ordererTel=" + ordererTel + ", ordererEmail=" + ordererEmail + ", ordererAddr="
-				+ ordererAddr + ", recipientName=" + recipientName + ", recipientTel=" + recipientTel
-				+ ", recipientEmail=" + recipientEmail + ", recipientAddr=" + recipientAddr + ", proPayTypeSeqNo="
-				+ proPayTypeSeqNo + ", proTransportSeqNo=" + proTransportSeqNo + ", orderTime=" + orderTime + "]";
-	}
+	
 	public OrderBean(Integer orderSeqNo, Integer orderproductNum, String ordererName, Integer ordererTel,
-			String ordererEmail, String ordererAddr, String recipientName, Integer recipientTel, String recipientEmail,
-			String recipientAddr, Integer proPayTypeSeqNo, Integer proTransportSeqNo, Date orderTime) {
+			Integer ordererHomeTel, String ordererEmail, String ordererAddr, String recipientName, Integer recipientTel,
+			Integer recipientHomeTel, String recipientEmail, String recipientAddr, Integer proPayTypeSeqNo,
+			Integer proTransportSeqNo, Date orderTime, Integer orderStatus) {
 		super();
 		this.orderSeqNo = orderSeqNo;
 		this.orderproductNum = orderproductNum;
 		this.ordererName = ordererName;
 		this.ordererTel = ordererTel;
+		this.ordererHomeTel = ordererHomeTel;
 		this.ordererEmail = ordererEmail;
 		this.ordererAddr = ordererAddr;
 		this.recipientName = recipientName;
 		this.recipientTel = recipientTel;
+		this.recipientHomeTel = recipientHomeTel;
 		this.recipientEmail = recipientEmail;
 		this.recipientAddr = recipientAddr;
 		this.proPayTypeSeqNo = proPayTypeSeqNo;
 		this.proTransportSeqNo = proTransportSeqNo;
 		this.orderTime = orderTime;
+		this.orderStatus = orderStatus;
+	}
+	@Override
+	public String toString() {
+		return "OrderBean [orderSeqNo=" + orderSeqNo + ", orderproductNum=" + orderproductNum + ", ordererName="
+				+ ordererName + ", ordererTel=" + ordererTel + ", ordererHomeTel=" + ordererHomeTel + ", ordererEmail="
+				+ ordererEmail + ", ordererAddr=" + ordererAddr + ", recipientName=" + recipientName + ", recipientTel="
+				+ recipientTel + ", recipientHomeTel=" + recipientHomeTel + ", recipientEmail=" + recipientEmail
+				+ ", recipientAddr=" + recipientAddr + ", proPayTypeSeqNo=" + proPayTypeSeqNo + ", proTransportSeqNo="
+				+ proTransportSeqNo + ", orderTime=" + orderTime + ", orderStatus=" + orderStatus + "]";
 	}
 	public OrderBean() {
 		super();

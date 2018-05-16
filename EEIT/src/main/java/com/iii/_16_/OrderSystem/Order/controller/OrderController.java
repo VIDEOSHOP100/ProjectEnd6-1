@@ -104,14 +104,20 @@ public class OrderController {
 		 int orderNum =orderservice.insertGetId(ob);	 
 		// 先將使用者帳號傳回購物車service方法 用帳號找出所有購物明細
 			List<ProCartListBean> list = procartlistservice.getByAccountStatus(member.getAccount());
+			List<OrderProductBean> orderproductlist = new ArrayList<>();
 			for (ProCartListBean productbean : list) {
 				productbean.setProductbean(productsaleservice.getBySeqNo(productbean.getProductSeqNo()));
 				OrderProductBean confirmbean = new OrderProductBean(productbean.getProductSeqNo(), productbean.getProductCount(), productbean.getProductbean().getProPrice(), member.getAccount(), orderNum, 0);
-				orderproductservice.insert(confirmbean);
+				OrderProductBean ddd = orderproductservice.insert(confirmbean);
+				orderproductlist.add(ddd);
+				
 			}
-			
+			//成立訂單的帳號  將該帳號購物車內所有物品刪除
+			if(orderproductlist.size()!=0) {
+			procartlistservice.deleteAllByAccount(member.getAccount());
 			//訂單新增成功  
 			//將購物車中 使用者搜尋過的商品刪除
+			}
 		 return "OrderSystem/Success";
 	}
 	@RequestMapping(value = "/odergetcountry", method = RequestMethod.GET)
@@ -134,26 +140,6 @@ public class OrderController {
 		return "OrderSystem/testtable";
 	}
 	
-	@RequestMapping(value = "/orderProduct", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> confirmOrderProduct(HttpSession session) throws SQLException {
-		Map<String, Object> result = new HashMap<String, Object>();
-		// 此方法回傳使用者帳號account Ex.bob放入購物車的物品
-		MemberBean memberbean = (MemberBean) session.getAttribute("LoginOK");
-				
-		String account = memberbean.getAccount();
-		// 先將使用者帳號傳回購物車service方法 用帳號找出所有購物明細
-		List<ProCartListBean> list = procartlistservice.getByAccountStatus(account);
-		for (ProCartListBean bean : list) {
-			OrderProductBean confirmbean = new OrderProductBean(bean.getProductSeqNo(), bean.getProductCount(), bean.getProductbean().getProPrice(), memberbean.getAccount(), 0, 0);
-			orderproductservice.insert(confirmbean);
-		}
-	
-	
-	
-		
-		
-		return result;
-	}
 	
 	
 }

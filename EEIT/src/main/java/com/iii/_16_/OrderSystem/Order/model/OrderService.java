@@ -1,6 +1,7 @@
 package com.iii._16_.OrderSystem.Order.model;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,9 @@ public class OrderService {
 			return result;
 		}
 		return 0;
+	}
+	@Transactional
+	public List<OrderBean> findByAccountForPay(String account , Integer orderstatus) throws SQLException{
+		return dao.findbyAccountReadyPay(account, orderstatus);
 	}
 }

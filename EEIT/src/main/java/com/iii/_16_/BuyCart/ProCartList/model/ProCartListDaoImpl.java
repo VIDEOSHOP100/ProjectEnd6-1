@@ -31,14 +31,16 @@ public class ProCartListDaoImpl implements ProCartListDao{
 	}
 
 	@Override
-	public ProCartListBean delete(ProCartListBean cartlist) throws SQLException {
+	public int delete(String account) throws SQLException {
 		Session session = factory.getCurrentSession();
-		ProCartListBean temp = session.get(ProCartListBean.class, cartlist.getProCartListSeqNo());
-		if(temp!=null) {
+		List<ProCartListBean> templist = this.findbyAccount(account);
+		if(templist.size()!=0) {
+			for(ProCartListBean temp:templist) {
 			session.delete(temp);
-			return temp;
+			}
+			return 1;
 		}
-		return null;
+		return 0;
 	}
 
 	@Override

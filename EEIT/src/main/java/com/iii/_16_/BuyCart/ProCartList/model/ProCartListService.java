@@ -72,5 +72,9 @@ public class ProCartListService {
 		}
 		return 0;
 	}
-
+	//訂單成立 刪除該帳號所有商品
+	@Transactional
+	public int deleteAllByAccount(String account) throws SQLException {
+		return dao.delete(account);
+	}
 }
