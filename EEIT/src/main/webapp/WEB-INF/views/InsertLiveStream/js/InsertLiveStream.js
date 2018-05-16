@@ -8,8 +8,8 @@ $(document).ready(function() {
 	 $(function () {
          $('#aucEnd').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
      });
-	 $('#aucEnd').blur(function(){
-		 alert($('#aucEnd').val())
-	 })
+//	 $('#aucEnd').blur(function(){
+//		 alert($('#aucEnd').val())
+//	 })
 	
 })

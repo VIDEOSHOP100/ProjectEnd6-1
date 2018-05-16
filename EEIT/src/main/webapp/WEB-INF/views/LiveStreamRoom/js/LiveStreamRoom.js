@@ -82,7 +82,7 @@ function addMessage(account,liveChatArticle){
 //	updateScroll();
 }
 
-function sendBid(account, productSeqNo,bidPrice,auctionSeqNo){
+function sendBid(account, productSeqNo,bidPrice){
 	var senderAccountFistWord = account.substring(0,1).charCodeAt()
 	var liveStreamSeqNo = $('.seqNo').val();
 
@@ -90,12 +90,12 @@ function sendBid(account, productSeqNo,bidPrice,auctionSeqNo){
 //alert(liveChatArticle);
 //alert(account);
 	var name = $(this).parents('div').find('.message').val();
-	stompClient.send("/app/Bid/" + productSeqNo , {}, JSON.stringify({ 'productSeqNo':productSeqNo, 'account':account, 'bidPrice':bidPrice,'auctionSeqNo':auctionSeqNo}));
+	stompClient.send("/app/Bid/" + productSeqNo , {}, JSON.stringify({ 'productSeqNo':productSeqNo, 'account':account, 'bidPrice':bidPrice}));
 	
 }   
 //叫價TEXT
 $(document).on('keyup','.input-Bid>input',function(e){
-	var productSeqNo = $('#productSeqNo').val();
+	var productSeqNo = $('.productSeqNo').val();
 //	alert(account);
 	console.log(e.keyCode);
     if(e.keyCode == 13)
@@ -138,7 +138,7 @@ stompClient.connect({}, function(frame) {
 //取商品開始----------------------------------
 	
     stompClient.subscribe('/target/Bid/subscription/' + productSeqNo , function(bidreturn){
-        	addBid(JSON.parse(bidreturn.body).account,JSON.parse(bidreturn.body).productSeqNo,JSON.parse(bidreturn.body).bidPrice,JSON.parse(bidreturn.body).auctionSeqNo)
+        	addBid(JSON.parse(bidreturn.body).account,JSON.parse(bidreturn.body).productSeqNo,JSON.parse(bidreturn.body).bidPrice)
 
        });      
 //取商品結束--------------------------------------- 
