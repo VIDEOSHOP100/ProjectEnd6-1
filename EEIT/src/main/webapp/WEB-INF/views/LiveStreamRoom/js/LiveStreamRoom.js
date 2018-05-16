@@ -105,7 +105,7 @@ function addMessage(account,liveChatArticle){
 
 function sendBid(account, productSeqNo,bidPrice){
 	var senderAccountFistWord = account.substring(0,1).charCodeAt()
-//	var liveStreamSeqNo = $('.seqNo').val();
+	var liveStreamSeqNo = $('.seqNo').val();
 	var productSeqNo = $('#productSeqNo').val();
 //	var roomNumber = $('.roomNumber').val();
 //alert(liveChatArticle);
