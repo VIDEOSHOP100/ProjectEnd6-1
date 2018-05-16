@@ -13,6 +13,11 @@ $(document).ready(function() {
 	var chatRoomName = [];
 	var senderAccount = $('.accountForMessage').val()
 	var count;
+    setTimeout(function() {
+        $("#insert-messageImage-form").removeClass('hideForm')
+        $("#insert-messageFile-form").removeClass('hideForm')
+        $("#insert-messageVideo-form").removeClass('hideForm')
+     }, 2000);
     $('.sidebarUserButton').click(function () {
         var right = 220;
         id = $(this).attr('id');

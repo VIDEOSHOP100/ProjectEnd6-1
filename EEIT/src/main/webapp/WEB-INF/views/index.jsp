@@ -46,6 +46,14 @@
 .videoSmallWords {
 	font-size: 7px;
 }
+
+.indexVideo{
+	margin: 0px 300px;
+}
+.indexVideoBackGround{
+	background-color: #1c0033
+}
+
 </style>
 </head>
 <body>
@@ -59,29 +67,31 @@
 			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 		</ol>
 		<div class="carousel-inner" role="listbox">
-			<div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
-				<iframe width="1950" height="700"
-					src="https://www.youtube.com/embed/FhUgjzdCflQ?autoplay=1"
-					frameborder="0"; encrypted-media" allowfullscreen></iframe>
+			<div class="carousel-item active indexVideoBackGround" style="background-image: url('global/images/indexBackground.jpg')">
+<!-- 				<iframe width="1950" height="700" -->
+<!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ?autoplay=1" -->
+<!-- 					frameborder="0"; encrypted-media" allowfullscreen></iframe> -->
+				<video controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/1" ></video>
 				<div class="carousel-caption d-none d-md-block">
 					<h3>First Slide</h3>
 					<p>This is a description for the first slide.</p>
 				</div>
 			</div>
-			<div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
-				<iframe width="1950" height="700"
-					src="https://www.youtube.com/embed/FhUgjzdCflQ" frameborder="0"
-					allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			<div class="carousel-item indexVideoBackGround" style="background-image: url('global/images/indexBackground.jpg')">
+<!-- 				<iframe width="1950" height="700" -->
+<!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ" frameborder="0" -->
+<!-- 					allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+				<video controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/2" ></video>
 				<div class="carousel-caption d-none d-md-block">
 					<h3>Second Slide</h3>
 					<p>This is a description for the second slide.</p>
 				</div>
 			</div>
-			<div class="carousel-item"
-				style="background-image: url('http://placehold.it/1900x1080')">
-				<iframe width="1950" height="700"
-					src="https://www.youtube.com/embed/FhUgjzdCflQ" frameborder="0"
-					allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			<div class="carousel-item indexVideoBackGround"	style="background-image: url('global/images/indexBackground.jpg')">
+<!-- 				<iframe width="1950" height="700" -->
+<!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ" frameborder="0" -->
+<!-- 					allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+				<video controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/3" ></video>
 				<div class="carousel-caption d-none d-md-block">
 					<h3>Third Slide</h3>
 					<p>This is a description for the third slide.</p>
@@ -100,6 +110,35 @@
 	</header>
 	<div class="container">
 		<h1>
+		<a href="<c:url value='/LiveStreamHall' />">
+			正在直播
+		</a>
+		</h1>
+		<div class="row">
+			<c:forEach var="aVideoBean" items="${liveStream}">
+				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
+					<div class="card h-100 videoBlockInner">
+						<a href="<c:url value='/LiveStream/${aVideoBean.liveStreamSeqNo}' />">
+							<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/LiveCoverPath/${aVideoBean.liveStreamSeqNo}'>
+						</a>
+						<div class="card-body">
+							<h6 class="card-title videoTitle">
+								<a href="<c:url value='/LiveStream/${aVideoBean.liveStreamSeqNo}' />"><b>${aVideoBean.streamName}</b></a>
+								
+							</h6>
+							
+							<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
+								<p class="videoSmallWords">${aVideoBean.account}</p>
+							</a>
+							<p class="card-text videoSmallWords">${aVideoBean.liveStart}</p>
+							<p class="videoSmallWords">觀看次數:${aVideoBean.liveStreamView}</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+
+		</div>
+		<h1>
 		<a href="<c:url value='/hotVideo' />">
 			熱門影片
 		</a>
@@ -113,7 +152,7 @@
 						</a>
 						<div class="card-body">
 							<h6 class="card-title videoTitle">
-								<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"><b>${aVideoBean.videoTitle}</b></a>
+								<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />" title="${aVideoBean.videoTitle}"><b>${aVideoBean.videoTitle}</b></a>
 								
 							</h6>
 							
@@ -150,7 +189,7 @@
 						</a>
 						<div class="card-body">
 							<h6 class="card-title videoTitle">
-								<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"><b>${aVideoBean.videoTitle}</b></a>
+								<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"  title="${aVideoBean.videoTitle}"><b>${aVideoBean.videoTitle}</b></a>
 							</h6>
 							<a class="uploaderLink"
 								href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
@@ -186,7 +225,7 @@
 							</a>
 							<div class="card-body">
 								<h6 class="card-title videoTitle">
-									<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"><b>${aVideoBean.videoTitle}</b></a>
+									<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"  title="${aVideoBean.videoTitle}"><b>${aVideoBean.videoTitle}</b></a>
 								</h6>
 								<a class="uploaderLink"
 									href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">

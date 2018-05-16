@@ -12,7 +12,7 @@ public interface VideoManageService {
 
 	public VideoBean getVideo(Integer videoSeqNo);
 	
-	public int saveVideo(VideoBean vb, String extImage, String extVideo, MultipartFile videoImage,
+	public VideoBean saveVideo(VideoBean vb, String extImage, String extVideo, MultipartFile videoImage,
 			MultipartFile videoFile);
 	
 	public void updateVideo(VideoBean vb);
@@ -22,4 +22,6 @@ public interface VideoManageService {
 	public void saveVideoImageToFile(String videoImageFileFolderPath, String videoImageFilePath,MultipartFile videoImage);
 
 	public void saveVideoToFile(String videoFileFolderPath, String videoFilePath,MultipartFile videoFile);
+	
+	public List<VideoBean> getUserVideoByPageNo(Integer pageNo, String account);
 }

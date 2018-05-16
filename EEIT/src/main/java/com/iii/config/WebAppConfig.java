@@ -50,7 +50,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
 		resolver.setDefaultEncoding("UTF-8");
-		resolver.setMaxUploadSize(81920000);
+		resolver.setMaxUploadSize(819200000000000000L);
 		return resolver;
 	}
 	
@@ -77,6 +77,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/Cart/**").addResourceLocations("/WEB-INF/views/Cart/");
 		registry.addResourceHandler("/backstage/**").addResourceLocations("/WEB-INF/views/backstage/");
 		registry.addResourceHandler("/OrderSystem/**").addResourceLocations("/WEB-INF/views/OrderSystem/");
+		registry.addResourceHandler("/likeUnlikeVideos/**").addResourceLocations("/WEB-INF/views/likeUnlikeVideos/");
 
 		
 		
