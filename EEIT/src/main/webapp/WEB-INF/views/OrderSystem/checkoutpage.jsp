@@ -23,214 +23,207 @@
 <body>
 
 	<!-- Portfolio Item Row -->
-	<!-- 訂單資料 --------------------------------------------------------------------------------------->
-	<div class="">
-		<div class="card">
-			<div class="card-header">${getMemberBean.account}的訂單資訊</div>
-			<div class="card-body">
-		
-				<!-- 每頁不同的內容從這裡開始 -->
-				<table id="productTable" class="table table-condensed">
-					<thead>
-						<tr>
-							<th></th>
-							<th></th>
-							<th>&nbsp;&nbsp;商品圖</th>
-							<th>商品名稱</th>
-							<th>數量</th>
-							<th>單價</th>
-							<th>總價</th>
-							<th></th>
-						</tr>
-					</thead>
-
-
-					<tbody class="tbodyOutside">
-
-						<c:set var="total" value="0.0" />
-						<c:forEach var="xxx" items="${cartlist}">
-							<tr class="trkill">
-								<td style="visibility: hidden" class="divThree">${xxx.proCartListSeqNo}</td>
-								<td style="visibility: hidden" class="divOne">${xxx.productbean.productSeqNo}</td>
-								<td><img width="150px" height="120px"
-									src="${pageContext.request.contextPath}/getImage/Product/${xxx.productbean.productSeqNo}"
-									alt=""></td>
-								<td><h5 class="divTwo">${xxx.productbean.proName}</h5></td>
-								<td>${xxx.productCount }</td>
-								<td>NT ${xxx.productbean.proPrice }</td>
-								<td>NT ${xxx.productCount * xxx.productbean.proPrice}</td>
-								<c:set var="total"
-									value="${total + xxx.productCount * xxx.productbean.proPrice}" />
-								<td>
-									<button id="buttonAdd" type="button"
-										class="btn btn-danger kill">
-										<i class="far fa-trash-alt"></i>
-									</button>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-					<tfoot>
-						<tr class="success">
-							<td></td>
-							<td></td>
-							<td>總價</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td>NT <fmt:formatNumber value="${total}" pattern="#,##0" /></td>
-							<td></td>
-						</tr>
-					</tfoot>
-				</table>
-			</div>
-		</div>
-	</div>
-	</div>
 
 
 	<!--          訂購人資訊  --------------------------------------------------------- -->
-
+	<br>
+	<br>
 	<div class="container-fluid">
 		<section class="container">
 		<div class="container-page">
-			<div class="col-md-6" id="upform">
-				<h3 class="dark-grey">訂購人資訊</h3>
+			<form:form class="form-group" id="orderForm" action="confirmOrder"
+				name="orderForm" modelAttribute="orderBean">
+				<div class="col-md-6" id="upform">
+					<h3 class="dark-grey">訂購人資訊</h3>
+					<div class="form-group row">
+						<div class="form-group col-lg-6">
+							<label>訂購人姓名</label>
+							<form:input type="text" path="ordererName" name="upName"
+								class="form-control" id="upName" value="${param.ordererName}" />
+						</div>
 
-				<div class="form-group col-lg-6">
-					<label>訂購人姓名</label> <input type="text" name=""
-						class="form-control" id="upName" value="">
+						<div class="form-group col-lg-6">
+							 <label  for="upTel">訂購人手機</label>
+							<form:input type="text" path="ordererTel" name="upTel"
+								class="form-control" id="upTel" value="${param.ordererTel}" />
+						</div>
+
+					</div>
+					<div class="form-group row">
+						<div class="form-group col-lg-6">
+							<label>訂購人電話</label>
+							<form:input type="text" path="ordererHomeTel" name="upHomeTel"
+								class="form-control" id="upHomeTel" value="${param.ordererTel2}" />
+						</div>
+						<div class="form-group col-lg-6">
+							<label>訂購人 Email</label>
+							<form:input type="text" path="ordererEmail" name=""
+								class="form-control" id="upMail" value="${param.ordererEmail}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="form-group col-lg-3">
+							<span>縣/市</span>
+							<form:select class="form-control" id="sel1" path="">
+								<form:option value="">請選擇</form:option>
+								<c:forEach var="itemone" items="${citylist}">
+									<form:option id="op1" value="${itemone}">${itemone}</form:option>
+								</c:forEach>
+							</form:select>
+							<span>區域</span>
+							<form:select path="" class="form-control" id="sel2">
+								<form:option id="op2" value="">請選擇</form:option>
+							</form:select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="form-group col-lg-8">
+							<label>訂購人 地址</label>
+							<form:input type="text" name="textaddr" class="form-control"
+								id="upAddr" path="ordererAddr" value="" />
+						</div>
+					</div>
+
+					<!-- 				<div class="col-sm-6"> -->
+					<!-- 					<input type="checkbox" class="checkbox" />Send notifications to this email -->
+					<!-- 				</div>	 -->
+
+					<!--   收貨人資訊          -----------------------------------------------------------------------------------                       -->
 				</div>
-
-				<div class="form-group col-lg-6">
-					<label>訂購人電話</label> <input type="text" name=""
-						class="form-control" id="upTel" value="">
-				</div>
-
-				<div class="form-group col-lg-6">
-					<label>訂購人 Email</label> <input type="text" name=""
-						class="form-control" id="upMail" value="">
-				</div>
-
-				<div class="form-group col-lg-3">
-					<label>訂購人 地址</label> 
-					<br>
-				
-					
-			<span>縣/市</span><select class="form-control" id="sel1">
-								<option value="">請選擇</option>
-    							<c:forEach var="itemone" items="${citylist}">  
-    		   					 <option id="op1" value="${itemone}">${itemone}</option>  
-   			 					</c:forEach>  
-						     </select>  
-					<span>區域</span> <select class="form-control" id="sel2">
-					
-					  </select>
-				</div>
-				<div class="form-group col-lg-8">
-					<input type="text" name="" class="form-control"
-						id="upAdder" value="">
-				</div>
-
-				<!-- 				<div class="col-sm-6"> -->
-				<!-- 					<input type="checkbox" class="checkbox" />Send notifications to this email -->
-				<!-- 				</div>	 -->
-
-				<!--   收貨人資訊          -----------------------------------------------------------------------------------                       -->
-			</div>
-			<div class="col-md-6">
-				<h3 class="dark-grey">收貨人資訊</h3>
-
-				
-				<div class="col-sm-6">
-					<input type="button" class="btn-success down" value="資料同上" />
-				</div>
-
-
-				<div class="form-group col-lg-6">
-					<label>收貨人姓名</label> <input type="text" name=""
-						class="form-control" id="downName" value="">
-				</div>
-
-				<div class="form-group col-lg-6">
-					<label>收貨人電話</label> <input type="text" name=""
-						class="form-control" id="downTel" value="">
-				</div>
-
-				<div class="form-group col-lg-6">
-					<label>收貨人 Email</label> <input type="text" name=""
-						class="form-control" id="downEmail" value="">
-				</div>
-
-				<div class="form-group col-lg-6">
-					<label>收貨人 地址</label> <input type="text" name="" class="form-control"
-						id="downAddr" value="">
-				</div>
-
-				<div class="col-sm-6">
-					<input type="checkbox" class="checkbox" />是否同意商城條款
-				</div>
-
-			</div>
-
-			<div class="col-md-6">
-				<h3 class="dark-grey">付款方式</h3>
-
-				<div class="col-sm-6">
-					<input type="checkbox" class="checkbox" />信用卡付款
-				</div>
-
-				<div class="col-sm-6">
-					<input type="checkbox" class="checkbox" />web ATM
-				</div>
-
-				<div class="col-sm-6">
-					<input type="checkbox" class="checkbox" />超商取貨付款
-				</div>
-
-			</div>
-			
 				<div class="col-md-6">
-				<h3 class="dark-grey">取貨方式</h3>
+					<h3 class="dark-grey">收貨人資訊</h3>
 
-				<div class="col-sm-6">
-					<input type="checkbox" class="checkbox" />7-11店到店付款
+
+					<div class="col-sm-6">
+						<form:input type="button" class="btn-success down" path=""
+							value="資料同上" />
+					</div>
+
+					<div class="form-group row">
+						<div class="form-group col-lg-6">
+							<label>收貨人姓名</label>
+							<form:input type="text" name="" class="form-control"
+								id="downName" path="recipientName"
+								value="${param.recipientName}" />
+						</div>
+
+						<div class="form-group col-lg-6">
+							<label>收貨人手機</label>
+							<form:input type="text" name="" class="form-control" id="downTel"
+								path="recipientTel" value="${param.recipientTel}" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="form-group col-lg-6">
+							<label>收貨人電話</label>
+							<form:input type="text" name="" class="form-control"
+								id="downHomeTel" path="recipientHomeTel"
+								value="${param.recipientHomeTel}" />
+						</div>
+						<div class="form-group col-lg-6">
+							<label>收貨人 Email</label>
+							<form:input type="text" name="" class="form-control"
+								id="downEmail" path="recipientEmail"
+								value="${param.recipientEmail}" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="form-group col-lg-6">
+							<label>收貨人 地址</label>
+							<form:input type="text" name="" class="form-control"
+								id="downAddr" path="recipientAddr"
+								value="${param.recipientAddr}" />
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<form:checkbox path="" class="checkbox" value="1" />
+						是否同意商城<a href="license">條款</a>
+					</div>
+
 				</div>
 
-				<div class="col-sm-6">
-					<input type="checkbox" class="checkbox" />fami店到店付款
+				<div class="col-md-6">
+					<h3 class="dark-grey">付款方式</h3>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<form:radiobutton name="pay" class="checkbox"
+								path="proPayTypeSeqNo" value="1" />
+							WebATM
+						</div>
+
+						<div class="col-sm-6">
+							<form:radiobutton id="paycredit" class="checkbox"
+								path="proPayTypeSeqNo" value="2" />
+							<label for="paycredit">信用卡付款</label>
+						</div>
+
+						<div class="col-sm-6">
+							<form:radiobutton name="pay" class="checkbox"
+								path="proPayTypeSeqNo" value="3" />
+							ATM轉帳
+						</div>
+
+						<div class="col-sm-6">
+							<form:radiobutton name="pay" class="checkbox"
+								path="proPayTypeSeqNo" value="4" />
+							線上支付(paypal)
+						</div>
+
+						<div class="col-sm-6">
+							<form:radiobutton name="pay" class="checkbox"
+								path="proPayTypeSeqNo" value="5" />
+							超商取貨付款
+						</div>
+					</div>
+
 				</div>
 
-				<div class="col-sm-6">
-					<input type="checkbox" class="checkbox" />黑貓宅急便
+				<div class="col-md-6">
+					<h3 class="dark-grey">取貨方式</h3>
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<form:radiobutton name="ship" class="checkbox"
+								path="proTransportSeqNo" value="1" />
+							包裹郵寄
+						</div>
+
+						<div class="col-sm-6">
+							<form:radiobutton name="ship" class="checkbox"
+								path="proTransportSeqNo" value="2" />
+							7-11店到店付款
+						</div>
+
+						<div class="col-sm-6">
+							<form:radiobutton name="ship" class="checkbox"
+								path="proTransportSeqNo" value="3" />
+							Fami店到店付款
+						</div>
+
+						<div class="col-sm-6">
+							<form:radiobutton name="ship" class="checkbox"
+								path="proTransportSeqNo" value="4" />
+							黑貓宅急便
+						</div>
+					</div>
 				</div>
 
-			</div>
-			<!-- 			<div class="col-md-6" > -->
-			<!-- 				<h3 class="dark-grey">Terms and Conditions</h3> -->
-			<!-- 				<p> -->
-			<!-- 					By clicking on "Register" you agree to The Company's' Terms and Conditions -->
-			<!-- 				</p> -->
-			<!-- 				<p> -->
-			<!-- 					While rare, prices are subject to change based on exchange rate fluctuations -  -->
-			<!-- 					should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8) -->
-			<!-- 				</p> -->
-			<!-- 				<p> -->
-			<!-- 					Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6) -->
-			<!-- 				</p> -->
-			<!-- 				<p> -->
-			<!-- 					Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6) -->
-			<!-- 				</p> -->
-
-			<button type="submit" class="btn btn-primary">送出訂單</button>
-				<button type="button" class="btn btn-primary" ><a href="${pageContext.request.contextPath}/gotoseven">送出711訂單</a></button>
+				<button type="submit" class="btn btn-primary" id="confirmorder">送出訂單</button>
+			</form:form>
+			<br>
+			<br>
+			<button type="button" class="btn btn-primary">
+				<a href="${pageContext.request.contextPath}/gotoseven">送出711訂單</a>
+			</button>
 			<!-- 			</div> -->
 		</div>
 		</section>
 	</div>
+		<input type="hidden" id="selectacc" name="selectacc" value="${getMemberBean.account}"/> 
 
 
-<script src="<c:url value='/OrderSystem/js/order.js'/> "></script>
+
+	<script src="<c:url value='/OrderSystem/js/order.js'/> "></script>
 </body>
 
 </html>

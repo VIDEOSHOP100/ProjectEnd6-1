@@ -55,7 +55,7 @@ public class ProductIntroController {
 	public @ResponseBody Map<String, String> addThisOneInCart(@RequestParam("product") Integer id,
 			@RequestParam("count") Integer count, @RequestParam("account") String account, HttpSession session)
 			throws SQLException {
-		System.out.println("加入購物車");
+		
 		System.out.println("產品編號 = " + id + "  數量 = " + count + "   購買人 = " + account);
 		// 需要判斷有無帳號
 		Map<String, String> map = new HashMap<>();

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._09_.addproduct.model.ProductBean;
+import com.iii._16_.OrderSystem.Order.model.OrderBean;
+import com.iii._16_.OrderSystem.Order.model.OrderService;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
@@ -23,6 +25,8 @@ import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 public class MarketController {
 	@Autowired
 	private ProductSaleService productservice;
+	@Autowired
+	private OrderService orderservice;
 
 	@RequestMapping("/gettestboot")
 	public String getProducthot() {
@@ -44,7 +48,7 @@ public class MarketController {
 		map.put("isMember",memberbean);
 		
 		map.put("productbeans", productlist);
-		
+	
 		return "marketIndex/Mindex";
 	}
 	

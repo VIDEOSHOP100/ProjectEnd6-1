@@ -227,10 +227,10 @@ font-family: 'Poiret One', cursive;
 				<div class="modal-body">
 
 <%--${pageContext.request.contextPath}/Auction --%>
-					<form:form  id="Auction" method="POST" action="" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
+					<form:form  id="Auction" method="POST" action="${pageContext.request.contextPath}/Auction" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
 					<form:input id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
-					aucBegin<input id="datetimepicker4" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
-					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm aucEnd" placeholder="2018-05-06 18:00:00"/><br>
+					aucBegin<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00"/><br>
+					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00"/><br>
 <%-- 					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br> --%>
 						
 			 				<form:select path="productSeqNo">

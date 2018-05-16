@@ -51,9 +51,7 @@ public class ProCartListController {
 			//先將使用者帳號傳回購物車service方法  用帳號找出所有購物明細		
 			List<ProCartListBean> list = procartlistservice.getByAccountStatus(account);
 			for(ProCartListBean bean :list) {
-				
 				bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
-				System.out.println("從購物車中撈出bob的購買資訊 = "+ bean);
 			}
 			//將明細放入Map物件中 由jsp el撈出資料
 			map.put("cartlist", list);
@@ -65,6 +63,7 @@ public class ProCartListController {
 
 		return "pleaselogin";
 	}
+	//沒有用
 	@ResponseBody
 	@RequestMapping(value = "/getCartlist/{account}", method = RequestMethod.GET)
 	public String restDCNListJson(@RequestParam("account") String id, Model model) throws SQLException {
@@ -72,19 +71,19 @@ public class ProCartListController {
 		List<ProCartListBean> list2 = new ArrayList<>();
 		for (ProCartListBean bean : list) {
 			bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
-			System.out.println("從購物車中撈出bob的購買資訊 = " + bean);
 			list2.add(bean);
 		}
 		String jsonString = JSONValue.toJSONString(list2);
 		return jsonString;
 	}
+	//送出一個可以remove購物車的Bean 
 	@ModelAttribute
 	public void getCartListBeans(Map<String, Object> map, HttpSession session) {
 		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
 		ProCartListBean updateCartListBean = new ProCartListBean(0, 0, 0, 2, memberBean.getAccount());
 		map.put("updateCartListBean", updateCartListBean);
 	}
-	
+	//remove 購物車物品的method
 	@RequestMapping(value="put",method=RequestMethod.POST)
 	public @ResponseBody String killCartList(@ModelAttribute("updateCartListBean") ProCartListBean cartlistb, BindingResult result,HttpSession session) throws SQLException {
 		String[] suppressedFields = result.getSuppressedFields();
@@ -102,5 +101,25 @@ public class ProCartListController {
 		System.out.println("刪除成功"+updatedate);
 		return "killone";
 	}
+	
+	//select該帳號購物車車籃的數量
+	@RequestMapping(value = "/getcartcount/{account}", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> getCartCount(@PathVariable String account) throws SQLException {
+		System.out.println("購物車商品數");
+		Map<String, Object> result = new HashMap<String, Object>();
+		List<ProCartListBean> productlist2 = new ArrayList<>();
+		// 撈出該帳號  status為1的商品數
+		int count=0;
+		System.out.println("誰在購物  ==  "+account);
+		List<ProCartListBean> productlist = procartlistservice.getByAccountStatus(account);
+		for (ProCartListBean product : productlist) {
+			productlist2.add(product);
+			count++;
+		}
+		result.put("productcount", count);
+		return result;
+	}
+
+	
 	
 }

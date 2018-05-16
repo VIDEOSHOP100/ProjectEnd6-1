@@ -68,12 +68,12 @@ public class MemberFAQController {
 	@RequestMapping(value = "/report", method = RequestMethod.POST)
 	public String addQues(@ModelAttribute("MemberFAQBean") MemberFAQBean mb, BindingResult result,
 			HttpServletRequest request) {
-		// String[] suppressedFields = result.getSuppressedFields();
-		// if (suppressedFields.length > 0) {
-		// System.out.println("嘗試輸入不允許的欄位");
-		// throw new RuntimeException("嘗試輸入不允許的欄位: " +
-		// StringUtils.arrayToCommaDelimitedString(suppressedFields));
-		// }
+		 String[] suppressedFields = result.getSuppressedFields();
+		 if (suppressedFields.length > 0) {
+		 System.out.println("嘗試輸入不允許的欄位");
+		 throw new RuntimeException("嘗試輸入不允許的欄位: " +
+		 StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		 }
 
 		Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
 		mb.setMemQuesTime(ts);

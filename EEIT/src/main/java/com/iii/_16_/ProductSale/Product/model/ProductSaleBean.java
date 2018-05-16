@@ -37,7 +37,7 @@ public class ProductSaleBean {
 	
 	private Integer auctionStatus;
 	private String auctionPic;
-	
+	private Integer auctionSeqNo;
 	@Transient
 	private MultipartFile picFile;//v
 	
@@ -186,6 +186,16 @@ public class ProductSaleBean {
 	public void setProBrand(String proBrand) {
 		this.proBrand = proBrand;
 	}
+
+	public Integer getAuctionSeqNo() {
+		return auctionSeqNo;
+	}
+
+	public void setAuctionSeqNo(Integer auctionSeqNo) {
+		this.auctionSeqNo = auctionSeqNo;
+	}
+
+
 
 
 	@Override

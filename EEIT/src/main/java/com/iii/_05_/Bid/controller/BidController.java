@@ -25,6 +25,8 @@ import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectService;
 import com.iii._05_.Bid.model.BidBean;
 import com.iii._05_.Bid.model.BidService;
 import com.iii._05_.liveChat.model.LiveChatBean;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 import com.iii._19_.videoManage.model.VideoBean;
 
 @Controller
@@ -37,19 +39,20 @@ public class BidController {
 	@Autowired
 	AuctionItemSelectService AuctionItemSelectService;
 	
-	
+	@Autowired
+	ProductSaleService ProductSaleService;
 	
 	@MessageMapping(value="Bid/{productSeqNo}")
 	@SendTo("/target/Bid/subscription/{productSeqNo}")
 	public BidBean BidSocket(@ModelAttribute("BidBean") BidBean bb,
 			@DestinationVariable("productSeqNo") Integer productSeqNo
 //			@DestinationVariable("account") String account
-			) {
-		
+			) throws SQLException {
+		ProductSaleBean pb = ProductSaleService.getBySeqNo(productSeqNo);
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		bb.setBidTime(now);
 		//寫死 要改
-		bb.setAuctionSeqNo(3);
+		bb.setAuctionSeqNo(pb.getAuctionSeqNo());
 		bidService.saveBid(bb);
 		
 		

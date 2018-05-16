@@ -91,7 +91,7 @@ public class InputLiveStreamTimeController {
 			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
 		}
 
-		map.put("AllProductList", productNameMap);
+		map.put("AllProductLista", productNameMap);
 //		map.put("hb", LiveStreamHistoryBean);
 		map.put("AllProduct", AllProduct);
 		map.put("sb", InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo));

@@ -112,15 +112,15 @@ ul li {
 		<div class="banner" id="banner3">
 			<div class="move" id="move2">
 				<ul>
-					<li><img src="getImageTest/product01" alt="" width="1500"
+					<li><img src="${pageContext.request.contextPath}/getImageTest/product01" alt="" width="1500"
 						height="500px"></li>
-					<li><img src="getImageTest/product02" alt="" width="1500"
+					<li><img src="${pageContext.request.contextPath}/getImageTest/product02" alt="" width="1500"
 						height="500px"></li>
-					<li><img src="getImageTest/product03" alt="" width="1500"
+					<li><img src="${pageContext.request.contextPath}/getImageTest/product03" alt="" width="1500"
 						height="500px"></li>
-					<li><img src="getImageTest/product04" alt="" width="1500"
+					<li><img src="${pageContext.request.contextPath}/getImageTest/product04" alt="" width="1500"
 						height="500px"></li>
-					<li><img src="getImageTest/product05" alt="" width="1500"
+					<li><img src="${pageContext.request.contextPath}/getImageTest/product05" alt="" width="1500"
 						height="500px"></li>
 				</ul>
 			</div>
@@ -130,7 +130,7 @@ ul li {
 
 		<!-- Page Features -->
 
-		<%@ include file="/WEB-INF/views/Cart/carticonRight.jsp"%>
+	
 
 		<div class="row text-center" style="width: 1200px; margin: 0 auto;">
 			<c:forEach var="product" items="${productbeans}">

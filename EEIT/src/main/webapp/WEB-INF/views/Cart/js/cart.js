@@ -14,7 +14,7 @@ $(document).ready(function() {
 								$('#seqNoDelete').val(
 										$.trim($(this).parents('tr').find(
 												'.divThree').text()))
-
+												
 								// $(this).parents('tr').remove
 							})
 
@@ -93,7 +93,7 @@ $(document).ready(function() {
 						function deleteproduct() {
 							var form = $('#deleteForm')[0];
 							var data = new FormData(form);
-							console.log(data);
+							
 							$.ajax({
 								type : "POST",
 								cache : false,
@@ -105,8 +105,11 @@ $(document).ready(function() {
 								timeout : 600000,
 								success : function(data) {
 									console.log("SUCCESS : ", data);
+									location.reload();
 									selectedtbodyOutside.remove();
+							
 									dialog.dialog("close");
+									
 								},
 								error : function(e) {
 									console.log("ERROR : ", e);

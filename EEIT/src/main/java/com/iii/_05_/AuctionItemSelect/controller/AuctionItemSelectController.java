@@ -109,6 +109,7 @@ public class AuctionItemSelectController {
 		ab.setAccount(account);
 	
 //		ab.setLiveStreamSeqNo(Integer.parseInt(target2));
+		auctionItemSelectService.saveAuction(ab);
 		
 		ProductSaleBean Oneproduct = productSaleService.getOneProBySeqNo(ab.getProductSeqNo());
 		
@@ -118,13 +119,14 @@ public class AuctionItemSelectController {
 			Oneproduct.setProDate(now);
 			Oneproduct.setAuctionPic(Integer.toString(Oneproduct.getProductSeqNo()));
 			Oneproduct.setProPrice(ab.getProPrice());
+			Oneproduct.setAuctionSeqNo(ab.getAuctionSeqNo());
 			productSaleService.insert(Oneproduct);
 		
 	
 		
 	
 		
-		auctionItemSelectService.saveAuction(ab);
+		
 		
 		
 		return "redirect:" + target;
