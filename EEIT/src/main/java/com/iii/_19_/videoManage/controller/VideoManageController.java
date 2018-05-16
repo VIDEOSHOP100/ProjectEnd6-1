@@ -1,5 +1,7 @@
 package com.iii._19_.videoManage.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -19,7 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._19_.videoManage.model.VideoBean;
 import com.iii._19_.videoManage.model.VideoManageService;
-import com.iii._19_.videoReport.model.VideoReportBean;
+import com.iii._19_.videoType.model.VideoTypeBean;
+import com.iii._19_.videoType.model.VideoTypeService;
 
 @Controller
 @RequestMapping("/videoManage")
@@ -28,6 +31,9 @@ public class VideoManageController {
 	@Autowired
 	VideoManageService videoManageService;
 
+	@Autowired
+	VideoTypeService videoTypeService;
+	
 	@Autowired
 	private SimpMessagingTemplate template;
 
@@ -48,7 +54,7 @@ public class VideoManageController {
 	}
 
 	@RequestMapping(value = "put", method = RequestMethod.POST)
-	public @ResponseBody String updateVideo(@ModelAttribute("updateVideoBean") VideoBean vb, BindingResult result) {
+	public @ResponseBody Map<String,Object> updateVideo(@ModelAttribute("updateVideoBean") VideoBean vb, BindingResult result) {
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			System.out.println("嘗試輸入不允許的欄位");
@@ -57,22 +63,35 @@ public class VideoManageController {
 		VideoBean oldvb = videoManageService.getVideo(vb.getVideoSeqNo());
 		if (!vb.getVideoDescription().equals("")) {
 			oldvb.setVideoDescription(vb.getVideoDescription());
+		}else {
+			vb.setVideoDescription(oldvb.getVideoDescription());
 		}
 		if (!vb.getVideoTitle().equals("")) {
 			oldvb.setVideoTitle(vb.getVideoTitle());
+		} else {
+			vb.setVideoTitle(oldvb.getVideoTitle());
 		}
 		if (!vb.getVideoType().equals("")) {
+			VideoTypeBean videoTypeBean = videoTypeService.getVideoTypeBySeqNo(Integer.parseInt(vb.getVideoType()));
+			vb.setVideoType(videoTypeBean.getVideoType());
 			oldvb.setVideoType(vb.getVideoType());
+		}else {
+			vb.setVideoType(oldvb.getVideoType());
 		}
-
 		oldvb.setVideoStatus(vb.getVideoStatus());
 		videoManageService.updateVideo(oldvb);
 		String videoImageFileFolderPath = "C:/resources/images/video/" + vb.getAccount();
-		MultipartFile imageFile;
-		if ((imageFile = vb.getVideoImage()) != null) {
-			videoManageService.saveVideoImageToFile(videoImageFileFolderPath, oldvb.getVideoImageFilePath(), imageFile);
+		MultipartFile imageFile = vb.getVideoImage();
+		if(imageFile != null) {
+			boolean a = imageFile.isEmpty();
+			if (!(imageFile = vb.getVideoImage()).isEmpty()) {
+				videoManageService.saveVideoImageToFile(videoImageFileFolderPath, oldvb.getVideoImageFilePath(), imageFile);
+			}
 		}
-		return "ok";
+		Map<String,Object> map = new HashMap<String,Object>();
+		vb.setVideoImage(null);
+		map.put("vb", vb);
+		return map;
 	}
 
 	@RequestMapping(value = "{videoSeqNo}", method = RequestMethod.GET)
@@ -82,13 +101,15 @@ public class VideoManageController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody String saveVideo(@ModelAttribute("insertVideoBean") VideoBean vb, BindingResult result) {
+	public @ResponseBody Map<String, Object> saveVideo(@ModelAttribute("insertVideoBean") VideoBean vb, BindingResult result) {
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			System.out.println("嘗試輸入不允許的欄位");
 			throw new RuntimeException("嘗試輸入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-
+		VideoTypeBean videoTypeBean = videoTypeService.getVideoTypeBySeqNo(Integer.parseInt(vb.getVideoType()));
+		vb.setVideoType(videoTypeBean.getVideoType());
+				
 		// 取出影片封面圖片檔名
 		MultipartFile videoImage = vb.getVideoImage();
 		String originalImageName = videoImage.getOriginalFilename();
@@ -103,7 +124,7 @@ public class VideoManageController {
 		String extVideo = originalFileName.substring(originalFileName.lastIndexOf("."));
 
 		// 影片資料寫入資料庫
-		int key = videoManageService.saveVideo(vb, extImage, extVideo, videoImage, videoFile);
+		vb = videoManageService.saveVideo(vb, extImage, extVideo, videoImage, videoFile);
 
 //		NotificationSystemBean notificationSystemBean = new NotificationSystemBean(0, "aaaaa", "aaaa",
 //				new Timestamp(1L), "1", "bob");
@@ -112,8 +133,11 @@ public class VideoManageController {
 		
 		
 //		this.template.convertAndSend("/notification/subscription/" + vb.getAccount(), "lalala");
-		
-		return "ok";
+		Map<String,Object> map = new HashMap<String,Object>();
+		vb.setVideoFile(null);
+		vb.setVideoImage(null);
+		map.put("videoBean", vb);
+		return map;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -122,6 +146,17 @@ public class VideoManageController {
 		String account = memberBean.getAccount();
 		map.put("videos", videoManageService.getAllVideoByAccount(account));
 		return "videoManage/videoManage";
+	}
+	
+	@RequestMapping(value = "page/{pageNo}",method=RequestMethod.GET)
+	public @ResponseBody Map<String,Object> getPageVideo(@PathVariable("pageNo") Integer pageNo, HttpSession session){
+		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		List<VideoBean> videoBeanList = videoManageService.getUserVideoByPageNo(pageNo, account);
+		
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("videoBeanList", videoBeanList);
+		return map;
 	}
 
 	@ModelAttribute
@@ -133,7 +168,15 @@ public class VideoManageController {
 				"1", "", "", "", "");
 		map.put("insertVideoBean", insertVideoBean);
 		map.put("updateVideoBean", updateVideoBean);
-		
+		List<VideoTypeBean> videoTypeBeanList = videoTypeService.getVideoTypeBeanList();
+		Map<Integer, String> videoTypeMap = new HashMap<Integer, String>();
+		for(VideoTypeBean videoTypeBean: videoTypeBeanList) {
+			videoTypeMap.put(videoTypeBean.getSortedVideosSeqNo(), videoTypeBean.getVideoType());
+		}
+		System.out.println("===============" + videoTypeBeanList);
+		map.put("videoTypeMap", videoTypeMap);
 	}
+	
+	
 
 }

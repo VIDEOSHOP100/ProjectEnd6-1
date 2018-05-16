@@ -21,14 +21,11 @@
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 	<div class="container">
 		<h1 class="mt-4 mb-3">稍後觀看
-		       <small>Subheading</small>
 		</h1>
 			
 		<ol class="breadcrumb">
 		  <li class="breadcrumb-item">
-		    <a href="index.html">Home</a>
 		  </li>
-		  <li class="breadcrumb-item active">Portfolio 2</li>
 		</ol>
 			<div class="row">
 				<c:forEach var="aVideoBean" items="${watchLaterVideo}">
@@ -59,12 +56,6 @@
 				</c:forEach>
 			</div>
 	</div>
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2018</p>
-		</div>
-	</footer>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="<c:url value='/watchLaterVideo/js/watchLaterVideo.js'/> "></script>

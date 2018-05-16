@@ -15,6 +15,8 @@ public class VideoTypeServiceImpl implements VideoTypeService {
 	@Autowired
 	VideoTypeDAO videoTypeDAO;
 	
+	
+	
 	@Override
 	public List<List<VideoBean>> getAllVideoType() {
 		List<VideoTypeBean> videoTypeBeanList = videoTypeDAO.getAllVideoType();
@@ -53,6 +55,18 @@ public class VideoTypeServiceImpl implements VideoTypeService {
 	public List<VideoBean> getOneVideoTypeVideos(String videoType) {
 		return videoTypeDAO.getOneVideoTypeVideos(videoType);
 	}
+
+	@Override
+	public List<VideoTypeBean> getVideoTypeBeanList() {
+		return videoTypeDAO.getVideoTypeBeanList();
+	}
+
+	@Override
+	public VideoTypeBean getVideoTypeBySeqNo(Integer videoSeqNo) {
+		return videoTypeDAO.getVideoTypeBySeqNo(videoSeqNo);
+	}
+	
+	
 	
 
 }

@@ -50,8 +50,14 @@ public class VideoManageDAOImpl implements VideoManageDAO {
 	@Override
 	public List<VideoBean> getAllVideoByAccount(String account) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and account = :account",VideoBean.class).setParameter("account", account).list();
+		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and account = :account order by videoUploadDate desc",VideoBean.class).setParameter("account", account).setMaxResults(8).list();
 		
+	}
+
+	@Override
+	public List<VideoBean> getUserVideoByPageNo(Integer pageNo, String account) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and account = :account order by videoUploadDate desc", VideoBean.class).setParameter("account" , account).setMaxResults(8).setFirstResult(pageNo).list();
 	}
 
 }

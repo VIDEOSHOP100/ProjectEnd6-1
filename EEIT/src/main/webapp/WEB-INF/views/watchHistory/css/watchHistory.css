@@ -1,1 +1,27 @@
 @charset "UTF-8";
+
+
+.videoTitle {
+	width : 1000px;
+	height:	35px;
+	overflow : hidden;
+}
+.videoTitle a{
+	color : black;
+}
+
+.videoTitle a:hover{
+	color : black;
+	text-decoration: none;
+}
+
+.row{
+	line-height: 0.3;
+}
+.videoDescription{
+	width : 1000px;
+	height:	45px;
+	overflow : hidden;
+	color : gray;
+	line-height: normal;
+}

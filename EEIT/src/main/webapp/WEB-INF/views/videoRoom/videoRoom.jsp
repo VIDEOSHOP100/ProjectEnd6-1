@@ -20,20 +20,20 @@
 		<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 		<input id="account" type="hidden" name = "account" value= "${LoginOK.account }">
 		<input type="hidden" name = "videoSeqNo" value= "${video.videoSeqNo}">
-		<h1 class="mt-4 mb-3">${video.videoTitle}
-			<small>Subheading</small>
+		<h1 class="mt-4 mb-3 videoTitle" title="${video.videoTitle}">${video.videoTitle}
+<!-- 			<small>Subheading</small> -->
 		</h1>
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="">Home</a></li>
-			<li class="breadcrumb-item active">Portfolio Item</li>
+<!-- 			<li class="breadcrumb-item"><a href="">Home</a></li> -->
+<!-- 			<li class="breadcrumb-item active">Portfolio Item</li> -->
 		</ol>
 		<div class="row">
 			<div class="col-md-9">
 				<video class="video" width="1150" height="600" src="${pageContext.request.contextPath}/getVideo/video/${video.videoSeqNo}"
 					controls="controls" autoplay poster="${pageContext.request.contextPath}/getImage/video/${video.videoSeqNo}"></video>
 				<div class="col-md-12 ">
-					<h1 class="lead videoTitleInside">${video.videoTitle}</h1>
+					<h1 class="lead videoTitleInside" title="${video.videoTitle}"><strong><b>${video.videoTitle}</b></strong></h1>
 					<hr>
 					<div class="media mb-4">
 						<img class="d-flex mr-3 rounded-circle" width="50px" height="50px"
@@ -74,9 +74,11 @@
 								<c:if test="${likeUnlikeVideoStatus == 'unlike'}">
 									<button type="button" value="" class="unlikeButton unlike"></button>
 								</c:if>
-								<button type="button" value="" class="btn reportVideo">
-									檢舉
-								</button>
+								<c:if test="${LoginOK.account != video.account }">
+									<button type="button" value="" class="btn reportVideo">
+										檢舉
+									</button>
+								</c:if>
 							</div>
 							<p>上傳日期:${video.videoUploadDate}
 								<c:if test="${LoginOK.account != video.account }">
@@ -96,7 +98,10 @@
 						</div>
 					</div>
 					<hr>
-					<p>影片描述:${video.videoDescription}</p>
+					<div>
+						<p class="videoDescription videoDescriptionHide">影片描述:${video.videoDescription}</p>
+						<p class="showDescriptionButton ">展示完整內容</p>
+					</div>
 					<hr>
 					<div class="card my-4">
 						<h5 class="card-header">留言:</h5>
@@ -122,11 +127,14 @@
 											<span class="hide">${aCommentBean.commentVideoSeqNo}</span>
 										</span>
 									</h5>
-									${aCommentBean.commentArticle}
+									<p class="commentArticle commentArticleHide">
+										${aCommentBean.commentArticle}
+									</p>
+									<p class="commentArticleShowButton">顯示完整內容</p>
 									<p>
 										<button class="btn btn-info replyButton">回復<i class="fas fa-pencil-alt"></i></button>
 										<input type="hidden" value = "${aCommentBean.commentVideosLikeUnlikeStatus}" class="commentVideosLikeUnlikeStatus"/>
-										<span class="commentLikeNumber">${aCommentBean.commentLike}</span> 
+										<span class="commentLikeNumber">&nbsp${aCommentBean.commentLike}&nbsp</span> 
 										<c:if test="${empty aCommentBean.commentVideosLikeUnlikeStatus}">
 											<button type="button" value="" class="likeButtonNone commentLike"></button>
 										</c:if>
@@ -140,7 +148,7 @@
 											<button type="button" value="" class="likeButtonNone commentLike"></button>
 										</c:if>
 										
-										<span class="commentUnLikeNumber">${aCommentBean.commentUnLike}</span> 
+										<span class="commentUnLikeNumber">&nbsp${aCommentBean.commentUnLike}&nbsp</span> 
 										<c:if test="${empty aCommentBean.commentVideosLikeUnlikeStatus}">
 											<button type="button" value="" class="unlikeButtonNone commentUnlike"></button>
 										</c:if>
@@ -168,9 +176,16 @@
 													<span>${aReplyCommentVideoBean.replyCommentDate}
 														<span class="hide">${aReplyCommentVideoBean.replyCommentVideoSeqNo}</span>
 													</span>
+													
+												</h5>
+												<p class="commentArticle commentArticleHide">
+													${aReplyCommentVideoBean.replyCommentArticle}
+												</p>
+												<p class="commentArticleShowButton">顯示完整內容</p>
+												<p>
 													<span>
 														<input type="hidden" value = "${aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus}" class="replyCommentVideosLikeUnlikeStatus"/>
-														<span class="replyCommentLikeNumber">${aReplyCommentVideoBean.replyCommentLike}</span> 
+														<span class="replyCommentLikeNumber">&nbsp${aReplyCommentVideoBean.replyCommentLike}&nbsp</span> 
 														<c:if test="${empty aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus}">
 															<button type="button" value="" class="likeButtonNone replyCommentLike"></button>
 														</c:if>
@@ -184,7 +199,7 @@
 															<button type="button" value="" class="likeButtonNone replyCommentLike"></button>
 														</c:if>
 														
-														<span class="replyCommentUnLikeNumber">${aReplyCommentVideoBean.replyCommentUnLike}</span> 
+														<span class="replyCommentUnLikeNumber">&nbsp${aReplyCommentVideoBean.replyCommentUnLike}&nbsp</span> 
 														<c:if test="${empty aReplyCommentVideoBean.replyCommentVideosLikeUnlikeStatus}">
 															<button type="button" value="" class="unlikeButtonNone replyCommentUnlike"></button>
 														</c:if>
@@ -198,8 +213,7 @@
 															<button type="button" value="" class="unlikeButton replyCommentUnlike"></button>
 														</c:if>
 													</span>
-												</h5>
-												${aReplyCommentVideoBean.replyCommentArticle}
+												</p>
 											</div>
 										</div>
 									</c:forEach>
@@ -252,12 +266,12 @@
 			</fieldset>
 		</form:form>
 	</div>
-	<div id="reportSuccess">
-	  <p>
-	    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-	   	投訴已經送出
-	  </p>
-	</div>
+<!-- 	<div id="reportSuccess"> -->
+<!-- 	  <p> -->
+<!-- 	    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span> -->
+<!-- 	   	投訴已經送出 -->
+<!-- 	  </p> -->
+<!-- 	</div> -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="m-0 text-center text-white">

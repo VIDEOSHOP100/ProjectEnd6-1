@@ -7,6 +7,40 @@ $(document).ready(function() {
 		})
 		var videoSeqNo = $('input[name="videoSeqNo"]').val();
 		var account = $('#account').val();
+		//comment影藏內容
+		console.log($( ".commentArticle" ))
+		$( ".commentArticle" ).each(function() {
+			console.log($(this))
+			if ($(this).offsetHeight < $(this).scrollHeight ||
+					$(this).offsetWidth < $(this).scrollWidth) {
+				alert('overflow')
+			} else {
+				alert('not overflow')
+			}
+		});
+		//影片描述隱藏內容
+		var element = $('.videoDescription')[0]
+		if (element.offsetHeight < element.scrollHeight ||
+			element.offsetWidth < element.scrollWidth) {
+			// your element have overflow
+//			alert('overflow');
+			
+		} else {
+			// your element doesn't have overflow
+			$('.showDescriptionButton').hide();
+			$('.videoDescription').removeClass('videoDescriptionHide')
+		}
+		$(document).on('click','.showDescriptionButton',function(){
+//			alert('aaaa');
+			if($('.videoDescription').is('.videoDescriptionHide')){
+				$('.videoDescription').removeClass('videoDescriptionHide')
+				$('.showDescriptionButton').text('隱藏完整內容')
+			}else if(!$('.videoDescription').is('.videoDescriptionHide')){
+				$('.videoDescription').addClass('videoDescriptionHide')
+				$('.showDescriptionButton').text('顯示完整內容')
+			}
+			
+		})
 // 	 	以下聊天室--------------------------------------------------------------------------- 
 		var chatRoomAlert = [];
 		var chatRoomName = [];
@@ -331,8 +365,8 @@ $(document).ready(function() {
 						var cell3 = $('<h5 class="mt-0"><a class="uploaderLink" href="/EEIT/uploaderHomePage/'+ datareturn.account +'">' + datareturn.account + '</a></h5>');
 						var cell7 = $('<span></span>').text(commentTime.getFullYear() + '-' + ( commentTime.getMonth() + 1 ) + '-' + commentTime.getDate() + "  " + commentTime.getHours() + ":" + commentTime.getMinutes() + ":" + commentTime.getSeconds()).append($('<span></span>').addClass("hide").text(datareturn.commentVideoSeqNo));
 						var cell3 = cell3.append(cell7);
-						var cell4 = cell2.text(datareturn.commentArticle);
-						var cell8 = $('<p></p>').append(   $('<button></button>').addClass("btn btn-info replyButton").text("回復").append(   $('<i></i>').addClass("fas fa-pencil-alt "))).append('<input type="hidden" value = "" class="commentVideosLikeUnlikeStatus"/><span class="commentLikeNumber">0</span><button type="button" value="" class="likeButtonNone commentLike"></button><span class="commentUnLikeNumber">0</span><button type="button" value="" class="unlikeButtonNone commentUnlike"></button>')
+						var cell4 = cell2.append('<p class="commentArticle commentArticleHide">'+ datareturn.commentArticle +'</p><p class="commentArticleShowButton">顯示完整內容</p>');
+						var cell8 = $('<p></p>').append(   $('<button></button>').addClass("btn btn-info replyButton").text("回復").append(   $('<i></i>').addClass("fas fa-pencil-alt "))).append('<input type="hidden" value = "" class="commentVideosLikeUnlikeStatus"/><span class="commentLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="likeButtonNone commentLike"></button><span class="commentUnLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="unlikeButtonNone commentUnlike"></button>')
 						 var cell4 = cell4.append(cell8);
 						 var cell5 = cell4.prepend(cell3);
 						 var cell6 = $('<div></div>').addClass("media mb-4").append([cell1,cell5]);
@@ -372,8 +406,8 @@ $(document).ready(function() {
 													 var cell2 = $('<div></div>').addClass("media-body")
 													 var cell3 = $('<h5></h5>').addClass("mt-0").text(datareturn.account);
 													 var cell7 = $('<span></span>').text(time).append($('<span></span>').addClass("hide").text(datareturn.replyCommentVideoSeqNo));
-													 var cell3 = cell3.append(cell7).append($('<span><input type="hidden" value="" class="replyCommentVideosLikeUnlikeStatus"><span class="replyCommentLikeNumber">0</span><button type="button" value="" class="replyCommentLike likeButtonNone"></button><span class="replyCommentUnLikeNumber">0</span><button type="button" value="" class="replyCommentUnlike unlikeButtonNone"></button></span>'));;
-													 var cell4 = cell2.text(datareturn.replyCommentArticle);
+													 var cell3 = cell3.append(cell7);
+													 var cell4 = cell2.text(datareturn.replyCommentArticle).append($('<p><span><input type="hidden" value="" class="replyCommentVideosLikeUnlikeStatus"><span class="replyCommentLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentLike likeButtonNone"></button><span class="replyCommentUnLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentUnlike unlikeButtonNone"></button></span></p>'));
 													 var cell5 = cell4.prepend(cell3);
 													 var cell6 = $('<div></div>').addClass("media mb-4").append([cell1,cell5]);
 													 upperComment.after(cell6);
@@ -430,8 +464,8 @@ $(document).ready(function() {
 								 var cell2 = $('<div></div>').addClass("media-body")
 								 var cell3 = $('<h5 class = "mt-0"><a class="uploaderLink" href="/uploaderHomePage/'+ datareturn.account +'">' + datareturn.account + '</a></h5>');
 								 var cell7 = $('<span></span>').text(time).append($('<span></span>').addClass("hide").text(datareturn.replyCommentVideoSeqNo));
-								 var cell3 = cell3.append(cell7).append($('<span><input type="hidden" value="" class="replyCommentVideosLikeUnlikeStatus"><span class="replyCommentLikeNumber">0</span><button type="button" value="" class="replyCommentLike likeButtonNone"></button><span class="replyCommentUnLikeNumber">0</span><button type="button" value="" class="replyCommentUnlike unlikeButtonNone"></button></span>'));
-								 var cell4 = cell2.text(datareturn.replyCommentArticle);
+								 var cell3 = cell3.append(cell7);
+								 var cell4 = cell2.text(datareturn.replyCommentArticle).append($('<p><span><input type="hidden" value="" class="replyCommentVideosLikeUnlikeStatus"><span class="replyCommentLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentLike likeButtonNone"></button><span class="replyCommentUnLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentUnlike unlikeButtonNone"></button></span></p>'));
 								 var cell5 = cell4.prepend(cell3);
 								 var cell6 = $('<div></div>').addClass("media mb-4").append([cell1,cell5]);
 								 upperComment.after(cell6);
@@ -632,8 +666,8 @@ $(document).ready(function() {
 					timeout: 600000,
 					success: function (data) {
 						thisCommentLike.addClass('likeButtonNone').removeClass('likeButton');
-						thisCommentLike.parents('p').find('.commentLikeNumber').text(data.likeNumber)
-						thisCommentLike.parents('p').find('.commentUnLikeNumber').text(data.unlikeNumber)
+						thisCommentLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisCommentLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("none");
 						
 					},
@@ -652,8 +686,8 @@ $(document).ready(function() {
 					success: function (data) {
 						thisCommentLike.addClass('likeButton').removeClass('likeButtonNone');
 						thisCommentLike.parents('p').find('.commentUnlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
-						thisCommentLike.parents('p').find('.commentLikeNumber').text(data.likeNumber)
-						thisCommentLike.parents('p').find('.commentUnLikeNumber').text(data.unlikeNumber)
+						thisCommentLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisCommentLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("like");
 					},
 					error: function (e) {
@@ -669,8 +703,8 @@ $(document).ready(function() {
 					timeout: 600000,
 					success: function (data) {
 						thisCommentLike.addClass('likeButton').removeClass('likeButtonNone');
-						thisCommentLike.parents('p').find('.commentLikeNumber').text(data.likeNumber)
-						thisCommentLike.parents('p').find('.commentUnLikeNumber').text(data.unlikeNumber)
+						thisCommentLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisCommentLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("like");
 						
 					},
@@ -696,8 +730,8 @@ $(document).ready(function() {
 					timeout: 600000,
 					success: function (data) {
 						thisCommentUnLike.addClass('unlikeButtonNone').removeClass('unlikeButton');
-						thisCommentUnLike.parents('p').find('.commentLikeNumber').text(data.likeNumber)
-						thisCommentUnLike.parents('p').find('.commentUnLikeNumber').text(data.unlikeNumber)
+						thisCommentUnLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisCommentUnLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("none");
 					},
 					error: function (e) {
@@ -715,8 +749,8 @@ $(document).ready(function() {
 					success: function (data) {
 						thisCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
 						thisCommentUnLike.parents('p').find('.commentLike').addClass('likeButtonNone').removeClass('likeButton');
-						thisCommentUnLike.parents('p').find('.commentLikeNumber').text(data.likeNumber)
-						thisCommentUnLike.parents('p').find('.commentUnLikeNumber').text(data.unlikeNumber)
+						thisCommentUnLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisCommentUnLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("unlike");
 					},
 					error: function (e) {
@@ -732,8 +766,8 @@ $(document).ready(function() {
 					timeout: 600000,
 					success: function (data) {
 						thisCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
-						thisCommentUnLike.parents('p').find('.commentLikeNumber').text(data.likeNumber)
-						thisCommentUnLike.parents('p').find('.commentUnLikeNumber').text(data.unlikeNumber)
+						thisCommentUnLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisCommentUnLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("unlike");
 					},
 					error: function (e) {
@@ -750,7 +784,7 @@ $(document).ready(function() {
 		$(document).on('click','.replyCommentLike',function() {
 			var thisReplyCommentLike = $(this)
 			var likeUnlikeVideoReplyCommentStatus = thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val();
-			var replyCommentVideoSeqNo = thisReplyCommentLike.parents('.mt-0').find('.hide:first').text()
+			var replyCommentVideoSeqNo = thisReplyCommentLike.closest('.media-body').find('.hide:first').text()
 			if(likeUnlikeVideoReplyCommentStatus == "like"){
 				$.ajax({
 					type: "POST",
@@ -759,8 +793,8 @@ $(document).ready(function() {
 					timeout: 600000,
 					success: function (data) {
 						thisReplyCommentLike.addClass('likeButtonNone').removeClass('likeButton');
-						thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').text(data.likeNumber)
-						thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').text(data.unlikeNumber)
+						thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("none");
 						
 					},
@@ -779,8 +813,8 @@ $(document).ready(function() {
 					success: function (data) {
 						thisReplyCommentLike.addClass('likeButton').removeClass('likeButtonNone');
 						thisReplyCommentLike.parents('span').find('.replyCommentUnlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
-						thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').text(data.likeNumber)
-						thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').text(data.unlikeNumber)
+						thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("like");
 					},
 					error: function (e) {
@@ -796,8 +830,8 @@ $(document).ready(function() {
 					timeout: 600000,
 					success: function (data) {
 						thisReplyCommentLike.addClass('likeButton').removeClass('likeButtonNone');
-						thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').text(data.likeNumber)
-						thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').text(data.unlikeNumber)
+						thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("like");
 						
 					},
@@ -812,7 +846,7 @@ $(document).ready(function() {
 		$(document).on('click','.replyCommentUnlike',function() {
 			var thisReplyCommentUnLike = $(this)
 			var likeUnlikeVideoReplyCommentStatus = thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val();
-			var replyCommentVideoSeqNo = thisReplyCommentUnLike.parents('.mt-0').find('.hide:first').text()
+			var replyCommentVideoSeqNo = thisReplyCommentUnLike.closest('.media-body').find('.hide:first').text()
 			if(likeUnlikeVideoReplyCommentStatus == "unlike"){
 				$.ajax({
 					type: "POST",
@@ -821,8 +855,8 @@ $(document).ready(function() {
 					timeout: 600000,
 					success: function (data) {
 						thisReplyCommentUnLike.addClass('unlikeButtonNone').removeClass('unlikeButton');
-						thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').text(data.likeNumber)
-						thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').text(data.unlikeNumber)
+						thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("none");
 					},
 					error: function (e) {
@@ -840,8 +874,8 @@ $(document).ready(function() {
 					success: function (data) {
 						thisReplyCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
 						thisReplyCommentUnLike.parents('span').find('.replyCommentLike').addClass('likeButtonNone').removeClass('likeButton');
-						thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').text(data.likeNumber)
-						thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').text(data.unlikeNumber)
+						thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("unlike");
 					},
 					error: function (e) {
@@ -857,8 +891,8 @@ $(document).ready(function() {
 					timeout: 600000,
 					success: function (data) {
 						thisReplyCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
-						thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').text(data.likeNumber)
-						thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').text(data.unlikeNumber)
+						thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+						thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
 						thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("unlike");
 					},
 					error: function (e) {

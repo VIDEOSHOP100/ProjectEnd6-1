@@ -65,7 +65,7 @@ public class AuctionItemSelectController {
 		ProductSaleBean pb = productSaleService.getOneProBySeqNos1(productSeqNo);
 //		pb.getAuctionSeqNo();
 		pb.setAuctionStatus(2);
-		
+		 
 		productSaleService.update(pb);
 		
 		List<AuctionItemSelectBean> ab = auctionItemSelectService.getAuctionByAuctionSeqNo(pb.getAuctionSeqNo());
@@ -76,7 +76,7 @@ public class AuctionItemSelectController {
 		//--------------------------資料塞進AUCTIONEND----------------------------
 		//取得BID(得標)BEAN
 		BidBean BidAucBean = BidService.getBidByAuctionSeqNoBidprice(pb.getAuctionSeqNo());
-	
+
 		AuctionEndBean AuctionEndBean = new AuctionEndBean();
 //				auctionEndService.getAuctionEndByProductSeqNo(productSeqNo);
 			//取得+設置得標者帳號

@@ -20,16 +20,16 @@ import com.iii._19_.watchHistory.model.WatchHistoryBean;
 @Table(name = "video")
 public class VideoBean {
 
-	@OneToMany(mappedBy = "videoSeqNo")
-	private Set<WatchHistoryBean> watchHistoryBeanSet;
-	
-	public Set<WatchHistoryBean> getWatchHistoryBeanSet() {
-		return watchHistoryBeanSet;
-	}
-
-	public void setWatchHistoryBeanSet(Set<WatchHistoryBean> watchHistoryBeanSet) {
-		this.watchHistoryBeanSet = watchHistoryBeanSet;
-	}
+//	@OneToMany(mappedBy = "videoSeqNo")
+//	private Set<WatchHistoryBean> watchHistoryBeanSet;
+//	
+//	public Set<WatchHistoryBean> getWatchHistoryBeanSet() {
+//		return watchHistoryBeanSet;
+//	}
+//
+//	public void setWatchHistoryBeanSet(Set<WatchHistoryBean> watchHistoryBeanSet) {
+//		this.watchHistoryBeanSet = watchHistoryBeanSet;
+//	}
 
 	@Transient
 	@XmlTransient

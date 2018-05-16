@@ -33,7 +33,7 @@
 			</c:forEach>
 		</div>
 		<div class="chatplace"></div>
-		<div id="insert-messageImage-form" title="圖片">
+		<div id="insert-messageImage-form" title="圖片"  class="hideForm">
 			<form:form id="insertMessageImageForm" ENCTYPE="multipart/form-data" modelAttribute="messageImageBean" method="POST">
 				<fieldset>
 					<input type="hidden" id="imageReceiverAccount">
@@ -42,7 +42,7 @@
 				</fieldset>
 			</form:form>
 		</div>
-		<div id="insert-messageFile-form" title="檔案">
+		<div id="insert-messageFile-form" title="檔案"  class="hideForm">
 			<form:form id="insertMessageFileForm" ENCTYPE="multipart/form-data" modelAttribute="messageFileBean" method="POST">
 				<fieldset>
 					<input type="hidden" id="fileReceiverAccount">
@@ -51,7 +51,7 @@
 				</fieldset>
 			</form:form>
 		</div>
-		<div id="insert-messageVideo-form" title="影片">
+		<div id="insert-messageVideo-form" title="影片"  class="hideForm">
 			<form:form id="insertMessageVideoForm" ENCTYPE="multipart/form-data" modelAttribute="messageVideoBean" method="POST">
 				<fieldset>
 					<input type="hidden" id="videoReceiverAccount">

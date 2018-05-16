@@ -5,7 +5,7 @@ import java.util.List;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 
 public interface BidDAO {
-	
+	 
 	public BidBean getBidByAuctionSeqNoBidprice(Integer auctionSeqNo);
 	
 	public List<BidBean> getBidByAuctionSeqNo(Integer auctionSeqNo);
