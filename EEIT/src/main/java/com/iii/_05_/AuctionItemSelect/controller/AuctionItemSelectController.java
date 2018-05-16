@@ -18,6 +18,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectBean;
@@ -38,6 +40,35 @@ public class AuctionItemSelectController {
 	InputLiveStreamTimeService InputLiveStreamTimeService;
 	@Autowired
 	ProductSaleService productSaleService;
+	
+	//關閉拍賣
+	@RequestMapping(value = "/endAuction",method = RequestMethod.PUT)
+	public @ResponseBody Map<String,String> closeAuction(
+			@RequestParam("productSeqNo") Integer productSeqNo,
+//			@RequestParam("LiveStreamHistorySeqNo") Integer LiveStreamHistorySeqNo,
+			@RequestParam("auctionStatus") String auctionStatus,
+			HttpSession session
+			) throws SQLException {
+
+//		List<LiveStreamHistoryBean> LiveStreamHistoryBeanList = LiveStreamHistoryService.getLiveStreamHistory(account, LiveStreamHistorySeqNo);
+		
+		ProductSaleBean pb = productSaleService.getOneProBySeqNos1(productSeqNo);
+//		pb.getAuctionSeqNo();
+		pb.setAuctionStatus(0);
+		
+		productSaleService.update(pb);
+		
+		List<AuctionItemSelectBean> ab = auctionItemSelectService.getAuctionByAuctionSeqNo(pb.getAuctionSeqNo());
+		for(AuctionItemSelectBean AuctionItemSelectBean: ab) {
+			AuctionItemSelectBean.setAuctionStatus(auctionStatus);
+			auctionItemSelectService.updateAuction(AuctionItemSelectBean);
+		}
+		
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("status", "success");
+		return map;
+	}
+	
 	
 	@RequestMapping(value="/Auction", method = RequestMethod.GET)
 	public String getProAuction(Map<String, Object> map, HttpSession session) throws SQLException {
@@ -121,14 +152,7 @@ public class AuctionItemSelectController {
 			Oneproduct.setProPrice(ab.getProPrice());
 			Oneproduct.setAuctionSeqNo(ab.getAuctionSeqNo());
 			productSaleService.insert(Oneproduct);
-		
-	
-		
-	
-		
-		
-		
-		
+
 		return "redirect:" + target;
 	}
 }

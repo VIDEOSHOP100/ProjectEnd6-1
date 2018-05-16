@@ -73,6 +73,15 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		Session session = factory.getCurrentSession();
 		return session.createQuery("FROM ProductSaleBean WHERE productSeqNo = :productSeqNo AND auctionStatus = '0'",ProductSaleBean.class).setParameter("productSeqNo", productSeqNo).uniqueResult();
 	}
-	
+	@Override
+	public ProductSaleBean getOneProByAucSeqNo(Integer auctionSeqNo) {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductSaleBean WHERE auctionSeqNo = :auctionSeqNo AND auctionStatus = '1'",ProductSaleBean.class).setParameter("auctionSeqNo", auctionSeqNo).uniqueResult();
+	}
+	@Override
+	public ProductSaleBean getOneProBySeqNos1(Integer productSeqNo) {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductSaleBean WHERE productSeqNo = :productSeqNo AND auctionStatus = '1'",ProductSaleBean.class).setParameter("productSeqNo", productSeqNo).uniqueResult();
+	}
 	
 }
