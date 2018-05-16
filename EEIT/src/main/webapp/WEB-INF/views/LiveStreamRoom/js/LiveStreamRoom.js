@@ -5,7 +5,7 @@
 $(document).ready(function() {	
 	var account = $('#catch-account').val();
 	var bidPrice = $('.bidPrice').val();
-	var productSeqNo = $('.productSeqNo').val();
+	var productSeqNo = $('#productSeqNo').val();
 	var liveStreamSeqNo = $('.seqNo').val();
 	$('.deleteBlock').click(function(){
 		var thisDeleteButton = $(this) 
@@ -29,7 +29,27 @@ $(document).ready(function() {
 		});
 	})
 
-
+//$('.deleteAuction').click(function(){
+//		var thisDeleteButton = $(this) 
+//		var liveStreamSeqNo = thisDeleteButton.val();
+//		$.ajax({
+//			type: "POST",
+//			url: "/EEIT/endAuction",
+//			data: {_method : "PUT", liveStreamSeqNo : liveStreamSeqNo, liveStatus : '0'},
+//			timeout: 600000,
+//			success: function (data) {
+////				var parentElement = thisDeleteButton.parents('.row')
+////				parentElement.find('.col-md-7').remove();
+////				parentElement.find('.col-md-5').remove();
+//				alert("直播已關閉 跳轉回首頁");
+//				window.location.href="http://localhost:8080/EEIT/";
+//			},
+//			error: function (e) {
+//				console.log("ERROR : ", e);
+//				alert(e);
+//			}
+//		});
+//	})
 
 
 //websocket 
@@ -70,8 +90,9 @@ $(document).on('keyup','.input-group>input',function(e){
 
 
  //增加會員購買商品到聊天室窗
+//var productSeqNo = $('.productSeqNo').val();
 function addBid(account, productSeqNo,bidPrice,auctionSeqNo){
-
+	
 	$('.card-bodycontroller').append('<div class="chatBlock"><p class="bidrow">'+"會員"+ account + "叫價: "+ bidPrice +'元</p></div>')
 }
 //增加會員聊天到聊天室窗
@@ -84,18 +105,18 @@ function addMessage(account,liveChatArticle){
 
 function sendBid(account, productSeqNo,bidPrice){
 	var senderAccountFistWord = account.substring(0,1).charCodeAt()
-	var liveStreamSeqNo = $('.seqNo').val();
-
-	var roomNumber = $('.roomNumber').val();
+//	var liveStreamSeqNo = $('.seqNo').val();
+	var productSeqNo = $('#productSeqNo').val();
+//	var roomNumber = $('.roomNumber').val();
 //alert(liveChatArticle);
 //alert(account);
-	var name = $(this).parents('div').find('.message').val();
+//	var name = $(this).parents('div').find('.message').val();
 	stompClient.send("/app/Bid/" + productSeqNo , {}, JSON.stringify({ 'productSeqNo':productSeqNo, 'account':account, 'bidPrice':bidPrice}));
 	
 }   
 //叫價TEXT
 $(document).on('keyup','.input-Bid>input',function(e){
-	var productSeqNo = $('.productSeqNo').val();
+	var productSeqNo = $('#productSeqNo').val();
 //	alert(account);
 	console.log(e.keyCode);
     if(e.keyCode == 13)
@@ -136,8 +157,9 @@ stompClient.connect({}, function(frame) {
 //聊天室結束----------------------------------
     
 //取商品開始----------------------------------
-	
+//    var productSeqNo = $('#productSeqNo').val();
     stompClient.subscribe('/target/Bid/subscription/' + productSeqNo , function(bidreturn){
+    	
         	addBid(JSON.parse(bidreturn.body).account,JSON.parse(bidreturn.body).productSeqNo,JSON.parse(bidreturn.body).bidPrice)
 
        });      
