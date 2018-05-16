@@ -40,7 +40,7 @@ public class ProductSaleController {
 		map.put("productSaleBean", psbbean);
 		System.out.println("here is salebean");
 	}
-
+	//跳轉商品上架FORM表單
 	@RequestMapping(value = "/sale.do", method = RequestMethod.GET)
 	public String createProduct(Map<String, Object> map, @ModelAttribute("MemberBean") MemberBean mb,
 			@ModelAttribute("productSaleBean") ProductSaleBean psb, HttpSession session) {
@@ -48,11 +48,11 @@ public class ProductSaleController {
 		
 		if(bean==null) {
 			
-			return "pleaselogin";
+			return "MemberCenter/loginPage";
 		}
 		return "Product/addProductForm";
 	}
-
+	//新增商品FORM表單
 	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
 	public String ProductFormComing(@ModelAttribute("ProductSaleBean") ProductSaleBean psb, BindingResult result,
 			HttpServletRequest request,HttpSession session) {
@@ -64,7 +64,9 @@ public class ProductSaleController {
 		
 		Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
 		psb.setProDate(ts);
-		psb.setAuctionStatus(0);
+		psb.setAuctionStatus("0");
+		psb.setAuctionSeqNo(0);
+		psb.setAuctionPic("0");
 		// 得到一個multipart文件 並取出檔名(originalFilename)
 		// 副檔名(extImage)
 		ProPicBean picBean = new ProPicBean();

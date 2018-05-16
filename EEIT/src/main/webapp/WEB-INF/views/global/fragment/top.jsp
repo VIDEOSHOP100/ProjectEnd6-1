@@ -153,50 +153,66 @@
 				<div class="modal-body">
 					
 
-					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class="" enctype="multipart/form-data" > 
+					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class="form-row" enctype="multipart/form-data"> 
 			 		
-			 			<div class="form-group">
-			 				<form:input id="regAcc" path="account" type="text" class="form-control input-sm" placeholder="account"/><span id="accountCheck"></span>
+			 			<div class="col-md-6 form-group">
+			 				<small><label for="regAcc">帳號</label><span style="color: red">*(必填)</span></small>
+			 				<form:input id="regAcc" path="account" type="text" class="form-control input-sm" placeholder="account"/>
 			 			</div>
-
-			 			<div class="form-froup">
+ 
+			 			<div class="col-md-6 form-group">
+			 				<small><label for="regPwd">密碼</label><span style="color: red">*</span></small>
 			 				<form:input id="regPwd" path="password" type="password" class="form-control input-sm" placeholder="password"/>
 			 			</div>
-			 			<div class="form-group">
-			 				<form:input path="nickname" type="text" class="form-control input-sm " placeholder="nickname"/>
+			 			<div class="col-md-12 form-group">
+			 				<small><label for="nickname">暱稱</label><span style="color: red">*</span></small>
+			 				<form:input path="nickname" id="nickname" type="text" class="form-control input-sm " placeholder="nickname"/>
 			 			</div>
-			 		
-			 			<div class="form-group">
-			 				<form:input path="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
-			 				<form:input path="lastname" type="text" class="form-control input-sm " placeholder="last name"/>
+			 		 
+			 			<div class="col-md-6 form-group">
+			 				<small><label for="firstname">姓氏</label><span style="color: red">*</span></small>
+			 				<form:input path="firstname" id="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
+						</div>
+						<div class="col-md-6 form-group"> 
+							<small><label for="lastname">名字</label><span style="color: red">*</span></small>
+							 <form:input path="lastname" id="lastname" type="text" class="form-control input-sm " placeholder="last name"/>
 			 			</div>
 							
-						<div class="form-group">
-			 				<form:select path="gender">
+						
+			 			<div class="col-md-6 form-group">
+			 				<small><label for="email">電子信箱</label><span style="color: red">*</span></small>
+			 				<form:input path="email" id="email" type="email" class="form-control input-sm " placeholder="email"/>
+			 			</div>		
+						 		
+							<div class="col-md-6 form-group">
+							<small><label for="address">地址</label><span style="color: red">*</span></small>
+			 				<form:input path="address" id="address" type="text" class="form-control input-sm " placeholder="address"/>
+			 			</div>
+					
+						<div class="form-group col-md-6">
+							<small><label for="phone">電話號碼</label><span style="color: red">*</span></small>
+			 				<form:input path="phone" id="phone" type="text" class="form-control input-sm " placeholder="phone"/>
+			 			</div>
+					<div class="form-group col-md-6" >
+					
+					<small><label for="birthday">生日</label><span style="color: red">*</span></small><form:input path="birthday" id="birthday" type="date" class="form-control input-sm"/>
+					</div>
+						<div class="form-group col-md-6">
+					<small><label for="gender">性別</label><span style="color: red">*</span></small>
+			 				<form:select path="gender" id="gender" >
 								<form:option value="男性"/>	
 								<form:option value="女性"/>	
 								<form:option value="不明"/>	
 							</form:select>
 			 			</div>
-						
-			 			<div class="form-group">
-			 				<form:input path="email" type="email" class="form-control input-sm " placeholder="email"/>
-			 			</div>		
-						 		
-							<div class="form-group">
-			 				<form:input path="address" type="text" class="form-control input-sm " placeholder="address"/>
-			 			</div>
-					
-						<div class="form-group">
-			 				<form:input path="phone" type="text" class="form-control input-sm " placeholder="phone"/>
-			 			</div>
-					
-					<span>birthday</span><form:input path="birthday" type="date" class="form-control input-sm"/>
-					photo<form:input path="photo" type="file"  accept="image/*"/>
-					
+			 			<div class="form-group col-md-6">
+					<small><label for="photo">照片</label><span style="color: red">*</span></small>
+					<form:input path="photo" id="photo" type="file"  accept="image/*"/>
+					</div>
+				<div class="form-group">
+					<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
 				</div>
-				<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
-
+				</div>
 				<div class="modal-footer">
 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p>
 					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
@@ -225,19 +241,27 @@
 					</button>
 				</div>
 				<div class="modal-body">
-						<form:form id="login" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-horizontal" >
-						
-							<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
-							<form:input class ="form-control input-sm" id="logPwd" type="password" path="password" placeholder="password"/><br>
-					<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
-					<a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword"><button  type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button></a>
-
-
+					<form:form id="loginForm" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row" >
+					
+					<div class="form-group col-md-6">
+						<small><label for="logAcc">帳號</label></small>
+						<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
+					</div>
+					<div class="form-group col-md-6" >
+						<small><label for="logPwd">密碼</label></small>
+						<form:input class ="form-control input-sm" id="logPwd" type="password" path="password" placeholder="password"/><br>
+					</div>			
+					<div class="form-group col-md-12" >	
+						<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
+					</div>
+					<div class="form-group col-md-6" >
+						<a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword"><button  type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button></a>
+					</div>
 				</div>
 				<div class="modal-footer">
-					<p>${ErrorMessageKey.error}</p>
+					<p id="loginErrMsg">${ErrorMessageKey.error}</p>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="登入"/>
+					<button type="button" id="modalLoginButton" class="btn btn-primary">登入</button>
 				</div>
 						</form:form>
 			</div>

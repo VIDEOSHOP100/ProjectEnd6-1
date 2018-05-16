@@ -35,7 +35,7 @@ public class ProductSaleBean {
 	private Integer picSeqNo;
 	private String account;
 	
-	private Integer auctionStatus;
+	private String auctionStatus;
 	private String auctionPic;
 	private Integer auctionSeqNo;
 	@Transient
@@ -62,13 +62,13 @@ public class ProductSaleBean {
 
 
 
-	public Integer getAuctionStatus() {
+	public String getAuctionStatus() {
 		return auctionStatus;
 	}
 
 
 
-	public void setAuctionStatus(Integer auctionStatus) {
+	public void setAuctionStatus(String auctionStatus) {
 		this.auctionStatus = auctionStatus;
 	}
 
