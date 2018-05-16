@@ -121,8 +121,10 @@ $(document).ready(function () {
     		
     		success:function(){
     			
-    			
-    			
+    			alert('回覆投訴完成!');
+    			$('.bg-primary').trigger("click");
+//    			title=$('')
+//    			selectCategory();
     			
     		},
     		error:function(e){
