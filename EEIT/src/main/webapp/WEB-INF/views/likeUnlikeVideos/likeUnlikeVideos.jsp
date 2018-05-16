@@ -14,7 +14,7 @@
     <title>Modern Business - Start Bootstrap Template</title>
 	<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 	<link href="<c:url value='/global/css/modern-business.css'/> " rel="stylesheet">
-
+	<link href="<c:url value='/likeUnlikeVideos/css/likeUnlikeVideos.css'/> " rel="stylesheet">
   </head>
 
   <body>
@@ -27,32 +27,32 @@
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">喜歡的影片
-        <small>Subheading</small>
+<!--         <small>Subheading</small> -->
       </h1>
 		
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.html">Home</a>
+<!--           <a href="index.html">Home</a> -->
         </li>
-        <li class="breadcrumb-item active">Portfolio 2</li>
+<!--         <li class="breadcrumb-item active">Portfolio 2</li> -->
       </ol>
 
       <div class="row">
       	<c:forEach var="aVideoBean" items="${likeVideos}">
-        <div class="col-lg-6 portfolio-item">
+        <div class="col-lg-2 portfolio-item">
           <div class="card h-100">
           <a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
-			<img class="card-img-top" height="400px" width="200px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
+			<img class="card-img-top" height="150px" width="50px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 		  </a>
 		  
 <!--             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
             <div class="card-body">
-              <h4 class="card-title">
-                <a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
+              <h4 class="card-title" title="${aVideoBean.videoTitle}">
+                <a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />" class="videoTitle">
              	 ${aVideoBean.videoTitle}
                 </a>
               </h4>
-              <p class="card-text">${aVideoBean.videoDescription}</p>
+              <p class="card-text videoDescription" title="${aVideoBean.videoDescription}">${aVideoBean.videoDescription}</p>
 		      <input type="hidden" class='videoSeqNo' value="${aVideoBean.videoSeqNo}" />
               <button type="button" value="" class="btn btn-danger deleteBlock">
               	
@@ -67,39 +67,7 @@
         
         
       </div>
-      <!-- /.row -->
-
-      <!-- Pagination -->
-      <ul class="pagination justify-content-center">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
-
     </div>
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-      </div>
-    </footer>
     <%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="<c:url value='/likeUnlikeVideos/js/likeUnlikeVideos.js'/> "></script>

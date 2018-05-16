@@ -1,13 +1,15 @@
 package com.iii._19_.videoManage.model;
 
 import java.io.File;
-import java.sql.SQLException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -21,7 +23,7 @@ public class VideoManageServiceImpl implements VideoManageService {
 	}
 
 	@Override
-	public int saveVideo(VideoBean vb, String extImage, String extVideo, MultipartFile videoImage,
+	public VideoBean saveVideo(VideoBean vb, String extImage, String extVideo, MultipartFile videoImage,
 			MultipartFile videoFile) {
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		vb.setVideoUploadDate(now);
@@ -44,7 +46,7 @@ public class VideoManageServiceImpl implements VideoManageService {
 		videoManageDAO.updateVideo(vb);
 		saveVideoImageToFile(videoImageFileFolderPath, videoImageFilePath, videoImage);
 		saveVideoToFile(videoFileFolderPath, videoFilePath, videoFile);
-		return key;
+		return vb;
 	}
 
 	@Override
@@ -55,13 +57,36 @@ public class VideoManageServiceImpl implements VideoManageService {
 			imageFolder.mkdirs();
 		}
 		// 將圖片寫入資料夾
-		File imagefile = new File(videoImageFilePath);
+		// File imagefile = new File(videoImageFilePath);
+		// if(imagefile.exists() && !imagefile.isDirectory()) {
+		// imagefile.delete();
+		// }
+		// videoImage.transferTo(imagefile);
 		try {
-			videoImage.transferTo(imagefile);
-		} catch (Exception e) {
+			InputStream is;
+			is = videoImage.getInputStream();
+			int cursor;
+			FileOutputStream out = new FileOutputStream(videoImageFilePath);
+			while ((cursor = is.read()) != -1) {
+				out.write(cursor);
+			}
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new RuntimeException("檔案上傳發生意外");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
+		// try {
+		// videoImage.transferTo(imagefile);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// throw new RuntimeException("檔案上傳發生意外");
+		// }
 	}
 
 	@Override
@@ -98,6 +123,11 @@ public class VideoManageServiceImpl implements VideoManageService {
 	@Override
 	public List<VideoBean> getAllVideoByAccount(String account) {
 		return videoManageDAO.getAllVideoByAccount(account);
+	}
+
+	@Override
+	public List<VideoBean> getUserVideoByPageNo(Integer pageNo, String account) {
+		return videoManageDAO.getUserVideoByPageNo(pageNo, account);
 	}
 
 }

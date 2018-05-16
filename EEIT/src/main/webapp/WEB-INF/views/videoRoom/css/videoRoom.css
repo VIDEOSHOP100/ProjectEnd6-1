@@ -102,6 +102,8 @@
 .videoTitleInside {
 	margin: 15px 0px;
 	/* 	font-size: 20px; */
+	height: 50px;
+	overflow: hidden;
 }
 
 .advicedVideoTitle {
@@ -380,3 +382,55 @@
 	/* 				border : solid 1px red; */
 }
 
+.videoTitle{
+	height: 55px;
+	overflow: hidden;
+	text-align:justify;
+/* 	border: red solid 1px; */
+}
+
+
+.videoDescription{
+	text-align:justify;
+/* 	border: solid 1px red; */
+	width: 88%;
+	margin-left: 100px;
+	margin-bottom: 0px;
+	font-size: 12px;
+	font-weight:10;
+}
+.videoDescriptionHide{
+/* 	border: solid 1px red; */
+	overflow: hidden;
+	height: 100px;
+}
+.videoDescriptionShow{
+/* 	border: solid 1px red; */
+}
+.showDescriptionButton{
+	width: 88%;
+	margin-left: 100px;
+	margin-top: 0px;
+	text-align:justify;
+/* 	border: solid 1px red; */
+	font-weight:900;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.commentArticle{
+	font-size: 12px;
+	text-align:justify;
+}
+
+.commentArticleHide{
+	overflow: hidden;
+	height: 100px;
+}
+
+.commentArticleShowButton{
+	text-align:justify;
+	font-weight:900;
+	cursor: pointer;
+	font-size: 14px;
+}

@@ -372,3 +372,6 @@
 	color: #6E6E6E;
 	text-decoration: underline;
 }
+.hideForm{
+	display: none;
+}

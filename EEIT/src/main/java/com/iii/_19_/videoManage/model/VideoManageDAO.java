@@ -14,4 +14,6 @@ public interface VideoManageDAO {
 	public void updateVideo(VideoBean vb);
 
 	public void deleteVideo(VideoBean vb);
+	
+	public List<VideoBean> getUserVideoByPageNo(Integer pageNo, String account);
 }

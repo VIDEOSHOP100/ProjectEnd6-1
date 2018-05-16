@@ -21,17 +21,14 @@
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 	<div class="container">
 		<h1 class="mt-4 mb-3">分類影片
-		       <small>Subheading</small>
 		</h1>
 			
 		<ol class="breadcrumb">
 		  <li class="breadcrumb-item">
-		    <a href="index.html">Home</a>
 		  </li>
-		  <li class="breadcrumb-item active">Portfolio 2</li>
 		</ol>
 		<c:forEach var="videoTypes" items="${sortedVideos}">
-			<a href="<c:url value='/videoType/${videoTypes[0].videoType}' />">
+			<a href="<c:url value='/videoType/${videoTypes[0].videoType}' />" class="videoTypeTitle">
 				<h1><c:out value="${videoTypes[0].videoType}" /></h1>
 			</a>
 			<div class="row">
@@ -43,7 +40,7 @@
 							</a>
 							<div class="card-body">
 								<h6 class="card-title videoTitle">
-									<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"><b>${aVideoBean.videoTitle}</b></a>
+									<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"  title="${aVideoBean.videoTitle}"><b>${aVideoBean.videoTitle}</b></a>
 								</h6>
 								<a class="uploaderLink"
 									href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
@@ -66,12 +63,6 @@
 			</div>
 		</c:forEach>
 	</div>
-	<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2018</p>
-	</div>
-	</footer>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script src="<c:url value='/videoType/js/videoType.js'/> "></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>

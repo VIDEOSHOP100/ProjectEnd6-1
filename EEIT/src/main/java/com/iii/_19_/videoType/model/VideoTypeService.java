@@ -17,4 +17,9 @@ public interface VideoTypeService {
 	public void deleteVideoType(VideoTypeBean videoTypeBean);
 	
 	public List<VideoBean> getOneVideoTypeVideos(String videoType);
+	
+	public List<VideoTypeBean> getVideoTypeBeanList();
+	
+	public VideoTypeBean getVideoTypeBySeqNo(Integer videoSeqNo);
+	
 }
