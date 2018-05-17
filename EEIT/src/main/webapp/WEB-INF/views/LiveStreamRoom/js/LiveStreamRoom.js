@@ -93,7 +93,7 @@ $(document).on('keyup','.input-group>input',function(e){
  //增加會員購買商品到聊天室窗
 //var productSeqNo = $('.productSeqNo').val();
 function addBid(account, productSeqNo,bidPrice,auctionSeqNo){
-	
+	responsiveVoice.speak("會員"+account+"叫價"+bidPrice+"元","Chinese Female");
 	$('.card-bodycontroller').append('<div class="chatBlock"><p class="bidrow">'+"會員"+ account + "叫價: "+ bidPrice +'元</p></div>')
 }
 //增加會員聊天到聊天室窗
@@ -199,19 +199,11 @@ $('#reportSubmit').click(function(){
 //檢舉結束------------------------------------------
 
 
-    var IsEnd = true;;
-    var voicelist = responsiveVoice.getVoices();
-
-    $('#btnSubmit').on('click', function () {
-        if (!IsEnd)
-            responsiveVoice.fallbackMode = false;
-
-        IsEnd = false;
-        responsiveVoice.speak($('#txtText').val(), $('#VoiceSelection').val(), {
-            onend: function (EndCallback) {
-                IsEnd = true;
-            }
-        });
+$(document).on('click','.chatrow',function(){
+//    $('.voiceSubmit').click(function(){
+//    	alert($(this).text()) 
+//	alert($(this).text().split(":",2)[1])
+        responsiveVoice.speak($(this).text().split(":",2)[1],"Chinese Female")
 
     });
 
