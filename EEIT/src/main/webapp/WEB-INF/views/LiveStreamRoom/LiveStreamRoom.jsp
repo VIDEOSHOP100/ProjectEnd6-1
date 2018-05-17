@@ -133,9 +133,11 @@
 					<button class="btn btn-outline-info addBidButton loginCheck col-md-auto" data-toggle="modal" data-target="#addBidForm"><i class="fas fa-bullhorn"></i>&nbsp;&nbsp;現場喊價</button>
 </div> 
 <!-- 					</div>	 -->
-
+<c:if test="${!empty AllProductLista}">
 <form:form id="Bid" method="POST" action="Bid/${productSeqNo}" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data">
+
 <form:select path="productSeqNo">
+								
 								  <form:options id="productSeqNo" class="productSeqNo" items="${AllProductLista}" />
 								  
 							</form:select>
@@ -144,6 +146,7 @@
 								  
 							</form:select>
 </form:form> 
+</c:if>
 <div class="input-Bid">
 <input type="text" class="form-control Bid-message" placeholder="請輸入價格">
 </div> 
