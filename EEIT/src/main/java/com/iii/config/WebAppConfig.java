@@ -12,8 +12,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.iii._01_.Member.interceptor.LoginInterceptor;
 import com.iii._19_.messageSystem.intercepter.MessageSystemIntercepter;
 import com.iii._19_.notificationRecording.intercepter.NotificationRecordingIntercepter;
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 @Configuration
 @EnableWebMvc
@@ -30,10 +32,18 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
          return new MessageSystemIntercepter();
     }
 
+	@Bean
+	LoginInterceptor loginInterceptor() {
+		return new LoginInterceptor();
+	}
+	
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+    	registry.addInterceptor(loginInterceptor())
+    	.excludePathPatterns("/","/loginPage","/*","/getImage/**","/getVideo/**","/videoRoom/*");
         registry.addInterceptor(notificationRecordingIntercepter());
         registry.addInterceptor(messageSystemIntercepter());
+//        		.excludePathPatterns("/*/videoroom/*");
     }
 	
 	
