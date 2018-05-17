@@ -12,8 +12,11 @@
 <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 <link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/>" rel="stylesheet">
 <style>
+.reasontitle{
+	
+font-weight: bolder;
 
-  
+}
 /* .card-bodycontroller{  */
 /*  	width: 100%;  */
 /* 	height: 407px;   */
@@ -49,7 +52,7 @@
 </style>
 </head>
 <body>
-<p>直播主:${sb.account}</p> 
+<p class="uploadaccount hidden">${sb.account}</p> 
 <%-- <p>${LiveStream.liveStreamSeqNo}</p> --%>
 
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
@@ -63,6 +66,12 @@
   
         <small>的直播間</small>
         <small>開始時間:${sb.liveStart}</small>
+        <c:if test="${!empty LoginOK.account}">
+        <button id="memberReportButton"
+							class="btn btn-outline-info memberReportButton memberReport"
+							type="button" data-toggle="modal" data-target="#popMemberReport">檢舉${sb.account}</button>
+				</c:if>			
+							
 <%-- 		<small>結束時間:${sb.liveEnd}</small> --%> 
 
       </h1>
@@ -263,6 +272,171 @@
 		</div>
 	</div>
 <!--// 拍賣表格 -->
+
+<!-- 檢舉開始 -->
+	<div class="modal fade" id="popMemberReport" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">檢舉${sb.account}</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+
+					<form:form id="LiveStreamReport" method="POST"
+						action="${pageContext.request.contextPath}/LiveStreamReport"
+						modelAttribute="liveStreamReportBean" class=""
+						enctype="multipart/form-data">
+
+
+
+						<div class="form-group">
+							<form:input path="reportTitle" type="text"
+								class="form-control input-sm" id="reportTitle"
+								placeholder="檢舉標題" />
+						</div>
+						<p class="reasontitle modal-title">檢舉原因(必填)</p>
+						
+					 <form:select path="reportType" id="reportType">
+
+    <form:option value="1">使用暴力或恐嚇傷害他人</form:option>
+    <form:option value="2">騷擾</form:option>
+    <form:option value="3">仇恨行為</form:option>
+    <form:option value="4">色情或性暗示內容</form:option>
+    <form:option value="5">其他違反服務條款的行為</form:option>
+    <form:option value="6">粗鄙的使用者名稱</form:option>
+    <form:option value="7">極端暴力、血腥或淫褻的內容</form:option>
+
+  						</form:select> 
+  						<br><br>
+			<p class="reasontitle modal-title">描述(必填)</p>
+						<div class="form-group">
+							<form:textarea path="reportContent" type="text"
+								class="form-control input-sm" id="reportContent"
+								placeholder="檢舉內容" />
+						</div>
+						<!-- 						<div class="form-group"> -->
+						<!-- 							附加照片 -->
+						<%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
+						<!-- 						</div> -->
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-outline-info" id="cancel"
+						data-dismiss="modal">取消</button>
+					<button id="reportSubmit" type="button" class="btn btn-outline-info">確認檢舉</button>
+
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- 檢舉結束 -->
+
+
+
+<!-- 測試 VOICE-->
+
+  <div>
+        <div>
+            <select id="VoiceSelection" class="input input--dropdown js--animations">
+                <option value="">--Select--</option>
+                <option value="UK English Female">UK English Female</option>
+                <option value="UK English Male">UK English Male</option>
+                <option value="US English Female">US English Female</option>
+                <option value="Arabic Male">Arabic Male</option>
+                <option value="Arabic Female">Arabic Female</option>
+                <option value="Armenian Male">Armenian Male</option>
+                <option value="Australian Female">Australian Female</option>
+                <option value="Brazilian Portuguese Female">Brazilian Portuguese Female</option>
+                <option value="Chinese Female">Chinese Female</option>
+                <option value="Chinese (Hong Kong) Female">Chinese (Hong Kong) Female</option>
+                <option value="Chinese Taiwan Female">伯恩你好棒棒</option>
+                <option value="Czech Female">Czech Female</option>
+                <option value="Danish Female">Danish Female</option>
+                <option value="Deutsch Female">Deutsch Female</option>
+                <option value="Dutch Female">Dutch Female</option>
+                <option value="Finnish Female">Finnish Female</option>
+                <option value="French Female">French Female</option>
+                <option value="Greek Female">Greek Female</option>
+                <option value="Hatian Creole Female">Hatian Creole Female</option>
+                <option value="Hindi Female">Hindi Female</option>
+                <option value="Hungarian Female">Hungarian Female</option>
+                <option value="Indonesian Female">Indonesian Female</option>
+                <option value="Italian Female">Italian Female</option>
+                <option value="Japanese Female">Japanese Female</option>
+                <option value="Korean Female">Korean Female</option>
+                <option value="Latin Female">Latin Female</option>
+                <option value="Norwegian Female">Norwegian Female</option>
+                <option value="Polish Female">Polish Female</option>
+                <option value="Portuguese Female">Portuguese Female</option>
+                <option value="Romanian Male">Romanian Male</option>
+                <option value="Russian Female">Russian Female</option>
+                <option value="Slovak Female">Slovak Female</option>
+                <option value="Spanish Female">Spanish Female</option>
+                <option value="Spanish Latin American Female">Spanish Latin American Female</option>
+                <option value="Swedish Female">Swedish Female</option>
+                <option value="Tamil Male">Tamil Male</option>
+                <option value="Thai Female">Thai Female</option>
+                <option value="Turkish Female">Turkish Female</option>
+                <option value="Afrikaans Male">Afrikaans Male</option>
+                <option value="Albanian Male">Albanian Male</option>
+                <option value="Bosnian Male">Bosnian Male</option>
+                <option value="Catalan Male">Catalan Male</option>
+                <option value="Croatian Male">Croatian Male</option>
+                <option value="Czech Male">Czech Male</option>
+                <option value="Danish Male">Danish Male</option>
+                <option value="Esperanto Male">Esperanto Male</option>
+                <option value="Finnish Male">Finnish Male</option>
+                <option value="Greek Male">Greek Male</option>
+                <option value="Hungarian Male">Hungarian Male</option>
+                <option value="Icelandic Male">Icelandic Male</option>
+                <option value="Latin Male">Latin Male</option>
+                <option value="Latvian Male">Latvian Male</option>
+                <option value="Macedonian Male">Macedonian Male</option>
+                <option value="Moldavian Male">Moldavian Male</option>
+                <option value="Montenegrin Male">Montenegrin Male</option>
+                <option value="Norwegian Male">Norwegian Male</option>
+                <option value="Serbian Male">Serbian Male</option>
+                <option value="Serbo-Croatian Male">Serbo-Croatian Male</option>
+                <option value="Slovak Male">Slovak Male</option>
+                <option value="Swahili Male">Swahili Male</option>
+                <option value="Swedish Male">Swedish Male</option>
+                <option value="Vietnamese Male">Vietnamese Male</option>
+                <option value="Welsh Male">Welsh Male</option>
+                <option value="US English Male">US English Male</option>
+                <option value="Fallback UK Female">Fallback UK Female</option>
+            </select>
+        </div>
+        <div>
+            <textarea id="txtText" cols="45" rows="3">Test. I have a Pen.</textarea>
+        </div>
+        <div>
+            <input id="btnSubmit" type="submit" value="Submit" />
+        </div>
+    </div>
+<!-- 測試VOICE -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- 叫價表格 -->
 <!-- <div class="modal fade" id="addBidForm" tabindex="-1" role="dialog" -->
 <!-- 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
@@ -301,6 +475,7 @@
 <%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
 <%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
+	   <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </body>
