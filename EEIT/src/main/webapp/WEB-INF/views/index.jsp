@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -81,7 +82,7 @@
 <!-- 				<iframe width="1950" height="700" -->
 <!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ" frameborder="0" -->
 <!-- 					allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-				<video controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/2" ></video>
+				<video muted controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/2" ></video>
 				<div class="carousel-caption d-none d-md-block">
 					<h3>Second Slide</h3>
 					<p>This is a description for the second slide.</p>
@@ -91,7 +92,7 @@
 <!-- 				<iframe width="1950" height="700" -->
 <!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ" frameborder="0" -->
 <!-- 					allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-				<video controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/3" ></video>
+				<video muted controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/3" ></video>
 				<div class="carousel-caption d-none d-md-block">
 					<h3>Third Slide</h3>
 					<p>This is a description for the third slide.</p>
@@ -130,7 +131,9 @@
 							<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
 								<p class="videoSmallWords">${aVideoBean.account}</p>
 							</a>
-							<p class="card-text videoSmallWords">${aVideoBean.liveStart}</p>
+							<c:set var="string1" value="${aVideoBean.liveStart}"/>
+							<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+							<p class="card-text videoSmallWords">${string2}</p>
 							<p class="videoSmallWords">觀看次數:${aVideoBean.liveStreamView}</p>
 						</div>
 					</div>
@@ -159,7 +162,9 @@
 							<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
 								<p class="videoSmallWords">${aVideoBean.account}</p>
 							</a>
-							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
+							<c:set var="string1" value="${aVideoBean.videoUploadDate}"/>
+							<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+							<p class="card-text videoSmallWords">${string2}</p>
 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
 							<c:if test="${!empty LoginOK}">
 								<div class="watchLater">
@@ -195,7 +200,9 @@
 								href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
 								<p class="videoSmallWords">${aVideoBean.account}</p>
 							</a>
-							<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
+							<c:set var="string1" value="${aVideoBean.videoUploadDate}"/>
+							<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+							<p class="card-text videoSmallWords">${string2}</p>
 							<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
 							<c:if test="${!empty LoginOK}">
 								<div class="watchLater">
@@ -231,7 +238,9 @@
 									href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
 									<p class="videoSmallWords">${aVideoBean.account}</p>
 								</a>
-								<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
+								<c:set var="string1" value="${aVideoBean.videoUploadDate}"/>
+								<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+								<p class="card-text videoSmallWords">${string2}</p>
 								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
 							<c:if test="${!empty LoginOK}">
 								<div class="watchLater">

@@ -39,7 +39,7 @@ public class LikeUnlikeVideosDAOImpl implements LikeUnlikeVideosDAO {
 				"      ,v.videoUnlikes" + 
 				"      ,v.videoUploadDate" + 
 				"      ,v.videoUplodaerListType" + 
-				"      ,v.videoViews FROM LikeUnlikeVideos l join Video v on l.videoSeqNo = v.videoSeqNo where LikeUnlikeVideosStatus = 'like' and l.account = :account").setParameter("account", account).addEntity("v",VideoBean.class).list();
+				"      ,v.videoViews FROM LikeUnlikeVideos l join Video v on l.videoSeqNo = v.videoSeqNo where LikeUnlikeVideosStatus = 'like' and l.account = :account").setParameter("account", account).setMaxResults(18).addEntity("v",VideoBean.class).list();
 		
 	}
 

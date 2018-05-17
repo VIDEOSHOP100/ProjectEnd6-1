@@ -18,14 +18,14 @@
 <body>
   <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
   <div class="container">
-    <h1 class="mt-4 mb-3">
-      <small>Subheading</small>
+    <h1 class="mt-4 mb-3">訂閱上傳者
+<!--       <small>Subheading</small> -->
     </h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
+<!--         <a href="index.html">Home</a> -->
       </li>
-      <li class="breadcrumb-item active">Portfolio Item</li>
+<!--       <li class="breadcrumb-item active">Portfolio Item</li> -->
     </ol>
     <div class="row">
 
@@ -50,11 +50,16 @@
           <!-- Comment with nested comments -->
           
       </div>
-
+    <div class="col-md-12 row pageLoadingDiv">
+		<div class="col-md-12 pageLoading pageLoadingNone">
+			<img height="100px" class="pageLoadingImage" src="<c:url value='/global/images/loading.gif'/>">
+		</div>
+	</div>
       
 
     </div>
     <!-- /.row -->
+
 
     <!-- Related Projects Row -->
     <!-- <h3 class="my-4">Related Projects</h3>
@@ -92,11 +97,11 @@
   <!-- /.container -->
 
   <!-- Footer -->
-	<footer class="py-5 bg-dark">
-	  <div class="container">
-	    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-	  </div>
-	</footer>
+<!-- 	<footer class="py-5 bg-dark"> -->
+<!-- 	  <div class="container"> -->
+<!-- 	    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p> -->
+<!-- 	  </div> -->
+<!-- 	</footer> -->
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="<c:url value='/subscriptionUploaderdeco/js/subscriptionUploader.js'/> "></script>

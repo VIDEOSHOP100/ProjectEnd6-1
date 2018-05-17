@@ -21,4 +21,6 @@ public interface VideoTypeDAO {
 	public List<VideoTypeBean> getVideoTypeBeanList();
 	
 	public VideoTypeBean getVideoTypeBySeqNo(Integer videoSeqNo);
+	
+	public List<VideoBean> getOneVideoTypeByPageNo(Integer pageNo, String videoType);
 }

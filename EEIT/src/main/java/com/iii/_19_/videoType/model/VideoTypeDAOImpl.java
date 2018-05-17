@@ -29,7 +29,7 @@ public class VideoTypeDAOImpl implements VideoTypeDAO {
 	public List<VideoBean> getVideoType(String videoType) {
 		Session session = sessionFactory.getCurrentSession();
 		
-		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and videoType = :videoType",VideoBean.class).setParameter("videoType", videoType).setMaxResults(8).list();
+		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and videoType = :videoType",VideoBean.class).setParameter("videoType", videoType).setMaxResults(12).list();
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class VideoTypeDAOImpl implements VideoTypeDAO {
 	@Override
 	public List<VideoBean> getOneVideoTypeVideos(String videoType) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and videoType = :videoType",VideoBean.class).setParameter("videoType", videoType).list();
+		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and videoType = :videoType",VideoBean.class).setMaxResults(24).setParameter("videoType", videoType).list();
 	}
 
 	@Override
@@ -66,6 +66,12 @@ public class VideoTypeDAOImpl implements VideoTypeDAO {
 	public VideoTypeBean getVideoTypeBySeqNo(Integer videoSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(VideoTypeBean.class, videoSeqNo);
+	}
+
+	@Override
+	public List<VideoBean> getOneVideoTypeByPageNo(Integer pageNo, String videoType) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM VideoBean WHERE videoType = :videoType and videoStatus = '1' order by videoUploadDate desc ", VideoBean.class).setParameter("videoType", videoType).setMaxResults(24).setFirstResult(pageNo).list();
 	}
 
 }
