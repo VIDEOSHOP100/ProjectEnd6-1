@@ -65,6 +65,11 @@ public class VideoTypeServiceImpl implements VideoTypeService {
 	public VideoTypeBean getVideoTypeBySeqNo(Integer videoSeqNo) {
 		return videoTypeDAO.getVideoTypeBySeqNo(videoSeqNo);
 	}
+
+	@Override
+	public List<VideoBean> getOneVideoTypeByPageNo(Integer pageNo, String videoType) {
+		return videoTypeDAO.getOneVideoTypeByPageNo(pageNo, videoType);
+	}
 	
 	
 	

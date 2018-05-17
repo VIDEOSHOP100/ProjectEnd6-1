@@ -210,9 +210,46 @@ public class ProductSaleBean {
 				+ proCategorySeqNo + ", proBrand=" + proBrand + ", proPrice=" + proPrice + ", proStatus=" + proStatus
 				+ ", proPayTypeSeqNo=" + proPayTypeSeqNo + ", proPcs=" + proPcs + ", proDescription=" + proDescription
 				+ ", proTransSeqNo=" + proTransSeqNo + ", proAdverSeqNo=" + proAdverSeqNo + ", proVolume=" + proVolume
-				+ ", proWeight=" + proWeight + ", proDate=" + proDate + ", account=" + account + "]";
+				+ ", proWeight=" + proWeight + ", proDate=" + proDate + ", picSeqNo=" + picSeqNo + ", account="
+				+ account + ", auctionStatus=" + auctionStatus + ", auctionPic=" + auctionPic + ", auctionSeqNo="
+				+ auctionSeqNo + ", picFile=" + picFile + "]";
 	}
 
+
+
+
+	public ProductSaleBean(Integer productSeqNo, String proName, Integer proCategorySeqNo, String proBrand,
+			long proPrice, Integer proStatus, Integer proPayTypeSeqNo, Integer proPcs, String proDescription,
+			Integer proTransSeqNo, Integer proAdverSeqNo, String proVolume, Double proWeight, java.util.Date proDate,
+			Integer picSeqNo, String account, Integer auctionStatus, String auctionPic, Integer auctionSeqNo,
+			MultipartFile picFile) {
+		super();
+		this.productSeqNo = productSeqNo;
+		this.proName = proName;
+		this.proCategorySeqNo = proCategorySeqNo;
+		this.proBrand = proBrand;
+		this.proPrice = proPrice;
+		this.proStatus = proStatus;
+		this.proPayTypeSeqNo = proPayTypeSeqNo;
+		this.proPcs = proPcs;
+		this.proDescription = proDescription;
+		this.proTransSeqNo = proTransSeqNo;
+		this.proAdverSeqNo = proAdverSeqNo;
+		this.proVolume = proVolume;
+		this.proWeight = proWeight;
+		this.proDate = proDate;
+		this.picSeqNo = picSeqNo;
+		this.account = account;
+		this.auctionStatus = auctionStatus;
+		this.auctionPic = auctionPic;
+		this.auctionSeqNo = auctionSeqNo;
+		this.picFile = picFile;
+	}
+
+
+
+
+	
 
 
 	

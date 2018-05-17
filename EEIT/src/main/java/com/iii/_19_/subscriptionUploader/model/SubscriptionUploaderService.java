@@ -15,4 +15,6 @@ public interface SubscriptionUploaderService {
 	public void updateSubscriptionUploader(SubscriptionUploaderBean subscriptionUploaderBean);
 	
 	public void deleteSubscriptionUploader(SubscriptionUploaderBean subscriptionUploaderBean);
+	
+	public List<MemberBean> getSubscriptionUploaderByPageNo(String account, Integer pageNo);
 }

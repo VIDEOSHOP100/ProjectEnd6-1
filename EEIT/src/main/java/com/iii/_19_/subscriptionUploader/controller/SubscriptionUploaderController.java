@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,18 @@ public class SubscriptionUploaderController {
 
 	@Autowired
 	SubscriptionUploaderService subscriptionUploaderService;
-
+	
+	@RequestMapping(value = "page/{pageNo}" ,method=RequestMethod.GET)
+	public @ResponseBody Map<String, Object>  getSubscriptionUploaderByPageNo(HttpSession session,@PathVariable("pageNo") Integer pageNo){
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		List<MemberBean> memberBeanList = subscriptionUploaderService.getSubscriptionUploaderByPageNo(account, pageNo);
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("memberBeanList", memberBeanList);
+		return map;
+	}
+	
+	
 	@RequestMapping(method = RequestMethod.PUT)
 	public @ResponseBody Map<String,String> updateSubscriptionUploader(
 			@RequestParam("uploaderAccount") String uploaderAccount,

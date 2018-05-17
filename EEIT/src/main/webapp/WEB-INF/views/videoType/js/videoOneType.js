@@ -3,48 +3,18 @@
  */
 
 $(document).ready(function() {
-	
-	$('body > div.container > div > div > div > div > div > button').click(function(){
-		var videoSeqNo = $(this).parent('div').find('input').val();
-		var thisButton = $(this);
-		var data = {videoSeqNo : videoSeqNo}
-		$.ajax({
-			type: "POST",
-			url: "/EEIT/watchLaterVideo",
-			contentType : 'application/json; charset=utf-8',
-	        dataType: "json",
-//	        accepts: "application/json; charset=utf-8",
-			data: JSON.stringify(data),
-			timeout: 600000,
-			success: function (data) {
-				if(data.status == "watchLater"){
-					thisButton.addClass('btn-info')
-				}else if(data.status == "nonWatchLater"){
-					thisButton.parents('.videoBlock').remove();
-				}
-		
-			},
-			error: function (e) {
-				console.log("ERROR : ", e);
-				alert(e);
-			}
-		});
-	})
-	
-	checkWatchLater()
-	
-	
 	//目前影片頁數
 	var videoPage= 1;
 	var loadingFlag = true;
 	var lastPage = false;
+	var videoTypeTitle  = $('.videoTypeTitle').text();
 	//無限加載
 	$(window).scroll(function() {  
 		if(!lastPage){
 			if(loadingFlag){
 				if($(window).scrollTop() + $(window).height() == $(document).height()) {
 					loadingFlag = false;
-					videoPageNo = parseInt(videoPage) * 24
+					videoPageNo = parseInt(videoPage) * 24 
 					$('.pageLoading').addClass('pageLoadingDisplay').removeClass('pageLoadingNone')
 					updateScrollPage();
 					setTimeout(function(){ 
@@ -54,7 +24,7 @@ $(document).ready(function() {
 					        contentType: false,
 					        processData: false,
 							enctype: 'multipart/form-data',
-							url: "/EEIT/watchLaterVideo/page/" + videoPageNo,
+							url: "/EEIT/videoType/page/" + videoPageNo + '/' + videoTypeTitle,
 							timeout: 600000,
 							success: function (data) {
 								$.each(data.videoBeanList,function( key, videoBean){
@@ -106,7 +76,7 @@ $(document).ready(function() {
 								})
 								
 									
-								checkWatchLater()
+									
 								videoPage = videoPage + 1;
 							}
 						});
@@ -122,27 +92,4 @@ $(document).ready(function() {
 		element.scrollTop(scrollHeight,200);
 	}
 	
-	
-	function checkWatchLater(){
-		$('.watchLater').each(function(){
-			var videoSeqNo = $(this).find('input').val();
-			var thisButton = $(this).find('button')
-			$.ajax({
-				type: "GET",
-				url: "/EEIT/watchLaterVideo/" + videoSeqNo,
-				timeout: 600000,
-				success: function (data) {
-					if(data.status == "watchLater"){
-						thisButton.addClass('btn-info')
-					}else if(data.status == "nonWatchLater"){
-					}
-			
-				},
-				error: function (e) {
-					console.log("ERROR : ", e);
-					alert(e);
-				}
-			});
-		})
-	}
 })

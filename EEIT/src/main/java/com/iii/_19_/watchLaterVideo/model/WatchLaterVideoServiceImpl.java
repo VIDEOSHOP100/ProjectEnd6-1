@@ -53,6 +53,11 @@ public class WatchLaterVideoServiceImpl implements WatchLaterVideoService {
 	public WatchLaterVideoBean getWatchLaterVideoBySeqNo(Integer watchLaterVideoSeqNo) {
 		return watchLaterVideoDAO.getWatchLaterVideoBySeqNo(watchLaterVideoSeqNo);
 	}
+
+	@Override
+	public List<VideoBean> getWatchLaterVideoByPageNo(Integer pageNo, String account) {
+		return watchLaterVideoDAO.getWatchLaterVideoByPageNo(pageNo, account);
+	}
 	
 
 }

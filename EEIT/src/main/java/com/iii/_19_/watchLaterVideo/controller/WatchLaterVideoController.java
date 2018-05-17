@@ -27,6 +27,21 @@ public class WatchLaterVideoController {
 	@Autowired
 	private WatchLaterVideoService watchLaterVideoService;
 	
+	@RequestMapping(method = RequestMethod.GET, value="page/{pageNo}")
+	public @ResponseBody Map<String,Object> getWatchLaterVideoByPageNo(@PathVariable("pageNo") Integer pageNo, HttpSession session){
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(memberBean != null) {
+			map.put("loginStatus", "OK");
+		}else if(memberBean == null) {
+			map.put("loginStatus", "NOTOK");
+		}
+		String account = memberBean.getAccount();
+		List<VideoBean> videoBeanList = watchLaterVideoService.getWatchLaterVideoByPageNo(pageNo, account);
+		map.put("videoBeanList", videoBeanList);
+		return map;
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getWatchLaterVideoByAccount(HttpSession session, Map<String, Object> map) {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");

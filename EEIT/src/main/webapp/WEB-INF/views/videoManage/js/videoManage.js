@@ -10,86 +10,86 @@ $( function() {
 	
 			
 		
-		$(window).scroll(function() {  
-			if(!lastPage){
-				if(loadingFlag){
-			   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-				   loadingFlag = false;
-			       videoPageNo = parseInt(videoPage) * 8 
-			       $('.pageLoading').addClass('pageLoadingDisplay').removeClass('pageLoadingNone')
-			       updateScrollPage();
-			       setTimeout(function(){ 
-			    	   $.ajax({
-							type: "GET",
-							cache: false,
-					        contentType: false,
-					        processData: false,
-							enctype: 'multipart/form-data',
-							url: "/EEIT/videoManage/page/" + videoPageNo,
-							timeout: 600000,
-							success: function (data) {
-								$.each(data.videoBeanList,function( key, videoBean){
-									var uploadDate= new Date(videoBean.videoUploadDate)
-									var MyDateString;
-									MyDateString =  uploadDate.getFullYear()
-									             + '-' + ('0' + (uploadDate.getMonth()+1)).slice(-2)
-									             + '-' + ('0' + uploadDate.getDate()).slice(-2)
-									             + " " + ('0'  + uploadDate.getHours()).slice(-2)+':'
-									             + ('0'  + uploadDate.getMinutes()).slice(-2)+':'
-									             + ('0' + uploadDate.getSeconds()).slice(-2);
-									var vb = $('<div class="col-md-12 row divOutside">'+
-											'<div class="col-md-10">'+
-												'<div class="media mb-4">'+
-													'<a	href="/EEIT/videoRoom/'+videoBean.videoSeqNo +'">'+
-														'<img class="d-flex mr-3 picVideo" height="200px" width="400px"	src="getImage/video/' + videoBean.videoSeqNo + '">'+
+	$(window).scroll(function() {  
+		if(!lastPage){
+			if(loadingFlag){
+		   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+			   loadingFlag = false;
+		       videoPageNo = parseInt(videoPage) * 8 
+		       $('.pageLoading').addClass('pageLoadingDisplay').removeClass('pageLoadingNone')
+		       updateScrollPage();
+		       setTimeout(function(){ 
+		    	   $.ajax({
+						type: "GET",
+						cache: false,
+				        contentType: false,
+				        processData: false,
+						enctype: 'multipart/form-data',
+						url: "/EEIT/videoManage/page/" + videoPageNo,
+						timeout: 600000,
+						success: function (data) {
+							$.each(data.videoBeanList,function( key, videoBean){
+								var uploadDate= new Date(videoBean.videoUploadDate)
+								var MyDateString;
+								MyDateString =  uploadDate.getFullYear()
+								             + '-' + ('0' + (uploadDate.getMonth()+1)).slice(-2)
+								             + '-' + ('0' + uploadDate.getDate()).slice(-2)
+								             + " " + ('0'  + uploadDate.getHours()).slice(-2)+':'
+								             + ('0'  + uploadDate.getMinutes()).slice(-2)+':'
+								             + ('0' + uploadDate.getSeconds()).slice(-2);
+								var vb = $('<div class="col-md-12 row divOutside">'+
+										'<div class="col-md-10">'+
+											'<div class="media mb-4">'+
+												'<a	href="/EEIT/videoRoom/'+videoBean.videoSeqNo +'">'+
+													'<img class="d-flex mr-3 picVideo" height="200px" width="400px"	src="getImage/video/' + videoBean.videoSeqNo + '">'+
+												'</a>'+
+												'<div class="media-body videoDatas">'+
+													'<a href="/EEIT/videoRoom/'+videoBean.videoSeqNo+'" class="videoTitleLink" title="'+videoBean.videoTitle+'">'+
+														'<h5 class="mt-0 videoTitle">'+videoBean.videoTitle+'</h5>'+
 													'</a>'+
-													'<div class="media-body videoDatas">'+
-														'<a href="/EEIT/videoRoom/'+videoBean.videoSeqNo+'" class="videoTitleLink" title="'+videoBean.videoTitle+'">'+
-															'<h5 class="mt-0 videoTitle">'+videoBean.videoTitle+'</h5>'+
-														'</a>'+
-														'<p class="seqNo">'+videoBean.videoSeqNo+'</p>'+
-														'<p>觀看次數: '+videoBean.videoViews+'</p>'+
-														'<p>影片上傳日期時間: '+MyDateString+'</p>'+
-														'<p class="videoTypeOutSide">影片種類: </p>'+
-														'<p class="videoType">'+videoBean.videoType+'</p>'+
-														
-														'<p>影片喜歡數: '+videoBean.videoLikes+'</p>'+
-														'<p>影片不喜歡數: '+videoBean.videoUnlikes+'</p>'+
-														'<p>影片播放清單類別: '+videoBean.videoUplodaerListType+'</p>'+
-														
-														'<p class="videoDescriptionOutSide">影片描述:</p>'+
-														'<p class="videoDescription" title="'+ videoBean.videoDescription +'">'+videoBean.videoDescription+'</p>'+
-													'</div>'+
+													'<p class="seqNo">'+videoBean.videoSeqNo+'</p>'+
+													'<p>觀看次數: '+videoBean.videoViews+'</p>'+
+													'<p>影片上傳日期時間: '+MyDateString+'</p>'+
+													'<p class="videoTypeOutSide">影片種類: </p>'+
+													'<p class="videoType">'+videoBean.videoType+'</p>'+
+													
+													'<p>影片喜歡數: '+videoBean.videoLikes+'</p>'+
+													'<p>影片不喜歡數: '+videoBean.videoUnlikes+'</p>'+
+													'<p>影片播放清單類別: '+videoBean.videoUplodaerListType+'</p>'+
+													
+													'<p class="videoDescriptionOutSide">影片描述:</p>'+
+													'<p class="videoDescription" title="'+ videoBean.videoDescription +'">'+videoBean.videoDescription+'</p>'+
 												'</div>'+
 											'</div>'+
-											'<div class="col-md-2">'+
-												'<button class="btn btn-info create-user"><i class="fas fa-edit"></i></button>'+
-												'<button class="btn btn-danger delete-video"><i class="fas fa-trash-alt"></i></button>'+
-											'</div>'+
-										'</div>')
-									var dor = $('.divOutsideRow');
-									dor.append(vb);
-								})
-								
-								
-								videoPage = videoPage + 1
-								$('.pageLoading').addClass('pageLoadingNone').removeClass('pageLoadingDisplay')
-								if(data.videoBeanList.length < 8){
-									lastPage = true;
-									$('.pageLoadingDiv').remove();
-//									$('.pageLoading').append($('<p>沒有資料囉</p>'))
-//									$('.pageLoading').addClass('pageLoadingDisplay').removeClass('pageLoadingNone')
-					    	    }
-							}
-						});
-			    	  
-			    	   loadingFlag = true;
-			       }, 3000);
-			       
-			    }
-				}
+										'</div>'+
+										'<div class="col-md-2">'+
+											'<button class="btn btn-info create-user"><i class="fas fa-edit"></i></button>'+
+											'<button class="btn btn-danger delete-video"><i class="fas fa-trash-alt"></i></button>'+
+										'</div>'+
+									'</div>')
+								var dor = $('.divOutsideRow');
+								dor.append(vb);
+							})
+							
+							
+							videoPage = videoPage + 1
+							$('.pageLoading').addClass('pageLoadingNone').removeClass('pageLoadingDisplay')
+							if(data.videoBeanList.length < 8){
+								lastPage = true;
+								$('.pageLoadingDiv').remove();
+	//									$('.pageLoading').append($('<p>沒有資料囉</p>'))
+	//									$('.pageLoading').addClass('pageLoadingDisplay').removeClass('pageLoadingNone')
+				    	    }
+						}
+					});
+		    	  
+		    	   loadingFlag = true;
+		       }, 3000);
+		       
+		    }
 			}
-		});
+		}
+	});
 	
 	
 
@@ -316,6 +316,7 @@ $( function() {
 				$body.removeClass("loading");
 				stompClient.send("/app/notificationSystem/" + $.trim(senderAccount), {}, JSON.stringify({ 'notificationArticle':"發布新影片啦!!!!", 'account':senderAccount, 'notificationType' : 'video'}));
 				dialoginsert.dialog( "close" );
+				$("#insertForm #videoType").val("")
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
@@ -393,7 +394,7 @@ $( function() {
 			form[0].reset();
 		}
 	});
-	$(".delete-video").on("click",function(){
+	$(document).on("click",".delete-video",function(){
 		dialogdelete.dialog("open");
 	});
 	function deletevideo() {

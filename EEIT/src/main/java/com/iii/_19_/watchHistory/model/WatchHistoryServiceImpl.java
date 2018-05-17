@@ -26,10 +26,10 @@ public class WatchHistoryServiceImpl implements WatchHistoryService {
 
 	@Override
 	public List<VideoBean> getAccountWatchHistory(String account) {
-		List<Integer> watchHistoryBeanList = watchHistoryDAO.getAccountWatchHistory(account);
+		List<WatchHistoryBean> watchHistoryBeanList = watchHistoryDAO.getAccountWatchHistory(account);
 		List<VideoBean> videoBeanList = new ArrayList<VideoBean>();
-		for(Integer videoSeqNo : watchHistoryBeanList) {
-			VideoBean vb = videoManageDAO.getVideo(videoSeqNo);
+		for(WatchHistoryBean watchHistoryBean : watchHistoryBeanList) {
+			VideoBean vb = videoManageDAO.getVideo(watchHistoryBean.getVideoSeqNo());
 			videoBeanList.add(vb);
 		}
 		return videoBeanList;
@@ -58,5 +58,16 @@ public class WatchHistoryServiceImpl implements WatchHistoryService {
 	@Override
 	public WatchHistoryBean getWatchHistoryBySeqNo(Integer watchHistorySeqNo) {
 		return watchHistoryDAO.getWatchHistoryBySeqNo(watchHistorySeqNo);
+	}
+
+	@Override
+	public List<VideoBean> getWatchHistoryByPageNo(String account, Integer pageNo) {
+		List<WatchHistoryBean> watchHistoryBeanList = watchHistoryDAO.getWatchHistoryByPageNo(account, pageNo);
+		List<VideoBean> videoBeanList = new ArrayList<VideoBean>();
+		for(WatchHistoryBean WatchHistoryBeanList : watchHistoryBeanList) {
+			VideoBean vb = videoManageDAO.getVideo(WatchHistoryBeanList.getVideoSeqNo());
+			videoBeanList.add(vb);
+		}
+		return videoBeanList;
 	}
 }

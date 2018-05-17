@@ -19,4 +19,6 @@ public interface WatchHistoryService {
 	public void deleteWatchHistory(WatchHistoryBean watchHistoryBean);
 	
 	public WatchHistoryBean getWatchHistoryBySeqNo(Integer watchHistorySeqNo);
+	
+	public List<VideoBean> getWatchHistoryByPageNo(String account, Integer pageNo);
 }

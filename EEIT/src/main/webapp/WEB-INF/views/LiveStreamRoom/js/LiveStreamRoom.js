@@ -43,7 +43,7 @@ $('.deleteAuction').click(function(){
 //				parentElement.find('.col-md-7').remove();
 //				parentElement.find('.col-md-5').remove();
 				alert("拍賣物品"+productSeqNo+"已賣給"+account);
-				
+				responsiveVoice.speak("拍賣物品"+productSeqNo+"已賣給"+account,"Chinese Female");
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
@@ -172,7 +172,48 @@ function updateScroll(){
 	element.scrollTop(scrollHeight,200);
 
 }
+//檢舉開始-----------------------------------------
+$('#reportSubmit').click(function(){
+	
+	var reportTitle = $('#reportTitle').val();
+	var reportContent = $('#reportContent').val();
+	var reportType = $('#reportType').val();
+	var accountTo = $('.uploadaccount').text();
+	$.ajax({
+		type:"POST",
+		url:"/EEIT/LiveStreamReport",
+		data:{accountTo:accountTo , reportTitle:reportTitle , reportContent:reportContent,reportType:reportType},
+		timeout: 600000,
+		success:function(){
+//			$('#memberReportButton').attr("disabled","disabled").text("已檢舉");
+			$('#cancel').trigger("click");
+			alert("檢舉直播主:"+accountTo+"成功")
+		},
+		error: function (e) {
+			console.log("ERROR : ", e);
+			alert(e);
+		}
+	})
+	
+})
+//檢舉結束------------------------------------------
 
+
+    var IsEnd = true;;
+    var voicelist = responsiveVoice.getVoices();
+
+    $('#btnSubmit').on('click', function () {
+        if (!IsEnd)
+            responsiveVoice.fallbackMode = false;
+
+        IsEnd = false;
+        responsiveVoice.speak($('#txtText').val(), $('#VoiceSelection').val(), {
+            onend: function (EndCallback) {
+                IsEnd = true;
+            }
+        });
+
+    });
 
 
 

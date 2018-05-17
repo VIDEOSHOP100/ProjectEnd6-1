@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -42,7 +43,9 @@
 									href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">
 									<p class="videoSmallWords">${aVideoBean.account}</p>
 								</a>
-								<p class="card-text videoSmallWords">${aVideoBean.videoUploadDate}</p>
+								<c:set var="string1" value="${aVideoBean.videoUploadDate}"/>
+								<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+								<p class="card-text videoSmallWords">${string2}</p>
 								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
 								<div class="watchLater">
 								<input type="hidden" value="${aVideoBean.videoSeqNo}" />
@@ -54,6 +57,11 @@
 						</div>
 					</div>
 				</c:forEach>
+			</div>
+			<div class="col-md-12 row pageLoadingDiv">
+				<div class="col-md-12 pageLoading pageLoadingNone">
+					<img height="100px" class="pageLoadingImage" src="<c:url value='/global/images/loading.gif'/>">
+				</div>
 			</div>
 	</div>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
