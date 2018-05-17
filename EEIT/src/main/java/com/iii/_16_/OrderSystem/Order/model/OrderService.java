@@ -36,4 +36,8 @@ public class OrderService {
 	public List<OrderBean> findByAccountForPay(String account , Integer orderstatus) throws SQLException{
 		return dao.findbyAccountReadyPay(account, orderstatus);
 	}
+	@Transactional
+	public OrderBean findByorderSeqNo(Integer orderSeqNo) throws SQLException{
+		return dao.findbyPrimaryKey(orderSeqNo);
+	}
 }

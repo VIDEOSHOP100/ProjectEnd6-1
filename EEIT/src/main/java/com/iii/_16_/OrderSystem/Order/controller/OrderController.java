@@ -88,7 +88,8 @@ public class OrderController {
 	}
 
 	@RequestMapping(value="confirmOrder" ,method = RequestMethod.POST)
-	public String confirmOrder(@ModelAttribute OrderBean ob, HttpSession session, BindingResult result) throws SQLException {
+	public String confirmOrder(@ModelAttribute OrderBean ob, HttpSession session, 
+			Map<String,Object> map,BindingResult result) throws SQLException {
 		 String[] suppressedFields = result.getSuppressedFields();
 		 if (suppressedFields.length > 0) {
 		 System.out.println("嘗試輸入不允許的欄位");
@@ -97,11 +98,12 @@ public class OrderController {
 		 }
 		 MemberBean member=(MemberBean)session.getAttribute("LoginOK");
 
-		 OrderBean bean = new OrderBean();
-	
+		 /*----------------------訂單確認開始--------------------------------------*/
 		 Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
 		 ob.setOrderTime(ts);
 		 ob.setOrderSeqNo(0);
+		 //設定訂單未付款的訂單狀態為1
+		 ob.setOrderStatus(1);
 		 int orderNum =orderservice.insertGetId(ob);	 
 		// 先將使用者帳號傳回購物車service方法 用帳號找出所有購物明細
 			List<ProCartListBean> list = procartlistservice.getByAccountStatus(member.getAccount());
@@ -114,27 +116,29 @@ public class OrderController {
 				ProductSaleBean ForUpdateProBean= productsaleservice.getBySeqNo(ProInCarSeqNo);
 				productcartlistbean.setProductbean(ForUpdateProBean);
 				OrderProductBean confirmbean = new OrderProductBean(productcartlistbean.getProductSeqNo(), productcartlistbean.getProductCount(), productcartlistbean.getProductbean().getProPrice(), member.getAccount(), orderNum, 0);
-				ProInCarSeqNo= ForUpdateProBean.getProPcs()-productcartlistbean.getProductCount();
-				ForUpdateProBean.setProPcs(ProInCarSeqNo);
-						
-						
+				decreasePcs= ForUpdateProBean.getProPcs()-productcartlistbean.getProductCount();
+				ForUpdateProBean.setProPcs(decreasePcs);
 				//更改庫存量
 				productsaleservice.update(ForUpdateProBean);
 				//新增商品至訂單成立的TAble
 				OrderProductBean ordersuccessbean = orderproductservice.insert(confirmbean);
-				orderproductlist.add(ordersuccessbean);
-				
+				orderproductlist.add(ordersuccessbean);	
 			}
-			
 			//成立訂單的帳號  將該帳號購物車內所有物品刪除
 			if(orderproductlist.size()!=0) {
 			procartlistservice.deleteAllByAccount(member.getAccount());
-			
-			
 			//訂單新增成功  
 			//將購物車中 使用者搜尋過的商品刪除
 			}
-		 return "OrderSystem/Success";
+			/*------------將該訂單丟到網頁生成pdf-----------------------------------*/
+			
+			OrderBean bill = orderservice.findByorderSeqNo(orderNum);
+			map.put("readyforpay", bill);
+			
+			List<OrderProductBean> pros = orderproductservice.getByorderSeqNo(orderNum);
+			map.put("readyforpaypro", pros);
+			
+		 return "OrderSystem/orderSuccess";
 	}
 	@RequestMapping(value = "/odergetcountry", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getCountryName(String city) {
