@@ -17,16 +17,13 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-  <div class="container">
+  <div class="container watchHistoryContainer">
     <h1 class="mt-4 mb-3">瀏覽紀錄
-<!--       <small>Subheading</small> -->
     </h1>
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-<!--         <a href="index.html">Home</a> -->
       </li>
-<!--       <li class="breadcrumb-item active">Portfolio 1</li> -->
     </ol>
 
     <c:forEach var="aVideoBean" items="${watchHistory}">
@@ -40,7 +37,7 @@
 	      </div>
 	      <div class="col-md-9">
 	        <h3 class="videoTitle"><a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />" title="${aVideoBean.videoTitle}">${aVideoBean.videoTitle}</a></h3>
-	        <p><a class="uploaderLink" href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">${aVideoBean.account}</a></p>
+	        <p class="watchHistoryVideoAccount"><a class="uploaderLink" href="<c:url value='/uploaderHomePage/${aVideoBean.account}' />">${aVideoBean.account}</a></p>
 	        <p>觀看次數:${aVideoBean.videoViews}</p>
 	        <p class="videoDescription" title="${aVideoBean.videoDescription}">${aVideoBean.videoDescription}</p>
 	        <input type="hidden" class='videoSeqNo' value="${aVideoBean.videoSeqNo}" />
@@ -51,42 +48,12 @@
 	    </div>
 	    <hr>
 	</c:forEach>
-
-    
-
-    
-
-<!--     <hr> -->
-<!--     <ul class="pagination justify-content-center"> -->
-<!--       <li class="page-item"> -->
-<!--         <a class="page-link" href="#" aria-label="Previous"> -->
-<!--           <span aria-hidden="true">&laquo;</span> -->
-<!--           <span class="sr-only">Previous</span> -->
-<!--         </a> -->
-<!--       </li> -->
-<!--       <li class="page-item"> -->
-<!--         <a class="page-link" href="#">1</a> -->
-<!--       </li> -->
-<!--       <li class="page-item"> -->
-<!--         <a class="page-link" href="#">2</a> -->
-<!--       </li> -->
-<!--       <li class="page-item"> -->
-<!--         <a class="page-link" href="#">3</a> -->
-<!--       </li> -->
-<!--       <li class="page-item"> -->
-<!--         <a class="page-link" href="#" aria-label="Next"> -->
-<!--           <span aria-hidden="true">&raquo;</span> -->
-<!--           <span class="sr-only">Next</span> -->
-<!--         </a> -->
-<!--       </li> -->
-<!--     </ul> -->
-
+	<div class="col-md-12 row pageLoadingDiv">
+		<div class="col-md-12 pageLoading pageLoadingNone">
+			<img height="100px" class="pageLoadingImage" src="<c:url value='/global/images/loading.gif'/>">
+		</div>
+	</div>
   </div>
-<!--   <footer class="py-5 bg-dark"> -->
-<!--     <div class="container"> -->
-<!--       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p> -->
-<!--     </div> -->
-<!--   </footer> -->
   <%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="<c:url value='/watchHistorydeco/js/watchHistory.js'/> "></script>

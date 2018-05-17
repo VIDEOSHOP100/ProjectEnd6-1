@@ -61,7 +61,7 @@ public class WatchLaterVideoDAOImpl implements WatchLaterVideoDAO {
 				"      ,v.VideoFileName" + 
 				"      ,v.videoImageFilePath" + 
 				"      ,v.videoImageFileName" + 
-				"      ,v.account from WatchLaterVideo w join Video v on w.videoSeqNo = v.videoSeqNo where w.watchLaterVideosStatus = '1' and w.account = :account order by w.watchLaterVideoDate desc ").setParameter("account", account).addEntity("v",VideoBean.class).list();
+				"      ,v.account from WatchLaterVideo w join Video v on w.videoSeqNo = v.videoSeqNo where w.watchLaterVideosStatus = '1' and w.account = :account order by w.watchLaterVideoDate desc ").setParameter("account", account).setMaxResults(24).addEntity("v",VideoBean.class).list();
 		
 	}
 
@@ -76,6 +76,27 @@ public class WatchLaterVideoDAOImpl implements WatchLaterVideoDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(WatchLaterVideoBean.class, watchLaterVideoSeqNo);
 				
+	}
+
+	@Override
+	public List<VideoBean> getWatchLaterVideoByPageNo(Integer pageNo, String account) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("  select  v.videoSeqNo" + 
+				"      ,v.videoTitle" + 
+				"      ,v.videoDescription" + 
+				"      ,v.videoType" + 
+				"      ,v.videoUplodaerListType" + 
+				"      ,v.videoUploadDate" + 
+				"      ,v.videoLikes" + 
+				"      ,v.videoUnlikes" + 
+				"      ,v.videoViews" + 
+				"      ,v.videoStatus" + 
+				"      ,v.videoFilePath" + 
+				"      ,v.VideoFileName" + 
+				"      ,v.videoImageFilePath" + 
+				"      ,v.videoImageFileName" + 
+				"      ,v.account from WatchLaterVideo w join Video v on w.videoSeqNo = v.videoSeqNo where w.watchLaterVideosStatus = '1' and w.account = :account order by w.watchLaterVideoDate desc ").setParameter("account", account).setMaxResults(24).setFirstResult(pageNo).addEntity("v",VideoBean.class).list();
+		
 	}
 
 }

@@ -1,14 +1,14 @@
 package com.iii._19_.watchHistory.model;
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.iii._19_.videoType.model.VideoTypeBean;
 
 @Repository
 @Transactional
@@ -24,9 +24,9 @@ public class WatchHistoryDAOImpl implements WatchHistoryDAO {
 	}
 
 	@Override
-	public List<Integer> getAccountWatchHistory(String account) {
+	public List<WatchHistoryBean> getAccountWatchHistory(String account) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("select DISTINCT videoSeqNo FROM WatchHistoryBean where account = :account and watchHistoryStatus = '1'",Integer.class).setParameter("account", account).list();
+		return session.createNativeQuery("Select * From watchHistory a Where watchVideoDate = (Select Max(b.watchVideoDate) From watchHistory b Where a.videoSeqNo = b.videoSeqNo) and account = :account and watchHistoryStatus = '1' order by watchVideoDate desc").addEntity(WatchHistoryBean.class).setParameter("account", account).setMaxResults(8).list();
 	}
 
 	@Override
@@ -59,4 +59,9 @@ public class WatchHistoryDAOImpl implements WatchHistoryDAO {
 		return session.get(WatchHistoryBean.class, watchHistorySeqNo);
 	}
 
+	@Override
+	public List<WatchHistoryBean> getWatchHistoryByPageNo(String account, Integer pageNo) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("Select * From watchHistory a Where watchVideoDate = (Select Max(b.watchVideoDate) From watchHistory b Where a.videoSeqNo = b.videoSeqNo) and account = :account and watchHistoryStatus = '1' order by watchVideoDate desc").addEntity(WatchHistoryBean.class).setParameter("account", account).setFirstResult(pageNo).setMaxResults(8).list();
+	}
 }

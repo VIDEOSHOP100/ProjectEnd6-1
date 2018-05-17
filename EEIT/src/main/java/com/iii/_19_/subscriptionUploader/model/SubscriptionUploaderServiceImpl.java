@@ -37,6 +37,11 @@ public class SubscriptionUploaderServiceImpl implements SubscriptionUploaderServ
 	public void deleteSubscriptionUploader(SubscriptionUploaderBean subscriptionUploaderBean) {
 		subscriptionUploaderDAO.deleteSubscriptionUploader(subscriptionUploaderBean);
 	}
+
+	@Override
+	public List<MemberBean> getSubscriptionUploaderByPageNo(String account, Integer pageNo) {
+		return subscriptionUploaderDAO.getSubscriptionUploaderByPageNo(account, pageNo);
+	}
 	
 
 }

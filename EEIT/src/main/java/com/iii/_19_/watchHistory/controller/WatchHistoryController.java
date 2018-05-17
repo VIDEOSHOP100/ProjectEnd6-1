@@ -35,6 +35,16 @@ public class WatchHistoryController {
 		return "watchHistory/watchHistory";
 	}
 	
+	@RequestMapping(value="page/{pageNo}", method=RequestMethod.GET)
+	public @ResponseBody Map<String,Object> getWatchHistoryByPageNo(@PathVariable("pageNo") Integer pageNo, HttpSession session){
+		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberBean.getAccount();
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<VideoBean> videoBeanList = watchHistoryService.getWatchHistoryByPageNo(account, pageNo);
+		map.put("videoBeanList", videoBeanList);
+		return map;
+	}
+	
 	@RequestMapping(value="{account}/{videoSeqNo}", method=RequestMethod.GET)
 	public String getWatchHistory(@PathVariable("account") String account, @PathVariable("videoSeqNo") Integer videoSeqNo) {
 		List<WatchHistoryBean> watchHistoryBeanList = watchHistoryService.getWatchHistory(account,videoSeqNo);

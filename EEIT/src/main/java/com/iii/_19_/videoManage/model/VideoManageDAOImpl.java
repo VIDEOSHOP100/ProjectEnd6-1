@@ -18,7 +18,7 @@ public class VideoManageDAOImpl implements VideoManageDAO {
 	@Override
 	public List<VideoBean> getAllVideo() {
 		Session session = sessionFactory.getCurrentSession();
-		List<VideoBean> vblist = session.createQuery("FROM VideoBean WHERE videoStatus = '1'").list();
+		List<VideoBean> vblist = session.createQuery("FROM VideoBean WHERE videoStatus = '1'").setMaxResults(20).list();
 		return vblist;
 	}
 

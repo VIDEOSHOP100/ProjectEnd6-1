@@ -22,14 +22,14 @@ public class HomePageDAOImpl implements HomePageDAO {
 	@Override
 	public List<VideoBean> getHotVideos() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM VideoBean where videoStatus = '1' order by videoViews desc", VideoBean.class).setMaxResults(8)
+		return session.createQuery("FROM VideoBean where videoStatus = '1' order by videoViews desc", VideoBean.class).setMaxResults(12)
 				.list();
 	}
 
 	@Override
 	public List<VideoBean> getNewVideos() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM VideoBean where videoStatus = '1' order by videoUploadDate desc", VideoBean.class).setMaxResults(8)
+		return session.createQuery("FROM VideoBean where videoStatus = '1' order by videoUploadDate desc", VideoBean.class).setMaxResults(12)
 				.list();
 	}
 
@@ -41,7 +41,7 @@ public class HomePageDAOImpl implements HomePageDAO {
 		for (VideoTypeBean videoTypeBean : videoTypeList) {
 			String videoType = videoTypeBean.getVideoType();
 			List<VideoBean> vblist = new ArrayList<>();
-			vblist = session.createQuery("FROM VideoBean where videoType = :videoType ",VideoBean.class).setParameter("videoType", videoType).list();
+			vblist = session.createQuery("FROM VideoBean where videoType = :videoType ",VideoBean.class).setParameter("videoType", videoType).setMaxResults(12).list();
 			sortedVideoBean.add(vblist);
 		}
 		return sortedVideoBean;
