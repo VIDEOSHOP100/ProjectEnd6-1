@@ -84,4 +84,5 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return session.createQuery("FROM ProductSaleBean WHERE productSeqNo = :productSeqNo AND auctionStatus = '1'",ProductSaleBean.class).setParameter("productSeqNo", productSeqNo).uniqueResult();
 	}
 	
+
 }

@@ -28,8 +28,8 @@ public class ProductSaleBean {
 	
 	private Integer proTransSeqNo;//v
 	private Integer proAdverSeqNo;//v
-	private String proVolume;//v
-	private Double proWeight;//v
+//	private String proVolume;//v
+//	private Double proWeight;//v
 	private java.util.Date proDate;
 	
 	private Integer picSeqNo;
@@ -51,53 +51,27 @@ public class ProductSaleBean {
 	public String getAuctionPic() {
 		return auctionPic;
 	}
-
-
-
-
 	public void setAuctionPic(String auctionPic) {
 		this.auctionPic = auctionPic;
 	}
-
-
-
-
-
-
-
-
 	public Integer getAuctionStatus() {
 		return auctionStatus;
 	}
-
-
-
-
 	public void setAuctionStatus(Integer auctionStatus) {
 		this.auctionStatus = auctionStatus;
 	}
-
-
-
-
 	public Integer getPicSeqNo() {
 		return picSeqNo;
 	}
-
-
 	public void setPicSeqNo(Integer picSeqNo) {
 		this.picSeqNo = picSeqNo;
 	}
-
-
 	public String getAccount() {
 		return account;
 	}
 	public void setAccount(String account) {
 		this.account = account;
 	}
-
-
 	public void setPicFile(MultipartFile picFile) {
 		this.picFile = picFile;
 	}
@@ -163,18 +137,18 @@ public class ProductSaleBean {
 	public void setProAdverSeqNo(Integer proAdverSeqNo) {
 		this.proAdverSeqNo = proAdverSeqNo;
 	}
-	public String getProVolume() {
-		return proVolume;
-	}
-	public void setProVolume(String proVolume) {
-		this.proVolume = proVolume;
-	}
-	public Double getProWeight() {
-		return proWeight;
-	}
-	public void setProWeight(Double proWeight) {
-		this.proWeight = proWeight;
-	}
+//	public String getProVolume() {
+//		return proVolume;
+//	}
+//	public void setProVolume(String proVolume) {
+//		this.proVolume = proVolume;
+//	}
+//	public Double getProWeight() {
+//		return proWeight;
+//	}
+//	public void setProWeight(Double proWeight) {
+//		this.proWeight = proWeight;
+//	}
 	
 	public java.util.Date getProDate() {
 		return proDate;
@@ -200,22 +174,41 @@ public class ProductSaleBean {
 	public void setAuctionSeqNo(Integer auctionSeqNo) {
 		this.auctionSeqNo = auctionSeqNo;
 	}
-
-
-
-
 	@Override
 	public String toString() {
 		return "ProductSaleBean [productSeqNo=" + productSeqNo + ", proName=" + proName + ", proCategorySeqNo="
 				+ proCategorySeqNo + ", proBrand=" + proBrand + ", proPrice=" + proPrice + ", proStatus=" + proStatus
 				+ ", proPayTypeSeqNo=" + proPayTypeSeqNo + ", proPcs=" + proPcs + ", proDescription=" + proDescription
-				+ ", proTransSeqNo=" + proTransSeqNo + ", proAdverSeqNo=" + proAdverSeqNo + ", proVolume=" + proVolume
-				+ ", proWeight=" + proWeight + ", proDate=" + proDate + ", account=" + account + "]";
+				+ ", proTransSeqNo=" + proTransSeqNo + ", proAdverSeqNo=" + proAdverSeqNo + ", proDate=" + proDate
+				+ ", picSeqNo=" + picSeqNo + ", account=" + account + ", auctionStatus=" + auctionStatus
+				+ ", auctionPic=" + auctionPic + ", auctionSeqNo=" + auctionSeqNo + "]";
 	}
 
 
 
-	
-	
+
+	public ProductSaleBean(Integer productSeqNo, String proName, Integer proCategorySeqNo, String proBrand,
+			long proPrice, Integer proStatus, Integer proPayTypeSeqNo, Integer proPcs, String proDescription,
+			Integer proTransSeqNo, Integer proAdverSeqNo, java.util.Date proDate, Integer picSeqNo, String account,
+			Integer auctionStatus, String auctionPic, Integer auctionSeqNo) {
+		super();
+		this.productSeqNo = productSeqNo;
+		this.proName = proName;
+		this.proCategorySeqNo = proCategorySeqNo;
+		this.proBrand = proBrand;
+		this.proPrice = proPrice;
+		this.proStatus = proStatus;
+		this.proPayTypeSeqNo = proPayTypeSeqNo;
+		this.proPcs = proPcs;
+		this.proDescription = proDescription;
+		this.proTransSeqNo = proTransSeqNo;
+		this.proAdverSeqNo = proAdverSeqNo;
+		this.proDate = proDate;
+		this.picSeqNo = picSeqNo;
+		this.account = account;
+		this.auctionStatus = auctionStatus;
+		this.auctionPic = auctionPic;
+		this.auctionSeqNo = auctionSeqNo;
+	}
 	
 }
