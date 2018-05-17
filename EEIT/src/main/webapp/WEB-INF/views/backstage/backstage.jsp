@@ -64,5 +64,6 @@
     </footer>
 		<script src="<c:url value='/backstage/js/backstage.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageLive.js'/> "></script>
+		<script src="<c:url value='/backstage/js/vic.js'/> "></script>
   </body>
 </html>
