@@ -31,7 +31,7 @@
 }
 
 .procon {
-	margin-top: 195px;
+	margin-top: 115px;
 }
 
 .adreButton {
@@ -63,19 +63,6 @@
 	<div class="container procon">
 
 		<div class="row">
-
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
-			<div class="col-md-1 offshow">col-md-1</div>
 
 			<div class="col-md-2 offset-1 adreButton">
 
@@ -116,11 +103,35 @@
 
 
 			<div><p class="nick">${otherside.nickname}</p>	
-			<p id="othersideaccount">@${otherside.account}</p></div>			
+			<p id="othersideaccount">@${otherside.account}</p></div>	
+			
+			<div class="row titleBlock">
+	      <div class="col-md-2">
+	          <a class="btn btn-lg btn-secondary btn-block" href="PersonShopHome">商店首頁</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">商品</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">商品列表</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">影片</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">影片列表</a>
+	      </div>
+	      <div class="col-md-2">
+	        <a class="btn btn-lg btn-secondary btn-block" href="#">商店資料</a>
+	      </div>
+      </div>
+					
 			被訂閱數:${otherside.subscription} <br>
 
 			註冊日期:${otherside.registerdate} <br> 最後登入:${otherside.lastlogin}
 			<br>
+			
+			
 		</div>
 		</div>
 		<!-- /row -->

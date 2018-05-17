@@ -15,6 +15,15 @@ height:240px;
 width:240px;
 
 }
+
+
+            .myfooter {
+                height: 100px;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+            }
+
 </style>
 </head>
 <body>
@@ -26,13 +35,14 @@ width:240px;
 		<div class="row">
 			
 			<c:forEach var="friend" items="${myFriendList}"> 
+       		<c:if test="${friend.friendStatus !=0}">
         <div class="col-lg-3 mb-3"> 
           <div class="card h-100 text-center">
             <c:if test="${LoginOK.account == friend.friendSend}">
             <a href="${pageContext.request.contextPath}/profile/${friend.friendTo}"><img class="pic" src="${pageContext.request.contextPath}/getImage/member/${friend.friendTo}" alt=""></a> 
             </c:if>
 	        <c:if test="${LoginOK.account == friend.friendTo}">  
-            <a href="${pageContext.request.contextPath}/profile/${friend.friendTo}"><img class="pic" src="${pageContext.request.contextPath}/getImage/member/${friend.friendSend}" alt=""></a>
+            <a href="${pageContext.request.contextPath}/profile/${friend.friendSend}"><img class="pic" src="${pageContext.request.contextPath}/getImage/member/${friend.friendSend}" alt=""></a>
             </c:if>
             <div class="card-body">
              <c:if test="${LoginOK.account == friend.friendSend}">
@@ -48,6 +58,7 @@ width:240px;
 
           </div>
         </div>
+        </c:if>
  </c:forEach>
 			
 		</div>

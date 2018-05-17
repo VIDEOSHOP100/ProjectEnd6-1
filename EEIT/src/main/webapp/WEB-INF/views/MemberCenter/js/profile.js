@@ -50,7 +50,7 @@ $(document).ready(function(){
 		$.ajax({
 			type:"POST",
 			url:"/EEIT/memberReport",
-			data:{accountTo:othersideaccount , reportTitle:reportTitle , reportContent,reportContent},
+			data:{accountTo:othersideaccount , reportTitle:reportTitle , reportContent:reportContent},
 			timeout: 600000,
 			success:function(){
 				$('#memberReportButton').attr("disabled","disabled").text("已檢舉");
