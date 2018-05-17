@@ -160,10 +160,10 @@
 								class="form-control input-sm" id="reportContent"
 								placeholder="檢舉內容" />
 						</div>
-						<!-- 						<div class="form-group"> -->
-						<!-- 							附加照片 -->
-						<%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
-						<!-- 						</div> -->
+<!-- 						<div class="form-group"> -->
+<!-- 							附加照片 -->
+<%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
+<!-- 						</div> -->
 				</div>
 				<div class="modal-footer">
 

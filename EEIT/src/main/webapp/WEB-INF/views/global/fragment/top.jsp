@@ -122,7 +122,7 @@
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/profile/${LoginOK.account}">會員中心</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/memberUpdate">修改會員資料</a>
-						<a class="dropdown-item" href="faq.html">會員3</a> 
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/myFriendList">我的好友</a> 
 						<a class="dropdown-item" href="404.html">會員4</a> 
 						<a class="dropdown-item" href="pricing.html">會員5</a>
 					</div></li>
