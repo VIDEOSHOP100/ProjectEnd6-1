@@ -86,6 +86,10 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb :AllProduct ) {
 			pb.getPicSeqNo();
 		}
+		List<ProductSaleBean> AllProduct0 = productSaleService.getAllProByStatus(gpa.getAccount(), 0);
+		for(ProductSaleBean pb :AllProduct ) {
+			pb.getPicSeqNo();
+		}
 		//BID產品選擇器
 		List<ProductSaleBean> AllProductList = productSaleService.getAllProByStatus(gpa.getAccount(), status);
 		
@@ -95,7 +99,7 @@ public class InputLiveStreamTimeController {
 		}
 		//增加一個REPORTBean
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
-	
+		map.put("AllProduct0", AllProduct0);
 		map.put("liveStreamReportBean", liveStreamReportBean);
 //		map.put("AuctionSeqNoa", AuctionSeqNoNameMap);
 		map.put("AllProductLista", productNameMap);
