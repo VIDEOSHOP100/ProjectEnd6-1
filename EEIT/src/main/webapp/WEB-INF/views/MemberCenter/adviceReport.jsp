@@ -21,7 +21,7 @@
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			線上回報單 <small></small>
+			意見回饋 <small></small>
 		</h1>
 
 		<!-- Contact Form -->
@@ -52,13 +52,16 @@
 						<form:textarea class="form-control" path="adviceContent" row="50"
 							cols="10" />
 					</div>
-					<div class="control-group form-group">
-						<input type="submit" class="btn btn-primary"
-							id="sendMessageButton" value="送出" />
-					</div>
-				</form:form>
 			</div>
 		</div>
+		<div class="row">
+					 
+					<div class="control-group form-group col-md-6 offset-3 ">
+						<input type="submit" class="btn btn-primary btn-lg btn-block"
+							id="sendMessageButton" value="送出" />
+					</div> 
+		</div>
+				</form:form>
 
 	</div>
 	<!-- /.row -->

@@ -46,7 +46,7 @@
             <a class="list-group-item pointer text-primary homePageManage">首頁管理</a>
             <a class="list-group-item pointer text-primary mallManage">商城管理</a>
             <a class="list-group-item pointer text-primary websiteReport">報表</a>
-    
+     
     
           </div>
         </div>
@@ -64,10 +64,8 @@
     </footer>
 		<script src="<c:url value='/backstage/js/backstage.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageLive.js'/> "></script>
-<<<<<<< HEAD
 		<script src="<c:url value='/backstage/js/backstageAdvice.js'/> "></script>
-=======
 		<script src="<c:url value='/backstage/js/vic.js'/> "></script>
->>>>>>> branch 'master' of https://github.com/VIDEOSHOP100/ProjectEnd6-1.git
+ 
   </body>
 </html>
