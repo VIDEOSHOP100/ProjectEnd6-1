@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._01_.Member.bean.MemberBean;
-import com.iii._01_.MemberReport.bean.MemberReportBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._05_.liveStreamReport.model.liveStreamReportBean;
 import com.iii._05_.liveStreamReport.model.liveStreamReportService;
