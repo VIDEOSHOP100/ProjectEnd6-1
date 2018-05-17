@@ -64,6 +64,10 @@
     </footer>
 		<script src="<c:url value='/backstage/js/backstage.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageLive.js'/> "></script>
+<<<<<<< HEAD
 		<script src="<c:url value='/backstage/js/backstageAdvice.js'/> "></script>
+=======
+		<script src="<c:url value='/backstage/js/vic.js'/> "></script>
+>>>>>>> branch 'master' of https://github.com/VIDEOSHOP100/ProjectEnd6-1.git
   </body>
 </html>
