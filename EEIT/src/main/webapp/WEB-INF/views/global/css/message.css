@@ -148,6 +148,7 @@
 	width: 54%;
 	height: 23px;
 	display: inline-block;
+	float: left
 }
 
 .box-message > .messagePlus {

@@ -49,10 +49,10 @@
 }
 
 .indexVideo{
-	margin: 0px 300px;
+	margin: 0px 277px;
 }
 .indexVideoBackGround{
-	background-color: #1c0033
+	background-color: #1c0033;
 }
 
 </style>
@@ -72,7 +72,7 @@
 <!-- 				<iframe width="1950" height="700" -->
 <!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ?autoplay=1" -->
 <!-- 					frameborder="0"; encrypted-media" allowfullscreen></iframe> -->
-				<video controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/1" ></video>
+				<video controlsList="nodownload" controls="controls" class="indexVideo" autoplay width="1340" height="700" src="${pageContext.request.contextPath}/getVideo/video/1" ></video>
 				<div class="carousel-caption d-none d-md-block">
 					<h3>First Slide</h3>
 					<p>This is a description for the first slide.</p>
@@ -82,7 +82,7 @@
 <!-- 				<iframe width="1950" height="700" -->
 <!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ" frameborder="0" -->
 <!-- 					allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-				<video muted controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/2" ></video>
+				<video controlsList="nodownload" muted controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/2" ></video>
 				<div class="carousel-caption d-none d-md-block">
 					<h3>Second Slide</h3>
 					<p>This is a description for the second slide.</p>
@@ -92,7 +92,7 @@
 <!-- 				<iframe width="1950" height="700" -->
 <!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ" frameborder="0" -->
 <!-- 					allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-				<video muted controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/3" ></video>
+				<video controlsList="nodownload" muted controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/3" ></video>
 				<div class="carousel-caption d-none d-md-block">
 					<h3>Third Slide</h3>
 					<p>This is a description for the third slide.</p>
@@ -111,7 +111,7 @@
 	</header>
 	<div class="container">
 		<h1>
-		<a href="<c:url value='/LiveStreamHall' />">
+		<a class="indexTitle" href="<c:url value='/LiveStreamHall' />">
 			正在直播
 		</a>
 		</h1>
@@ -142,7 +142,7 @@
 
 		</div>
 		<h1>
-		<a href="<c:url value='/hotVideo' />">
+		<a class="indexTitle"  href="<c:url value='/hotVideo' />">
 			熱門影片
 		</a>
 		</h1>
@@ -181,7 +181,7 @@
 
 		</div>
 		<h1>
-		<a href="<c:url value='/newVideo' />">
+		<a class="indexTitle"  href="<c:url value='/newVideo' />">
 			最新影片
 		</a>
 		</h1>
@@ -219,7 +219,7 @@
 		</div>
 		<c:forEach var="videoTypes" items="${sortedVideos}">
 			<h1>
-				<a href="<c:url value='/videoType/${videoTypes[0].videoType}' />">
+				<a  class="indexTitle"  href="<c:url value='/videoType/${videoTypes[0].videoType}' />">
 					<c:out value="${videoTypes[0].videoType}" />
 				</a>
 			</h1>
