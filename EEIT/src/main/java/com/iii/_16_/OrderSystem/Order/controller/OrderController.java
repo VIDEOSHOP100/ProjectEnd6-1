@@ -30,6 +30,7 @@ import com.iii._16_.OrderSystem.Order.model.OrderBean;
 import com.iii._16_.OrderSystem.Order.model.OrderService;
 import com.iii._16_.OrderSystem.OrderProduct.model.OrderProductBean;
 import com.iii._16_.OrderSystem.OrderProduct.model.OrderProductService;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 
 import com.iii._16_.StreetName.model.StreetService;
@@ -105,16 +106,31 @@ public class OrderController {
 		// 先將使用者帳號傳回購物車service方法 用帳號找出所有購物明細
 			List<ProCartListBean> list = procartlistservice.getByAccountStatus(member.getAccount());
 			List<OrderProductBean> orderproductlist = new ArrayList<>();
-			for (ProCartListBean productbean : list) {
-				productbean.setProductbean(productsaleservice.getBySeqNo(productbean.getProductSeqNo()));
-				OrderProductBean confirmbean = new OrderProductBean(productbean.getProductSeqNo(), productbean.getProductCount(), productbean.getProductbean().getProPrice(), member.getAccount(), orderNum, 0);
-				OrderProductBean ddd = orderproductservice.insert(confirmbean);
-				orderproductlist.add(ddd);
+			int ProInCarSeqNo = 0;
+			int decreasePcs = 0;
+			//取得一個準備加入訂單的商品bean　用seqno搜尋
+			for (ProCartListBean productcartlistbean : list) {
+				ProInCarSeqNo = productcartlistbean.getProductSeqNo();
+				ProductSaleBean ForUpdateProBean= productsaleservice.getBySeqNo(ProInCarSeqNo);
+				productcartlistbean.setProductbean(ForUpdateProBean);
+				OrderProductBean confirmbean = new OrderProductBean(productcartlistbean.getProductSeqNo(), productcartlistbean.getProductCount(), productcartlistbean.getProductbean().getProPrice(), member.getAccount(), orderNum, 0);
+				ProInCarSeqNo= ForUpdateProBean.getProPcs()-productcartlistbean.getProductCount();
+				ForUpdateProBean.setProPcs(ProInCarSeqNo);
+						
+						
+				//更改庫存量
+				productsaleservice.update(ForUpdateProBean);
+				//新增商品至訂單成立的TAble
+				OrderProductBean ordersuccessbean = orderproductservice.insert(confirmbean);
+				orderproductlist.add(ordersuccessbean);
 				
 			}
+			
 			//成立訂單的帳號  將該帳號購物車內所有物品刪除
 			if(orderproductlist.size()!=0) {
 			procartlistservice.deleteAllByAccount(member.getAccount());
+			
+			
 			//訂單新增成功  
 			//將購物車中 使用者搜尋過的商品刪除
 			}

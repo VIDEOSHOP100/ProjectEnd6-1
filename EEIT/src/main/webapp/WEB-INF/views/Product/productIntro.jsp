@@ -54,7 +54,8 @@
 				
 				 <br> <br>
 				<h6>庫存數量:${productSaleBean.proPcs}</h6>	
-				
+				<br>
+				<h4>限時特價:${productSaleBean.proPrice}</h4>	
 				<br>
 					<span>選擇數量:<select id="productCount" name="productCount">
 						<option value="">請選擇</option>
