@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-lg-2 mb-4">
           <div class="list-group"> 
-            <a class="list-group-item pointer text-primary replyMessage">回復留言</a>
+            <a class="list-group-item pointer text-primary replyMessage">回覆留言</a>
             <a class="list-group-item pointer text-primary questionManage">問答集管理</a>
             <a class="list-group-item pointer text-primary storeReport">商店客訴</a>
             <a class="list-group-item pointer text-primary productReport">商品客訴</a>
@@ -46,7 +46,7 @@
             <a class="list-group-item pointer text-primary homePageManage">首頁管理</a>
             <a class="list-group-item pointer text-primary mallManage">商城管理</a>
             <a class="list-group-item pointer text-primary websiteReport">報表</a>
-    
+     
     
           </div>
         </div>
@@ -64,6 +64,8 @@
     </footer>
 		<script src="<c:url value='/backstage/js/backstage.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageLive.js'/> "></script>
+		<script src="<c:url value='/backstage/js/backstageAdvice.js'/> "></script>
 		<script src="<c:url value='/backstage/js/vic.js'/> "></script>
+ 
   </body>
 </html>

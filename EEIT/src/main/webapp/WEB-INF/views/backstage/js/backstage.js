@@ -110,7 +110,6 @@ $(document).ready(function () {
     })
     
     
-    
     $(document).on("click",'#replyMemberReportButton',function(){
     	
     	
@@ -133,31 +132,8 @@ $(document).ready(function () {
     			alert(e);
     		}
     		
-    		
-    		
-    		
-    		
-    		
     	})
-    	
     	
     })
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 })

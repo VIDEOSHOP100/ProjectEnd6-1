@@ -28,6 +28,7 @@
 	border-radius: 10px; /*圓角*/
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
+	z-index: 999;
 }
 button {
     background-color: white;
