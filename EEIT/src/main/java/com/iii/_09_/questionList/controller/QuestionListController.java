@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iii._01_.MemberReport.bean.MemberReportBean;
 import com.iii._09_.questionList.model.QuestionListBean;
 import com.iii._09_.questionList.model.QuestionListService;
 
@@ -66,6 +68,13 @@ public class QuestionListController {
 		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
 		map.put("questionListBean", questionListBeanList);
 		return "questionList/questionMain";
+	}
+	
+	@RequestMapping(value = "/getAllQuestionList" ,method = RequestMethod.GET)
+	public @ResponseBody List<QuestionListBean> getAllQuestionList() {
+//	public @ResponseBody List<MemberReportBean> getAllMemberReport() {	
+		List<QuestionListBean> questionListBeanList = questionListService.getAllQuestionListBean();
+		return questionListBeanList;
 	}
 	
 	//新增

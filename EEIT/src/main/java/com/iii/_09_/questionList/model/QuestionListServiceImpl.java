@@ -36,4 +36,10 @@ public class QuestionListServiceImpl implements QuestionListService{
 		return questionListDAO.selectQuestionList();
 	}
 
+	@Override
+	public List<QuestionListBean> getAllQuestionListBean() {
+		
+		return questionListDAO. getAllQuestionListBean();
+	}
+
 }

@@ -12,4 +12,6 @@ public interface QuestionListDAO {
 	public QuestionListBean selectQuestionListBySeqNo(Integer questionListSeqNo);
 	
 	public List<QuestionListBean> selectQuestionList();
+	
+	public List<QuestionListBean> getAllQuestionListBean();
 }
