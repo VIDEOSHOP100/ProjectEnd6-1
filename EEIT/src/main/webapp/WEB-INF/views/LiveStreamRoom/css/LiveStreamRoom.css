@@ -185,11 +185,13 @@ div#users-contain table td, div#users-contain table th {
 	display: block;
 	overflow: auto;
 }
+.reasontitle{
+	
+font-weight: bolder;
+}
 /* .chatrow{ */
 /* 	border: solid red 1px; */
 /* 	display: block;	 */
 /* } */
-.img750{
-/* 	height: 750px; */
-	width: 300px; 
-}
+
+

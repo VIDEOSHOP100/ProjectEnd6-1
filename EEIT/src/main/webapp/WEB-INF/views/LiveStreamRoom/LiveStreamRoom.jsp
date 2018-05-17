@@ -12,8 +12,11 @@
 <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 <link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/>" rel="stylesheet">
 <style>
+.reasontitle{
+	
+font-weight: bolder;
 
-  
+}
 /* .card-bodycontroller{  */
 /*  	width: 100%;  */
 /* 	height: 407px;   */
@@ -49,7 +52,7 @@
 </style>
 </head>
 <body>
-<p>直播主:${sb.account}</p> 
+<p class="uploadaccount hidden">${sb.account}</p> 
 <%-- <p>${LiveStream.liveStreamSeqNo}</p> --%>
 
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
@@ -63,6 +66,12 @@
   
         <small>的直播間</small>
         <small>開始時間:${sb.liveStart}</small>
+        <c:if test="${!empty LoginOK.account}">
+        <button id="memberReportButton"
+							class="btn btn-outline-info memberReportButton memberReport"
+							type="button" data-toggle="modal" data-target="#popMemberReport">檢舉${sb.account}</button>
+				</c:if>			
+							
 <%-- 		<small>結束時間:${sb.liveEnd}</small> --%> 
 
       </h1>
@@ -263,6 +272,94 @@
 		</div>
 	</div>
 <!--// 拍賣表格 -->
+
+<!-- 檢舉開始 -->
+	<div class="modal fade" id="popMemberReport" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">檢舉${sb.account}</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+
+					<form:form id="LiveStreamReport" method="POST"
+						action="${pageContext.request.contextPath}/LiveStreamReport"
+						modelAttribute="liveStreamReportBean" class=""
+						enctype="multipart/form-data">
+
+
+
+						<div class="form-group">
+							<form:input path="reportTitle" type="text"
+								class="form-control input-sm" id="reportTitle"
+								placeholder="檢舉標題" />
+						</div>
+						<p class="reasontitle modal-title">檢舉原因(必填)</p>
+						
+					 <form:select path="reportType" id="reportType">
+
+    <form:option value="1">使用暴力或恐嚇傷害他人</form:option>
+    <form:option value="2">騷擾</form:option>
+    <form:option value="3">仇恨行為</form:option>
+    <form:option value="4">色情或性暗示內容</form:option>
+    <form:option value="5">其他違反服務條款的行為</form:option>
+    <form:option value="6">粗鄙的使用者名稱</form:option>
+    <form:option value="7">極端暴力、血腥或淫褻的內容</form:option>
+
+  						</form:select> 
+  						<br><br>
+			<p class="reasontitle modal-title">描述(必填)</p>
+						<div class="form-group">
+							<form:textarea path="reportContent" type="text"
+								class="form-control input-sm" id="reportContent"
+								placeholder="檢舉內容" />
+						</div>
+						<!-- 						<div class="form-group"> -->
+						<!-- 							附加照片 -->
+						<%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
+						<!-- 						</div> -->
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-outline-info" id="cancel"
+						data-dismiss="modal">取消</button>
+					<button id="reportSubmit" type="button" class="btn btn-outline-info">確認檢舉</button>
+
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- 檢舉結束 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- 叫價表格 -->
 <!-- <div class="modal fade" id="addBidForm" tabindex="-1" role="dialog" -->
 <!-- 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->

@@ -173,7 +173,29 @@ function updateScroll(){
 
 }
 
-
+$('#reportSubmit').click(function(){
+	
+	var reportTitle = $('#reportTitle').val();
+	var reportContent = $('#reportContent').val();
+	var reportType = $('#reportType').val();
+	var accountTo = $('.uploadaccount').text();
+	$.ajax({
+		type:"POST",
+		url:"/EEIT/LiveStreamReport",
+		data:{accountTo:accountTo , reportTitle:reportTitle , reportContent:reportContent,reportType:reportType},
+		timeout: 600000,
+		success:function(){
+//			$('#memberReportButton').attr("disabled","disabled").text("已檢舉");
+			$('#cancel').trigger("click");
+			alert("檢舉直播主:"+accountTo+"成功")
+		},
+		error: function (e) {
+			console.log("ERROR : ", e);
+			alert(e);
+		}
+	})
+	
+})
 
 
 
