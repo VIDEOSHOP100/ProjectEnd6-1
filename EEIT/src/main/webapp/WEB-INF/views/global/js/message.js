@@ -27,7 +27,7 @@ $(document).ready(function() {
                 right = 220
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus popup"><div class="myPopup">貼圖</div><button class="btn imageButton"><i class="fas fa-image"></i></button><button class="btn stickerButton"><i class="far fa-smile"></i></button><button class="btn fileButton"><i class="far fa-file-alt"></i></button><button class="btn videoButton"><i class="fas fa-video"></i></button></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').prepend($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><textarea rows="4" cols="50"></textarea><div class="messagePlus popup"><div class="myPopup">貼圖</div><button class="btn imageButton"><i class="fas fa-image"></i></button><button class="btn stickerButton"><i class="far fa-smile"></i></button><button class="btn fileButton"><i class="far fa-file-alt"></i></button><button class="btn videoButton"><i class="fas fa-video"></i></button></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
                 $.ajax({
@@ -52,7 +52,7 @@ $(document).ready(function() {
             } else {
                 var name = $(this).attr('name');
                 $('div[name=' + right + ']').remove()
-                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><input type="text"><div class="messagePlus popup"><div class="myPopup"><p>貼圖</p></div><button class="btn imageButton"><i class="fas fa-image"></i></button><button class="btn stickerButton"><i class="far fa-smile"></i></button><button class="btn fileButton"><i class="far fa-file-alt"></i></button><button class="btn videoButton"><i class="fas fa-video"></i></button></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
+                $('.chatplace').append($('<div id = "' + id + '1"><div class="box-head box-headNoneChangeColor"><span class="receiverAccount"> ' + id + '</span><span><i class="fas fa-exclamation-circle alertMessageNumber"></i><span class="unreadNumber">0</span></span><button><i class="fas fa-times"></i></button></div><div class="box-body"></div><div class="box-message"><textarea rows="4" cols="50"></textarea><div class="messagePlus popup"><div class="myPopup"><p>貼圖</p></div><button class="btn imageButton"><i class="fas fa-image"></i></button><button class="btn stickerButton"><i class="far fa-smile"></i></button><button class="btn fileButton"><i class="far fa-file-alt"></i></button><button class="btn videoButton"><i class="fas fa-video"></i></button></div></div></div>').addClass('box box-open').css({ "right": right + "px" }).attr('name', right))
                 right = right + 320;
                 count++;
                 $.ajax({
@@ -115,7 +115,7 @@ $(document).ready(function() {
 			$(this).removeClass('box-headAlert box-headChangeColor').addClass('box-headNoneChangeColor');
 		}
     })
-    $(document).on('keyup','.box-message>input',function(e){
+    $(document).on('keyup','.box-message>textarea',function(e){
         if(e.keyCode == 13)
         {
 			if($.trim($(this).val())!=""){
@@ -147,37 +147,43 @@ $(document).ready(function() {
 				var docFrag = $(document.createDocumentFragment());
 				$.each(datareturn.messageBeanList, function (idx,data) {
 					var cell1;
-					var commentTime = new Date(data.messageDate);
-					var time = commentTime.getFullYear() + '-' + ( commentTime.getMonth() + 1 ) + '-' + commentTime.getDate() + "  " + commentTime.getHours() + ":" + commentTime.getMinutes() + ":" + commentTime.getSeconds()
+					var commentTime= new Date(data.messageDate)
+					var time;
+					time =  commentTime.getFullYear()
+					             + '-' + ('0' + (commentTime.getMonth()+1)).slice(-2)
+					             + '-' + ('0' + commentTime.getDate()).slice(-2)
+					             + " " + ('0'  + commentTime.getHours()).slice(-2)+':'
+					             + ('0'  + commentTime.getMinutes()).slice(-2)+':'
+					             + ('0' + commentTime.getSeconds()).slice(-2);
 					if(data.account == senderAccount){
 						if(data.messageType == 'text'){
-							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + data.account + ": " + data.messageArticle + '</p>')
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 19)+'</p><p class="me">' + data.account + ": " + data.messageArticle + '</p>')
 						}else if(data.messageType == 'sticker'){
-							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<img height="75px" width="75px" src="/EEIT/getImage/sticker/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 19)+'</p><p class="me">' + '<img height="75px" width="75px" src="/EEIT/getImage/sticker/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
 						}else if(data.messageType == 'image'){
-							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<i class="fas fa-images"></i><a class="messageFile" href="/EEIT/getFile/messageImage/'+ data.messageArticle + '"><img height="150px" width="120px" src="/EEIT/getImage/messageImage/'+ data.messageArticle +'" name="'+ data.messageArticle +'"></a>')
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 19)+'</p><p class="me">' + '<i class="fas fa-images"></i><a class="messageFile" href="/EEIT/getFile/messageImage/'+ data.messageArticle + '"><img height="150px" width="120px" src="/EEIT/getImage/messageImage/'+ data.messageArticle +'" name="'+ data.messageArticle +'"></a>')
 						}else if(data.messageType == 'file'){
 							var key = data.messageArticle.indexOf(',')
 							var seqNo = data.messageArticle.substring(0, key)
 							var fileName = data.messageArticle.substring(key + 1)
-							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<a class="messageFile" href="/EEIT/getFile/messageFile/'+ seqNo +'" name="'+ seqNo +'"><i class="far fa-file"></i>'+ fileName +'</a></p>')
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 19)+'</p><p class="me">' + '<a class="messageFile" href="/EEIT/getFile/messageFile/'+ seqNo +'" name="'+ seqNo +'"><i class="far fa-file"></i>'+ fileName +'</a></p>')
 						}else if(data.messageType == 'video'){
-							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 18)+'</p><p class="me">' + '<video controls="controls" class="messageVideo" height="150px" width="200px" src="/EEIT/getVideo/messageVideo/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+							cell1 = $('<p class="messageTimeMe">'+ time.substring(0, 19)+'</p><p class="me">' + '<video controls="controls" class="messageVideo" height="150px" width="200px" src="/EEIT/getVideo/messageVideo/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
 						}
 					}else if(data.account == receiverAccount){
 						if(data.messageType == 'text'){
-							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">'+ data.account + ": " + data.messageArticle + '</p>')
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 19)+'</p><p class="him">'+ data.account + ": " + data.messageArticle + '</p>')
 						}else if(data.messageType == 'sticker'){
-							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<img  height="75px" width="75px" src="/EEIT/getImage/sticker/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 19)+'</p><p class="him">' + '<img  height="75px" width="75px" src="/EEIT/getImage/sticker/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
 						}else if(data.messageType == 'image'){
-							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<i class="fas fa-images"></i><a class="messageFile" href="/EEIT/getFile/messageImage/'+ data.messageArticle + '"><img height="150px" width="120px" src="/EEIT/getImage/messageImage/'+ data.messageArticle +'" name="'+ data.messageArticle +'"></a>')
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 19)+'</p><p class="him">' + '<i class="fas fa-images"></i><a class="messageFile" href="/EEIT/getFile/messageImage/'+ data.messageArticle + '"><img height="150px" width="120px" src="/EEIT/getImage/messageImage/'+ data.messageArticle +'" name="'+ data.messageArticle +'"></a>')
 						}else if(data.messageType == 'file'){
 							var key = data.messageArticle.indexOf(',')
 							var seqNo = data.messageArticle.substring(0, key)
 							var fileName = data.messageArticle.substring(key + 1)
-							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<a class="messageFile" href="/EEIT/getFile/messageFile/'+ seqNo +'" name="'+ seqNo +'"><i class="far fa-file"></i>'+ fileName +'</a></p>')
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 19)+'</p><p class="him">' + '<a class="messageFile" href="/EEIT/getFile/messageFile/'+ seqNo +'" name="'+ seqNo +'"><i class="far fa-file"></i>'+ fileName +'</a></p>')
 						}else if(data.messageType == 'video'){
-							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 18)+'</p><p class="him">' + '<video controls="controls" class="messageVideo" height="150px" width="200px" src="/EEIT/getVideo/messageVideo/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
+							cell1 = $('<p class="messageTimeHim">'+ time.substring(0, 19)+'</p><p class="him">' + '<video controls="controls" class="messageVideo" height="150px" width="200px" src="/EEIT/getVideo/messageVideo/'+ data.messageArticle +'" name="'+ data.messageArticle +'">')
 						}
 					}
 					docFrag.append(cell1);
@@ -227,8 +233,24 @@ $(document).ready(function() {
     			    stompClient.subscribe('/target/notification/subscription/' + $.trim(data.account) , function(notificationreturn){
     			    	var notificationAccountreturn = JSON.parse(notificationreturn.body).account;
     			    	var notificationArticlereturn = JSON.parse(notificationreturn.body).notificationArticle;
-    			    	
-    			    	$('.notification-dropdown-menu').prepend($('<a class="dropdown-item" href="">'+notificationAccountreturn+ ': ' + notificationArticlereturn + '</a>'))
+    			    	var notificationDatereturn = JSON.parse(notificationreturn.body).notificationDate;
+    			    	var notificationTypereturn = JSON.parse(notificationreturn.body).notificationType;
+    			    	var notificationEventPKreturn = JSON.parse(notificationreturn.body).eventPK;
+    			    	var uploadDate= new Date(notificationDatereturn)
+    					var MyDateString;
+    					MyDateString =  uploadDate.getFullYear()
+    					             + '-' + ('0' + (uploadDate.getMonth()+1)).slice(-2)
+    					             + '-' + ('0' + uploadDate.getDate()).slice(-2)
+    			    	$('.notification-dropdown-menu').prepend($('<a class="dropdown-item notificationItemLink" href="/EEIT/'+ notificationTypereturn +'/'+ notificationEventPKreturn +'">'+
+																			'<div class="notificationItem notificationItemAlert">'+
+																			'<img class="notificationItemImage" height="70px" width="30px" src="/EEIT/getImage/member/'+ notificationAccountreturn +'">'+
+																			'<div class="notificationItemInner">'+
+																				'<p class="notificationItemAccount">'+ notificationAccountreturn +'</p>'+
+																				'<p class="notificationItemArticle" title="'+ notificationArticlereturn +'">'+ notificationArticlereturn +'</p>'+
+																				'<p class="notificationItemTime">'+ MyDateString +'</p>'+
+																			'</div>'+
+																		'</div>'+
+																	'</a>'))
     			    	if(!notificationKey){
     			    		notificationKey = setInterval(function(){ 
         			    		if($('.notification').is('.notificationAlert')){

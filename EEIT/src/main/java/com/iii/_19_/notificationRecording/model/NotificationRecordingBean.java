@@ -22,9 +22,11 @@ public class NotificationRecordingBean {
 	private Timestamp notificationDate;
 	private Timestamp notificationReadDate;
 	private String notificationArticle;
+	private String eventPK;
+
 	public NotificationRecordingBean(Integer notificationRecordingSeqNo, String account, String receiverAccount,
 			Integer notificationSeqNo, String notificationRecordingStatus, Timestamp notificationDate,
-			Timestamp notificationReadDate, String notificationArticle) {
+			Timestamp notificationReadDate, String notificationArticle, String eventPK) {
 		super();
 		this.notificationRecordingSeqNo = notificationRecordingSeqNo;
 		this.account = account;
@@ -34,68 +36,94 @@ public class NotificationRecordingBean {
 		this.notificationDate = notificationDate;
 		this.notificationReadDate = notificationReadDate;
 		this.notificationArticle = notificationArticle;
+		this.eventPK = eventPK;
 	}
+
 	public NotificationRecordingBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Integer getNotificationRecordingSeqNo() {
-		return notificationRecordingSeqNo;
-	}
-	public void setNotificationRecordingSeqNo(Integer notificationRecordingSeqNo) {
-		this.notificationRecordingSeqNo = notificationRecordingSeqNo;
-	}
-	public String getAccount() {
-		return account;
-	}
-	public void setAccount(String account) {
-		this.account = account;
-	}
-	public String getReceiverAccount() {
-		return receiverAccount;
-	}
-	public void setReceiverAccount(String receiverAccount) {
-		this.receiverAccount = receiverAccount;
-	}
-	public Integer getNotificationSeqNo() {
-		return notificationSeqNo;
-	}
-	public void setNotificationSeqNo(Integer notificationSeqNo) {
-		this.notificationSeqNo = notificationSeqNo;
-	}
-	public String getNotificationRecordingStatus() {
-		return notificationRecordingStatus;
-	}
-	public void setNotificationRecordingStatus(String notificationRecordingStatus) {
-		this.notificationRecordingStatus = notificationRecordingStatus;
-	}
-	public Timestamp getNotificationDate() {
-		return notificationDate;
-	}
-	public void setNotificationDate(Timestamp notificationDate) {
-		this.notificationDate = notificationDate;
-	}
-	public Timestamp getNotificationReadDate() {
-		return notificationReadDate;
-	}
-	public void setNotificationReadDate(Timestamp notificationReadDate) {
-		this.notificationReadDate = notificationReadDate;
-	}
-	public String getNotificationArticle() {
-		return notificationArticle;
-	}
-	public void setNotificationArticle(String notificationArticle) {
-		this.notificationArticle = notificationArticle;
-	}
+
 	@Override
 	public String toString() {
 		return "NotificationRecordingBean [notificationRecordingSeqNo=" + notificationRecordingSeqNo + ", account="
 				+ account + ", receiverAccount=" + receiverAccount + ", notificationSeqNo=" + notificationSeqNo
 				+ ", notificationRecordingStatus=" + notificationRecordingStatus + ", notificationDate="
 				+ notificationDate + ", notificationReadDate=" + notificationReadDate + ", notificationArticle="
-				+ notificationArticle + "]";
+				+ notificationArticle + ", eventPK=" + eventPK + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
-	
+	public Integer getNotificationRecordingSeqNo() {
+		return notificationRecordingSeqNo;
+	}
+
+	public void setNotificationRecordingSeqNo(Integer notificationRecordingSeqNo) {
+		this.notificationRecordingSeqNo = notificationRecordingSeqNo;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public String getReceiverAccount() {
+		return receiverAccount;
+	}
+
+	public void setReceiverAccount(String receiverAccount) {
+		this.receiverAccount = receiverAccount;
+	}
+
+	public Integer getNotificationSeqNo() {
+		return notificationSeqNo;
+	}
+
+	public void setNotificationSeqNo(Integer notificationSeqNo) {
+		this.notificationSeqNo = notificationSeqNo;
+	}
+
+	public String getNotificationRecordingStatus() {
+		return notificationRecordingStatus;
+	}
+
+	public void setNotificationRecordingStatus(String notificationRecordingStatus) {
+		this.notificationRecordingStatus = notificationRecordingStatus;
+	}
+
+	public Timestamp getNotificationDate() {
+		return notificationDate;
+	}
+
+	public void setNotificationDate(Timestamp notificationDate) {
+		this.notificationDate = notificationDate;
+	}
+
+	public Timestamp getNotificationReadDate() {
+		return notificationReadDate;
+	}
+
+	public void setNotificationReadDate(Timestamp notificationReadDate) {
+		this.notificationReadDate = notificationReadDate;
+	}
+
+	public String getNotificationArticle() {
+		return notificationArticle;
+	}
+
+	public void setNotificationArticle(String notificationArticle) {
+		this.notificationArticle = notificationArticle;
+	}
+
+	public String getEventPK() {
+		return eventPK;
+	}
+
+	public void setEventPK(String eventPK) {
+		this.eventPK = eventPK;
+	}
 
 }

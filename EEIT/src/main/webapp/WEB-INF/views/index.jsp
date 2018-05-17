@@ -72,7 +72,7 @@
 <!-- 				<iframe width="1950" height="700" -->
 <!-- 					src="https://www.youtube.com/embed/FhUgjzdCflQ?autoplay=1" -->
 <!-- 					frameborder="0"; encrypted-media" allowfullscreen></iframe> -->
-				<video controlsList="nodownload" controls="controls" class="indexVideo" autoplay width="1340" height="700" src="${pageContext.request.contextPath}/getVideo/video/1" ></video>
+				<video controlsList="nodownload" muted controls="controls" class="indexVideo" autoplay width="1340" height="700" src="${pageContext.request.contextPath}/getVideo/video/1" ></video>
 				<div class="carousel-caption d-none d-md-block">
 					<h3>First Slide</h3>
 					<p>This is a description for the first slide.</p>

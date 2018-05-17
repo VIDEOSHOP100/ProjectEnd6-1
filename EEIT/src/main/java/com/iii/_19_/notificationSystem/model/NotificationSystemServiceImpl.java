@@ -45,7 +45,7 @@ public class NotificationSystemServiceImpl implements NotificationSystemService 
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		List<SubscriptionUploaderBean> SubscriptionUploaderBeanList = subscriptionUploaderDAO.getSubscriptionUploaderByUploaderAccount(notificationSystemBean.getAccount());
 		for(SubscriptionUploaderBean subscriptionUploaderBean : SubscriptionUploaderBeanList) {
-			NotificationRecordingBean notificationRecordingBean = new NotificationRecordingBean(0, subscriptionUploaderBean.getUploaderAccount(), subscriptionUploaderBean.getAccount(), notificationSeqNo, "unread", now, null,notificationSystemBean.getNotificationArticle());
+			NotificationRecordingBean notificationRecordingBean = new NotificationRecordingBean(0, subscriptionUploaderBean.getUploaderAccount(), subscriptionUploaderBean.getAccount(), notificationSeqNo, "unread", now, null,notificationSystemBean.getNotificationArticle(),notificationSystemBean.getEventPK());
 			Integer notificationRecordingSeqNo = notificationRecordingDAO.saveNotificationRecording(notificationRecordingBean);
 		}
 		return notificationSeqNo;
