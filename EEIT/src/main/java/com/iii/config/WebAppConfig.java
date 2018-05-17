@@ -3,11 +3,14 @@ package com.iii.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -15,7 +18,9 @@ import org.springframework.web.servlet.view.JstlView;
 import com.iii._01_.Member.interceptor.LoginInterceptor;
 import com.iii._19_.messageSystem.intercepter.MessageSystemIntercepter;
 import com.iii._19_.notificationRecording.intercepter.NotificationRecordingIntercepter;
+import com.iii.view.ItextPdfView;
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+
 
 @Configuration
 @EnableWebMvc
@@ -96,4 +101,22 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 //		registry.addResourceHandler("/global/vendor/bootstrap/css/**").addResourceLocations("/WEB-INF/views/global/vendor/bootstrap/css/");
 
 	}
+//	 @Override
+//	    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+//	        configurer.defaultContentType(MediaType.TEXT_HTML)
+//	                .parameterName("type")
+//	                .favorParameter(true)
+//	                .ignoreUnknownPathExtensions(false)
+//	                .ignoreAcceptHeader(false)
+//	                .useJaf(true);
+//	    }
+
+//	    @Override
+//	    public void configureViewResolvers(ViewResolverRegistry registry) {
+//	        registry.jsp("/WEB-INF/views/", ".jsp");
+//	        registry.enableContentNegotiation(new ItextPdfView()
+//	                // Use either ItextPdfView or LowagiePdfView
+//	                // new LowagiePdfView()
+//	        );
+//	    }
 }
