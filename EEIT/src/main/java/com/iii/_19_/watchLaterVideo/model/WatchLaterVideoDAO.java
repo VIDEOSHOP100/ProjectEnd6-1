@@ -18,4 +18,6 @@ public interface WatchLaterVideoDAO {
 	public List<WatchLaterVideoBean> getAllWatchLaterVideo();
 	
 	public WatchLaterVideoBean getWatchLaterVideoBySeqNo(Integer watchLaterVideoSeqNo);
+	
+	public List<VideoBean> getWatchLaterVideoByPageNo(Integer pageNo, String account);
 }

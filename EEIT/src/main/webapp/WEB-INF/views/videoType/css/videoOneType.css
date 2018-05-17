@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.pageLoadingImage {
+	position: absolute; 
+	margin: -50px;
+	padding : -50px;
+}
+.pageLoadingNone{
+	visibility: hidden;
+}
+.pageLoading{
+	text-align: center;
+}

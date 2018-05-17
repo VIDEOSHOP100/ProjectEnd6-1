@@ -27,6 +27,8 @@ import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryBean;
 import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryService;
+import com.iii._05_.liveStreamReport.model.liveStreamReportBean;
+import com.iii._05_.liveStreamReport.model.liveStreamReportService;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 
@@ -41,7 +43,8 @@ public class InputLiveStreamTimeController {
 	LiveStreamHistoryService LiveStreamHistoryService;
 	@Autowired
 	ProductSaleService productSaleService;
-	
+	@Autowired
+	liveStreamReportService liveStreamReportService;
 //	@RequestMapping("/LiveStream")
 //	public String getLiveStreamsBySeqNo(@RequestParam("LiveNo") Integer LiveNo,Model model) {
 //		
@@ -90,8 +93,10 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb : AllProductList) {
 			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
 		}
-		
+		//增加一個REPORTBean
+		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
 	
+		map.put("liveStreamReportBean", liveStreamReportBean);
 //		map.put("AuctionSeqNoa", AuctionSeqNoNameMap);
 		map.put("AllProductLista", productNameMap);
 //		map.put("hb", LiveStreamHistoryBean);

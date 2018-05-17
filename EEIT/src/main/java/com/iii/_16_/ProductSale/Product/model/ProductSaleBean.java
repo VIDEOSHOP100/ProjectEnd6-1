@@ -174,6 +174,10 @@ public class ProductSaleBean {
 	public void setAuctionSeqNo(Integer auctionSeqNo) {
 		this.auctionSeqNo = auctionSeqNo;
 	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "ProductSaleBean [productSeqNo=" + productSeqNo + ", proName=" + proName + ", proCategorySeqNo="
@@ -190,7 +194,7 @@ public class ProductSaleBean {
 	public ProductSaleBean(Integer productSeqNo, String proName, Integer proCategorySeqNo, String proBrand,
 			long proPrice, Integer proStatus, Integer proPayTypeSeqNo, Integer proPcs, String proDescription,
 			Integer proTransSeqNo, Integer proAdverSeqNo, java.util.Date proDate, Integer picSeqNo, String account,
-			Integer auctionStatus, String auctionPic, Integer auctionSeqNo) {
+			Integer auctionStatus, String auctionPic, Integer auctionSeqNo, MultipartFile picFile) {
 		super();
 		this.productSeqNo = productSeqNo;
 		this.proName = proName;
@@ -209,6 +213,10 @@ public class ProductSaleBean {
 		this.auctionStatus = auctionStatus;
 		this.auctionPic = auctionPic;
 		this.auctionSeqNo = auctionSeqNo;
+		this.picFile = picFile;
 	}
-	
+
+
+
+
 }

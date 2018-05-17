@@ -434,3 +434,41 @@
 	cursor: pointer;
 	font-size: 14px;
 }
+
+.introducedVideo{
+	height: 1340px;
+	overflow: hidden;
+}
+
+.introducedVideoShowButton{
+	background-color: gray;
+	text-align: center;
+	height: 30px;
+	cursor: pointer;
+}
+
+.showReplyButton{
+	text-align:justify;
+	font-weight:900;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.uploaderLink{
+	color:  black;
+}
+.uploaderLink:hover{
+	color:  black;
+	text-decoration: none;
+}
+
+.allCommentsHide{
+	height: 1050px;
+	overflow: hidden;
+}
+.showAllCommentButton{
+	background-color: gray;
+	text-align: center;
+	height: 30px;
+	cursor: pointer;
+}

@@ -25,3 +25,28 @@
 	color : gray;
 	line-height: normal;
 }
+
+/* .watchHistoryVideoAccount{ */
+/* 	color: black; */
+/* } */
+
+.uploaderLink{
+	color: black;
+}
+.uploaderLink:hover{
+	color: black;
+	text-decoration:none
+	
+}
+
+.pageLoadingImage {
+	position: absolute; 
+	margin: -50px;
+	padding : -50px;
+}
+.pageLoadingNone{
+	visibility: hidden;
+}
+.pageLoading{
+	text-align: center;
+}

@@ -36,3 +36,15 @@
 body > div.container > div > div > div > div > div > button{
 	float : right;
 }
+
+.pageLoadingImage {
+	position: absolute; 
+	margin: -50px;
+	padding : -50px;
+}
+.pageLoadingNone{
+	visibility: hidden;
+}
+.pageLoading{
+	text-align: center;
+}

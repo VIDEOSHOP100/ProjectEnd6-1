@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -80,7 +80,9 @@
 									</button>
 								</c:if>
 							</div>
-							<p>上傳日期:${video.videoUploadDate}
+							<c:set var="string1" value="${video.videoUploadDate}"/>
+							<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+							<p>上傳日期:${string2}
 								<c:if test="${LoginOK.account != video.account }">
 									<c:if test = "${!empty subscriptionUploaderStatus}">
 										<button name="subscription" type="button" value="" class="btn btn-danger subscriptionButton subscription">
@@ -114,7 +116,7 @@
 							</form>
 						</div>
 					</div>
-					<div id="allComments">
+					<div id="allComments" class="allCommentsHide">
 						<c:forEach var="aCommentBean" items="${commentVideo}" >
 							<div class="media mb-4">
 								<img class="d-flex mr-3 rounded-circle" src="${pageContext.request.contextPath}/getImage/member/${aCommentBean.account}" alt="" height="50px" width="50px">
@@ -123,7 +125,9 @@
 										<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aCommentBean.account}' />">
 											${aCommentBean.account}
 										</a>
-										<span>${aCommentBean.commentDate}
+										<c:set var="string1" value="${aCommentBean.commentDate}"/>
+										<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+										<span>${string2} 
 											<span class="hide">${aCommentBean.commentVideoSeqNo}</span>
 										</span>
 									</h5>
@@ -165,15 +169,20 @@
 									</p>
 										
 <!-- 										回復 -->
+									<div class="media mb-4">
+									<p class="showReplyButton">顯示回復</p>
+									</div>
 									<c:forEach var="aReplyCommentVideoBean" items="${aCommentBean.replyCommentVideoBeanList}">
-										<div class="media mb-4">
+										<div class="media mb-4 replyBlock">
 											<img class="d-flex mr-3 rounded-circle" height="50px" width="50px" src="/EEIT/getImage/member/${aReplyCommentVideoBean.account}">
 											<div class="media-body">
 												<h5 class="mt-0">
 													<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aCommentBean.account}' />">
 														${aReplyCommentVideoBean.account}
 													</a>
-													<span>${aReplyCommentVideoBean.replyCommentDate}
+													<c:set var="string1" value="${aReplyCommentVideoBean.replyCommentDate}"/>
+													<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+													<span>${string2}
 														<span class="hide">${aReplyCommentVideoBean.replyCommentVideoSeqNo}</span>
 													</span>
 													
@@ -220,34 +229,40 @@
 								</div>
 							</div>
 						</c:forEach>
-					
-					
+					</div>
+					<div class="showAllCommentButton">
+						<p>顯示所有留言</p>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-3">
-				<h1>推薦影片</h1>
-				<c:forEach var="uploaderVideos" items="${uploaderVideo}">
-					<div class="media mt-4 videoBlock">
-						<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}' />">
-							<img class="d-flex mr-3" height="80px" width="170px" src='${pageContext.request.contextPath}/getImage/video/${uploaderVideos.videoSeqNo}'>
-						</a>
-						<div class="media-body">
-							<div class="advicedVideoTitle">
-								<h6 class="mt-0">
-									<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}' />">
-										<p>${uploaderVideos.videoTitle}</p>
-									</a>
-								</h6>
+				<div class="introducedVideo">
+					<h1>推薦影片</h1>
+					<c:forEach var="uploaderVideos" items="${uploaderVideo}">
+						<div class="media mt-4 videoBlock">
+							<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}' />">
+								<img class="d-flex mr-3" height="80px" width="170px" src='${pageContext.request.contextPath}/getImage/video/${uploaderVideos.videoSeqNo}'>
+							</a>
+							<div class="media-body">
+								<div class="advicedVideoTitle">
+									<h6 class="mt-0">
+										<a href="<c:url value='/videoRoom/${uploaderVideos.videoSeqNo}' />">
+											<p>${uploaderVideos.videoTitle}</p>
+										</a>
+									</h6>
+								</div>
+								<p class="advicedVideoUploaderAccount videoSmallWords">
+									<a class="uploaderLink"
+										href="<c:url value='/uploaderHomePage/${uploaderVideos.account}' />">${uploaderVideos.account}</a>
+								</p>
+								<p class="videoSmallWords">觀看次數:${uploaderVideos.videoViews}</p>
 							</div>
-							<p class="advicedVideoUploaderAccount videoSmallWords">
-								<a class="uploaderLink"
-									href="<c:url value='/_18_uploaderRoom/UploaderRoom.do?uploaderAccount=${uploaderVideos.account}' />">${uploaderVideos.account}</a>
-							</p>
-							<p class="videoSmallWords">觀看次數:${uploaderVideos.videoViews}</p>
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
+				</div>
+				<div>
+					<p class="introducedVideoShowButton">顯示更多推薦影片</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -272,13 +287,13 @@
 <!-- 	   	投訴已經送出 -->
 <!-- 	  </p> -->
 <!-- 	</div> -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">
-				Copyright &copy; Your Website 2018
-			</p>
-		</div>
-	</footer>
+<!-- 	<footer class="py-5 bg-dark"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<p class="m-0 text-center text-white"> -->
+<!-- 				Copyright &copy; Your Website 2018 -->
+<!-- 			</p> -->
+<!-- 		</div> -->
+<!-- 	</footer> -->
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
