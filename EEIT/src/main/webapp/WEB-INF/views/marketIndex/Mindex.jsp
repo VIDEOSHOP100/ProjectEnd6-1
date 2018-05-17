@@ -82,16 +82,7 @@ ul li {
 	text-align: right;
 }
 
-#MyBlog {
-	position: fixed; /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
-	top: 50%; /*設置垂直位置*/
-	right: -100px; /*設置水平位置，依所放的內容多寡需要自行手動調整*/
-	background: #ffffff; /*背景顏色*/
-	padding: 10px 20px;
-	border-radius: 10px; /*圓角*/
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-}
+
 </style>
 </head>
 <body>
