@@ -9,8 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._01_.AdviceReport.bean.AdviceReportBean;
@@ -61,6 +63,30 @@ public class AdviceReportController {
 
 		return list;
 	}
+	
+	@RequestMapping(value = "/adviceReport/{adviceReportSeqNo}", method = RequestMethod.GET)
+	public @ResponseBody AdviceReportBean getadviceReport(
+			@PathVariable("adviceReportSeqNo") Integer adviceReportSeqNo) {
+		return adviceReportService.getAdviceReportByAdviceReportSeqNo(adviceReportSeqNo);
+	}
+	
+	
+	
+	@RequestMapping(value = "/adviceReport" , method=RequestMethod.PUT)
+	public @ResponseBody void updateadviceReport(@RequestParam("replyContent")String replyContent ,  @RequestParam("adviceReportSeqNo")Integer adviceReportSeqNo) {
+		
+		AdviceReportBean arb = adviceReportService.getAdviceReportByAdviceReportSeqNo(adviceReportSeqNo);
+		
+		Timestamp replyTime = new java.sql.Timestamp(System.currentTimeMillis());
+		arb.setReplyTime(replyTime);
+		arb.setReplyContent(replyContent);
+		arb.setAdviceStatus("已處理");
+		adviceReportService.updateAdviceReport(arb);
+		
+	}
+	
+	
+	
 	
 	
 }
