@@ -36,11 +36,11 @@ $(document).ready(function(){
 			
             success: function(data, result) {
             
-            	$("#sel2 form:option").remove();
+            	$(".newOp").remove();
             	var cell1 = $("<option value='' hidden='hidden'>" + "" + "</option>");         	 
             	$('#sel2').append(cell1);
             	$.each(data.countrylist,function(idx,country){
-            			var cell2 = $("<option value='"+ country + "'>" + country + "</option>");         	 
+            			var cell2 = $("<option class='newOp' value='"+ country + "'>" + country + "</option>");         	 
             		$('#sel2').append(cell2);
             	})//.each結束             
       
