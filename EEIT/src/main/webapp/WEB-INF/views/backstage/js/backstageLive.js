@@ -21,13 +21,13 @@ $(document).ready(function () {
                 timeout: 600000,
   
                 success: function (data) {
-                    var tab = $('<table></table>').addClass('table table-striped').html('<thead><tr><th class="text-center">投訴編號</th><th>投訴人</th><th>被投訴人</th><th>標題</th><th>投訴時間</th><th>投訴狀態</th></tr></thead><tbody></tbody>');
+                    var tab = $('<table></table>').addClass('table table-striped').html('<thead><tr><th class="text-center">投訴編號</th><th>投訴人</th><th>被投訴人</th><th>標題</th><th>投訴時間</th><th>投訴狀態</th><th>投訴分類</th></tr></thead><tbody></tbody>');
                     $('#content>h2').after(tab);
                         var docFrag = $(document.createDocumentFragment());
                         console.log(data);
                         $.each(data, function (idx,MemberReport) {
 
-                            var cell1 = $('<td></td>').text(MemberReport.memberReportSeqNo).addClass('pointer text-primary text-center memberReportSeqNo');
+                            var cell1 = $('<td></td>').text(MemberReport.liveStreamReportSeqNo).addClass('pointer text-primary text-center liveStreamReportSeqNo');
                             var cell2 = $('<td></td>').text(MemberReport.accountFrom);
                             var cell3 = $('<td></td>').text(MemberReport.accountTo);
                             var cell4 = $('<td></td>').text(MemberReport.reportTitle);
@@ -35,8 +35,24 @@ $(document).ready(function () {
                             var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
                             var cell5 = $('<td></td>').text(formated);
                             var cell6 = $('<td></td>').text(MemberReport.reportStatus);
-
-                            var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4, cell5, cell6]);
+                            //應該用STRING **
+                            if(MemberReport.reportType ==1){
+                            	var aa = "使用暴力或恐嚇傷害他人"
+                            }if(MemberReport.reportType == 2){
+                            	var aa = "騷擾"
+                            }if(MemberReport.reportType == 3){
+                            	var aa = "仇恨行為"
+                            }if(MemberReport.reportType == 4){
+                            	var aa = "色情或性暗示內容"
+                            }if(MemberReport.reportType == 5){
+                            	var aa = "其他違反服務條款的行為"
+                            }if(MemberReport.reportType == 6){
+                            	var aa = "粗鄙的使用者名稱"
+                            }if(MemberReport.reportType == 7){
+                            	var aa = "極端暴力、血腥或淫褻的內容"
+                            }
+                            var cell7 = $('<td></td>').text(aa);
+                            var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4, cell5, cell6,cell7]);
 
                             docFrag.append(row);
 
@@ -58,7 +74,7 @@ $(document).ready(function () {
     
     	var mrSN;
     
-    $(document).on("click",'.memberReportSeqNo',function(){
+    $(document).on("click",'.liveStreamReportSeqNo',function(){
     	mrSN = $(this).text();
     	    	
     	$('#content').empty();
@@ -66,7 +82,7 @@ $(document).ready(function () {
     	$.ajax({
     		
     		type:"GET",
-    		url:"/EEIT/memberReport/" + mrSN,
+    		url:"/EEIT/liveStreamReport/" + mrSN,
     		
     		success:function(data){
     			var ret = new Date(data.reportTime);
@@ -83,9 +99,9 @@ $(document).ready(function () {
     							'<p>Posted on' + formated + '</p><hr>' +
     							'<p>' + data.reportContent +'</p><hr>' +
     							'<div class="card my-4"><h5 class="card-header">回覆檢舉</h5><div class="card-body">' +
-    							'<form:form method="POST" action="/replyMemberReport" modelAttribute="MemberReportBean" class = "form-horizontal">' + 
-    							'<textarea id="replyMRContent" path="replyContent" class="form-control" rows="3"></textarea>' + 
-    							'<button class = "btn btn-primary" id = "replyMemberReportButton">回覆檢舉</button>' +
+    							'<form:form method="POST" modelAttribute="liveStreamReportBean" class = "form-horizontal">' + 
+    							'<textarea id="replyliveStreamContent" path="replyContent" class="form-control" rows="3"></textarea>' + 
+    							'<button class = "btn btn-primary" id = "replyliveStreamReportButton">回覆檢舉</button>' +
     							'</form>' +
     							'</div>'+
     							'</div>'+
@@ -109,16 +125,16 @@ $(document).ready(function () {
     })
     
     
-    $(document).on("click",'#replyMemberReportButton',function(){
+    $(document).on("click",'#replyliveStreamReportButton',function(){
     	
     	
-    	var reply = $('#replyMRContent').val();
+    	var reply = $('#replyliveStreamContent').val();
     	
     	$.ajax({
     		
     		type:"POST",
-    		url:"/EEIT/memberReport",
-    		data:{ _method : "PUT" ,memberReportSeqNo:mrSN ,replyContent:reply},
+    		url:"/EEIT/replyliveStreamReport",
+    		data:{ _method : "PUT" ,liveStreamReportSeqNo:mrSN ,replyContent:reply},
     		
     		success:function(){
     		
