@@ -1,13 +1,11 @@
-$(document).ready(
-		function() {
-			$('#regAcc').blur(
-					function() {
+$(document).ready(function() {
+	$('#regAcc').blur(
+				function() {
 						
 						var inputAccount = $('#regAcc').val();
 						
 						if((inputAccount).trim()==0){
-							
-							$('regAcc').tooltip("???");
+
 							
 							
 							$.ajax({
@@ -18,6 +16,9 @@ $(document).ready(
 								},
 								success : function(result) {
 	
+									$('#regAcc').popover('show');
+									
+									
 									if (result.result == true) {
 										$('#accountCheck').text("帳號重複")
 												.removeClass("alert alert-success")
@@ -54,7 +55,7 @@ $(document).ready(
 
 			
 			
-			
+//---------------------------------前端登入驗證---------------------------------------
 			
 			$('#modalLoginButton').click(function(){
 			
@@ -95,4 +96,4 @@ $(document).ready(
 			
 			
 			
-		})
+})

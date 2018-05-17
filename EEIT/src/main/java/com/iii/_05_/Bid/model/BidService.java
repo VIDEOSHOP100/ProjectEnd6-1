@@ -5,6 +5,7 @@ import java.util.List;
 public interface BidService {
 	
 	public BidBean getBidByAuctionSeqNoBidprice(Integer auctionSeqNo);
+ 
 	
 //	public BidBean getBidPriceTop(Integer productSeqNo);
 	
@@ -19,4 +20,5 @@ public interface BidService {
 	public void updateBid(BidBean BidBean);
 
 	public void deleteBid(BidBean BidBean);
+
 }
