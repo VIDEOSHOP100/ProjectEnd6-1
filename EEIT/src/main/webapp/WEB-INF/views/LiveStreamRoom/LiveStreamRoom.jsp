@@ -66,7 +66,9 @@ justify-content: center;
       ${sb.account}
   
         <small>的直播間</small>
-        <small>開始時間:${sb.liveStart}</small>
+        <small id="showViewAfter">開始時間:${sb.liveStart}</small>
+        
+        
         <c:if test="${!empty LoginOK.account}">
         <button id="memberReportButton"
 							class="btn btn-outline-info memberReportButton memberReport"
@@ -76,6 +78,7 @@ justify-content: center;
 <%-- 		<small>結束時間:${sb.liveEnd}</small> --%> 
 
       </h1>
+      <p id="showView"class="hidden">${sb.liveStreamView}</p>
    <p class="hidden">${sb.liveStreamSeqNo}</p>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -104,7 +107,7 @@ justify-content: center;
               </div>
                 <div class="input-group">
                 <input id="catch-account" type="hidden" name = "account" value= "${LoginOK.account}">
-                <input type="text" class="form-control chat-message" placeholder="傳送訊息">
+                <input type="text" class="form-control chat-message loginCheck" placeholder="傳送訊息">
                 <span class="input-group-btn">
                   <button class="btn btn-secondary" type="button">聊天</button>
                 </span>

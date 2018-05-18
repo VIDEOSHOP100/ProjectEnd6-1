@@ -87,10 +87,57 @@ $(document).on('keyup','.input-group>input',function(e){
     }
     
 });
+//進入聊天室---------------------------------------
+window.onload=sendView;
+function sendView(account, liveStreamView){
+	var account = $('#catch-account').val();
+//	var senderAccountFistWord = account.substring(0,1).charCodeAt()
+	var liveStreamSeqNo = $('.seqNo').val();
+	var liveStreamView = $('#showView').text();
+//	alert(liveStreamView)
+//	alert(account)
+	var roomNumber = $('.roomNumber').val();
+//alert(liveChatArticle);
+//alert(account);
+	var name = $(this).parents('div').find('.message').val();
+	stompClient.send("/app/ShowHistory/" + liveStreamSeqNo , {}, JSON.stringify({ 'liveStreamView':liveStreamView, 'account':account}));
+	
+}
+//進入聊天室--------------------------------------
+//出聊天室--------------------------------------
+window.onbeforeunload=senEndView;
+function senEndView(account, liveStreamView){
+	var account = $('#catch-account').val();
+//	var senderAccountFistWord = account.substring(0,1).charCodeAt()
+	var liveStreamSeqNo = $('.seqNo').val();
+	var liveStreamView = $('#showView').text();
+//	alert(liveStreamView)
+//	alert(account)
+	var roomNumber = $('.roomNumber').val();
+//alert(liveChatArticle);
+//alert(account);
+	var name = $(this).parents('div').find('.message').val();
+	stompClient.send("/app/ShowEndHistory/" + liveStreamSeqNo , {}, JSON.stringify({ 'liveStreamView':liveStreamView, 'account':account}));
+	
+}
+//出聊天室----------------------------------------
+window.onbeforeunload=senEndView;
+function addEndView(account, liveStreamView){
+//	var liveStreamView = $('#showView').text();
+//alert(liveStreamView)
+	
+	$('#showViewAfter+div').remove();
+$('#showViewAfter').after('<div><p>目前觀看人數：'+(liveStreamView)--+'</p></div>') 
+}
 
-
-
- //增加會員購買商品到聊天室窗
+function addView(account, liveStreamView){
+//	var liveStreamView = $('#showView').text();
+//alert(liveStreamView)
+	
+	$('#showViewAfter+div').remove();
+$('#showViewAfter').after('<div><p>目前觀看人數：'+(liveStreamView)+++'</p></div>') 
+}
+ //增加會員購買商品到聊天室窗----------------------------------------------------
 //var productSeqNo = $('.productSeqNo').val();
 function addBid(account, productSeqNo,bidPrice,auctionSeqNo){
 	responsiveVoice.speak("會員"+account+"叫價"+bidPrice+"元","Chinese Female");
@@ -98,7 +145,7 @@ function addBid(account, productSeqNo,bidPrice,auctionSeqNo){
 }
 
 var flag = 0;
-//增加會員聊天到聊天室窗
+//增加會員聊天到聊天室窗----------------------------------------------------
 var colors = ['#FFFFFF','#99FFFF','#FFFFBB','#99FF33'];
 function addMessage(account,liveChatArticle){
 
@@ -109,7 +156,7 @@ function addMessage(account,liveChatArticle){
 					}
 	var text = liveChatArticle;
 	var index = parseInt(Math.random()*7);
-	var screenW = window.innerWidth;
+	var screenW = 800;
 	var screenH = dm.offsetHeight;
 	var max = Math.floor(screenH/40);
 	var height = 10+ 40 * (parseInt(Math.random()*(max+1))-1);
@@ -147,7 +194,7 @@ function move(){
 	}
 	}
 }
-
+//--------------------------------------------------------------------------------------------------------
 
 function sendBid(account, productSeqNo,bidPrice){
 	var senderAccountFistWord = account.substring(0,1).charCodeAt()
@@ -160,7 +207,7 @@ function sendBid(account, productSeqNo,bidPrice){
 	stompClient.send("/app/Bid/" + productSeqNo , {}, JSON.stringify({ 'productSeqNo':productSeqNo, 'account':account, 'bidPrice':bidPrice}));
 	
 }   
-//叫價TEXT
+//叫價TEXT-------------------------------------------------------------------------------------------------------
 $(document).on('keyup','.input-Bid>input',function(e){
 	var productSeqNo = $('#productSeqNo').val();
 //	alert(account);
@@ -201,6 +248,23 @@ stompClient.connect({}, function(frame) {
     	updateScroll()
     });
 //聊天室結束----------------------------------
+   
+//觀看人數開始----------------------------------
+    stompClient.subscribe('/target/ShowHistory/subscription/' + liveStreamSeqNo , function(historyreturn){
+//    	var account = $('#catch-account').val();
+    	addView(JSON.parse(historyreturn.body).account,JSON.parse(historyreturn.body).liveStreamView)
+    	
+    });
+//觀看人數開始----------------------------------   
+    
+//觀看人數結束----------------------------------  
+    stompClient.subscribe('/target/ShowEndHistory/subscription/' + liveStreamSeqNo , function(historyreturn){
+//    	var account = $('#catch-account').val();
+    	addEndView(JSON.parse(historyreturn.body).account,JSON.parse(historyreturn.body).liveStreamView)
+    	
+    });
+    
+//觀看人數結束----------------------------------   
     
 //取商品開始----------------------------------
 //    var productSeqNo = $('#productSeqNo').val();
