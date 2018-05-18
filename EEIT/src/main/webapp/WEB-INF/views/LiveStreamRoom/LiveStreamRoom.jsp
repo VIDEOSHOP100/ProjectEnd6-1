@@ -16,43 +16,40 @@
 .sellproduct{
 	font-family: 'Josefin Sans', sans-serif;
 }
+/* html,body{ */
+/* overflow: hidden; */
+/* margin:0; */
+/* padding:0; */
+
+/* } */
 .reasontitle{
-	
+
 font-weight: bolder;
 
 }
-/* .card-bodycontroller{  */
-/*  	width: 100%;  */
-/* 	height: 407px;   */
-/* 	background-color: white;  */
-/*  	overflow: auto;  */
-/*  	list-style: none;  */
-/*  	margin: 0;  */
-/* /* 	padding: 0; */ */
-/*   -webkit-box-flex: 1; */
-/*   -ms-flex: 1 1 auto; */
-/*   flex: 100 100 auto; */
-/*   padding: 0.7em 2em 0.7em 1em; */
-  
-/* } */
-/* .hidden{ */
-/*   display:none; */
-/*   } */
-  
-/* .chatrow{ */
-/* 	float: right; */
-/* 	background: #0084ff; */
-/* 	color: #fff; */
-/* /* 	margin-left: 100px; */ */
-/* 	padding: 10px; */
-/* 	margin-bottom: 2px; */
-	
-/* 	/*              height: auto; */ */
-/* } */
-/* .chatBlock{ */
-/* 	display: block; */
-/* 	overflow: auto; */
-/* } */
+#dm{
+width: 100%;
+/* height:90vh; */
+background: ##E8F1F5;
+}
+#dm span{
+width:auto;
+height: 3rem;
+font-size: 2rem;
+line-height: 2rem;
+position: absolute;
+white-space: nowrap;
+}
+#idDom{
+width:100%;
+height:10vh;
+background: #666;
+position: absolute;
+bottom: 0;
+display:flex;
+align-items: center;
+justify-content: center;
+}
 </style>
 </head>
 <body>
@@ -69,7 +66,9 @@ font-weight: bolder;
       ${sb.account}
   
         <small>的直播間</small>
-        <small>開始時間:${sb.liveStart}</small>
+        <small id="showViewAfter">開始時間:${sb.liveStart}</small>
+        
+        
         <c:if test="${!empty LoginOK.account}">
         <button id="memberReportButton"
 							class="btn btn-outline-info memberReportButton memberReport"
@@ -79,6 +78,7 @@ font-weight: bolder;
 <%-- 		<small>結束時間:${sb.liveEnd}</small> --%> 
 
       </h1>
+      <p id="showView"class="hidden">${sb.liveStreamView}</p>
    <p class="hidden">${sb.liveStreamSeqNo}</p>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -89,7 +89,7 @@ font-weight: bolder;
 
       <!-- Intro Content -->
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6" id="dm">
         		  
 <!--         <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
 <iframe width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe> 
@@ -107,7 +107,7 @@ font-weight: bolder;
               </div>
                 <div class="input-group">
                 <input id="catch-account" type="hidden" name = "account" value= "${LoginOK.account}">
-                <input type="text" class="form-control chat-message" placeholder="傳送訊息">
+                <input type="text" class="form-control chat-message loginCheck" placeholder="傳送訊息">
                 <span class="input-group-btn">
                   <button class="btn btn-secondary" type="button">聊天</button>
                 </span>
@@ -224,7 +224,7 @@ font-weight: bolder;
 						<img class="card-img-top"
 							src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}"
 							width="500px" height="238px" alt="">
-						<div class="card-body">
+						<div class="card-body ccc">
 							<h4 class="card-title JQellipsisTitle">${product.proName}</h4>
 							<p class="card-text">限時特價  $NT ${product.proPrice }</p>
 							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription}</p>
@@ -433,5 +433,6 @@ font-weight: bolder;
 	   <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+		<script src="<c:url value='/LiveStreamRoom/js/jquery.balloon.js'/> "></script>
 </body>
 </html>

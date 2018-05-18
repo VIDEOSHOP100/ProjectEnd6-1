@@ -19,6 +19,7 @@ public class LiveStreamHistoryBean {
 	private Integer liveStreamSeqNo;
 	private Timestamp HistoryTime;
 	private String LiveStreamStatus;
+	private Integer LiveStreamView;
 
 	/**
 	 * @param liveStreamHistorySeqNo
@@ -27,61 +28,80 @@ public class LiveStreamHistoryBean {
 	 * @param historyTime
 	 * @param liveStreamStatus
 	 */
-	public LiveStreamHistoryBean(Integer liveStreamHistorySeqNo, String account, Integer liveStreamSeqNo,
-			Timestamp historyTime, String liveStreamStatus) {
-		super();
-		LiveStreamHistorySeqNo = liveStreamHistorySeqNo;
-		this.account = account;
-		this.liveStreamSeqNo = liveStreamSeqNo;
-		HistoryTime = historyTime;
-		LiveStreamStatus = liveStreamStatus;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "LiveStreamBean [LiveStreamHistorySeqNo=" + LiveStreamHistorySeqNo + ", account=" + account
-				+ ", liveStreamSeqNo=" + liveStreamSeqNo + ", HistoryTime=" + HistoryTime + ", LiveStreamStatus="
-				+ LiveStreamStatus + "]";
-	}
-
+	
 	
 
 	public LiveStreamHistoryBean() {
 		super();
 		
 	}
+
 	public Integer getLiveStreamHistorySeqNo() {
 		return LiveStreamHistorySeqNo;
 	}
+
 	public void setLiveStreamHistorySeqNo(Integer liveStreamHistorySeqNo) {
 		LiveStreamHistorySeqNo = liveStreamHistorySeqNo;
 	}
+
 	public String getAccount() {
 		return account;
 	}
+
 	public void setAccount(String account) {
 		this.account = account;
 	}
+
 	public Integer getLiveStreamSeqNo() {
 		return liveStreamSeqNo;
 	}
+
 	public void setLiveStreamSeqNo(Integer liveStreamSeqNo) {
 		this.liveStreamSeqNo = liveStreamSeqNo;
 	}
+
 	public Timestamp getHistoryTime() {
 		return HistoryTime;
 	}
+
 	public void setHistoryTime(Timestamp historyTime) {
 		HistoryTime = historyTime;
 	}
+
 	public String getLiveStreamStatus() {
 		return LiveStreamStatus;
 	}
+
 	public void setLiveStreamStatus(String liveStreamStatus) {
 		LiveStreamStatus = liveStreamStatus;
 	}
+
+	public Integer getLiveStreamView() {
+		return LiveStreamView;
+	}
+
+	public void setLiveStreamView(Integer liveStreamView) {
+		LiveStreamView = liveStreamView;
+	}
+
+	@Override
+	public String toString() {
+		return "LiveStreamHistoryBean [LiveStreamHistorySeqNo=" + LiveStreamHistorySeqNo + ", account=" + account
+				+ ", liveStreamSeqNo=" + liveStreamSeqNo + ", HistoryTime=" + HistoryTime + ", LiveStreamStatus="
+				+ LiveStreamStatus + ", LiveStreamView=" + LiveStreamView + "]";
+	}
+
+	public LiveStreamHistoryBean(Integer liveStreamHistorySeqNo, String account, Integer liveStreamSeqNo,
+			Timestamp historyTime, String liveStreamStatus, Integer liveStreamView) {
+		super();
+		LiveStreamHistorySeqNo = liveStreamHistorySeqNo;
+		this.account = account;
+		this.liveStreamSeqNo = liveStreamSeqNo;
+		HistoryTime = historyTime;
+		LiveStreamStatus = liveStreamStatus;
+		LiveStreamView = liveStreamView;
+	}
+	
 	
 	
 	

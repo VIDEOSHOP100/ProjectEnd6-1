@@ -3,6 +3,7 @@
  */
 
 $(document).ready(function() {	
+
 	var account = $('#catch-account').val();
 	var bidPrice = $('.bidPrice').val();
 	var productSeqNo = $('#productSeqNo').val();
@@ -87,22 +88,114 @@ $(document).on('keyup','.input-group>input',function(e){
     }
     
 });
+//進入聊天室---------------------------------------
+window.onload=sendView;
+function sendView(account, liveStreamView){
+	var account = $('#catch-account').val();
+//	var senderAccountFistWord = account.substring(0,1).charCodeAt()
+	var liveStreamSeqNo = $('.seqNo').val();
+	var liveStreamView = $('#showView').text();
+//	alert(liveStreamView)
+//	alert(account)
+	var roomNumber = $('.roomNumber').val();
+//alert(liveChatArticle);
+//alert(account);
+	var name = $(this).parents('div').find('.message').val();
+	stompClient.send("/app/ShowHistory/" + liveStreamSeqNo , {}, JSON.stringify({ 'liveStreamView':liveStreamView, 'account':account}));
+	
+}
+//進入聊天室--------------------------------------
+//出聊天室--------------------------------------
+window.onbeforeunload=senEndView;
+function senEndView(account, liveStreamView){
+	var account = $('#catch-account').val();
+//	var senderAccountFistWord = account.substring(0,1).charCodeAt()
+	var liveStreamSeqNo = $('.seqNo').val();
+	var liveStreamView = $('#showView').text();
+//	alert(liveStreamView)
+//	alert(account)
+	var roomNumber = $('.roomNumber').val();
+//alert(liveChatArticle);
+//alert(account);
+	var name = $(this).parents('div').find('.message').val();
+	stompClient.send("/app/ShowEndHistory/" + liveStreamSeqNo , {}, JSON.stringify({ 'liveStreamView':liveStreamView, 'account':account}));
+	
+}
+//出聊天室----------------------------------------
+window.onbeforeunload=senEndView;
+function addEndView(account, liveStreamView){
+//	var liveStreamView = $('#showView').text();
+//alert(liveStreamView)
+	
+	$('#showViewAfter+div').remove();
+$('#showViewAfter').after('<div><p>目前觀看人數：'+(liveStreamView)--+'</p></div>') 
+}
 
-
-
- //增加會員購買商品到聊天室窗
+function addView(account, liveStreamView){
+//	var liveStreamView = $('#showView').text();
+//alert(liveStreamView)
+	
+	$('#showViewAfter+div').remove();
+$('#showViewAfter').after('<div><p>目前觀看人數：'+(liveStreamView)+++'</p></div>') 
+}
+ //增加會員購買商品到聊天室窗----------------------------------------------------
 //var productSeqNo = $('.productSeqNo').val();
 function addBid(account, productSeqNo,bidPrice,auctionSeqNo){
 	responsiveVoice.speak("會員"+account+"叫價"+bidPrice+"元","Chinese Female");
 	$('.card-bodycontroller').append('<div class="chatBlock"><p class="bidrow">'+"會員"+ account + "叫價: "+ bidPrice +'元</p></div>')
 }
-//增加會員聊天到聊天室窗
+
+var flag = 0;
+//增加會員聊天到聊天室窗----------------------------------------------------
+var colors = ['#FFFFFF','#99FFFF','#FFFFBB','#99FF33'];
 function addMessage(account,liveChatArticle){
 
 				$('.card-bodycontroller').append('<div class="chatBlock"><p class="chatrow">'+ account + ": "+ liveChatArticle +'</p></div>')
-
-//	updateScroll();
+	
+					if(flag !=0){
+						clearInterval(timer);
+					}
+	var text = liveChatArticle;
+	var index = parseInt(Math.random()*7);
+	var screenW = 800;
+	var screenH = dm.offsetHeight;
+	var max = Math.floor(screenH/40);
+	var height = 10+ 40 * (parseInt(Math.random()*(max+1))-1);
+	if(height>400){
+		var height = 340;
+	}
+	var span = document.createElement('span');
+	span.classList.add("movespan")
+	span.style.left = screenW +'px';
+	span.style.top = height + 30+'px';
+	span.style.color = colors[index];
+	span.innerHTML = text;
+	var dmDom = $('#dm').append(span);
+//	var dmDom = document.getElementById('dm');
+//	dmDom.prependChild(span);
+	timer= setInterval(move,35);
+	flag++;
+	updateScroll();
 }
+function move(){
+//	alert('111');
+	var arr=[];
+	var oSpan = document.getElementsByClassName('movespan');
+//	alert(oSpan.length);
+	for(var i = 0; i< oSpan.length;i++){
+		arr.push(oSpan[i].offsetLeft);
+		arr[i] -=2
+		
+		oSpan[i].style.left = arr[i]+'px';
+		if(arr[i] < -oSpan[i].offsetWidth) {
+		$('#dm span:first').remove();
+			
+//	var dmDom = document.getElementById('dm');
+//	dmDom.removeChild(dmDom.childNodes[0]);
+	}
+	}
+}
+//--------------------------------------------------------------------------------------------------------
 
 function sendBid(account, productSeqNo,bidPrice){
 	var senderAccountFistWord = account.substring(0,1).charCodeAt()
@@ -115,7 +208,7 @@ function sendBid(account, productSeqNo,bidPrice){
 	stompClient.send("/app/Bid/" + productSeqNo , {}, JSON.stringify({ 'productSeqNo':productSeqNo, 'account':account, 'bidPrice':bidPrice}));
 	
 }   
-//叫價TEXT
+//叫價TEXT-------------------------------------------------------------------------------------------------------
 $(document).on('keyup','.input-Bid>input',function(e){
 	var productSeqNo = $('#productSeqNo').val();
 //	alert(account);
@@ -156,6 +249,23 @@ stompClient.connect({}, function(frame) {
     	updateScroll()
     });
 //聊天室結束----------------------------------
+   
+//觀看人數開始----------------------------------
+    stompClient.subscribe('/target/ShowHistory/subscription/' + liveStreamSeqNo , function(historyreturn){
+//    	var account = $('#catch-account').val();
+    	addView(JSON.parse(historyreturn.body).account,JSON.parse(historyreturn.body).liveStreamView)
+    	
+    });
+//觀看人數開始----------------------------------   
+    
+//觀看人數結束----------------------------------  
+    stompClient.subscribe('/target/ShowEndHistory/subscription/' + liveStreamSeqNo , function(historyreturn){
+//    	var account = $('#catch-account').val();
+    	addEndView(JSON.parse(historyreturn.body).account,JSON.parse(historyreturn.body).liveStreamView)
+    	
+    });
+    
+//觀看人數結束----------------------------------   
     
 //取商品開始----------------------------------
 //    var productSeqNo = $('#productSeqNo').val();
@@ -206,8 +316,13 @@ $(document).on('click','.chatrow',function(){
         responsiveVoice.speak($(this).text().split(":",2)[1],"Chinese Female")
 
     });
+$(document).on('click','.ccc',function(){
 
-
+	  $('.ccc').balloon({ html: true,
+		  contents: '<h4 class="card-title JQellipsisTitle">${product.proName}</h4>'
+			    +'<input type="text" size="40">'
+			    +'<input type="submit" value="Search">'});
+	});
 
 
 })
