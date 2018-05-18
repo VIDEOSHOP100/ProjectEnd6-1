@@ -16,43 +16,40 @@
 .sellproduct{
 	font-family: 'Josefin Sans', sans-serif;
 }
+/* html,body{ */
+/* overflow: hidden; */
+/* margin:0; */
+/* padding:0; */
+
+/* } */
 .reasontitle{
-	
+
 font-weight: bolder;
 
 }
-/* .card-bodycontroller{  */
-/*  	width: 100%;  */
-/* 	height: 407px;   */
-/* 	background-color: white;  */
-/*  	overflow: auto;  */
-/*  	list-style: none;  */
-/*  	margin: 0;  */
-/* /* 	padding: 0; */ */
-/*   -webkit-box-flex: 1; */
-/*   -ms-flex: 1 1 auto; */
-/*   flex: 100 100 auto; */
-/*   padding: 0.7em 2em 0.7em 1em; */
-  
-/* } */
-/* .hidden{ */
-/*   display:none; */
-/*   } */
-  
-/* .chatrow{ */
-/* 	float: right; */
-/* 	background: #0084ff; */
-/* 	color: #fff; */
-/* /* 	margin-left: 100px; */ */
-/* 	padding: 10px; */
-/* 	margin-bottom: 2px; */
-	
-/* 	/*              height: auto; */ */
-/* } */
-/* .chatBlock{ */
-/* 	display: block; */
-/* 	overflow: auto; */
-/* } */
+#dm{
+width: 100%;
+/* height:90vh; */
+background: ##E8F1F5;
+}
+#dm span{
+width:auto;
+height: 3rem;
+font-size: 2rem;
+line-height: 2rem;
+position: absolute;
+white-space: nowrap;
+}
+#idDom{
+width:100%;
+height:10vh;
+background: #666;
+position: absolute;
+bottom: 0;
+display:flex;
+align-items: center;
+justify-content: center;
+}
 </style>
 </head>
 <body>
@@ -89,7 +86,7 @@ font-weight: bolder;
 
       <!-- Intro Content -->
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6" id="dm">
         		  
 <!--         <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
 <iframe width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe> 

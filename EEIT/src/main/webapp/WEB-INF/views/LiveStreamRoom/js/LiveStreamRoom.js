@@ -96,13 +96,58 @@ function addBid(account, productSeqNo,bidPrice,auctionSeqNo){
 	responsiveVoice.speak("會員"+account+"叫價"+bidPrice+"元","Chinese Female");
 	$('.card-bodycontroller').append('<div class="chatBlock"><p class="bidrow">'+"會員"+ account + "叫價: "+ bidPrice +'元</p></div>')
 }
+
+var flag = 0;
 //增加會員聊天到聊天室窗
+var colors = ['#FFFFFF','#99FFFF','#FFFFBB','#99FF33'];
 function addMessage(account,liveChatArticle){
 
 				$('.card-bodycontroller').append('<div class="chatBlock"><p class="chatrow">'+ account + ": "+ liveChatArticle +'</p></div>')
-
-//	updateScroll();
+	
+					if(flag !=0){
+						clearInterval(timer);
+					}
+	var text = liveChatArticle;
+	var index = parseInt(Math.random()*7);
+	var screenW = window.innerWidth;
+	var screenH = dm.offsetHeight;
+	var max = Math.floor(screenH/40);
+	var height = 10+ 40 * (parseInt(Math.random()*(max+1))-1);
+	if(height>400){
+		var height = 340;
+	}
+	var span = document.createElement('span');
+	span.classList.add("movespan")
+	span.style.left = screenW +'px';
+	span.style.top = height + 30+'px';
+	span.style.color = colors[index];
+	span.innerHTML = text;
+	var dmDom = $('#dm').append(span);
+//	var dmDom = document.getElementById('dm');
+//	dmDom.prependChild(span);
+	timer= setInterval(move,35);
+	flag++;
+	updateScroll();
 }
+function move(){
+//	alert('111');
+	var arr=[];
+	var oSpan = document.getElementsByClassName('movespan');
+//	alert(oSpan.length);
+	for(var i = 0; i< oSpan.length;i++){
+		arr.push(oSpan[i].offsetLeft);
+		arr[i] -=2
+		
+		oSpan[i].style.left = arr[i]+'px';
+		if(arr[i] < -oSpan[i].offsetWidth) {
+		$('#dm span:first').remove();
+			
+//	var dmDom = document.getElementById('dm');
+//	dmDom.removeChild(dmDom.childNodes[0]);
+	}
+	}
+}
+
 
 function sendBid(account, productSeqNo,bidPrice){
 	var senderAccountFistWord = account.substring(0,1).charCodeAt()
@@ -206,7 +251,6 @@ $(document).on('click','.chatrow',function(){
         responsiveVoice.speak($(this).text().split(":",2)[1],"Chinese Female")
 
     });
-
 
 
 
