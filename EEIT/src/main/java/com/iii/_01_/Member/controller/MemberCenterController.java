@@ -16,6 +16,7 @@ import com.iii._01_.Friend.service.FriendService;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.MemberCenterService;
 import com.iii._01_.MemberReport.bean.MemberReportBean;
+import com.iii._01_.MyMessage.bean.MyMessageBean;
 
 @Controller
 public class MemberCenterController {
@@ -49,6 +50,7 @@ public class MemberCenterController {
 			Integer friendstatus = friendService.getFriendStatus(myAccount, othersideaccount);
 			if(friendstatus==null)friendstatus=0;
 			model.addAttribute("friendstatus", friendstatus);
+			model.addAttribute("MyMessageBean", new MyMessageBean());
 		}
 		return "MemberCenter/profile";
 	}
