@@ -3,6 +3,7 @@
  */
 
 $(document).ready(function() {	
+
 	var account = $('#catch-account').val();
 	var bidPrice = $('.bidPrice').val();
 	var productSeqNo = $('#productSeqNo').val();
@@ -315,7 +316,13 @@ $(document).on('click','.chatrow',function(){
         responsiveVoice.speak($(this).text().split(":",2)[1],"Chinese Female")
 
     });
+$(document).on('click','.ccc',function(){
 
+	  $('.ccc').balloon({ html: true,
+		  contents: '<h4 class="card-title JQellipsisTitle">${product.proName}</h4>'
+			    +'<input type="text" size="40">'
+			    +'<input type="submit" value="Search">'});
+	});
 
 
 })

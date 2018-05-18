@@ -224,7 +224,7 @@ justify-content: center;
 						<img class="card-img-top"
 							src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}"
 							width="500px" height="238px" alt="">
-						<div class="card-body">
+						<div class="card-body ccc">
 							<h4 class="card-title JQellipsisTitle">${product.proName}</h4>
 							<p class="card-text">限時特價  $NT ${product.proPrice }</p>
 							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription}</p>
@@ -433,5 +433,6 @@ justify-content: center;
 	   <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+		<script src="<c:url value='/LiveStreamRoom/js/jquery.balloon.js'/> "></script>
 </body>
 </html>
