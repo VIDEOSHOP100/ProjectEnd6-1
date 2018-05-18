@@ -29,8 +29,16 @@ public class OrderBean {
 	private Integer proTransportSeqNo;
 	private java.util.Date orderTime;
 	private Integer orderStatus;
+	private Long orderTotalPrice;
 	
 	
+	
+	public Long getOrderTotalPrice() {
+		return orderTotalPrice;
+	}
+	public void setOrderTotalPrice(Long orderTotalPrice) {
+		this.orderTotalPrice = orderTotalPrice;
+	}
 	public Integer getOrderStatus() {
 		return orderStatus;
 	}

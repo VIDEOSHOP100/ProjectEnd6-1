@@ -49,7 +49,6 @@ public class VideoManageController {
 		System.out.println("lalalalala");
 		VideoBean vb = videoManageService.getVideo(videoSeqNo);
 		videoManageService.deleteVideo(vb);
-
 		return "OK";
 	}
 

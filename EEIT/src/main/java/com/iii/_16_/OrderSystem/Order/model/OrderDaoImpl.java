@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iii._16_.BuyCart.ProCartList.model.ProCartListBean;
+import com.iii._16_.FAQ.bean.MemberFAQBean;
 @Repository
 public class OrderDaoImpl implements OrderDao{
 	@Autowired	
@@ -22,8 +23,9 @@ public class OrderDaoImpl implements OrderDao{
 
 	@Override
 	public OrderBean update(OrderBean order) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(order);
+		return order;
 	}
 
 	@Override
@@ -33,13 +35,13 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	@Override
-	public OrderBean findbyPrimaryKey(int order) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public OrderBean findbyPrimaryKey(Integer order) throws SQLException {
+		Session session = factory.getCurrentSession();
+		return session.get(OrderBean.class,  order);
 	}
 
 	@Override
-	public OrderBean findbyProductSeqNo(int id) throws SQLException {
+	public OrderBean findbyProductSeqNo(Integer id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -65,7 +67,7 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	@Override
-	public OrderBean findbyCartId(int id) throws SQLException {
+	public OrderBean findbyCartId(Integer id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

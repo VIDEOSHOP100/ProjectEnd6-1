@@ -12,8 +12,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.iii._01_.Member.interceptor.LoginInterceptor;
 import com.iii._19_.messageSystem.intercepter.MessageSystemIntercepter;
 import com.iii._19_.notificationRecording.intercepter.NotificationRecordingIntercepter;
+
 
 @Configuration
 @EnableWebMvc
@@ -30,8 +32,15 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
          return new MessageSystemIntercepter();
     }
 
+	@Bean
+	LoginInterceptor loginInterceptor() {
+		return new LoginInterceptor();
+	}
+	
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+    	registry.addInterceptor(loginInterceptor())
+    	.excludePathPatterns("/","/loginPage","/*","/getImage/**","/getVideo/**","/videoRoom/*","/LiveStream/*","/memberReport/*","/liveStreamReport/*","/adviceReport/*");
         registry.addInterceptor(notificationRecordingIntercepter());
         registry.addInterceptor(messageSystemIntercepter());
     }
@@ -79,6 +88,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/OrderSystem/**").addResourceLocations("/WEB-INF/views/OrderSystem/");
 		registry.addResourceHandler("/likeUnlikeVideos/**").addResourceLocations("/WEB-INF/views/likeUnlikeVideos/");
 		registry.addResourceHandler("/Product/**").addResourceLocations("/WEB-INF/views/Product/");
+		registry.addResourceHandler("/videoChat/**").addResourceLocations("/WEB-INF/views/videoChat/");
 
 		
 		
@@ -86,4 +96,5 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 //		registry.addResourceHandler("/global/vendor/bootstrap/css/**").addResourceLocations("/WEB-INF/views/global/vendor/bootstrap/css/");
 
 	}
+
 }

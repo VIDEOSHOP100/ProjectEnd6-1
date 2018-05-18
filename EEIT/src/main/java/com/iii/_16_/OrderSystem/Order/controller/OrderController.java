@@ -88,7 +88,8 @@ public class OrderController {
 	}
 
 	@RequestMapping(value="confirmOrder" ,method = RequestMethod.POST)
-	public String confirmOrder(@ModelAttribute OrderBean ob, HttpSession session, BindingResult result) throws SQLException {
+	public String confirmOrder(@ModelAttribute OrderBean ob, HttpSession session, 
+			Map<String,Object> map,BindingResult result) throws SQLException {
 		 String[] suppressedFields = result.getSuppressedFields();
 		 if (suppressedFields.length > 0) {
 		 System.out.println("嘗試輸入不允許的欄位");
@@ -96,46 +97,84 @@ public class OrderController {
 		 StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		 }
 		 MemberBean member=(MemberBean)session.getAttribute("LoginOK");
+		 if(member!= null) {
+			 map.put("getMemberBean", member);
+		 }else {
+			return "MemberCenter/loginPage";
+		 }
 
-		 OrderBean bean = new OrderBean();
-	
+		 /*----------------------訂單確認開始--------------------------------------*/
 		 Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
 		 ob.setOrderTime(ts);
 		 ob.setOrderSeqNo(0);
+		 //設定訂單未付款的訂單狀態為1
+		 ob.setOrderStatus(1);
 		 int orderNum =orderservice.insertGetId(ob);	 
 		// 先將使用者帳號傳回購物車service方法 用帳號找出所有購物明細
 			List<ProCartListBean> list = procartlistservice.getByAccountStatus(member.getAccount());
 			List<OrderProductBean> orderproductlist = new ArrayList<>();
-			int ProInCarSeqNo = 0;
+			int ProInCarSeqNo = 0;//購物車商品的編號 用來找商品 放入購物車 以便使用
 			int decreasePcs = 0;
+			Long productTotalPrice=0L;
+			Long orderTotalPrice=0L;
+			List<Long> proPriceList = new ArrayList<>();
 			//取得一個準備加入訂單的商品bean　用seqno搜尋
 			for (ProCartListBean productcartlistbean : list) {
 				ProInCarSeqNo = productcartlistbean.getProductSeqNo();
 				ProductSaleBean ForUpdateProBean= productsaleservice.getBySeqNo(ProInCarSeqNo);
 				productcartlistbean.setProductbean(ForUpdateProBean);
+				//確認商品金額 計算後寫入訂單table
+				//單向商品總價
+				Long procount = Long.valueOf(productcartlistbean.getProductCount());
+				
+				productTotalPrice = procount*productcartlistbean.getProductbean().getProPrice();
+				proPriceList.add(productTotalPrice);//準備加總金額
 				OrderProductBean confirmbean = new OrderProductBean(productcartlistbean.getProductSeqNo(), productcartlistbean.getProductCount(), productcartlistbean.getProductbean().getProPrice(), member.getAccount(), orderNum, 0);
-				ProInCarSeqNo= ForUpdateProBean.getProPcs()-productcartlistbean.getProductCount();
-				ForUpdateProBean.setProPcs(ProInCarSeqNo);
-						
-						
+				confirmbean.setProductTotal(productTotalPrice);
+				
+				//找到原來的數量扣掉 購物車內的商品數量
+				decreasePcs= ForUpdateProBean.getProPcs()-productcartlistbean.getProductCount();
+				
+				ForUpdateProBean.setProPcs(decreasePcs);
 				//更改庫存量
 				productsaleservice.update(ForUpdateProBean);
 				//新增商品至訂單成立的TAble
 				OrderProductBean ordersuccessbean = orderproductservice.insert(confirmbean);
-				orderproductlist.add(ordersuccessbean);
-				
+				orderproductlist.add(ordersuccessbean);	
+			}
+			for(Long totalpricelist: proPriceList) {
+				orderTotalPrice=orderTotalPrice+totalpricelist;
 			}
 			
+			OrderBean bill = orderservice.findByorderSeqNo(orderNum);
+			bill.setOrderTotalPrice(orderTotalPrice);
+			orderservice.update(bill);
 			//成立訂單的帳號  將該帳號購物車內所有物品刪除
 			if(orderproductlist.size()!=0) {
 			procartlistservice.deleteAllByAccount(member.getAccount());
-			
-			
 			//訂單新增成功  
 			//將購物車中 使用者搜尋過的商品刪除
 			}
-		 return "OrderSystem/Success";
+			/*------------將該訂單丟到網頁生成pdf-----------------------------------*/
+			
+			
+			map.put("readyforpay", bill);
+			
+			List<OrderProductBean> havaProSeq = orderproductservice.getByorderSeqNo(orderNum);
+			List<OrderProductBean> havePro = new ArrayList<>();
+			int proSeqNo=0;
+			for(OrderProductBean orderprobean:havaProSeq) {
+				proSeqNo = orderprobean.getProductSeqNo();
+				ProductSaleBean proDetail = productsaleservice.getBySeqNo(proSeqNo);
+				orderprobean.setProductBean(proDetail);
+				orderproductservice.update(orderprobean);
+				havePro.add(orderprobean);
+			}
+			map.put("readyforpaypro", havePro);
+			
+		 return "OrderSystem/orderSuccess";
 	}
+	
 	@RequestMapping(value = "/odergetcountry", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getCountryName(String city) {
 		Map<String, Object> result = new HashMap<String, Object>();

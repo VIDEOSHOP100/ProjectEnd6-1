@@ -69,7 +69,7 @@
 .box {
 	background-color: white;
 	width: 300px;
-	height: 285px;
+	height: 340px;
 	right: 220px;
 	position: fixed;
 	bottom: 0px;
@@ -144,14 +144,16 @@
 	background-color: red;
 }
 
-.box-message>input {
-	width: 54%;
-	height: 23px;
+.box-message>textarea {
+	width: 100%;
+	height: 55px;
 	display: inline-block;
+	float: left;
+	resize: none;
 }
 
 .box-message > .messagePlus {
-	width: 46%;
+	width: 100%;
 	height: 23px;
 /* 	display: inline-block; */
 	background-color: white;
@@ -187,9 +189,10 @@
 	font-family:Arial;
 	font-size:8px;
 	font-weight:bold;
-	padding:6px 10px;
+	padding:6px 20px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #9b14b3;
+	width:20%;
 }
 .box-message > .messagePlus > .btn:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a20dbd), color-stop(1, #c123de));
@@ -374,4 +377,81 @@
 }
 .hideForm{
 	display: none;
+}
+
+.notificationItem{
+	border-bottom: solid 1px #d8d7d9;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: -24px;	
+	margin-right: -24px;
+	float: right;	
+}
+
+.notificationItemInner{
+	float: left;
+}
+.notificationItem:hover{
+	background-color: #f9f2ff
+}
+.notificationItemAlert{
+	background-color: #e0b7ff;
+}
+.notificationItemLink:hover{
+	background-color: red 
+}
+
+.notificationItem p{
+	margin: 0px;
+	diplay: inline-block;
+/* 	border: solid red 1px; */
+/* 	float: left; */
+	width:300px;
+}
+
+.notificationItemTime{
+	font-size: 10px;
+	color: gray;
+}
+
+.notificationItemAccount{
+	font-weight: 800;
+}
+.notificationItemArticle{
+	overflow: hidden;
+}
+
+.notificationItemImage{
+	margin-top: 0px;
+	border-radius: 50%;
+	width:20%;
+	float: left;
+}
+.myVideoDiv{
+	width: 100px;
+	height:100px;
+/* 	background-color: blue;	 */
+	border: solid 1px red;
+	position: absolute; 
+	top: 300px;
+	float: left;
+}
+.myVideo{
+	width: 100px;
+	height:100px;
+}
+.yourVideoDiv{
+	border: solid 1px blue;
+	top: 0px;
+	position: absolute; 
+	width: 100%;
+	height:400px;
+/* 	background-color: red;	 */
+}
+.yourVideo{
+	width: 100%;
+	height:500px;
+}
+.video-container {
+  position:relative;
 }

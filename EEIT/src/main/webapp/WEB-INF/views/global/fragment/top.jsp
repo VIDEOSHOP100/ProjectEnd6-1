@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="target" value="${requestScope['javax.servlet.forward.request_uri']}" scope="session" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,7 +22,7 @@
 </head>
 <body>
 
-
+	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
 	<!-- Navigation -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
@@ -100,14 +100,25 @@
 								<i class="fas fa-exclamation-circle"></i>通知
 							</span>
 						</a>
-						<div class="dropdown-menu dropdown-menu-right notification-dropdown-menu"
-							 aria-labelledby="navbarDropdownPortfolio">
+						<div style="width:500px" class="dropdown-menu dropdown-menu-right notification-dropdown-menu" aria-labelledby="navbarDropdownPortfolio">
 							 <c:if test="${ empty notificationRecordingBeanList}">
 							 	<a class="dropdown-item emptyNotification" href="">沒有通知喔!</a>
 							 </c:if>
 							 <c:if test="${ !empty notificationRecordingBeanList}">
 								<c:forEach var="notificationRecordingBean" items="${notificationRecordingBeanList }" >
-									<a class="dropdown-item" href="">${notificationRecordingBean.notificationDate } , ${notificationRecordingBean.account } : ${notificationRecordingBean.notificationArticle }</a>
+									<a class="dropdown-item notificationItemLink" href="${pageContext.request.contextPath}/videoRoom/${notificationRecordingBean.eventPK}">
+										<div class="notificationItem">
+											<img class="notificationItemImage" height="70px" width="30px"	src='${pageContext.request.contextPath}/getImage/member/${notificationRecordingBean.account}'>
+											<div class="notificationItemInner">
+												<c:set var="string1" value="${notificationRecordingBean.notificationDate}"/>
+												<c:set var="string2" value="${fn:substring(string1, 0, 10)}" />
+												<p class="notificationItemAccount">${notificationRecordingBean.account}</p> 
+												<p class="notificationItemArticle" title="${notificationRecordingBean.notificationArticle}">${notificationRecordingBean.notificationArticle}</p> 
+												<p class="notificationItemTime">${string2} </p> 
+											</div>
+										</div>
+									</a>
+									
 								</c:forEach> 
 							 </c:if>
 							

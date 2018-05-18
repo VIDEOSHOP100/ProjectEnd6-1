@@ -91,7 +91,7 @@
 							<tr class="success">
 								<td></td>
 								<td></td>
-								<td>總價</td>
+								<td>訂單總價</td>
 								<td></td>
 								<td></td>
 								<td></td>

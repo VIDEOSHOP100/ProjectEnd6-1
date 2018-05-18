@@ -60,6 +60,17 @@
 				</fieldset>
 			</form:form>
 		</div>
+		<div id="dialog" title="視訊">
+	 		<div class="video-container">
+				<div class="yourVideoDiv">
+					<video autoplay class="yourVideo" width="400" height="400">
+					</video>
+					<div class="myVideoDiv">
+						<video autoplay class="myVideo" width="100" height="100"></video>
+					</div>
+				</div>
+	  		</div>
+		</div>
 	</c:if>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -67,5 +78,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script> 
 	<script src="<c:url value='/global/js/message.js'/> "></script>
+	<script src="<c:url value='/global/js/videoChat.js'/> "></script>
 </body>
 </html>

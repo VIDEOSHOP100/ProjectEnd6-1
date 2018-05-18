@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+
 
 @Repository
 public class OrderProductDaoImpl implements OrderProductDao {
@@ -21,9 +23,10 @@ public class OrderProductDaoImpl implements OrderProductDao {
 	}
 
 	@Override
-	public OrderProductBean update(OrderProductBean order) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public OrderProductBean update(OrderProductBean orderpro) throws SQLException {
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(orderpro);
+		return orderpro;
 	}
 
 	@Override
@@ -45,9 +48,9 @@ public class OrderProductDaoImpl implements OrderProductDao {
 	}
 
 	@Override
-	public List<OrderProductBean> findbyAccount(String account) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderProductBean> findbyOrderSeqNo(Integer orderSeqNo) throws SQLException {
+			Session session = factory.getCurrentSession();
+			return session.createQuery("FROM OrderProductBean WHERE orderSeqNo = :orderSeqNo",OrderProductBean.class).setParameter("orderSeqNo", orderSeqNo).list();
 	}
 
 	@Override
