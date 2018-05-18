@@ -40,18 +40,20 @@
 		<!-- Portfolio Item Row -->
 		<div class="">
 			<div class="card">
-				<div class="card-header">${getMemberBean.account}的購物清單</div>
+				<div class="card-header">客戶消費明細</div>
 				<div class="card-body">
 					<button id="buttonAdd" type="button" class="btn btn-success">
 						<i class="fas fa-cart-plus"></i>
 					</button>
+					<h6>訂單編號  : ${readyforpay.orderSeqNo}</h6>
+					<h6>銷售日期  : ${readyforpay.orderDate}</h6>
 					<!-- 每頁不同的內容從這裡開始 -->
 					<table id="productTable" class="table table-condensed">
 						<thead>
 							<tr>
 								<th></th>
 								<th></th>
-								<th>&nbsp;&nbsp;商品圖</th>
+								<th></th>
 								<th>商品名稱</th>
 								<th>數量</th>
 								<th>單價</th>
@@ -62,21 +64,19 @@
 
 
 						<tbody class="tbodyOutside">
-
+									
 							<c:set var="total" value="0.0" />
-							<c:forEach var="xxx" items="${cartlist}">
+							<c:forEach var="xxx" items="${readyforpaypro}">
 								<tr class="trkill">
-									<td style="visibility: hidden" class="divThree">${xxx.proCartListSeqNo}</td>
-									<td style="visibility: hidden" class="divOne">${xxx.productbean.productSeqNo}</td>
-									<td><img width="150px" height="120px"
-										src="${pageContext.request.contextPath}/getImage/Product/${xxx.productbean.productSeqNo}"
-										alt=""></td>
-									<td><h5 class="divTwo">${xxx.productbean.proName}</h5></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td><h5>${xxx.productBean.proName}</h5></td>
 									<td>${xxx.productCount }</td>
-									<td>NT ${xxx.productbean.proPrice }</td>
-									<td>NT ${xxx.productCount * xxx.productbean.proPrice}</td>
+									<td>NT ${xxx.productbean.productPrice}</td>
+									<td>NT ${xxx.productCount * xxx.productbean.productPrice}</td>
 									<c:set var="total"
-										value="${total + xxx.productCount * xxx.productbean.proPrice}" />
+										value="${total + xxx.productCount * xxx.productbean.productPrice}" />
 									<td>
 										<button id="buttonAdd" type="button"
 											class="btn btn-danger kill">
@@ -90,7 +90,7 @@
 							<tr class="success">
 								<td></td>
 								<td></td>
-								<td>總價</td>
+								<td>訂單總價</td>
 								<td></td>
 								<td></td>
 								<td></td>

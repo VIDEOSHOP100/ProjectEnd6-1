@@ -23,8 +23,9 @@ public class OrderDaoImpl implements OrderDao{
 
 	@Override
 	public OrderBean update(OrderBean order) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(order);
+		return order;
 	}
 
 	@Override
