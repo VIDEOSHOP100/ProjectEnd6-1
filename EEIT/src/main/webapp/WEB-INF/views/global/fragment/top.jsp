@@ -254,9 +254,9 @@
 					</button>
 				</div>
 				<div class="modal-body">
-<%-- 					<form:form id="loginForm" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row" > --%>
+					<form:form id="loginForm" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row" >
 					
-					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+<!-- 					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
 					<div class="form-group col-md-6">
 						<small><label for="logAcc">帳號</label></small>
 						<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
@@ -277,13 +277,13 @@
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 					<button type="button" id="modalLoginButton" class="btn btn-primary">登入</button>
 					
-				</div>
 						</form:form>
+				</div>
 			</div>
 		</div>
 	</div>
 </c:if>
-	<!--	登入彈窗結束 	-->
+	<!--	登入彈窗結束 	--> 
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
