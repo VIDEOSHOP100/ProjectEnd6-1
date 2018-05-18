@@ -7,11 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 <link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/>" rel="stylesheet">
 <style>
+.sellproduct{
+	font-family: 'Josefin Sans', sans-serif;
+}
 .reasontitle{
 	
 font-weight: bolder;
@@ -160,12 +164,13 @@ font-weight: bolder;
 <input type="text" class="form-control Bid-message" placeholder="請輸入價格">
 </div> 
 	
-			
+			 </div>
 	
       <div class="row">
-
+		<div class="col-lg-12 "> 
 <c:forEach var="AllProducta" items="${AllProduct}"> 
-        <div class="col-lg-4 mb-4 proitemcontroller">
+
+        <div class="col-lg-4 mb-4 proitemcontroller offset-4">
           <div class="card h-100 text-center">
             <img class="card-img-top img750" src="${pageContext.request.contextPath}/getImage/Product/${AllProducta.auctionPic}" alt=""> 
             <div class="card-body">
@@ -179,49 +184,76 @@ font-weight: bolder;
             </div>
           </div>
         </div>
+      
+        
  </c:forEach>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100 text-center">
-            <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-            <div class="card-body">
-              <h4 class="card-title"></h4>
-              <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#">name@example.com</a>
-            </div>
-          </div>
-        </div>
+   </div>
+<!--         <div class="col-lg-4 mb-4"> -->
+<!--           <div class="card h-100 text-center"> -->
+<!--             <img class="card-img-top" src="http://placehold.it/750x450" alt=""> -->
+<!--             <div class="card-body"> -->
+<!--               <h4 class="card-title"></h4> -->
+<!--               <h6 class="card-subtitle mb-2 text-muted">Position</h6> -->
+<!--               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p> -->
+<!--             </div> -->
+<!--             <div class="card-footer"> -->
+<!--               <a href="#">name@example.com</a> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
 
       </div>
       <!-- /.row -->
 
       <!-- Our Customers -->
-      <h2>賣家其他熱門商品</h2>
+    
       <div class="row">
-        <div class="col-lg-2 col-sm-4 mb-4">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+      <div class="col-lg-12 text-center">
+        <h2 class="sellproduct">賣家其他熱門商品</h2>
         </div>
-        <div class="col-lg-2 col-sm-4 mb-4">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </div>
-        <div class="col-lg-2 col-sm-4 mb-4">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </div>
-        <div class="col-lg-2 col-sm-4 mb-4">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </div>
-        <div class="col-lg-2 col-sm-4 mb-4">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </div>
-        <div class="col-lg-2 col-sm-4 mb-4">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </div>
+<%--         <c:forEach var="AllProduct0" items="${AllProduct0}">  --%>
+<!--         <div class="col-lg-2 col-sm-4 mb-4"> -->
+<%--           <img class="img-fluid" src="${pageContext.request.contextPath}/getImage/Product/${AllProduct0.picSeqNo}" alt=""> --%>
+<%--          <h4 class="card-title">品名：${AllProduct0.proName}</h4> --%>
+<!--         </div> -->
+<%--          </c:forEach> --%>
+        <div class="row text-center" style="width: 1200px; margin: 0 auto;">
+			<c:forEach var="product" items="${AllProduct0}">
+				<div class="col-lg-3 col-md-6 mb-4">
+					<div class="card">
+						<img class="card-img-top"
+							src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}"
+							width="500px" height="238px" alt="">
+						<div class="card-body">
+							<h4 class="card-title JQellipsisTitle">${product.proName}</h4>
+							<p class="card-text">限時特價  $NT ${product.proPrice }</p>
+							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription}</p>
+						</div>
+						<div class="card-footer">
+							<a
+								href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"
+								class="btn btn-primary">點我購買</a>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+<!--         <div class="col-lg-2 col-sm-4 mb-4"> -->
+<!--           <img class="img-fluid" src="http://placehold.it/500x300" alt=""> -->
+<!--         </div> -->
+<!--         <div class="col-lg-2 col-sm-4 mb-4"> -->
+<!--           <img class="img-fluid" src="http://placehold.it/500x300" alt=""> -->
+<!--         </div> -->
+<!--         <div class="col-lg-2 col-sm-4 mb-4"> -->
+<!--           <img class="img-fluid" src="http://placehold.it/500x300" alt=""> -->
+<!--         </div> -->
+<!--         <div class="col-lg-2 col-sm-4 mb-4"> -->
+<!--           <img class="img-fluid" src="http://placehold.it/500x300" alt=""> -->
+<!--         </div> -->
       </div>
       <!-- /.row -->
 
-    </div>
+   
     <!-- /.container -->
 
     <!-- Footer -->
@@ -344,84 +376,7 @@ font-weight: bolder;
 
 <!-- 測試 VOICE-->
 
-  <div>
-        <div>
-            <select id="VoiceSelection" class="input input--dropdown js--animations">
-                <option value="">--Select--</option>
-                <option value="UK English Female">UK English Female</option>
-                <option value="UK English Male">UK English Male</option>
-                <option value="US English Female">US English Female</option>
-                <option value="Arabic Male">Arabic Male</option>
-                <option value="Arabic Female">Arabic Female</option>
-                <option value="Armenian Male">Armenian Male</option>
-                <option value="Australian Female">Australian Female</option>
-                <option value="Brazilian Portuguese Female">Brazilian Portuguese Female</option>
-                <option value="Chinese Female">Chinese Female</option>
-                <option value="Chinese (Hong Kong) Female">Chinese (Hong Kong) Female</option>
-                <option value="Chinese Taiwan Female">伯恩你好棒棒</option>
-                <option value="Czech Female">Czech Female</option>
-                <option value="Danish Female">Danish Female</option>
-                <option value="Deutsch Female">Deutsch Female</option>
-                <option value="Dutch Female">Dutch Female</option>
-                <option value="Finnish Female">Finnish Female</option>
-                <option value="French Female">French Female</option>
-                <option value="Greek Female">Greek Female</option>
-                <option value="Hatian Creole Female">Hatian Creole Female</option>
-                <option value="Hindi Female">Hindi Female</option>
-                <option value="Hungarian Female">Hungarian Female</option>
-                <option value="Indonesian Female">Indonesian Female</option>
-                <option value="Italian Female">Italian Female</option>
-                <option value="Japanese Female">Japanese Female</option>
-                <option value="Korean Female">Korean Female</option>
-                <option value="Latin Female">Latin Female</option>
-                <option value="Norwegian Female">Norwegian Female</option>
-                <option value="Polish Female">Polish Female</option>
-                <option value="Portuguese Female">Portuguese Female</option>
-                <option value="Romanian Male">Romanian Male</option>
-                <option value="Russian Female">Russian Female</option>
-                <option value="Slovak Female">Slovak Female</option>
-                <option value="Spanish Female">Spanish Female</option>
-                <option value="Spanish Latin American Female">Spanish Latin American Female</option>
-                <option value="Swedish Female">Swedish Female</option>
-                <option value="Tamil Male">Tamil Male</option>
-                <option value="Thai Female">Thai Female</option>
-                <option value="Turkish Female">Turkish Female</option>
-                <option value="Afrikaans Male">Afrikaans Male</option>
-                <option value="Albanian Male">Albanian Male</option>
-                <option value="Bosnian Male">Bosnian Male</option>
-                <option value="Catalan Male">Catalan Male</option>
-                <option value="Croatian Male">Croatian Male</option>
-                <option value="Czech Male">Czech Male</option>
-                <option value="Danish Male">Danish Male</option>
-                <option value="Esperanto Male">Esperanto Male</option>
-                <option value="Finnish Male">Finnish Male</option>
-                <option value="Greek Male">Greek Male</option>
-                <option value="Hungarian Male">Hungarian Male</option>
-                <option value="Icelandic Male">Icelandic Male</option>
-                <option value="Latin Male">Latin Male</option>
-                <option value="Latvian Male">Latvian Male</option>
-                <option value="Macedonian Male">Macedonian Male</option>
-                <option value="Moldavian Male">Moldavian Male</option>
-                <option value="Montenegrin Male">Montenegrin Male</option>
-                <option value="Norwegian Male">Norwegian Male</option>
-                <option value="Serbian Male">Serbian Male</option>
-                <option value="Serbo-Croatian Male">Serbo-Croatian Male</option>
-                <option value="Slovak Male">Slovak Male</option>
-                <option value="Swahili Male">Swahili Male</option>
-                <option value="Swedish Male">Swedish Male</option>
-                <option value="Vietnamese Male">Vietnamese Male</option>
-                <option value="Welsh Male">Welsh Male</option>
-                <option value="US English Male">US English Male</option>
-                <option value="Fallback UK Female">Fallback UK Female</option>
-            </select>
-        </div>
-        <div>
-            <textarea id="txtText" cols="45" rows="3">Test. I have a Pen.</textarea>
-        </div>
-        <div>
-            <input id="btnSubmit" type="submit" value="Submit" />
-        </div>
-    </div>
+  
 <!-- 測試VOICE -->
 
 

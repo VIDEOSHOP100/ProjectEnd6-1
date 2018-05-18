@@ -12,8 +12,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.iii._01_.Member.interceptor.LoginInterceptor;
 import com.iii._19_.messageSystem.intercepter.MessageSystemIntercepter;
 import com.iii._19_.notificationRecording.intercepter.NotificationRecordingIntercepter;
+
 
 @Configuration
 @EnableWebMvc
@@ -30,10 +32,18 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
          return new MessageSystemIntercepter();
     }
 
+	@Bean
+	LoginInterceptor loginInterceptor() {
+		return new LoginInterceptor();
+	}
+	
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+    	registry.addInterceptor(loginInterceptor())
+    	.excludePathPatterns("/","/loginPage","/*","/getImage/**","/getVideo/**","/videoRoom/*","/memberReport/*","/liveStreamReport/*","/adviceReport/*");
         registry.addInterceptor(notificationRecordingIntercepter());
         registry.addInterceptor(messageSystemIntercepter());
+//        		.excludePathPatterns("/*/videoroom/*");
     }
 	
 	
@@ -87,4 +97,22 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 //		registry.addResourceHandler("/global/vendor/bootstrap/css/**").addResourceLocations("/WEB-INF/views/global/vendor/bootstrap/css/");
 
 	}
+//	 @Override
+//	    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+//	        configurer.defaultContentType(MediaType.TEXT_HTML)
+//	                .parameterName("type")
+//	                .favorParameter(true)
+//	                .ignoreUnknownPathExtensions(false)
+//	                .ignoreAcceptHeader(false)
+//	                .useJaf(true);
+//	    }
+
+//	    @Override
+//	    public void configureViewResolvers(ViewResolverRegistry registry) {
+//	        registry.jsp("/WEB-INF/views/", ".jsp");
+//	        registry.enableContentNegotiation(new ItextPdfView()
+//	                // Use either ItextPdfView or LowagiePdfView
+//	                // new LowagiePdfView()
+//	        );
+//	    }
 }

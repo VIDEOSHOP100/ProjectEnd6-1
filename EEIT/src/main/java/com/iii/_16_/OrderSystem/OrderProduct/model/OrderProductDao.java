@@ -16,7 +16,7 @@ public interface OrderProductDao {
 	
 	OrderProductBean findbyProductSeqNo(int id) throws SQLException;
 	
-	List<OrderProductBean> findbyAccount(String account) throws SQLException;
+	List<OrderProductBean> findbyOrderSeqNo(Integer SeqNo) throws SQLException;
 	
 	List<OrderProductBean> getALL() throws SQLException;
 	

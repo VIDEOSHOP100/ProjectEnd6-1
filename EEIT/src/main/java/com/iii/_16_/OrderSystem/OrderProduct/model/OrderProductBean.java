@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 
 @Entity
 @Table(name="OrderProduct")
@@ -14,10 +17,31 @@ public class OrderProductBean {
 	private Long productPrice;
 	private String account;
 	private Integer orderSeqNo;
+
+	private Long productTotal;
+	@Transient
+	private ProductSaleBean productBean ;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderproductNum;
 	
+	
+	
+	
+
+	public Long getProductTotal() {
+		return productTotal;
+	}
+	public void setProductTotal(Long productTotal) {
+		this.productTotal = productTotal;
+	}
+	public ProductSaleBean getProductBean() {
+		return productBean;
+	}
+	public void setProductBean(ProductSaleBean productBean) {
+		this.productBean = productBean;
+	}
 	
 	public Integer getProductSeqNo() {
 		return productSeqNo;

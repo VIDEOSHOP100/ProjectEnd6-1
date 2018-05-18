@@ -30,19 +30,9 @@ public class AuctionEndController {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
 		List<AuctionEndBean> AllAuctionList = auctionEndService.getAuctionEndByAccount(account);
-//		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
-//		int status = 0;
-//		List<ProductSaleBean> AllProductList = productSaleService.getAllProByStatus(account, status);
-//		
-//		Map<Integer,String> productNameMap = new HashMap<Integer,String>(); 
-//		for(ProductSaleBean pb : AllProductList) {
-//			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
-//		}
-//
-//		map.put("AllProductList", productNameMap);
+
 		map.put("AllAuctionList", AllAuctionList);
-//		map.put("accountStream", InputLiveStreamTimeService.getLiveStreamsByAccount(account));
-//		map.put("AuctionItemSelectBean", new AuctionItemSelectBean());
+
 		return "AuctionEnd/AuctionEnd";
 	}
 }

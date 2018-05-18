@@ -12,9 +12,9 @@ public interface OrderDao {
 
 	OrderBean delete(OrderBean order) throws SQLException;
 
-	OrderBean findbyPrimaryKey(int order) throws SQLException;
+	OrderBean findbyPrimaryKey(Integer order) throws SQLException;
 	
-	OrderBean findbyProductSeqNo(int id) throws SQLException;
+	OrderBean findbyProductSeqNo(Integer id) throws SQLException;
 	
 	List<OrderBean> findbyAccount(String account) throws SQLException;
 	
@@ -22,5 +22,5 @@ public interface OrderDao {
 	
 	int insertGetId(OrderBean order);
 
-	OrderBean findbyCartId(int id) throws SQLException; 
+	OrderBean findbyCartId(Integer id) throws SQLException; 
 }

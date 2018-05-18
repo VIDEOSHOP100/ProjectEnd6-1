@@ -82,16 +82,7 @@ ul li {
 	text-align: right;
 }
 
-#MyBlog {
-	position: fixed; /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
-	top: 50%; /*設置垂直位置*/
-	right: -100px; /*設置水平位置，依所放的內容多寡需要自行手動調整*/
-	background: #ffffff; /*背景顏色*/
-	padding: 10px 20px;
-	border-radius: 10px; /*圓角*/
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-}
+
 </style>
 </head>
 <body>
@@ -140,7 +131,7 @@ ul li {
 							src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}"
 							width="500px" height="238px" alt="">
 						<div class="card-body">
-							<h4 class="card-title">${product.proName}</h4>
+							<h4 class="card-title JQellipsisTitle">${product.proName}</h4>
 							<p class="card-text">限時特價  $NT ${product.proPrice }</p>
 							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription }</p>
 						</div>
@@ -163,11 +154,11 @@ ul li {
 
 	<a href="sale.do">商品上架</a>
 	<br>
-	<a href="testmarket">測試商店首頁</a>
-	<br>
+	
+
 	<a href="goPersonHomePage">登入之後的商店首頁</a>
 	<br>
-	<br>
+	
 
 	<c:if test="${empty LoginOK}">
 		<li class="nav-item">
@@ -227,7 +218,19 @@ ul li {
 			            $(this).text(text);
 			        }
 			    });
-			})
+				
+			    var len = 25; // 超過50個字以"..."取代
+			    $(".JQellipsisTitle").each(function(i){
+			        if($(this).text().length>len){
+			            $(this).attr("title",$(this).text());
+			            var text=$(this).text().substring(0,len-1)+"...";
+			            $(this).text(text);
+			        }
+			    });
+			
+			
+		
+		})
 		</script>
 	
 </body>

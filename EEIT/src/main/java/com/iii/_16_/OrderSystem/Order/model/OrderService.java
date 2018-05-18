@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.iii._16_.BuyCart.ProCartList.model.ProCartListBean;
+
 
 
 @Service
@@ -35,5 +37,17 @@ public class OrderService {
 	@Transactional
 	public List<OrderBean> findByAccountForPay(String account , Integer orderstatus) throws SQLException{
 		return dao.findbyAccountReadyPay(account, orderstatus);
+	}
+	@Transactional
+	public OrderBean findByorderSeqNo(Integer orderSeqNo) throws SQLException{
+		return dao.findbyPrimaryKey(orderSeqNo);
+	}
+	
+	
+	// 訂單計算總金額
+	@Transactional
+	public int update(OrderBean bean) throws SQLException {
+		 dao.update(bean);
+		 return 1;
 	}
 }

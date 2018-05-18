@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.iii._01_.MemberReport.bean.MemberReportBean;
+
 
 @Repository
 @Transactional
@@ -45,5 +47,14 @@ public class QuestionListDAOImpl implements QuestionListDAO{
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("FROM QuestionListBean WHERE questionListStatus = '1'",QuestionListBean.class).list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<QuestionListBean> getAllQuestionListBean() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from QuestionListBean").list();
+	}
+	
+
 
 }
