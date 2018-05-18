@@ -64,19 +64,20 @@ $(document).ready(function() {
 	
 		var logAcc = $('#logAcc').val();
 		var logPwd = $('#logPwd').val();
+		var botCheckResp = $('#g-recaptcha-response-1').val();
 		
 		$.ajax({
-		
+			
 			type:"POST",
-			url:"/EEIT/checkAccPwd",
-			data:{logAcc:logAcc , logPwd:logPwd},
+			url:"/EEIT/checkBotAccPwd",
+			data:{ botCheckResp:botCheckResp , logAcc:logAcc , logPwd:logPwd},
 			success:function(result){
 				var checkResult = result.loginCheck;
 				if(checkResult == true){
 					$('#loginForm').submit();
 				}else{
 					$('#loginErrMsg').html(
-						'<div class="p-3 mb-2 bg-warning text-dark rounded">帳號或密碼錯誤!</div>');
+						'<div class="p-2 mb-2 bg-warning text-dark rounded">帳號或密碼錯誤!</div>');
 				}
 			},
 			error : function(e) {
@@ -86,6 +87,16 @@ $(document).ready(function() {
 			
 		})
 		
+	
 	}
-			
+//	---------------------------------機器人驗證按鈕---------------------------------
+	
+		
+	
+	
+	
+	
+	
+	
+	
 })
