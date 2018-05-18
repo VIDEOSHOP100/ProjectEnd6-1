@@ -18,7 +18,7 @@ public class OrderProductBean {
 	private String account;
 	private Integer orderSeqNo;
 
-	private Long productTatol;
+	private Long productTotal;
 	@Transient
 	private ProductSaleBean productBean ;
 	
@@ -29,11 +29,12 @@ public class OrderProductBean {
 	
 	
 	
-	public Long getProductTatol() {
-		return productTatol;
+
+	public Long getProductTotal() {
+		return productTotal;
 	}
-	public void setProductTatol(Long productTatol) {
-		this.productTatol = productTatol;
+	public void setProductTotal(Long productTotal) {
+		this.productTotal = productTotal;
 	}
 	public ProductSaleBean getProductBean() {
 		return productBean;

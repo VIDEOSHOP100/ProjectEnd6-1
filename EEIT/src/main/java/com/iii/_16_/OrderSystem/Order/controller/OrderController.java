@@ -130,7 +130,7 @@ public class OrderController {
 				productTotalPrice = procount*productcartlistbean.getProductbean().getProPrice();
 				proPriceList.add(productTotalPrice);//準備加總金額
 				OrderProductBean confirmbean = new OrderProductBean(productcartlistbean.getProductSeqNo(), productcartlistbean.getProductCount(), productcartlistbean.getProductbean().getProPrice(), member.getAccount(), orderNum, 0);
-				confirmbean.setProductTatol(productTotalPrice);
+				confirmbean.setProductTotal(productTotalPrice);
 				
 				//找到原來的數量扣掉 購物車內的商品數量
 				decreasePcs= ForUpdateProBean.getProPcs()-productcartlistbean.getProductCount();
@@ -163,16 +163,18 @@ public class OrderController {
 			List<OrderProductBean> havaProSeq = orderproductservice.getByorderSeqNo(orderNum);
 			List<OrderProductBean> havePro = new ArrayList<>();
 			int proSeqNo=0;
-			for(OrderProductBean orderbean:havaProSeq) {
-				proSeqNo = orderbean.getProductSeqNo();
+			for(OrderProductBean orderprobean:havaProSeq) {
+				proSeqNo = orderprobean.getProductSeqNo();
 				ProductSaleBean proDetail = productsaleservice.getBySeqNo(proSeqNo);
-				orderbean.setProductBean(proDetail);
-				
+				orderprobean.setProductBean(proDetail);
+				orderproductservice.update(orderprobean);
+				havePro.add(orderprobean);
 			}
 			map.put("readyforpaypro", havePro);
 			
 		 return "OrderSystem/orderSuccess";
 	}
+	
 	@RequestMapping(value = "/odergetcountry", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getCountryName(String city) {
 		Map<String, Object> result = new HashMap<String, Object>();

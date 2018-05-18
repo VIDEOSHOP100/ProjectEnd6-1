@@ -29,4 +29,10 @@ public class OrderProductService {
 	public List<OrderProductBean> getByorderSeqNo(Integer orderSeqNo) throws SQLException {
 		 return dao.findbyOrderSeqNo(orderSeqNo);
 	}
+	// 把product放進去 才能抓到產品詳細資料
+		@Transactional
+		public int update(OrderProductBean bean) throws SQLException {
+			 dao.update(bean);
+			 return 1;
+		}
 }
