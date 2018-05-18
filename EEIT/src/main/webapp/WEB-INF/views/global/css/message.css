@@ -189,10 +189,10 @@
 	font-family:Arial;
 	font-size:8px;
 	font-weight:bold;
-	padding:6px 30.3px;
+	padding:6px 20px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #9b14b3;
-	width:25%;
+	width:20%;
 }
 .box-message > .messagePlus > .btn:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a20dbd), color-stop(1, #c123de));
@@ -427,5 +427,31 @@
 	width:20%;
 	float: left;
 }
-
-
+.myVideoDiv{
+	width: 100px;
+	height:100px;
+/* 	background-color: blue;	 */
+	border: solid 1px red;
+	position: absolute; 
+	top: 300px;
+	float: left;
+}
+.myVideo{
+	width: 100px;
+	height:100px;
+}
+.yourVideoDiv{
+	border: solid 1px blue;
+	top: 0px;
+	position: absolute; 
+	width: 100%;
+	height:400px;
+/* 	background-color: red;	 */
+}
+.yourVideo{
+	width: 100%;
+	height:500px;
+}
+.video-container {
+  position:relative;
+}
