@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Navigation</title>
 <script src="https://www.google.com/recaptcha/api.js"></script>
+<!--  <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 
 <!-- Bootstrap core CSS -->
@@ -253,8 +254,9 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form:form id="loginForm" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row" >
+<%-- 					<form:form id="loginForm" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row" > --%>
 					
+					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 					<div class="form-group col-md-6">
 						<small><label for="logAcc">帳號</label></small>
 						<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
@@ -274,6 +276,7 @@
 					<p id="loginErrMsg">${ErrorMessageKey.error}</p>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 					<button type="button" id="modalLoginButton" class="btn btn-primary">登入</button>
+					
 				</div>
 						</form:form>
 			</div>

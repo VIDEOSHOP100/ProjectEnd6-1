@@ -56,33 +56,30 @@ $(document).ready(function() {
 	
 	
 	
-			
-			
+//	---------------------------------------------------------
+	
+//	舊版 
+
+	
 	$('#modalLoginButton').click(checkAccPwd);
-			
+	
 	function checkAccPwd(){
 	
 		var logAcc = $('#logAcc').val();
 		var logPwd = $('#logPwd').val();
-		var botCheckResp = $('#g-recaptcha-response-1').val();
 		
 		$.ajax({
-			
+		
 			type:"POST",
-			url:"/EEIT/checkBotAccPwd",
-			data:{ botCheckResp:botCheckResp , logAcc:logAcc , logPwd:logPwd},
+			url:"/EEIT/checkAccPwd",
+			data:{logAcc:logAcc , logPwd:logPwd},
 			success:function(result){
 				var checkResult = result.loginCheck;
-				var botResult = result.botCheck;
-				
-				if(checkResult == true && botResult == true){
+				if(checkResult == true){
 					$('#loginForm').submit();
-				}else if(checkResult == false && botResult == true){
+				}else{
 					$('#loginErrMsg').html(
-						'<div class="p-2 mb-2 bg-warning text-dark rounded">帳號或密碼錯誤!</div>');
-				}else if(botResult == false){
-					$('#loginErrMsg').html(
-					'<div class="p-2 mb-2 bg-warning text-dark rounded">機器人驗證失敗!</div>');
+						'<div class="p-3 mb-2 bg-warning text-dark rounded">帳號或密碼錯誤!</div>');
 				}
 			},
 			error : function(e) {
@@ -92,16 +89,55 @@ $(document).ready(function() {
 			
 		})
 		
-	
 	}
-//	---------------------------------機器人驗證按鈕---------------------------------
 	
 		
 	
+//	---------------------------------------------------------
+	
+//	新版
 	
 	
+//	$('#modalLoginButton').click(checkAccPwd);
+//			
+//	function checkAccPwd(){
+//	
+//		var logAcc = $('#logAcc').val();
+//		var logPwd = $('#logPwd').val();
+//		var botCheckResp = $('#g-recaptcha-response-1').val();
+//		
+//		$.ajax({
+//			
+//			type:"POST",
+//			url:"/EEIT/checkBotAccPwd",
+//			data:{ botCheckResp:botCheckResp , logAcc:logAcc , logPwd:logPwd},
+//			success:function(result){
+//				var checkResult = result.loginCheck;
+//				var botResult = result.botCheck;
+//				
+//				if(checkResult == true && botResult == true){
+//					$('#loginForm').submit();
+//				}else if(checkResult == false && botResult == true){
+//					$('#loginErrMsg').html(
+//						'<div class="p-2 mb-2 bg-warning text-dark rounded">帳號或密碼錯誤!</div>');
+//				}else if(botResult == false){
+//					$('#loginErrMsg').html(
+//					'<div class="p-2 mb-2 bg-warning text-dark rounded">機器人驗證失敗!</div>');
+//				}
+//			},
+//			error : function(e) {
+//				console.log("ERROR : ", e);
+//				alert(e);
+//			}
+//			
+//		})
+//		
+//	
+//	}
+
 	
+		
 	
-	
+
 	
 })
