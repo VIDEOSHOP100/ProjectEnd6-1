@@ -73,11 +73,16 @@ $(document).ready(function() {
 			data:{ botCheckResp:botCheckResp , logAcc:logAcc , logPwd:logPwd},
 			success:function(result){
 				var checkResult = result.loginCheck;
-				if(checkResult == true){
+				var botResult = result.botCheck;
+				
+				if(checkResult == true && botResult == true){
 					$('#loginForm').submit();
-				}else{
+				}else if(checkResult == false && botResult == true){
 					$('#loginErrMsg').html(
 						'<div class="p-2 mb-2 bg-warning text-dark rounded">帳號或密碼錯誤!</div>');
+				}else if(botResult == false){
+					$('#loginErrMsg').html(
+					'<div class="p-2 mb-2 bg-warning text-dark rounded">機器人驗證失敗!</div>');
 				}
 			},
 			error : function(e) {

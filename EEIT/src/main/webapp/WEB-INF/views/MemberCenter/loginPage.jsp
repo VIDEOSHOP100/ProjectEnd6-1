@@ -5,6 +5,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <title>登入</title>
 <style>
 .myfooter {
@@ -26,11 +27,7 @@
 				href="${pageContext.request.contextPath}">Home</a></li>
 			<li class="breadcrumb-item active">登入系統</li>
 		</ol>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+		<br> <br> <br> <br> <br>
 
 		<div class="row ">
 
@@ -48,6 +45,10 @@
 						<form:input class="form-control input-sm" id="logPwd"
 							type="password" path="password" placeholder="password" />
 						<br>
+						<div class="form-group col-md-12">
+							<div class="g-recaptcha"
+								data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
+						</div>
 						<a
 							href="${pageContext.request.contextPath}/MemberCenter/forgotPassword">
 							<button type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button>
