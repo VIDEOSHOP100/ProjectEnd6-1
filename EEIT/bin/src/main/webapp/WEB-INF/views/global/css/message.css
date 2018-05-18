@@ -1,0 +1,457 @@
+@charset "UTF-8";
+
+
+/* 以上聊天室------------------------------------------------------------------- */
+.chat-sidebar {
+	width: 150px;
+	position: fixed;
+	height: 94%;
+	right: 0px;
+	bottom: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px solid rgba(29, 49, 91, .3);
+	display: block;
+	background-color: #faf4ff;
+}
+
+.chat-sidebar>.sidebar-name {
+	height: 40px;
+	margin-bottom: 10px;
+}
+
+.chat-sidebar>.sidebar-name>.sidebarUserButton {
+
+}
+
+.chat-sidebar>.sidebar-name>.sidebarUserButtonNone {
+	height: 40px;
+	width: 100%;
+	cursor: pointer;
+	display: block;
+	height: 100%;
+	text-align: left;
+	background-color: #6f00d2;
+	border: none;
+	color: white;
+}
+.chat-sidebar>.sidebar-name>.sidebarUserButtonAlert {
+
+}
+
+
+.sidebarUserButtonChangeColor{
+	height: 40px;
+	width: 100%;
+	cursor: pointer;
+	display: block;
+	height: 100%;
+	text-align: left;
+	background-color: red;
+	border: none;
+	color: white;
+}
+
+/* .chat-sidebar>.sidebar-name>button: hover{ */
+/* 	background-color:		white; */
+/* } */
+.popup-box {
+	display: none;
+	position: fixed;
+	bottom: 0px;
+	right: 220px;
+	height: 285px;
+	background-color: rgb(237, 239, 244);
+	width: 300px;
+	border: 1px solid rgba(29, 49, 91, .3);
+}
+
+.box {
+	background-color: white;
+	width: 300px;
+	height: 340px;
+	right: 220px;
+	position: fixed;
+	bottom: 0px;
+	border: solid 1px black;
+}
+
+.box-head {
+	cursor: pointer;
+	width: 100%;
+	height: 30px;
+	color: white;
+	font-size: 20px;
+	line-height: 25px;
+}
+	
+
+.box-headAlert {
+	
+}
+.box-headNoneChangeColor{
+	cursor: pointer;
+	width: 100%;
+	height: 30px;
+	background-color: #4A0080;
+	color: white;
+	font-size: 20px;
+	line-height: 25px;
+}
+.box-headChangeColor{
+	cursor: pointer;
+	width: 100%;
+	height: 30px;
+	background-color: red;
+	color: white;
+	font-size: 20px;
+	line-height: 25px;
+}
+
+.box-head>button {
+	height: 30px;
+	width: 30px;
+	background-color: #4A0080;
+	float: right;
+	cursor: pointer;
+}
+
+.box-head>button:hover {
+	background-color: #4A0080;
+}
+
+.box-head>i {
+	background-color: white;
+}
+
+.box-head>span {
+	margin-left: 10px;
+}
+
+.box-body {
+	width: 100%;
+	height: 230px;
+	background-color: white;
+	overflow: auto;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.box-message {
+	width: 100%;
+	height: 23x;
+	background-color: red;
+}
+
+.box-message>textarea {
+	width: 100%;
+	height: 55px;
+	display: inline-block;
+	float: left;
+	resize: none;
+}
+
+.box-message > .messagePlus {
+	width: 100%;
+	height: 23px;
+/* 	display: inline-block; */
+	background-color: white;
+/* 	float: right; */
+}
+
+.box-message > .messagePlus > .btn {
+/* 	background-color: #4a0080; */
+/* 	color : #4a0080; */
+/* 	display: inline-block; */
+/* 	width: 10px; */
+	height: 23px;
+	float: right;
+}
+
+
+.box-message > .messagePlus > .btn {
+	-moz-box-shadow:inset 0px 1px 0px 0px #e184f3;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #e184f3;
+	box-shadow:inset 0px 1px 0px 0px #e184f3;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c123de), color-stop(1, #a20dbd));
+	background:-moz-linear-gradient(top, #c123de 5%, #a20dbd 100%);
+	background:-webkit-linear-gradient(top, #c123de 5%, #a20dbd 100%);
+	background:-o-linear-gradient(top, #c123de 5%, #a20dbd 100%);
+	background:-ms-linear-gradient(top, #c123de 5%, #a20dbd 100%);
+	background:linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c123de', endColorstr='#a20dbd',GradientType=0);
+	background-color:#c123de;
+	border:1px solid #a511c0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:8px;
+	font-weight:bold;
+	padding:6px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #9b14b3;
+	width:20%;
+}
+.box-message > .messagePlus > .btn:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a20dbd), color-stop(1, #c123de));
+	background:-moz-linear-gradient(top, #a20dbd 5%, #c123de 100%);
+	background:-webkit-linear-gradient(top, #a20dbd 5%, #c123de 100%);
+	background:-o-linear-gradient(top, #a20dbd 5%, #c123de 100%);
+	background:-ms-linear-gradient(top, #a20dbd 5%, #c123de 100%);
+	background:linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a20dbd', endColorstr='#c123de',GradientType=0);
+	background-color:#a20dbd;
+}
+.box-message > .messagePlus > .btn:active {
+	position:relative;
+	top:1px;
+}
+
+.senderMessage {
+	color: red;
+	text-align: right;
+}
+
+.receiverMessage {
+	color: blue;
+}
+
+/* .box-body>ul { */
+/*             list-style: none; */
+/*             margin: 0; */
+/*             padding: 0; */
+/*         } */
+.box-body p {
+	display: block;
+	clear: both;
+	border-radius: 30px;
+	margin-bottom: 0px;
+	font-family: Helvetica, Arial, sans-serif;
+	word-break: break-all;
+}
+
+.box-body .him {
+	background: #eee;
+	float: left;
+	margin-right: 100px;
+	padding: 10px;
+	margin-bottom: 2px;
+	/*             height: auto; */
+}
+
+.box-body .me {
+	float: right;
+	background: #0084ff;
+	color: #fff;
+	margin-left: 100px;
+	padding: 10px;
+	margin-bottom: 2px;
+	/*              height: auto; */
+}
+
+.box-body .him+.me {
+	border-bottom-right-radius: 5px;
+	font-size: 15px;
+}
+
+.box-body .me+.me {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.box-body .me:last-of-type {
+	border-bottom-right-radius: 30px;
+}
+
+.messageTimeMe {
+	color: gray;
+	font-size: 8px;
+	text-align: right;
+	float: right;
+	/* 	border : solid 1px red; */
+	padding: 0px;
+	/* 	padding-bottom: -10px; */
+	margin-top: 10px;
+}
+
+.messageTimeHim {
+	color: gray;
+	font-size: 3px;
+	text-align: left;
+	padding: 0px;
+	margin-top: 10px;
+	/* 	padding-bottom: -2px; */
+	/* 	border : solid 1px blue; */
+}
+
+.alertMessageNumber {
+	display: none;
+	color: red;
+}
+
+.alertMessageNumberDisplay {
+	color: red;
+}
+
+.unreadNumber {
+	color: red;
+	display: none;
+}
+/* 以下聊天室------------------------------------------------------------------- */
+
+
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup div {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup div::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+.messageFile{
+	color: #FFECC9;
+	text-decoration: underline;
+}
+.messageFile:hover{
+	color: white;
+	text-decoration: underline;
+}
+
+.him > .messageFile{
+	color: black;
+	text-decoration: underline;
+}
+.him > .messageFile:hover{
+	color: #6E6E6E;
+	text-decoration: underline;
+}
+.hideForm{
+	display: none;
+}
+
+.notificationItem{
+	border-bottom: solid 1px #d8d7d9;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: -24px;	
+	margin-right: -24px;
+	float: right;	
+}
+
+.notificationItemInner{
+	float: left;
+}
+.notificationItem:hover{
+	background-color: #f9f2ff
+}
+.notificationItemAlert{
+	background-color: #e0b7ff;
+}
+.notificationItemLink:hover{
+	background-color: red 
+}
+
+.notificationItem p{
+	margin: 0px;
+	diplay: inline-block;
+/* 	border: solid red 1px; */
+/* 	float: left; */
+	width:300px;
+}
+
+.notificationItemTime{
+	font-size: 10px;
+	color: gray;
+}
+
+.notificationItemAccount{
+	font-weight: 800;
+}
+.notificationItemArticle{
+	overflow: hidden;
+}
+
+.notificationItemImage{
+	margin-top: 0px;
+	border-radius: 50%;
+	width:20%;
+	float: left;
+}
+.myVideoDiv{
+	width: 100px;
+	height:100px;
+/* 	background-color: blue;	 */
+	border: solid 1px red;
+	position: absolute; 
+	top: 300px;
+	float: left;
+}
+.myVideo{
+	width: 100px;
+	height:100px;
+}
+.yourVideoDiv{
+	border: solid 1px blue;
+	top: 0px;
+	position: absolute; 
+	width: 100%;
+	height:400px;
+/* 	background-color: red;	 */
+}
+.yourVideo{
+	width: 100%;
+	height:500px;
+}
+.video-container {
+  position:relative;
+}
