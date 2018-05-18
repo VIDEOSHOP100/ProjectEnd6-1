@@ -63,8 +63,8 @@ public class LoginController {
 			// notificationRecordingService.getNotificationRecordingByReceiverAccount(account);
 			// session.setAttribute("notificationRecordingBeanList",
 			// notificationRecordingBeanList);
-			if(target.equals("/loginPage")) {
-				return "index";
+			if(target.equals("/loginPage") || target.equals("/")) {
+				return "redirect:/";
 			}
 		} else {
 			errorMessageMap.put("error", "帳號或密碼錯誤!");
