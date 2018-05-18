@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+.videoDescription {
+	width: 90%;
+	overflow: hidden;
+	height: 40px;
+	line-height: 20px;
+	display: inline-block;
+	float: left;
+	/* 		border: blue solid 1px; */
+	margin: -10px 0px;
+}
+
+.videoDescriptionOutSide {
+	display: block;
+	/* 		border: red solid 1px; */
+	float: left;
+	height: 40px;
+	line-height: 20px;
+	margin: -10px 0px;
+}
+
+.videoTypeOutSide {
+	display: block;
+	/*   		border: red solid 1px;   */
+	float: left;
+	/* 		height: 40px; */
+	line-height: 20px;
+	width: 8%;
+	margin-top: -10px;
+	margin-bottom: 7px
+}
+
+.videoType {
+	width: 92%;
+	overflow: hidden;
+	/* 		height: 40px;  */
+	line-height: 20px;
+	display: block;
+	float: left;
+	/*   		border: blue solid 1px;   */
+	margin-top: -10px;
+	margin-bottom: 7px
+}
+
+.videoDatas {
+	font-size: 15px;
+	line-height: 5px;
+}
+
+.addVideoButtonDiv {
+	/*  		border: blue solid 1px;  */
+	text-align: right;
+	height: 50px;
+	margin-top: 25px;
+}
+
+.addVideoButton {
+	height: 50px;
+}
+
+.updateRadio {
+	display: inline-block
+}
+
+.seqNo {
+	display: none
+}
+
+label, input {
+	display: block;
+}
+
+input.text {
+	margin-bottom: 12px;
+	width: 95%;
+	padding: .4em;
+}
+
+fieldset {
+	padding: 0;
+	border: 0;
+	/* 				margin-top:25px;  */
+}
+
+h1 {
+	font-size: 1.2em;
+	margin: .6em 0;
+}
+
+div#users-contain {
+	width: 350px;
+	margin: 20px 0;
+}
+
+div#users-contain table {
+	margin: 1em 0;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+div#users-contain table td, div#users-contain table th {
+	border: 1px solid #eee;
+	padding: .6em 10px;
+	text-align: left;
+}
+
+.ui-dialog .ui-state-error {
+	padding: .3em;
+}
+
+.validateTips {
+	border: 1px solid transparent;
+	/* 				padding: 0.3em;  */
+	margin: 0px;
+	/* 				border : solid 1px red; */
+}
+
+#insertForm {
+	/* 				border: solid 1px red; */
+	
+}
+
+/* loading */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../../global/images/loading.gif') 
+                50% 50% 
+                no-repeat;
+}
+.videoTitle{
+	height: 25px;
+	overflow : hidden;
+	color : black;
+	text-decoration:none
+}
+.videoTitleLink:hover{
+	height: 25px;
+	overflow : hidden;
+	color : black;
+	text-decoration:none
+}
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading .modal {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+
+.hideForm{
+	display: none;
+}
+
+.pageLoadingImage {
+	position: absolute; 
+	margin: -50px;
+	padding : -50px;
+/* 	border: solid red 1px; */
+}
+.pageLoadingNone{
+	visibility: hidden;
+}
+.pageLoadingDisplay{
+}
+.pageLoading{
+	text-align: center;
+/* 	margin-bottom: -10px; */
+/* 	border: solid blue 1px; */
+}
+/* .pageLoadingImage{ */
+/* 	border: solid yellow 1px; */
+	
+/* } */
+.pageLoadingDiv{
+/* 	border: solid red 1px; */
+/* 	margin: -50px; */
+/* 	margin-bottom: -100px */
+	
+}

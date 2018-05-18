@@ -10,7 +10,16 @@
 <body>
 		<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 		
+		<div class="container">
+			
+			<h2 class="mt-4 md-3">我的訊息</h2>
+			
+			<div class="row">
+			
+			
+			</div>
 		
+		</div>
 		
 	
 	

@@ -28,10 +28,22 @@
 
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">
-			<a href="/EEIT">Home</a>
-		</li>
-		<li class="breadcrumb-item active">客服中心</li>
+			<a href="${pageContext.request.contextPath}/QuestionList/Main">會員問題</a>
+		</li>	
 	</ol>
+	
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="/EEIT">商品問題</a>
+		</li>
+	</ol>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="/EEIT">帳號問題</a>
+			</li>
+		</ol>
+
+
 
 		<div id="accordion">
 			<c:forEach items = "${allQuestionList }" var="questionListBean">

@@ -40,18 +40,20 @@
 		<!-- Portfolio Item Row -->
 		<div class="">
 			<div class="card">
-				<div class="card-header">${getMemberBean.account}的購物清單</div>
+				<div class="card-header">客戶消費明細</div>
 				<div class="card-body">
 					<button id="buttonAdd" type="button" class="btn btn-success">
 						<i class="fas fa-cart-plus"></i>
 					</button>
+					<h6>訂單編號  : ${readyforpay.orderSeqNo}</h6>
+					<h6>銷售日期  : ${readyforpay.orderTime}</h6>
 					<!-- 每頁不同的內容從這裡開始 -->
 					<table id="productTable" class="table table-condensed">
 						<thead>
 							<tr>
 								<th></th>
 								<th></th>
-								<th>&nbsp;&nbsp;商品圖</th>
+								<th></th>
 								<th>商品名稱</th>
 								<th>數量</th>
 								<th>單價</th>
@@ -62,26 +64,24 @@
 
 
 						<tbody class="tbodyOutside">
-
+									
 							<c:set var="total" value="0.0" />
-							<c:forEach var="xxx" items="${cartlist}">
+							<c:forEach var="xxx" items="${readyforpaypro}">
 								<tr class="trkill">
-									<td style="visibility: hidden" class="divThree">${xxx.proCartListSeqNo}</td>
-									<td style="visibility: hidden" class="divOne">${xxx.productbean.productSeqNo}</td>
-									<td><img width="150px" height="120px"
-										src="${pageContext.request.contextPath}/getImage/Product/${xxx.productbean.productSeqNo}"
-										alt=""></td>
-									<td><h5 class="divTwo">${xxx.productbean.proName}</h5></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td><h5>${xxx.productBean.proName}</h5></td>
 									<td>${xxx.productCount }</td>
-									<td>NT ${xxx.productbean.proPrice }</td>
-									<td>NT ${xxx.productCount * xxx.productbean.proPrice}</td>
-									<c:set var="total"
-										value="${total + xxx.productCount * xxx.productbean.proPrice}" />
+									<td>NT ${xxx.productPrice}</td>
+									<td>NT ${xxx.productTotal}</td>
+<%-- 									<c:set var="total" --%>
+<%-- 										value="${total + xxx.productCount * xxx.productbean.productPrice}" /> --%>
 									<td>
-										<button id="buttonAdd" type="button"
-											class="btn btn-danger kill">
-											<i class="far fa-trash-alt"></i>
-										</button>
+<!-- 										<button id="buttonAdd" type="button" -->
+<!-- 											class="btn btn-danger kill"> -->
+<!-- 											<i class="far fa-trash-alt"></i> -->
+<!-- 										</button> -->
 									</td>
 								</tr>
 							</c:forEach>
@@ -90,34 +90,19 @@
 							<tr class="success">
 								<td></td>
 								<td></td>
-								<td>總價</td>
+								<td></td>
+								<td>訂單總價</td>
 								<td></td>
 								<td></td>
-								<td></td>
-								<td>NT <fmt:formatNumber value="${total}" pattern="#,##0" /></td>
+								<td>NT <fmt:formatNumber value="${readyforpay.orderTotalPrice}" pattern="#,##0" /></td>
 								<td></td>
 							</tr>
 						</tfoot>
 					</table>
 					<br>
-					<a href="${pageContext.request.contextPath}/goMarketHomePage">繼續購買</a>
-					<br>
-					<a href="${pageContext.request.contextPath}/order.do">馬上結帳</a>
-					<!-- 	刪除商品表格	-------------------------- -->
-					<div id="delete-dialog-form" title="刪除資料">
-						<p class="validateTips">確認刪除此資料?</p>
-									<form:form id="deleteForm" name = "deleteForm" modelAttribute="updateCartListBean">
-										<fieldset>
-<!-- 											<input type="hidden" value="DELETE" name="_method"/> -->
-											<form:input path="proCartListSeqNo" type="hidden" name="seqNoDelete" id="seqNoDelete"/>
-											<form:input path="productStatus" type="hidden" name="productStatus" id="productStatusDelete" value = "2"/>
-						
-											<p>商品名稱:<span id="productNameDel"></span></p>
-											<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-									</fieldset>
-						</form:form>
-					</div>
-				</div>
+					
+						<!-- 每頁不同的內容從這裡開始 -->
+					<h4>感謝您的訂購</h4>
 			</div>
 		</div>
 	</div>

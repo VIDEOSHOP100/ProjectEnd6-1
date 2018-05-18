@@ -27,19 +27,22 @@ $(document).ready(function() {
 			};
 		})
 
-			$('.loginCheck').click(function(event) {
+				
+		
+		$('.loginCheck').click(loginCheck);
+		
+			function loginCheck() {
 
-				var login = $('#navbarDropdownBlog').text();
+			var login = $('#navbarDropdownBlog').text();
 
-				if (login == "") {
-					alert('請登入');
-					$(this).attr("href", "")
-					$('#loginButton').trigger("click");
-					return false;
-				} else {
-				}
+			if (login == "") {
+				alert('請登入');
+				$(this).attr("href", "")
+				$('#loginButton').trigger("click");
+				return false;
+			}
 
-			})
+		}
 			
 //---------------------------------前端登入驗證---------------------------------------
 	$(document).on("keyup","#logPwd", function(e){

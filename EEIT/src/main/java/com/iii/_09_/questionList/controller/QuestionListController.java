@@ -34,7 +34,7 @@ public class QuestionListController {
 		questionListBean.setQuestionListStatus("1");
 		questionListService.saveQuestionList(questionListBean);
 		map.put("allQuestionList", questionListService.selectQuestionList());
-		return "questionList/questionList";
+		return "questionList/Success";
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
@@ -63,12 +63,29 @@ public class QuestionListController {
 //		map.put("questionListBean", new QuestionListBean());
 //		return "questionList/addQuestionList";
 //	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String selectQuestionList(Map<String, Object> map) {
 		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
 		map.put("questionListBean", questionListBeanList);
 		return "questionList/questionMain";
-	}
+	} 
+	
+	//顯示在TOP.jsp的常見問題
+	@RequestMapping(value="/Main",method = RequestMethod.GET)
+	public String QuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean,Map<String, Object> map) {
+//		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
+		questionListService.saveQuestionList(questionListBean);
+		map.put("allQuestionList", questionListService.selectQuestionList());
+		return "questionList/questionList";
+	} 
+	
+//	@RequestMapping(value="/Main/{questionListType}",method = RequestMethod.GET)
+//	public String ChoseQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean,Map<String, Object> map) {
+//		questionListService.saveQuestionList(questionListBean);
+//		map.put("allQuestionList", questionListService.selectQuestionList());
+//		return "questionList/questionList";
+//	}
 	
 	@RequestMapping(value = "/getAllQuestionList" ,method = RequestMethod.GET)
 	public @ResponseBody List<QuestionListBean> getAllQuestionList() {
@@ -85,6 +102,7 @@ public class QuestionListController {
 		map.put("questionListBean", questionListBean);
 		return "questionList/addQuestionList";
 	}
+
 	
 	//刪除標單連結
 	@RequestMapping("/deleteQusetionList")

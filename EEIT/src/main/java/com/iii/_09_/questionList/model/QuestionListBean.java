@@ -19,9 +19,60 @@ public class QuestionListBean {
 	private String questionListStatus;
 	private Timestamp questionListUploadDate;
 	private String managerId;
-
+	private Integer questionListType;
+	
+	public Integer getQuestionListSeqNo() {
+		return questionListSeqNo;
+	}
+	public void setQuestionListSeqNo(Integer questionListSeqNo) {
+		this.questionListSeqNo = questionListSeqNo;
+	}
+	public String getQuestionListTitle() {
+		return questionListTitle;
+	}
+	public void setQuestionListTitle(String questionListTitle) {
+		this.questionListTitle = questionListTitle;
+	}
+	public String getQuestionListArticle() {
+		return questionListArticle;
+	}
+	public void setQuestionListArticle(String questionListArticle) {
+		this.questionListArticle = questionListArticle;
+	}
+	public String getQuestionListStatus() {
+		return questionListStatus;
+	}
+	public void setQuestionListStatus(String questionListStatus) {
+		this.questionListStatus = questionListStatus;
+	}
+	public Timestamp getQuestionListUploadDate() {
+		return questionListUploadDate;
+	}
+	public void setQuestionListUploadDate(Timestamp questionListUploadDate) {
+		this.questionListUploadDate = questionListUploadDate;
+	}
+	public String getManagerId() {
+		return managerId;
+	}
+	public void setManagerId(String managerId) {
+		this.managerId = managerId;
+	}
+	public Integer getQuestionListType() {
+		return questionListType;
+	}
+	public void setQuestionListType(Integer questionListType) {
+		this.questionListType = questionListType;
+	}
+	@Override
+	public String toString() {
+		return "QuestionListBean [questionListSeqNo=" + questionListSeqNo + ", questionListTitle=" + questionListTitle
+				+ ", questionListArticle=" + questionListArticle + ", questionListStatus=" + questionListStatus
+				+ ", questionListUploadDate=" + questionListUploadDate + ", managerId=" + managerId
+				+ ", questionListType=" + questionListType + "]";
+	}
+	
 	public QuestionListBean(Integer questionListSeqNo, String questionListTitle, String questionListArticle,
-			String questionListStatus, Timestamp questionListUploadDate, String managerId) {
+			String questionListStatus, Timestamp questionListUploadDate, String managerId, Integer questionListType) {
 		super();
 		this.questionListSeqNo = questionListSeqNo;
 		this.questionListTitle = questionListTitle;
@@ -29,66 +80,13 @@ public class QuestionListBean {
 		this.questionListStatus = questionListStatus;
 		this.questionListUploadDate = questionListUploadDate;
 		this.managerId = managerId;
+		this.questionListType = questionListType;
 	}
-
+	
 	public QuestionListBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getQuestionListSeqNo() {
-		return questionListSeqNo;
-	}
-
-	public void setQuestionListSeqNo(Integer questionListSeqNo) {
-		this.questionListSeqNo = questionListSeqNo;
-	}
-
-	public String getQuestionListTitle() {
-		return questionListTitle;
-	}
-
-	public void setQuestionListTitle(String questionListTitle) {
-		this.questionListTitle = questionListTitle;
-	}
-
-	public String getQuestionListArticle() {
-		return questionListArticle;
-	}
-
-	public void setQuestionListArticle(String questionListArticle) {
-		this.questionListArticle = questionListArticle;
-	}
-
-	public String getQuestionListStatus() {
-		return questionListStatus;
-	}
-
-	public void setQuestionListStatus(String questionListStatus) {
-		this.questionListStatus = questionListStatus;
-	}
-
-	public Timestamp getQuestionListUploadDate() {
-		return questionListUploadDate;
-	}
-
-	public void setQuestionListUploadDate(Timestamp questionListUploadDate) {
-		this.questionListUploadDate = questionListUploadDate;
-	}
-
-	public String getManagerId() {
-		return managerId;
-	}
-
-	public void setManagerId(String managerId) {
-		this.managerId = managerId;
-	}
-
-	@Override
-	public String toString() {
-		return "QuestionListBean [questionListSeqNo=" + questionListSeqNo + ", questionListTitle=" + questionListTitle
-				+ ", questionListArticle=" + questionListArticle + ", questionListStatus=" + questionListStatus
-				+ ", questionListUploadDate=" + questionListUploadDate + ", managerId=" + managerId + "]";
-	}
-
+	
 }

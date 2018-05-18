@@ -23,22 +23,23 @@ $(document).ready(function () {
                 timeout: 600000,
   
                 success: function (data) {
-                    var btn1 = $('<div></div> ').html('<input type="button" value="新增問題"  class="btn btn-primary">').addClass('text-white');
-                    var btn2 = $('<div></div> ').html('<input type="button" value="刪除問題"  class="btn btn-primary">')
-                    var btn3 = $('<div></div> ').html('<input type="button" value="修改問題"  class="btn btn-primary">')
+                	var row = $('<div></div>').addClass('row');
+                    
+                	var btn1 = $('<div></div> ').addClass('').html('<input type="button" value="新增問題" id="btn01" class="btn btn-primary">')
+                    
+                    var btn2 = $('<div></div> ').html('<input type="button" value="刪除問題" id="btn02" class="btn btn-primary">')
+                    
+                    var btn3 = $('<div></div> ').html('<input type="button" value="修改問題" id="btn03" class="btn btn-primary">')
+                    
+                    
+                    
                     $('#content>h2').after(btn1,btn2,btn3);
+                    
                         var docFrag = $(document.createDocumentFragment());
                         console.log(data);
                         	
                         
-                        
-                        btnJSONP.addEventListener("click",function(){
-                    		var script = document.createElement('script');
-                    		script.setAttribute("src","JSONP.jsp?callback=jsonHandler");
-                    		
-                    		document.body.appendChild(script);
-                    	})
-                        	
+                   
                         
 //                            var cell1 = $('<td></td>').text(MemberReport.memberReportSeqNo).addClass('pointer text-primary text-center memberReportSeqNo');
 //                            var cell2 = $('<td></td>').text(MemberReport.accountFrom);

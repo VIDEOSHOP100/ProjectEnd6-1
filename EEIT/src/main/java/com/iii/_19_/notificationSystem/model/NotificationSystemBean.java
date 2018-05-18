@@ -20,13 +20,10 @@ public class NotificationSystemBean {
 	private Timestamp notificationDate;
 	private String notificationStatus;
 	private String account;
-
-	public NotificationSystemBean() {
-		super();
-	}
+	private String eventPK;
 
 	public NotificationSystemBean(Integer notificationSeqNo, String notificationArticle, String notificationType,
-			Timestamp notificationDate, String notificationStatus, String account) {
+			Timestamp notificationDate, String notificationStatus, String account, String eventPK) {
 		super();
 		this.notificationSeqNo = notificationSeqNo;
 		this.notificationArticle = notificationArticle;
@@ -34,6 +31,20 @@ public class NotificationSystemBean {
 		this.notificationDate = notificationDate;
 		this.notificationStatus = notificationStatus;
 		this.account = account;
+		this.eventPK = eventPK;
+	}
+
+	public NotificationSystemBean() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "NotificationSystemBean [notificationSeqNo=" + notificationSeqNo + ", notificationArticle="
+				+ notificationArticle + ", notificationType=" + notificationType + ", notificationDate="
+				+ notificationDate + ", notificationStatus=" + notificationStatus + ", account=" + account
+				+ ", eventPK=" + eventPK + "]";
 	}
 
 	public Integer getNotificationSeqNo() {
@@ -84,11 +95,12 @@ public class NotificationSystemBean {
 		this.account = account;
 	}
 
-	@Override
-	public String toString() {
-		return "NotificationSystemBean [notificationSeqNo=" + notificationSeqNo + ", notificationArticle="
-				+ notificationArticle + ", notificationType=" + notificationType + ", notificationDate="
-				+ notificationDate + ", notificationStatus=" + notificationStatus + ", account=" + account + "]";
+	public String getEventPK() {
+		return eventPK;
+	}
+
+	public void setEventPK(String eventPK) {
+		this.eventPK = eventPK;
 	}
 
 }
