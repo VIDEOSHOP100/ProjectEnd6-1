@@ -314,7 +314,7 @@ $( function() {
 				})
 				$('#myCanvas').remove();
 				$body.removeClass("loading");
-				stompClient.send("/app/notificationSystem/" + $.trim(senderAccount), {}, JSON.stringify({ 'notificationArticle':"發布新影片啦!!!!", 'account':senderAccount, 'notificationType' : 'video'}));
+				stompClient.send("/app/notificationSystem/" + $.trim(senderAccount), {}, JSON.stringify({ 'notificationArticle':"發布新影片:" + videoBean.videoTitle , 'account':senderAccount, 'notificationType' : 'videoRoom', 'eventPK' : videoBean.videoSeqNo}));
 				dialoginsert.dialog( "close" );
 				$("#insertForm #videoType").val("")
 			},

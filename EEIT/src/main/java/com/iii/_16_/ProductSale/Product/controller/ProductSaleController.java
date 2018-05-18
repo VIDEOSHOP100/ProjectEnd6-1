@@ -45,9 +45,7 @@ public class ProductSaleController {
 	public String createProduct(Map<String, Object> map, @ModelAttribute("MemberBean") MemberBean mb,
 			@ModelAttribute("productSaleBean") ProductSaleBean psb, HttpSession session) {
 		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
-		
 		if(bean==null) {
-			
 			return "MemberCenter/loginPage";
 		}
 		return "Product/addProductForm";

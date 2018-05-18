@@ -23,9 +23,10 @@ public class OrderProductDaoImpl implements OrderProductDao {
 	}
 
 	@Override
-	public OrderProductBean update(OrderProductBean order) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public OrderProductBean update(OrderProductBean orderpro) throws SQLException {
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(orderpro);
+		return orderpro;
 	}
 
 	@Override

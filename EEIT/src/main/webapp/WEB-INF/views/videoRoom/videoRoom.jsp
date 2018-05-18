@@ -30,7 +30,7 @@
 		</ol>
 		<div class="row">
 			<div class="col-md-9">
-				<video class="video" width="1150" height="600" src="${pageContext.request.contextPath}/getVideo/video/${video.videoSeqNo}"
+				<video controlsList="nodownload" class="video" width="1150" height="600" src="${pageContext.request.contextPath}/getVideo/video/${video.videoSeqNo}"
 					controls="controls" autoplay poster="${pageContext.request.contextPath}/getImage/video/${video.videoSeqNo}"></video>
 				<div class="col-md-12 ">
 					<h1 class="lead videoTitleInside" title="${video.videoTitle}"><strong><b>${video.videoTitle}</b></strong></h1>
