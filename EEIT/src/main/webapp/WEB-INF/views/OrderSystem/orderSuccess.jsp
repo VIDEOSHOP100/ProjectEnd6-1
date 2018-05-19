@@ -102,7 +102,7 @@
 					<br>
 					
 						<!-- 每頁不同的內容從這裡開始 -->
-					<h4>感謝您的訂購</h4>
+					<h4>感謝您的訂購</h4><h2><a href="${pageContext.request.contextPath}/getPdfFile/pdf/${readyforpay.orderSeqNo}">訂單列印</a></h2>
 			</div>
 		</div>
 	</div>
