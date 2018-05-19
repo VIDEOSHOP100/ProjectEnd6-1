@@ -76,18 +76,20 @@ public class AuctionItemSelectController {
 		//--------------------------資料塞進AUCTIONEND----------------------------
 		//取得BID(得標)BEAN
 		BidBean BidAucBean = BidService.getBidByAuctionSeqNoBidprice(pb.getAuctionSeqNo());
-
+		
 		AuctionEndBean AuctionEndBean = new AuctionEndBean();
 //				auctionEndService.getAuctionEndByProductSeqNo(productSeqNo);
 			//取得+設置得標者帳號
 			AuctionEndBean.setAccount(BidAucBean.getAccount());
 			//取得+設置得標價格
-			AuctionEndBean.setProPrice(BidAucBean.getBidPrice());
+			AuctionEndBean.setProPrice(Integer.toString(BidAucBean.getBidPrice()));
 			//取得現在時間
 			Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 			AuctionEndBean.setProTime(now);
 			//取得+設置得標物ID
 			AuctionEndBean.setProductSeqNo(BidAucBean.getProductSeqNo());
+			//設置得標物PICID
+			AuctionEndBean.setPicSeqNo(pb.getPicSeqNo());
 			auctionEndService.saveAuctionEnd(AuctionEndBean);
 		
 		Map<String, String> map = new HashMap<String,String>();

@@ -3,56 +3,56 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title> 
+<link href="<c:url value='/InsertLiveStream/css/bootstrap-datetimepicker.css'/> " rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 <link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/>" rel="stylesheet">
 <style>
+
 .sellproduct{
 	font-family: 'Josefin Sans', sans-serif;
 }
+/* html,body{ */
+/* overflow: hidden; */
+/* margin:0; */
+/* padding:0; */
+
+/* } */
 .reasontitle{
-	
+
 font-weight: bolder;
 
 }
-/* .card-bodycontroller{  */
-/*  	width: 100%;  */
-/* 	height: 407px;   */
-/* 	background-color: white;  */
-/*  	overflow: auto;  */
-/*  	list-style: none;  */
-/*  	margin: 0;  */
-/* /* 	padding: 0; */ */
-/*   -webkit-box-flex: 1; */
-/*   -ms-flex: 1 1 auto; */
-/*   flex: 100 100 auto; */
-/*   padding: 0.7em 2em 0.7em 1em; */
-  
-/* } */
-/* .hidden{ */
-/*   display:none; */
-/*   } */
-  
-/* .chatrow{ */
-/* 	float: right; */
-/* 	background: #0084ff; */
-/* 	color: #fff; */
-/* /* 	margin-left: 100px; */ */
-/* 	padding: 10px; */
-/* 	margin-bottom: 2px; */
-	
-/* 	/*              height: auto; */ */
-/* } */
-/* .chatBlock{ */
-/* 	display: block; */
-/* 	overflow: auto; */
-/* } */
+#dm{
+width: 100%;
+/* height:90vh; */
+background: ##E8F1F5;
+}
+#dm span{
+width:auto;
+height: 3rem;
+font-size: 2rem;
+line-height: 2rem;
+position: absolute;
+white-space: nowrap;
+}
+#idDom{
+width:100%;
+height:10vh;
+background: #666;
+position: absolute;
+bottom: 0;
+display:flex;
+align-items: center;
+justify-content: center;
+}
 </style>
 </head>
 <body>
@@ -67,9 +67,12 @@ font-weight: bolder;
        
       <h1 class="mt-4 mb-3">
       ${sb.account}
-  
         <small>的直播間</small>
-        <small>開始時間:${sb.liveStart}</small>
+        <c:set var="string1" value="${sb.liveStart}"/>
+		<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+        <small>開始時間:${string2}</small>
+        
+        
         <c:if test="${!empty LoginOK.account}">
         <button id="memberReportButton"
 							class="btn btn-outline-info memberReportButton memberReport"
@@ -79,6 +82,8 @@ font-weight: bolder;
 <%-- 		<small>結束時間:${sb.liveEnd}</small> --%> 
 
       </h1>
+
+      <p id="showView"class="hidden">${sb.liveStreamView}</p>
    <p class="hidden">${sb.liveStreamSeqNo}</p>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -89,11 +94,11 @@ font-weight: bolder;
 
       <!-- Intro Content -->
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6" id="dm">
         		  
 <!--         <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
 <iframe width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe> 
-                <h2>${sb.streamName}</h2>
+                <h2 id="showViewAfter">${sb.streamName}</h2>
         </div>
         <div class="col-lg-6">
           	<div class="chat-sidebara">
@@ -107,7 +112,7 @@ font-weight: bolder;
               </div>
                 <div class="input-group">
                 <input id="catch-account" type="hidden" name = "account" value= "${LoginOK.account}">
-                <input type="text" class="form-control chat-message" placeholder="傳送訊息">
+                <input type="text" class="form-control chat-message loginCheck" placeholder="傳送訊息">
                 <span class="input-group-btn">
                   <button class="btn btn-secondary" type="button">聊天</button>
                 </span>
@@ -147,6 +152,7 @@ font-weight: bolder;
 </div> 
 <!-- 					</div>	 -->
 <c:if test="${!empty AllProductLista}">
+
 <form:form id="Bid" method="POST" action="Bid/${productSeqNo}" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data">
 
 <form:select path="productSeqNo">
@@ -168,6 +174,11 @@ font-weight: bolder;
 	
       <div class="row">
 		<div class="col-lg-12 "> 
+		 <div class="col-lg-12 text-center">
+		 <c:if test="${!empty AllProduct}">
+        <h2 class="sellproduct">賣家現正拍賣商品</h2>
+        </c:if>
+        </div>
 <c:forEach var="AllProducta" items="${AllProduct}"> 
 
         <div class="col-lg-4 mb-4 proitemcontroller offset-4">
@@ -224,7 +235,7 @@ font-weight: bolder;
 						<img class="card-img-top"
 							src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}"
 							width="500px" height="238px" alt="">
-						<div class="card-body">
+						<div class="card-body ccc">
 							<h4 class="card-title JQellipsisTitle">${product.proName}</h4>
 							<p class="card-text">限時特價  $NT ${product.proPrice }</p>
 							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription}</p>
@@ -283,20 +294,25 @@ font-weight: bolder;
 				</div>
 				<div class="modal-body">
 
-
+<%--${pageContext.request.contextPath}/Auction --%>
 					<form:form  id="Auction" method="POST" action="${pageContext.request.contextPath}/Auction" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
+					<form:input id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
 					<form:input class="seqNo" id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
-					aucBegin<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
-					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br>
-					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br>
-					proPrice<form:input id="proPrice" path="proPrice" type="text" class="form-control input-sm"/><br>
+					<p class="reasontitle modal-title">拍賣開始時間：</p><form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00"/><br>
+					<p class="reasontitle modal-title">拍賣結束時間：</p><form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00"/><br>
+<%-- 					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br> --%>
+						<p class="reasontitle modal-title">請選擇欲拍賣商品：</p>
+			 				<form:select path="productSeqNo">
+								  <form:options items="${productNameMapnoonsale}" />
+							</form:select><br><br>
+					<p class="reasontitle modal-title">請輸入起標價格：</p><form:input id="proPrice" path="proPrice" type="text" class="form-control input-sm"/><br>
 				</div>
 				
 
 				<div class="modal-footer">
 <%-- 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p> --%>
 					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="註冊"/>
+					<input type="submit" class="btn btn-primary" id="sub" value="註冊"/>
 				</div>
 					</form:form>
 					
@@ -433,5 +449,7 @@ font-weight: bolder;
 	   <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+		<script src="<c:url value='/LiveStreamRoom/js/jquery.balloon.js'/> "></script>
+		<script src="<c:url value='/InsertLiveStream/js/bootstrap-datetimepicker.js'/>"></script>
 </body>
 </html>

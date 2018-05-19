@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -69,15 +72,15 @@ public class InputLiveStreamTimeController {
 		}
 		
 		
-		//瀏覽紀錄
-		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-		LiveStreamHistoryBean LiveStreamHistoryBean = new LiveStreamHistoryBean( 0,account,LiveStreamSeqNo, now,  "1");
-		LiveStreamHistoryService.saveLiveStreamHistory(LiveStreamHistoryBean);
-		InputLiveStreamTimeBean InputLiveStreamTimeBean = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
-		
-		 
-		InputLiveStreamTimeBean.setLiveStreamView(InputLiveStreamTimeBean.getLiveStreamView()+1);
-		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
+//		//瀏覽紀錄
+//		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+//		LiveStreamHistoryBean LiveStreamHistoryBean = new LiveStreamHistoryBean( 0,account,LiveStreamSeqNo, now,  "1");
+//		LiveStreamHistoryService.saveLiveStreamHistory(LiveStreamHistoryBean);
+//		InputLiveStreamTimeBean InputLiveStreamTimeBean = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
+//		
+//		 
+//		InputLiveStreamTimeBean.setLiveStreamView(InputLiveStreamTimeBean.getLiveStreamView()+1);
+//		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
 		//產品 get product by account
 		int status = 1;
 		InputLiveStreamTimeBean gpa = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
@@ -90,6 +93,14 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb :AllProduct ) {
 			pb.getPicSeqNo();
 		}
+		
+		//新增拍賣產品選擇器(未拍賣)
+		List<ProductSaleBean> AllProductListNoonsale = productSaleService.getAllProByStatus(gpa.getAccount(), 0);
+		
+		Map<Integer,String> productNameMapnoonsale = new HashMap<Integer,String>(); 
+		for(ProductSaleBean pb : AllProductListNoonsale) {
+			productNameMapnoonsale.put(pb.getProductSeqNo(),pb.getProName());
+		}
 		//BID產品選擇器
 		List<ProductSaleBean> AllProductList = productSaleService.getAllProByStatus(gpa.getAccount(), status);
 		
@@ -101,7 +112,9 @@ public class InputLiveStreamTimeController {
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
 		map.put("AllProduct0", AllProduct0);
 		map.put("liveStreamReportBean", liveStreamReportBean);
-//		map.put("AuctionSeqNoa", AuctionSeqNoNameMap);
+		//未拍賣物品
+		map.put("productNameMapnoonsale", productNameMapnoonsale);
+		//拍賣中物品
 		map.put("AllProductLista", productNameMap);
 //		map.put("hb", LiveStreamHistoryBean);
 		map.put("AllProduct", AllProduct);
@@ -145,7 +158,9 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb : AllProductList) {
 			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
 		}
-
+		//給INSERTROOM REPORT
+		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
+		map.put("liveStreamReportBean", liveStreamReportBean);
 		map.put("AllProductList", productNameMap);
 		map.put("AllLiveStream", AllLiveStreamList);
 		map.put("accountStream", InputLiveStreamTimeService.getLiveStreamsByAccount(account));
@@ -246,7 +261,9 @@ public class InputLiveStreamTimeController {
 		sb.setLiveStreamView(0);
 		map.put("sb", sb);
 		InputLiveStreamTimeService.saveLiveStreams(sb, extPhoto, photo);
-		
+		//給INSERTROOM REPORT
+		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
+		map.put("liveStreamReportBean", liveStreamReportBean);
 		return "LiveStreamRoom/LiveStreamRoom";
 		}else {
 			return "InsertLiveStream/InsertLiveStream";
@@ -254,6 +271,58 @@ public class InputLiveStreamTimeController {
 			
 	
 	}
+	//WEBSOCKET顯示觀看人數
+	@MessageMapping(value="ShowHistory/{LiveStreamSeqNo}")
+	@SendTo("/target/ShowHistory/subscription/{LiveStreamSeqNo}")
+	public InputLiveStreamTimeBean HistorySocket(InputLiveStreamTimeBean lb,
+			@DestinationVariable("LiveStreamSeqNo") Integer LiveStreamSeqNo
+//			@DestinationVariable("account") String account
+			) throws SQLException {
+//		new LiveStreamHistoryBean( 0,account,LiveStreamSeqNo, now,  "1");
+		//瀏覽紀錄
+//		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+//		lb.setLiveStreamSeqNo(LiveStreamSeqNo);
+//		lb.setHistoryTime(now);
+//		lb.setLiveStreamStatus("1");
+////		LiveStreamHistoryBean LiveStreamHistoryBean = LiveStreamHistoryService.
+//		LiveStreamHistoryService.saveLiveStreamHistory(lb);
+		InputLiveStreamTimeBean InputLiveStreamTimeBean = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
+		
+		 
+		InputLiveStreamTimeBean.setLiveStreamView(InputLiveStreamTimeBean.getLiveStreamView()+1);
+		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
+		
+		
+		return InputLiveStreamTimeBean;
+	}
+	
+	@MessageMapping(value="ShowEndHistory/{LiveStreamSeqNo}")
+	@SendTo("/target/ShowEndHistory/subscription/{LiveStreamSeqNo}")
+	public InputLiveStreamTimeBean HistoryEndSocket(InputLiveStreamTimeBean lb,
+			@DestinationVariable("LiveStreamSeqNo") Integer LiveStreamSeqNo
+//			@DestinationVariable("account") String account
+			) throws SQLException {
+//		new LiveStreamHistoryBean( 0,account,LiveStreamSeqNo, now,  "1");
+		//瀏覽紀錄
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		
+//		lb.setLiveStreamSeqNo(LiveStreamSeqNo);
+//		lb.setHistoryTime(now);
+//		lb.setLiveStreamStatus("1");
+////		LiveStreamHistoryBean LiveStreamHistoryBean = LiveStreamHistoryService.
+//		LiveStreamHistoryService.saveLiveStreamHistory(lb);
+		InputLiveStreamTimeBean InputLiveStreamTimeBean = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
+		
+		 if(InputLiveStreamTimeBean.getLiveStreamView()>0) {
+			 
+		 
+		InputLiveStreamTimeBean.setLiveStreamView(InputLiveStreamTimeBean.getLiveStreamView()-1);
+		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
+		 }
+		
+		return InputLiveStreamTimeBean;
+	}
+	
 	
 //	@RequestMapping(method = RequestMethod.GET)
 //	public String getAllLiveStreams() {

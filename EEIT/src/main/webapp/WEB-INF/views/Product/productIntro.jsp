@@ -58,7 +58,7 @@
 				<h4>限時特價:${productSaleBean.proPrice}</h4>	
 				<br>
 					<span>選擇數量:<select id="productCount" name="productCount">
-						<option value="">請選擇</option>
+						<option value="0">請選擇</option>
 				
 						<c:forEach var="loop" begin="1" end="${productSaleBean.proPcs}" step="1">
                             <option value="${loop}">${loop}</option><br>

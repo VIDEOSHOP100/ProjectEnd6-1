@@ -225,9 +225,7 @@
 			</form:form>
 			<br>
 			<br>
-			<button type="button" class="btn btn-primary">
-				<a href="${pageContext.request.contextPath}/gotoseven">送出711訂單</a>
-			</button>
+			
 			<!-- 			</div> -->
 		</div>
 		</section>
@@ -236,7 +234,7 @@
 
 
 
-	<script src="<c:url value='/OrderSystem/js/order.js'/> "></script>
+	<script src="<c:url value='/OrderSystem/js/orderaddr.js'/> "></script>
 </body>
 
 </html>

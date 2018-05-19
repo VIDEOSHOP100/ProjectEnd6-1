@@ -7,8 +7,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0"> 
 <title>Navigation</title>
 <script src="https://www.google.com/recaptcha/api.js"></script>
+<!--  <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 
 <!-- Bootstrap core CSS -->
@@ -22,7 +26,7 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
+
 	<!-- Navigation -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
@@ -222,7 +226,8 @@
 					<form:input path="photo" id="photo" type="file"  accept="image/*"/>
 					</div>
 				<div class="form-group">
-					<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
+				<div id="rec1"></div>
+<!-- 					<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div> -->
 				</div>
 				</div>
 				<div class="modal-footer">
@@ -253,8 +258,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form:form id="loginForm" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row" >
-					
+					<form:form id="loginForm"  method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row" >
 					<div class="form-group col-md-6">
 						<small><label for="logAcc">帳號</label></small>
 						<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
@@ -264,7 +268,8 @@
 						<form:input class ="form-control input-sm" id="logPwd" type="password" path="password" placeholder="password"/><br>
 					</div>			
 					<div class="form-group col-md-12" >	
-						<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
+						<div id="rec2"></div> 
+<!-- 						<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div> -->
 					</div>
 					<div class="form-group col-md-6" >
 						<a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword"><button  type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button></a>
@@ -274,13 +279,14 @@
 					<p id="loginErrMsg">${ErrorMessageKey.error}</p>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
 					<button type="button" id="modalLoginButton" class="btn btn-primary">登入</button>
-				</div>
+					
 						</form:form>
+				</div>
 			</div>
 		</div>
 	</div>
 </c:if>
-	<!--	登入彈窗結束 	-->
+	<!--	登入彈窗結束 	--> 
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
@@ -289,11 +295,8 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="<c:url value='/global/js/top.js'/> "></script>
 
-	<script>
-		
-	</script>
-
-<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
+	
+	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
 </body>
 
 </html>

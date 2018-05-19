@@ -18,19 +18,22 @@ import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.auctionEnd.model.AuctionEndBean;
 import com.iii._05_.auctionEnd.model.AuctionEndService;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 
 @Controller
 public class AuctionEndController {
 
 	@Autowired
 	AuctionEndService auctionEndService;
-	
+	@Autowired
+	ProductSaleService ProductSaleService;
 	@RequestMapping(value="/AuctionEnd",method=RequestMethod.GET)
 	public String getInsertAllLiveStreamList(Map<String, Object> map, HttpSession session) throws SQLException {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberBean.getAccount();
 		List<AuctionEndBean> AllAuctionList = auctionEndService.getAuctionEndByAccount(account);
-
+		
+		
 		map.put("AllAuctionList", AllAuctionList);
 
 		return "AuctionEnd/AuctionEnd";

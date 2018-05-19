@@ -17,69 +17,129 @@ public class BidBean {
 	private Integer bidSeqNo;
 	private Integer auctionSeqNo;
 	private Timestamp bidTime;
-	private String bidPrice;
+	private Integer bidPrice;
 	private String account;
 	private Integer productSeqNo;
 	
 
-	public BidBean(Integer auctionSeqNo, Timestamp bidTime, String bidPrice,String account) {
-		super();
-		
-		this.auctionSeqNo = auctionSeqNo;
-//		this.bidSeqNo = bidSeqNo;
-		this.bidTime = bidTime;
-		this.bidPrice = bidPrice;
-		this.account = account;
-	}
+	
 	
 	public BidBean() {
 		super();
 
 	}
-	
-	
-	
-	
+
+
+
+
+	public Integer getBidSeqNo() {
+		return bidSeqNo;
+	}
+
+
+
+
+	public void setBidSeqNo(Integer bidSeqNo) {
+		this.bidSeqNo = bidSeqNo;
+	}
+
+
+
+
+	public Integer getAuctionSeqNo() {
+		return auctionSeqNo;
+	}
+
+
+
+
+	public void setAuctionSeqNo(Integer auctionSeqNo) {
+		this.auctionSeqNo = auctionSeqNo;
+	}
+
+
+
+
+	public Timestamp getBidTime() {
+		return bidTime;
+	}
+
+
+
+
+	public void setBidTime(Timestamp bidTime) {
+		this.bidTime = bidTime;
+	}
+
+
+
+
+	public Integer getBidPrice() {
+		return bidPrice;
+	}
+
+
+
+
+	public void setBidPrice(Integer bidPrice) {
+		this.bidPrice = bidPrice;
+	}
+
+
+
+
 	public String getAccount() {
 		return account;
 	}
+
+
+
 
 	public void setAccount(String account) {
 		this.account = account;
 	}
 
-	public Integer getAuctionSeqNo() {
-		return auctionSeqNo;
-	}
-	public void setAuctionSeqNo(Integer auctionSeqNo) {
-		this.auctionSeqNo = auctionSeqNo;
-	}
-	public Integer getBidSeqNo() {
-		return bidSeqNo;
-	}
-	public void setBidSeqNo(Integer bidSeqNo) {
-		this.bidSeqNo = bidSeqNo;
-	}
-	public Timestamp getBidTime() {
-		return bidTime;
-	}
-	public void setBidTime(Timestamp bidTime) {
-		this.bidTime = bidTime;
-	}
-	public String getBidPrice() {
-		return bidPrice;
-	}
-	public void setBidPrice(String bidPrice) {
-		this.bidPrice = bidPrice;
-	}
+
+
 
 	public Integer getProductSeqNo() {
 		return productSeqNo;
 	}
 
+
+
+
 	public void setProductSeqNo(Integer productSeqNo) {
 		this.productSeqNo = productSeqNo;
 	}
+
+
+
+
+	public BidBean(Integer bidSeqNo, Integer auctionSeqNo, Timestamp bidTime, Integer bidPrice, String account,
+			Integer productSeqNo) {
+		super();
+		this.bidSeqNo = bidSeqNo;
+		this.auctionSeqNo = auctionSeqNo;
+		this.bidTime = bidTime;
+		this.bidPrice = bidPrice;
+		this.account = account;
+		this.productSeqNo = productSeqNo;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "BidBean [bidSeqNo=" + bidSeqNo + ", auctionSeqNo=" + auctionSeqNo + ", bidTime=" + bidTime
+				+ ", bidPrice=" + bidPrice + ", account=" + account + ", productSeqNo=" + productSeqNo + "]";
+	}
+	
+	
+	
+	
+	
 	
 	
 	
