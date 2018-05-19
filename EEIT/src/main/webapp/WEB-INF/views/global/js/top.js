@@ -102,7 +102,7 @@ $(document).ready(function() {
 	
 	
 	
-	    var onloadCallback = function() {
+      	{
         // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
         // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
         widgetId1 = grecaptcha.render(document.getElementById('rec1'), {
@@ -143,9 +143,6 @@ $(document).ready(function() {
 			success:function(result){
 				var checkResult = result.loginCheck;
 				var botResult = result.botCheck;
-				var scurl = 'https://www.google.com/recaptcha/api.js';
-				
-				
 				
 				if(checkResult == true && botResult == true){
 					$('#loginForm').submit();

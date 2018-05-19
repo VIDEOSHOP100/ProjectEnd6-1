@@ -168,8 +168,6 @@
 
 					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class="form-row" enctype="multipart/form-data"> 
 			 		
-			 			<div id ="rec1"></div>
-			 		
 			 			<div class="col-md-6 form-group">
 			 				<small><label for="regAcc">帳號</label><span style="color: red">*(必填)</span></small>
 			 				<form:input id="regAcc" path="account" type="text" class="form-control input-sm" placeholder="account"/>
@@ -225,7 +223,8 @@
 					<form:input path="photo" id="photo" type="file"  accept="image/*"/>
 					</div>
 				<div class="form-group">
-					<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
+				<div id="rec1"></div>
+<!-- 					<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div> -->
 				</div>
 				</div>
 				<div class="modal-footer">
@@ -256,9 +255,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form:form id="loginForm"  method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row rec2" >
-					<div id="rec2"></div>
-<!-- 					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
+					<form:form id="loginForm"  method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row" >
 					<div class="form-group col-md-6">
 						<small><label for="logAcc">帳號</label></small>
 						<form:input class = "form-control input-sm" id="logAcc" type="text" path="account" placeholder="account"/><br>
@@ -268,7 +265,8 @@
 						<form:input class ="form-control input-sm" id="logPwd" type="password" path="password" placeholder="password"/><br>
 					</div>			
 					<div class="form-group col-md-12" >	
-						<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
+						<div id="rec2"></div> 
+<!-- 						<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div> -->
 					</div>
 					<div class="form-group col-md-6" >
 						<a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword"><button  type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button></a>
