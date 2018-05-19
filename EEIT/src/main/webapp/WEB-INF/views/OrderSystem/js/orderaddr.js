@@ -60,37 +60,5 @@ $(document).ready(function(){
 		$('#upAddr').val(upcity+upcountry);
 	})
 	//地區選擇事件結束
-	//訂單submit按鈕送出
-	$('#confirmorder').click(function(){
-		var account = $('#selectacc').val()
-		
-		
-		
-		$.ajax({
-			type : "POST",
-			cache : false,
-			contentType : false,
-			processData : false,
-			enctype : 'multipart/form-data',
-			url : "/EEIT/allpay/checkout/",
-			
-			timeout : 600000,
-			success : function(data) {
-				console.log("SUCCESS : ", data);
-				
-				
-			},
-			error : function(e) {
-				console.log("ERROR : ", e);
-				alert("ajax error");
-				
-				
-			}
 
-		});
-	
-		
-	
-	})
-	
 });

@@ -88,19 +88,6 @@ public class PersonShopController {
 	// public String getPersonShopHome() {
 	// return null;
 	// }
-	@RequestMapping(value = "/PersonShopHome", method = RequestMethod.GET)
-	public String createPersonShopHome(Map<String, Object> map, HttpSession session) {
-		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
-		String account = memberBean.getAccount();
-		List<PersonShopBean> xxx = pshopService.getBeanByAccount(account);
-		for (PersonShopBean ooo : xxx) {
-			System.out.println(ooo);
-		}
-
-		map.put("personShops", pshopService.getBeanByAccount(account));
-		System.out.println(map);
-		return "PersonShop/PersonShopHomePage";
-	}
 
 	@RequestMapping(value = "/goPersonHomePage", method = RequestMethod.GET)
 	public String goPersonHomePage(Map<String, Object> map, HttpSession session) throws SQLException {

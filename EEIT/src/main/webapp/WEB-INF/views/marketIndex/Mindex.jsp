@@ -90,7 +90,7 @@ ul li {
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<!-- 功能選單 Start -->
 	<div class="col-sm-2">
-		<a class="btn btn-sm btn-secondary btn-block" href="PersonShopHome">商店首頁</a>
+		<a class="btn btn-sm btn-secondary btn-block" href="goPersonHomePage">商店首頁</a>
 	</div>
 
 
@@ -127,9 +127,9 @@ ul li {
 			<c:forEach var="product" items="${productbeans}">
 				<div class="col-lg-3 col-md-6 mb-4">
 					<div class="card">
-						<img class="card-img-top"
+						 <a href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"><img class="card-img-top"
 							src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}"
-							width="500px" height="238px" alt="">
+							width="500px" height="238px" alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title JQellipsisTitle">${product.proName}</h4>
 							<p class="card-text">限時特價  $NT ${product.proPrice }</p>
