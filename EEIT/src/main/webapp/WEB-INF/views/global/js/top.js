@@ -102,7 +102,7 @@ $(document).ready(function() {
 	
 	
 	
-      	{
+      	if($('#rec1').val()!= null){
         // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
         // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
         widgetId1 = grecaptcha.render(document.getElementById('rec1'), {
@@ -114,7 +114,7 @@ $(document).ready(function() {
         });
 	
 	
-	
+      	
 	}
 	
 	

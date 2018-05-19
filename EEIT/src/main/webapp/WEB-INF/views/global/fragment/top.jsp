@@ -7,6 +7,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+<meta http-equiv="Expires" content="0"> 
 <title>Navigation</title>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <!--  <script src="https://apis.google.com/js/platform.js" async defer></script> -->
