@@ -39,12 +39,12 @@
         <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
           <div class="card h-100">
        
-            <a href="#"><img class="card-img-top" src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}" alt=""></a>
+            <a href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"><img class="card-img-top" src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Project One</a>
+                <a href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}">${product.proName}</a>
               </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+              <p class="card-text">${product.proDescription }</p>
             </div>
           </div>
         </div>
@@ -72,62 +72,6 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Four</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Five</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Six</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Seven</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Project Eight</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius adipisci dicta dignissimos neque animi ea, veritatis, provident hic consequatur ut esse! Commodi ea consequatur accusantium, beatae qui deserunt tenetur ipsa.</p>
-            </div>
-          </div>
-        </div>
-      </div>
       
       <!-- /.row -->
 

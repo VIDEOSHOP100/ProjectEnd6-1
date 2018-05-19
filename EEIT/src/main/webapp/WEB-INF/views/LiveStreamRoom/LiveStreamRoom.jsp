@@ -3,16 +3,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title> 
+<link href="<c:url value='/InsertLiveStream/css/bootstrap-datetimepicker.css'/> " rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
 <link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/>" rel="stylesheet">
 <style>
+
 .sellproduct{
 	font-family: 'Josefin Sans', sans-serif;
 }
@@ -64,9 +67,10 @@ justify-content: center;
        
       <h1 class="mt-4 mb-3">
       ${sb.account}
-  
         <small>的直播間</small>
-        <small id="showViewAfter">開始時間:${sb.liveStart}</small>
+        <c:set var="string1" value="${sb.liveStart}"/>
+		<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+        <small>開始時間:${string2}</small>
         
         
         <c:if test="${!empty LoginOK.account}">
@@ -78,6 +82,7 @@ justify-content: center;
 <%-- 		<small>結束時間:${sb.liveEnd}</small> --%> 
 
       </h1>
+
       <p id="showView"class="hidden">${sb.liveStreamView}</p>
    <p class="hidden">${sb.liveStreamSeqNo}</p>
       <ol class="breadcrumb">
@@ -93,7 +98,7 @@ justify-content: center;
         		  
 <!--         <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
 <iframe width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe> 
-                <h2>${sb.streamName}</h2>
+                <h2 id="showViewAfter">${sb.streamName}</h2>
         </div>
         <div class="col-lg-6">
           	<div class="chat-sidebara">
@@ -147,6 +152,7 @@ justify-content: center;
 </div> 
 <!-- 					</div>	 -->
 <c:if test="${!empty AllProductLista}">
+
 <form:form id="Bid" method="POST" action="Bid/${productSeqNo}" modelAttribute="BidBean" class = "form-horizontal" enctype="multipart/form-data">
 
 <form:select path="productSeqNo">
@@ -168,6 +174,11 @@ justify-content: center;
 	
       <div class="row">
 		<div class="col-lg-12 "> 
+		 <div class="col-lg-12 text-center">
+		 <c:if test="${!empty AllProduct}">
+        <h2 class="sellproduct">賣家現正拍賣商品</h2>
+        </c:if>
+        </div>
 <c:forEach var="AllProducta" items="${AllProduct}"> 
 
         <div class="col-lg-4 mb-4 proitemcontroller offset-4">
@@ -283,20 +294,25 @@ justify-content: center;
 				</div>
 				<div class="modal-body">
 
-
+<%--${pageContext.request.contextPath}/Auction --%>
 					<form:form  id="Auction" method="POST" action="${pageContext.request.contextPath}/Auction" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
+					<form:input id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
 					<form:input class="seqNo" id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
-					aucBegin<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br>
-					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br>
-					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br>
-					proPrice<form:input id="proPrice" path="proPrice" type="text" class="form-control input-sm"/><br>
+					<p class="reasontitle modal-title">拍賣開始時間：</p><form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00"/><br>
+					<p class="reasontitle modal-title">拍賣結束時間：</p><form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00"/><br>
+<%-- 					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br> --%>
+						<p class="reasontitle modal-title">請選擇欲拍賣商品：</p>
+			 				<form:select path="productSeqNo">
+								  <form:options items="${productNameMapnoonsale}" />
+							</form:select><br><br>
+					<p class="reasontitle modal-title">請輸入起標價格：</p><form:input id="proPrice" path="proPrice" type="text" class="form-control input-sm"/><br>
 				</div>
 				
 
 				<div class="modal-footer">
 <%-- 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p> --%>
 					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="註冊"/>
+					<input type="submit" class="btn btn-primary" id="sub" value="註冊"/>
 				</div>
 					</form:form>
 					
@@ -434,5 +450,6 @@ justify-content: center;
 	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 		<script src="<c:url value='/LiveStreamRoom/js/jquery.balloon.js'/> "></script>
+		<script src="<c:url value='/InsertLiveStream/js/bootstrap-datetimepicker.js'/>"></script>
 </body>
 </html>

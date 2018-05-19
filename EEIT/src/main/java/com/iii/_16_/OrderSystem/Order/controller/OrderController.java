@@ -1,5 +1,6 @@
 package com.iii._16_.OrderSystem.Order.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.sql.ordering.antlr.OrderByFragmentRenderer;
@@ -30,10 +32,14 @@ import com.iii._16_.OrderSystem.Order.model.OrderBean;
 import com.iii._16_.OrderSystem.Order.model.OrderService;
 import com.iii._16_.OrderSystem.OrderProduct.model.OrderProductBean;
 import com.iii._16_.OrderSystem.OrderProduct.model.OrderProductService;
+import com.iii._16_.PDF.model.PdfProduceService;
+import com.iii._16_.PDF.model.orderPdfBean;
+import com.iii._16_.PDF.model.orderPdfService;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 
 import com.iii._16_.StreetName.model.StreetService;
+import com.itextpdf.text.DocumentException;
 
 @Controller
 public class OrderController {
@@ -47,6 +53,12 @@ public class OrderController {
 	private OrderService orderservice;
 	@Autowired
 	private OrderProductService orderproductservice;
+	@Autowired
+	private PdfProduceService pdfservice;
+	@Autowired
+	private orderPdfService orderpdfservice;
+	@Autowired
+	private ServletContext servletContext;
 	@ModelAttribute
 	public void getOrderBean(Map<String, Object> map) {
 		OrderBean order = new OrderBean();
@@ -97,11 +109,8 @@ public class OrderController {
 		 StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		 }
 		 MemberBean member=(MemberBean)session.getAttribute("LoginOK");
-		 if(member!= null) {
-			 map.put("getMemberBean", member);
-		 }else {
-			return "MemberCenter/loginPage";
-		 }
+		
+		 System.out.println("bad request");
 
 		 /*----------------------訂單確認開始--------------------------------------*/
 		 Timestamp ts = new java.sql.Timestamp(System.currentTimeMillis());
@@ -171,6 +180,23 @@ public class OrderController {
 				havePro.add(orderprobean);
 			}
 			map.put("readyforpaypro", havePro);
+			try {
+				pdfservice.imgProduce(servletContext);
+				pdfservice.pdfProduce(bill);
+			} catch (DocumentException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			//取得pdf物件 寫入資料庫
+			String orderPdfPath= null;
+			String orderPdfName = null;
+			orderPdfPath = "c:/resources/OrderPDF/" + bill.getOrderSeqNo()+".pdf";
+			orderPdfName = bill.getOrderSeqNo()+".pdf";
+			
+			orderPdfBean orderpdfbean = new orderPdfBean(0, orderPdfName, orderPdfPath, bill.getOrderSeqNo());
+			orderpdfservice.insert(orderpdfbean);
+			
 			
 		 return "OrderSystem/orderSuccess";
 	}

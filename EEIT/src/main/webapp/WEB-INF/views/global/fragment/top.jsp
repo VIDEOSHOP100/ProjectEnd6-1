@@ -23,7 +23,7 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
+
 	<!-- Navigation -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
@@ -294,11 +294,8 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="<c:url value='/global/js/top.js'/> "></script>
 
-	<script>
-		
-	</script>
-
-<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
+	
+	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
 </body>
 
 </html>

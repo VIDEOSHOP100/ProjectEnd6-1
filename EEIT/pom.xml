@@ -181,6 +181,13 @@
 			<artifactId>poi</artifactId>
 			<version>3.15</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.itextpdf.tool/xmlworker -->
+		<dependency>
+		    <groupId>com.itextpdf.tool</groupId>
+		    <artifactId>xmlworker</artifactId>
+		    <version>5.5.11</version>
+		</dependency>
+		
 
 
 	</dependencies>
