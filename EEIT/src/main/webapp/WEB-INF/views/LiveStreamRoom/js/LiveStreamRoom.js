@@ -324,6 +324,12 @@ $(document).on('click','.ccc',function(){
 			    +'<input type="submit" value="Search">'});
 	});
 
-
+//時間選擇器 
+	 $(function () {
+        $('#aucBegin').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
+    });
+	 $(function () {
+        $('#aucEnd').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
+    });
 })
 

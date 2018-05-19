@@ -93,6 +93,14 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb :AllProduct ) {
 			pb.getPicSeqNo();
 		}
+		
+		//新增拍賣產品選擇器(未拍賣)
+		List<ProductSaleBean> AllProductListNoonsale = productSaleService.getAllProByStatus(gpa.getAccount(), 0);
+		
+		Map<Integer,String> productNameMapnoonsale = new HashMap<Integer,String>(); 
+		for(ProductSaleBean pb : AllProductListNoonsale) {
+			productNameMapnoonsale.put(pb.getProductSeqNo(),pb.getProName());
+		}
 		//BID產品選擇器
 		List<ProductSaleBean> AllProductList = productSaleService.getAllProByStatus(gpa.getAccount(), status);
 		
@@ -104,7 +112,9 @@ public class InputLiveStreamTimeController {
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
 		map.put("AllProduct0", AllProduct0);
 		map.put("liveStreamReportBean", liveStreamReportBean);
-//		map.put("AuctionSeqNoa", AuctionSeqNoNameMap);
+		//未拍賣物品
+		map.put("productNameMapnoonsale", productNameMapnoonsale);
+		//拍賣中物品
 		map.put("AllProductLista", productNameMap);
 //		map.put("hb", LiveStreamHistoryBean);
 		map.put("AllProduct", AllProduct);
@@ -148,7 +158,9 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb : AllProductList) {
 			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
 		}
-
+		//給INSERTROOM REPORT
+		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
+		map.put("liveStreamReportBean", liveStreamReportBean);
 		map.put("AllProductList", productNameMap);
 		map.put("AllLiveStream", AllLiveStreamList);
 		map.put("accountStream", InputLiveStreamTimeService.getLiveStreamsByAccount(account));
@@ -249,7 +261,9 @@ public class InputLiveStreamTimeController {
 		sb.setLiveStreamView(0);
 		map.put("sb", sb);
 		InputLiveStreamTimeService.saveLiveStreams(sb, extPhoto, photo);
-		
+		//給INSERTROOM REPORT
+		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
+		map.put("liveStreamReportBean", liveStreamReportBean);
 		return "LiveStreamRoom/LiveStreamRoom";
 		}else {
 			return "InsertLiveStream/InsertLiveStream";

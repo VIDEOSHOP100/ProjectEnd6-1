@@ -29,4 +29,6 @@ public interface ProductSaleDao {
 	ProductSaleBean  getOneProByAucSeqNo(Integer auctionSeqNo);
 	
 	ProductSaleBean getOneProBySeqNos1(Integer ProductSeqNo);
+	
+	List<ProductSaleBean> getAllBySeqNo(Integer ProductSeqNo);
 }

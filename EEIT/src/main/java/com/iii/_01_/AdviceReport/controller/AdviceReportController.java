@@ -83,6 +83,9 @@ public class AdviceReportController {
 		arb.setAdviceStatus("已處理");
 		adviceReportService.updateAdviceReport(arb);
 		
+		
+		
+		
 	}
 	
 	

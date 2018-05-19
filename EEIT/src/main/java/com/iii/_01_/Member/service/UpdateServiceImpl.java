@@ -18,11 +18,16 @@ public class UpdateServiceImpl implements UpdateService {
 
 	@Autowired
 	MemberDAO dao;
-	
+
 	@Override
-	public MemberBean getMemberBeanFromDB(String account) {
+	public MemberBean getMemberBeanByAccount(String account) {
 		MemberBean mb = dao.getMemberByAccount(account);
 		return mb;
+	}
+
+	@Override
+	public void updateMemberWithoutPhoto(MemberBean mb) throws SQLException {
+		dao.updateMember(mb);
 	}
 
 	@Override
@@ -30,18 +35,18 @@ public class UpdateServiceImpl implements UpdateService {
 		mb.setBan(false);
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		mb.setLastlogin(now);
-		
-		//圖片路徑
-		String photoFilePath = "C:/resources/images/members/"+ mb.getAccount() + "/photo/" + mb.getAccount() + extPhoto;
-		//圖片資料夾路徑
-		String photoFileFolderPath = "C:/resources/images/members/"+ mb.getAccount() + "/photo/" ;
-		
+
+		// 圖片路徑
+		String photoFilePath = "C:/resources/images/members/" + mb.getAccount() + "/photo/" + mb.getAccount()
+				+ extPhoto;
+		// 圖片資料夾路徑
+		String photoFileFolderPath = "C:/resources/images/members/" + mb.getAccount() + "/photo/";
+
 		mb.setPhotoPath(photoFilePath);
-		
+
 		dao.updateMember(mb);
-		savePhotoToFile(photoFileFolderPath , photoFilePath , Photo);
+		savePhotoToFile(photoFileFolderPath, photoFilePath, Photo);
 	}
-	
 
 	@Override
 	public void savePhotoToFile(String photoFileFolderPath, String photoFilePath, MultipartFile photo) {
@@ -58,5 +63,4 @@ public class UpdateServiceImpl implements UpdateService {
 		}
 	}
 
-	
 }
