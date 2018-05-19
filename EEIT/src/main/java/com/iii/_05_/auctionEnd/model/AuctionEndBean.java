@@ -18,6 +18,7 @@ public class AuctionEndBean {
 	private Timestamp proTime;
 	private String proPrice;
 	private Integer productSeqNo;
+	private Integer picSeqNo;
 	public Integer getAuctionEndSeqNo() {
 		return auctionEndSeqNo;
 	}
@@ -66,6 +67,13 @@ public class AuctionEndBean {
 		super();
 		
 	}
+	public Integer getPicSeqNo() {
+		return picSeqNo;
+	}
+	public void setPicSeqNo(Integer picSeqNo) {
+		this.picSeqNo = picSeqNo;
+	}
+
 	
 	
 	
