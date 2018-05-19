@@ -81,8 +81,14 @@ ul li {
 #ctrl2 {
 	text-align: right;
 }
+#Footer {
+　height: 100px;
+　position: relative;
+　margin-top: -100px;
+}
+.cate{
 
-
+}
 </style>
 </head>
 <body>
@@ -97,9 +103,11 @@ ul li {
 
 	<!-- Page Content -->
 	<div class="container">
+	
+
 
 		<!-- Jumbotron Header -->
-		<header class="jumbotron my-4">
+		<header class="jumbotron my-4" >
 		<div class="banner" id="banner3">
 			<div class="move" id="move2">
 				<ul>
@@ -117,77 +125,74 @@ ul li {
 			</div>
 			<div class="ctrl" id="ctrl2"></div>
 		</div>
-		<a href="#" class="btn btn-primary btn-lg">Call to action!</a> </header>
+		<a href="#" class="btn btn-primary btn-lg">熱銷商品</a> </header>
 
 		<!-- Page Features -->
 
-	
+<div class="row cate" style="width:20%;float:left">	
+<ul class="list-group">
+   <button type="button" class="list-group-item list-group-item-action active" disabled> 全站商品&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+  <button type="button" class="list-group-item list-group-item-action" value="1">&nbsp&nbsp&nbsp&nbsp&nbsp<b>3C</b></button>
+  <button type="button" class="list-group-item list-group-item-action" value="2">&nbsp&nbsp&nbsp&nbsp&nbsp<b>通訊</b></button>
+  <button type="button" class="list-group-item list-group-item-action" value="3" >&nbsp&nbsp&nbsp&nbsp&nbsp<b>數位周邊</b></button>
+  <button type="button" class="list-group-item list-group-item-action" value="4" >&nbsp&nbsp&nbsp&nbsp&nbsp<b>生活</b></button>
+  <button type="button" class="list-group-item list-group-item-action" value="5">&nbsp&nbsp&nbsp&nbsp&nbsp<b>日用</b></button>
+  <button type="button" class="list-group-item list-group-item-action" value="6" >&nbsp&nbsp&nbsp&nbsp&nbsp<b>食品</b></button>
+  <button type="button" class="list-group-item list-group-item-action" value="7" >&nbsp&nbsp&nbsp&nbsp&nbsp<b>戶外</b></button>
+  <button type="button" class="list-group-item list-group-item-action" value="8" >&nbsp&nbsp&nbsp&nbsp&nbsp<b>時尚</b></button>
+  <button type="button" class="list-group-item list-group-item-action" value="9" >&nbsp&nbsp&nbsp&nbsp&nbsp<b>美妝</b></button>
+  <button type="button" class="list-group-item list-group-item-action" value="10" >&nbsp&nbsp&nbsp&nbsp&nbsp<b>書店</b></button>
+</ul>
 
-		<div class="row text-center" style="width: 1200px; margin: 0 auto;">
+</div>
+		<div class="row text-center prorow" style="width: 80%; margin: 0 auto; float:right ">
 			<c:forEach var="product" items="${productbeans}">
-				<div class="col-lg-3 col-md-6 mb-4">
+				<div class="col-lg-3 col-md-6 mb-4 productstart">
 					<div class="card">
 						 <a href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"><img class="card-img-top"
 							src="${pageContext.request.contextPath}/getImage/Product/${product.productSeqNo}"
-							width="500px" height="238px" alt=""></a>
+							 height="238px" alt=""></a>
 						<div class="card-body">
 							<h4 class="card-title JQellipsisTitle">${product.proName}</h4>
 							<p class="card-text">限時特價  $NT ${product.proPrice }</p>
-							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription }</p>
+							<p class="card-text JQellipsis">${product.proDescription }</p>
 						</div>
 						<div class="card-footer">
-							<a
-								href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"
+							<a href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"
 								class="btn btn-primary">點我購買~</a>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
+		
+
+          <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Side Widget</h5>
+            <div class="card-body">
+              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+            </div>
+          </div>
 		</div>
 		<!-- /.row -->
 
+
 	</div>
 	<!-- /.container -->
-
-
-
-
-	<a href="sale.do">商品上架</a>
-	<br>
 	
 
-	<a href="goPersonHomePage">登入之後的商店首頁</a>
-	<br>
-	
-
-	<c:if test="${empty LoginOK}">
-		<li class="nav-item">
-			<button class="btn btn-success" type="button" data-toggle="modal"
-				data-target="#poplogin">
-				我要賣東西</a>
-			</button>
-		</li>
-		<li>&nbsp;</li>
-	</c:if>
-	<c:if test="${not empty LoginOK}">
-		<li class="nav-item">
-			<button class="btn btn-info" type="button" data-toggle="modal">
-				<a href="Pshop.do">我要賣東西</a>
-			</button>
-		</li>
-		<li>&nbsp;</li>
-	</c:if>
 
 
-	<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2018</p>
-		s
+<!-- 	<a href="sale.do">商品上架</a> -->
+<!-- 	<br> -->
 
+		
+		
+		
 		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 		<script type="text/javascript"
 			src="<c:url value='/global/js/myscroll.js'/>"></script>
+			<script src="<c:url value='/marketIndex/js/market.js'/> "></script>	
 		<script type="text/javascript">
 		$(function() {
 				// 调用
@@ -219,7 +224,7 @@ ul li {
 			        }
 			    });
 				
-			    var len = 25; // 超過50個字以"..."取代
+			    var len = 10; // 超過50個字以"..."取代
 			    $(".JQellipsisTitle").each(function(i){
 			        if($(this).text().length>len){
 			            $(this).attr("title",$(this).text());

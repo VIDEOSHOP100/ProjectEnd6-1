@@ -84,5 +84,10 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return session.createQuery("FROM ProductSaleBean WHERE productSeqNo = :productSeqNo AND auctionStatus = '1'",ProductSaleBean.class).setParameter("productSeqNo", productSeqNo).uniqueResult();
 	}
 	
+	public List<ProductSaleBean> getlistProByType(Integer proCategorySeqNo) throws SQLException {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductSaleBean WHERE proCategorySeqNo = :proCategorySeqNo",ProductSaleBean.class).setParameter("proCategorySeqNo", proCategorySeqNo).list();
+	}
+	
 
 }

@@ -63,19 +63,6 @@ public class ProCartListController {
 
 		return "pleaselogin";
 	}
-	//沒有用
-	@ResponseBody
-	@RequestMapping(value = "/getCartlist/{account}", method = RequestMethod.GET)
-	public String restDCNListJson(@RequestParam("account") String id, Model model) throws SQLException {
-		List<ProCartListBean> list = procartlistservice.getByAccount(id);
-		List<ProCartListBean> list2 = new ArrayList<>();
-		for (ProCartListBean bean : list) {
-			bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
-			list2.add(bean);
-		}
-		String jsonString = JSONValue.toJSONString(list2);
-		return jsonString;
-	}
 	//送出一個可以remove購物車的Bean 
 	@ModelAttribute
 	public void getCartListBeans(Map<String, Object> map, HttpSession session) {
@@ -93,24 +80,23 @@ public class ProCartListController {
 			throw new RuntimeException("嘗試輸入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
 		int updatedate = 0;
-		
 		ProCartListBean deletebean = procartlistservice.getByCartId(cartlistb.getProCartListSeqNo());
 		ProCartListBean deletebean2 = new ProCartListBean(cartlistb.getProCartListSeqNo(), deletebean.getProductSeqNo(), deletebean.getProductCount(), cartlistb.getProductStatus(), cartlistb.getAccount());
 		MemberBean member = (MemberBean)session.getAttribute("LoginOK");
 		updatedate = procartlistservice.deleteProductFromCart(deletebean2, member);
-		System.out.println("刪除成功"+updatedate);
+		//System.out.println("刪除成功"+updatedate);
 		return "killone";
 	}
 	
 	//select該帳號購物車車籃的數量
 	@RequestMapping(value = "/getcartcount/{account}", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getCartCount(@PathVariable String account) throws SQLException {
-		System.out.println("購物車商品數");
+		
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<ProCartListBean> productlist2 = new ArrayList<>();
 		// 撈出該帳號  status為1的商品數
 		int count=0;
-		System.out.println("誰在購物  ==  "+account);
+		//System.out.println("誰在購物  ==  "+account);
 		List<ProCartListBean> productlist = procartlistservice.getByAccountStatus(account);
 		for (ProCartListBean product : productlist) {
 			productlist2.add(product);
