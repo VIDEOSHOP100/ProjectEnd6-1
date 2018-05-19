@@ -30,7 +30,7 @@
 	<!-- Navigation -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="<c:url value='/' />">III Tube</a>
+			<a class="navbar-brand" href="<c:url value='/' />">Live Market</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 					data-toggle="collapse" data-target="#navbarResponsive"
 					aria-controls="navbarResponsive" aria-expanded="false"
@@ -41,8 +41,21 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><input type="text" class="form-control" placeholder="找點什麼...?"></li>
 				<li class="nav-item"><span class="input-group-btn"><button class="btn btn-secondary" type="button">Go!</button></span></li>
-				<li><a class="nav-link" href="${pageContext.request.contextPath}/CartList/getCart/${LoginOK.account}">購物車</a></li>
-				<li><a class="nav-link" href="${pageContext.request.contextPath}/goMarketHomePage">商城</a></li>
+				<li class="nav-item dropdown" >
+				<a class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownPortfolio" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">超級商城</a>
+				<div class="dropdown-menu dropdown-menu-right"
+						 aria-labelledby="navbarDropdownPortfolio">
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/goMarketHomePage">商城首頁</a>
+						<c:if test="${!empty LoginOK}">		 
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/sale.do">商品上架</a>
+				<a class="dropdown-item" href="">我的訂單查詢</a>
+				<a class="dropdown-item" href="">追蹤商品查詢</a>
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/CartList/getCart/${LoginOK.account}">購物車</a>
+						</c:if>
+				</div>		
+				</li>
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/LiveStreamHall">直播間</a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#"

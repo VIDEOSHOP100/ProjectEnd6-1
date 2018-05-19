@@ -15,9 +15,14 @@
 	rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/global/css/index2.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/global/css/index2.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/marketIndex/css/animate.min.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/marketIndex/css/default.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/marketIndex/css/normalize.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/marketIndex/css/styles2.css'/>">
 
+<link href="<c:url value='http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css'/>"
+	rel="stylesheet">
 <style type="text/css">
 /*基础样式 此部分样式为插件展示页的一些样式，使用插件时不会理会，引入上方的link即可*/
 body {
@@ -90,6 +95,8 @@ ul li {
 
 }
 </style>
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
 </head>
 <body>
 	<!-- Navigation -->
@@ -98,6 +105,7 @@ ul li {
 	<div class="col-sm-2">
 		<a class="btn btn-sm btn-secondary btn-block" href="goPersonHomePage">商店首頁</a>
 	</div>
+	
 
 
 
@@ -130,6 +138,20 @@ ul li {
 		<!-- Page Features -->
 
 <div class="row cate" style="width:20%;float:left">	
+<ul class="list-group">
+ <li> <i class="fal fa-cart-plus"></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+</ul>
+
 <ul class="list-group">
    <button type="button" class="list-group-item list-group-item-action active" disabled> 全站商品&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
   <button type="button" class="list-group-item list-group-item-action" value="1">&nbsp&nbsp&nbsp&nbsp&nbsp<b>3C</b></button>
@@ -176,11 +198,13 @@ ul li {
 		</div>
 		<!-- /.row -->
 
-
 	</div>
 	<!-- /.container -->
 	
-
+	
+	
+<!-- footer -->
+	
 
 
 <!-- 	<a href="sale.do">商品上架</a> -->
@@ -190,9 +214,9 @@ ul li {
 		
 		
 		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-		<script type="text/javascript"
-			src="<c:url value='/global/js/myscroll.js'/>"></script>
-			<script src="<c:url value='/marketIndex/js/market.js'/> "></script>	
+			<script type="text/javascript"
+				src="<c:url value='/global/js/myscroll.js'/>"></script>
+	<script src="<c:url value='/marketIndex/js/market.js'/> "></script>	
 		<script type="text/javascript">
 		$(function() {
 				// 调用
@@ -237,6 +261,36 @@ ul li {
 		
 		})
 		</script>
+		<script>window.jQuery || document.write('<script src="js/jquery-2.1.1.min.js"><\/script>')</script>
+	
+	<script>
+	$(document).ready(function (ev) {
+	    var toggle = $('#ss_toggle');
+	    var menu = $('#ss_menu');
+	    var rot;
+	    $('#ss_toggle').on('click', function (ev) {
+	        rot = parseInt($(this).data('rot')) - 180;
+	        menu.css('transform', 'rotate(' + rot + 'deg)');
+	        menu.css('webkitTransform', 'rotate(' + rot + 'deg)');
+	        if (rot / 180 % 2 == 0) {
+	            toggle.parent().addClass('ss_active');
+	            toggle.addClass('close');
+	        } else {
+	            toggle.parent().removeClass('ss_active');
+	            toggle.removeClass('close');
+	        }
+	        $(this).data('rot', rot);
+	    });
+	    menu.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+	        if (rot / 180 % 2 == 0) {
+	            $('#ss_menu div i').addClass('ss_animate');
+	        } else {
+	            $('#ss_menu div i').removeClass('ss_animate');
+	        }
+	    });
+	});
+	</script>
+		
 	
 </body>
 </html>
