@@ -20,11 +20,17 @@ public class UpdateServiceImpl implements UpdateService {
 	MemberDAO dao;
 	
 	@Override
-	public MemberBean getMemberBeanFromDB(String account) {
+	public MemberBean getMemberBeanByAccount(String account) {
 		MemberBean mb = dao.getMemberByAccount(account);
 		return mb;
 	}
 
+
+	@Override
+	public void updateMemberWithoutPhoto(MemberBean mb) throws SQLException {
+		dao.updateMember(mb);
+	}
+	
 	@Override
 	public void updateMember(MemberBean mb, String extPhoto, MultipartFile Photo) throws SQLException {
 		mb.setBan(false);
@@ -57,6 +63,9 @@ public class UpdateServiceImpl implements UpdateService {
 			throw new RuntimeException("檔案上傳發生意外");
 		}
 	}
+
+
+
 
 	
 }

@@ -31,9 +31,14 @@ public class MyMessageController {
 		map.put("MyMessageList", list);
 		
 		
+		
+		
 		return "/MemberCenter/myMessage";
 		
 	}
+	
+	
+	
 	
 	
 	

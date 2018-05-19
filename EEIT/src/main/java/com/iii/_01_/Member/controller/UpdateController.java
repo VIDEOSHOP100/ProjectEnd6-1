@@ -36,7 +36,7 @@ public class UpdateController {
 	public MemberBean getMemberBean(HttpSession session) {
 		System.out.println("updateMemberBean here");
 		MemberBean originalBean =  (MemberBean) session.getAttribute("LoginOK");
-		 originalBean = updateService.getMemberBeanFromDB(originalBean.getAccount());
+		 originalBean = updateService.getMemberBeanByAccount(originalBean.getAccount());
 		return originalBean;
 	
 	}
@@ -45,7 +45,7 @@ public class UpdateController {
 	@RequestMapping(value = "/MemberCenter/memberUpdate" , method = RequestMethod.GET)
 	public String getMemberUpdate(HttpSession session , Map<String , MemberBean> map) {
 		MemberBean originalBean =  (MemberBean) session.getAttribute("LoginOK");
-		 originalBean = updateService.getMemberBeanFromDB(originalBean.getAccount());
+		 originalBean = updateService.getMemberBeanByAccount(originalBean.getAccount());
 		System.out.println("這裡是/memberUpdate \n" + "originalBean :" + originalBean);
 		
 		map.put("updateMemberBean", originalBean);
@@ -60,12 +60,18 @@ public class UpdateController {
 			Map<String, String> updateErrorMessage = new HashMap<String, String>();
 			model.addAttribute("updateErrorMap", updateErrorMessage);
 			
-			MultipartFile photo = mb.getPhoto();
-			String originalPhotoName = photo.getOriginalFilename();
-			mb.setPhotoName(originalPhotoName);
-			String extPhoto = originalPhotoName.substring(originalPhotoName.lastIndexOf("."));
-		
-			updateService.updateMember(mb, extPhoto, photo);
+			
+			
+			if (mb.getPhoto().getSize()!=0) {
+				MultipartFile photo = mb.getPhoto();
+				String originalPhotoName = photo.getOriginalFilename();
+				mb.setPhotoName(originalPhotoName);
+				String extPhoto = originalPhotoName.substring(originalPhotoName.lastIndexOf("."));
+				updateService.updateMember(mb, extPhoto, photo);
+			}else {
+				updateService.updateMemberWithoutPhoto(mb);
+			}
+			
 			session.setAttribute("LoginOK", mb);
 			MemberBean newmb = (MemberBean) session.getAttribute("LoginOK");
 			String account = newmb.getAccount();
