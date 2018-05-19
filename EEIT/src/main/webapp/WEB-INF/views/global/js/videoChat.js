@@ -5,7 +5,8 @@
 $( function() {
 	var receiverAccount;
 	var senderAccount = $('.accountForMessage').val();
-	var userName = Math.round(Math.random()*100)
+	var userName = $('.accountForMessage').val();
+	var track;
 	var PeerConnection = (window.PeerConnection || window.webkitPeerConnection00
 			|| window.webkitRTCPeerConnection || window.mozRTCPeerConnection);
 	var URL = (window.URL || window.webkitURL || window.msURL || window.oURL);
@@ -62,6 +63,9 @@ $( function() {
 	var offerPeerConnection = new PeerConnection(iceServer);
 	
 	function connect(){
+		if(!receiverAccount){
+			receiverAccount = $('.whoCall').val()
+		}
     	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
     	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()
     	var firstAccount;
@@ -216,6 +220,7 @@ $( function() {
 			"audio" : true,
 			"video" : true 
 		}, function(stream) {
+			window.streamReference = stream;
 			$('.myVideo')[0].src = URL.createObjectURL(stream);
 			$('.myVideo')[0].muted = true;
 			answerPeerConnection.addStream(stream);
@@ -238,11 +243,49 @@ $( function() {
 	});
 	
 	$(document).on( "click",".liveButton",function() {
-		alert('live')
 		var temp = $(this).closest('.box').attr('id')
 		receiverAccount = temp.substring(0, temp.length - 1);
-		
 		$( "#dialog" ).dialog( "open" );
-		connect();
+		$( ".callUser" ).show();
+		$( ".disconnectUser" ).hide();
 	});
+	
+	
+	$(document).on("click",".disconnectUser",function(){
+		window.streamReference.getVideoTracks().forEach(function(track) {
+	        track.stop();
+	    });
+		$('.yourVideo')[0].src = ""
+		$('.myVideo')[0].src = ""
+		$('.whoCallDisplay').text(" ")
+		$( "#dialog" ).dialog( "close" );
+		receiverAccount = undefined
+	})
+	$(document).on("click",".callUser",function(){
+		var caller;
+		if(!receiverAccount){
+			caller = true;
+			receiverAccount = $('.whoCall').val()
+		}
+		connect();
+		var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
+    	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()
+    	var firstAccount;
+        var secondAccount; 
+    	if(senderAccountFistWord > receiverAccountFistWord ){
+    		firstAccount = senderAccount
+            secondAccount = receiverAccount
+    	}else if(senderAccountFistWord < receiverAccountFistWord){
+    		firstAccount = receiverAccount
+    		secondAccount = senderAccount
+    	}
+    	if(caller){
+    		stompClient.send("/app/messageSystem/" + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':"正在接通...", 'account':senderAccount, 'receiverAccount': receiverAccount, "messageType" : "call" }));
+    	}else if(!caller){
+    		stompClient.send("/app/messageSystem/" + firstAccount + "/" + secondAccount , {}, JSON.stringify({ 'messageArticle':senderAccount + "來電了....", 'account':senderAccount, 'receiverAccount': receiverAccount, "messageType" : "call" }));
+    		$('.whoCallDisplay').text("撥號中....")
+    	}
+    	$( ".callUser" ).hide()
+    	$( ".disconnectUser" ).show()
+	})
 });
