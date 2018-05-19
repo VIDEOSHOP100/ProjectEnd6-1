@@ -168,6 +168,8 @@
 
 					<form:form  id="register" method="POST" action="${pageContext.request.contextPath}/register" modelAttribute="MemberBean" class="form-row" enctype="multipart/form-data"> 
 			 		
+			 			<div id ="rec1"></div>
+			 		
 			 			<div class="col-md-6 form-group">
 			 				<small><label for="regAcc">帳號</label><span style="color: red">*(必填)</span></small>
 			 				<form:input id="regAcc" path="account" type="text" class="form-control input-sm" placeholder="account"/>
@@ -254,8 +256,8 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form:form id="loginForm" method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row" >
-					
+					<form:form id="loginForm"  method="POST" action="${pageContext.request.contextPath}/login" modelAttribute="MemberBean" class = "form-row rec2" >
+					<div id="rec2"></div>
 <!-- 					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
 					<div class="form-group col-md-6">
 						<small><label for="logAcc">帳號</label></small>
