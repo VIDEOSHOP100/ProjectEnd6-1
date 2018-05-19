@@ -10,6 +10,10 @@
 			var account = $("#account").val();
 			$('.buy').click(function() {
 				var count = $("#productCount").val();
+				alert(count);
+				if(count==0)
+					alert("請選擇數量");
+				else
 				$.ajax({
 
 					type : 'POST',
@@ -30,6 +34,8 @@
 						alert(e);
 					}
 				})
+				
+				
 			})
 		})
 	
