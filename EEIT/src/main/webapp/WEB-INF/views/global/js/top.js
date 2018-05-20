@@ -101,21 +101,24 @@ $(document).ready(function() {
       var widgetId2;
 	
 	
-	
-      	if(($('#rec1').val()!= null) || $('#manaLogout').text()!=null ){
-        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
-        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
-        widgetId1 = grecaptcha.render(document.getElementById('rec1'), {
-          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
-
-        });
-        widgetId2 = grecaptcha.render(document.getElementById('rec2'), {
-          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
-        });
-	
-	
-      	
-	}
+//      function onloadCallback(){
+//      
+//      	if(($('#rec1').val()!= null) || $('#manaLogout').text()!=null ){
+//        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+//        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+//        widgetId1 = grecaptcha.render(document.getElementById('rec1'), {
+//          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
+//
+//        	  
+//        });
+//        widgetId2 = grecaptcha.render(document.getElementById('rec2'), {
+//          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
+//        });
+//	
+//	
+//      	}
+//      	
+//	}
 	
 	
 	

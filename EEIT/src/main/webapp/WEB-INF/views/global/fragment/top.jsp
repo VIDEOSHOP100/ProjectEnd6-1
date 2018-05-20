@@ -11,7 +11,13 @@
 <meta http-equiv="Cache-Control" content="no-cache"> 
 <meta http-equiv="Expires" content="0"> 
 <title>Navigation</title>
-<script src="https://www.google.com/recaptcha/api.js"></script>
+
+
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
+
+<!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
 <!--  <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 
@@ -100,7 +106,7 @@
 				<c:if test="${! empty ManagerLoginOK}">
 					<li class="nav-item">
 						<a href="<c:url value='/managerLogout'/>">
-            <button id="manaLogout" class="btn btn-danger float-right">管理員登出</button>
+            <button id="" class="btn btn-danger float-right">管理員登出</button>
           </a>
 					</li>
 				</c:if>
@@ -307,6 +313,27 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="<c:url value='/global/js/top.js'/> "></script>
+
+	<script>
+		function onloadCallback(){
+	      
+      	if(($('#rec1').val()!= null) || $('#manaLogout').text()!=null ){
+        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+        widgetId1 = grecaptcha.render(document.getElementById('rec1'), {
+          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
+
+        	  
+        });
+        widgetId2 = grecaptcha.render(document.getElementById('rec2'), {
+          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
+        });
+	
+	
+      	}
+      	
+	}
+	</script>
 
 	
 	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>

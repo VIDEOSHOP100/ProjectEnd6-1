@@ -8,35 +8,36 @@
 <title>我的訊息</title>
 </head>
 <body>
-		<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
+	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
+
+	<div class="container">
+
+		<h2 class="mt-4 md-3">我的訊息</h2>
+
+		<div class="row">
 		
-		<div class="container">
 			
-			<h2 class="mt-4 md-3">我的訊息</h2>
 			
-			<div class="row">
-			
+			<c:forEach var="myMessage" items="${myMessageList}">
 				<div class="col-md-6 offset-3">
 				
-					<c:forEach var="myMessage" items="${myMessageList}">
-						
-						
-						
-					</c:forEach>
-					
+
+				
 				</div>
-			
-			</div>
-		
+			</c:forEach>
+
+
 		</div>
-		
-	
-	
-	
-	
-	
-	
-	
- 		<%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
+
+	</div>
+
+
+
+
+
+
+
+
+	<%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
 </body>
 </html>
