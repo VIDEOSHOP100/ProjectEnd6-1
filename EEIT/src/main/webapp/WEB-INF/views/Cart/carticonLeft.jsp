@@ -17,8 +17,8 @@
 
 <style type="text/css">
 #MyBlog {
-	position: absolute; /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
-	top: 80%; /*設置垂直位置*/
+	position: fixed; /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
+	top: 75%; /*設置垂直位置*/
 	right: +20px; /*設置水平位置，依所放的內容多寡需要自行手動調整*/
 	
 	padding: 10px 20px;
@@ -27,12 +27,7 @@
 	-webkit-border-radius: 10px;
 	z-index: 999;
 }
-button {
-    background-color: ;
-    border: none;
-    color: none;
 
-}
 </style>
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
@@ -44,7 +39,7 @@ button {
 	<div id="MyBlog" class="fa-3x">
 		<span> 
 		<a href="${pageContext.request.contextPath}/CartList/getCart/${LoginOK.account}">
-		<i class="fas fa-cart-plus "></i></a>
+		<i class="fas fa-shopping-cart"></i></a>
 		 <span class="fa-layers-counter" id="counter" style="background:Tomato">0</span>
 		</span>
 	</div>

@@ -68,7 +68,7 @@
 				<hr>
 				<input type="hidden" name="account" id="account"
 					value="${getLoginMemberBean.account}" /> <input type="button"
-					class="btn btn-primary buy" value="直接購買">
+					class="btn btn-primary buy"  value="直接購買">
 			</div>
 
 
