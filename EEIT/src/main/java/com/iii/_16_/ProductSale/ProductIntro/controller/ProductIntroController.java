@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._16_.BuyCart.ProCartList.model.ProCartListBean;
 import com.iii._16_.BuyCart.ProCartList.model.ProCartListService;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleDao;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 
@@ -46,7 +47,14 @@ public class ProductIntroController {
 	public String searchProduct(@PathVariable("ProductSeqNo") int productSeqNo, Map<String, Object> map,
 			HttpSession session) throws SQLException {
 		MemberBean bean = (MemberBean) session.getAttribute("LoginOK");
+		//要先找出本商品是哪個賣家
+		ProductSaleBean thisproduct = productsaleservice.getBySeqNo(productSeqNo);
+		String thisaccout = thisproduct.getAccount();
+		List<ProductSaleBean> thisaccountlist = productsaleservice.getByAccount(thisaccout);
+		//主商品productsalebean
 		map.put("productSaleBean", productsaleservice.getBySeqNo(productSeqNo));
+		//該帳號中所有商品
+		map.put("relationProduct", thisaccountlist);
 		map.put("getLoginMemberBean", bean);
 		return "Product/productIntro";
 	}
