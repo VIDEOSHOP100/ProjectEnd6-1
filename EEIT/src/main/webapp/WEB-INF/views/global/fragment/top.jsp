@@ -37,10 +37,34 @@
 					aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<div class="searchBlock">
+				<ul class="navbar-nav ml-auto ">
+					<li style="width:500px" class="nav-item dropdown">
+						<input type="text" class="form-control searchInput" placeholder="找點什麼...?">
+						<div style="width:500px" class="dropdown-menu dropdown-menu-left diplaySearchResult" aria-labelledby="navbarDropdownPortfolio">
+							<div class="searchTitleBlock liveStreaSearchmDropdown">
+								<a class="dropdown-item searchTitle" href="">直播</a>
+							</div>
+							<div class="searchTitleBlock productSearchDropdown">
+								<a class="dropdown-item searchTitle" href="">商品</a>
+							</div>
+							<div class="searchTitleBlock videoSearchDropdown">
+								<a class="dropdown-item searchTitle" href="">影片</a>
+							</div>
+							<div class="searchTitleBlock memberSearchDropdown">
+								<a class="dropdown-item searchTitle" href="">會員</a>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<span class="input-group-btn">
+							<button class="btn btn-secondary" type="button">Go!</button>
+						</span>
+					</li>
+				</ul>
+			</div>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><input type="text" class="form-control" placeholder="找點什麼...?"></li>
-				<li class="nav-item"><span class="input-group-btn"><button class="btn btn-secondary" type="button">Go!</button></span></li>
 				<li class="nav-item dropdown" >
 				<a class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
@@ -306,6 +330,7 @@
 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="<c:url value='/global/js/search.js'/> "></script>
 	<script src="<c:url value='/global/js/top.js'/> "></script>
 
 	

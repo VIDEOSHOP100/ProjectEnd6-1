@@ -39,3 +39,11 @@
 .loginCheck{
 	display: inline-block;
 }
+.searchBlock{
+	margin-left: 200px;
+/* 	border:solid 1px red; */
+}
+
+.searchTitleBlock{
+	background-color: #b693ff;
+}
