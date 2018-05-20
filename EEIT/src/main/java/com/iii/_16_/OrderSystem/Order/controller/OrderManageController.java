@@ -68,16 +68,20 @@ public class OrderManageController {
 		    	onebean.setTransorderStatus("已付款,已出貨");
 		    }else if(orderStatus==4) {
 		    	onebean.setTransorderStatus("已付款,已到貨");
-		    }
-		    
-		    
+		    }   
 		}
-		   
-		
-
 		map.put("orderlists", allorder);
 		map.put("getMemberBean", member);
 		return "OrderSystem/myOrderManage";
 	}
 	
+	@RequestMapping(value="/manageOrderProduct/{orderSeqNo}",method=RequestMethod.GET)
+	public String orderProduct(@PathVariable("orderSeqNo")Integer orderSeqNo,
+			Map<String,Object> map,HttpSession session) {
+		MemberBean member = (MemberBean) session.getAttribute("LoginOK");
+		String account = member.getAccount();
+		
+		
+		return "OrderSystem/orderProductList";
+	}
 }

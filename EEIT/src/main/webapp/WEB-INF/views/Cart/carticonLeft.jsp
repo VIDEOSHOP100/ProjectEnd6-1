@@ -19,7 +19,7 @@
 #MyBlog {
 	position: fixed; /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
 	top: 75%; /*設置垂直位置*/
-	right: +20px; /*設置水平位置，依所放的內容多寡需要自行手動調整*/
+	left: +20px; /*設置水平位置，依所放的內容多寡需要自行手動調整*/
 	
 	padding: 10px 20px;
 	border-radius: 10px; /*圓角*/

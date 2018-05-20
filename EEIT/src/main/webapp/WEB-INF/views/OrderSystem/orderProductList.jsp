@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>訂單管理頁面</title>
+<title>訂單頁面</title>
 
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -52,7 +52,7 @@
 						<thead>
 							<tr>
 								<th></th>
-								<th>訂單商品清單</th>
+								<th></th>
 								<th>訂單編號</th>
 								<th>訂單付款方式</th>
 								<th>訂單金額</th>
@@ -69,7 +69,7 @@
 							<c:forEach var="xxx" items="${orderlists}">
 								<tr class="trkill">
 									<td></td>
-									<td><i class="far fa-caret-square-down fa-2x"></i></td>
+									<td></td>
 									<td><h5><a href="${pageContext.request.contextPath}/orderManage/manageOrderProduct/${xxx.orderSeqNo}">${xxx.orderSeqNo}</a></h5></td>
 									<td>${xxx.howToPay}</td>
 									<td>NT${xxx.orderTotalPrice}</td>
