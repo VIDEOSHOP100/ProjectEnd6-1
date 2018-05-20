@@ -29,11 +29,9 @@
 		</ol>
 		<br> <br> <br> <br> <br>
 
-		<div class="row ">
+		<div class="row">
 
-			<div class="col-md-3"></div>
-
-			<div class="col-md-6 ">
+			<div class="col-md-6 offset-3">
 
 				<div class="wrapper">
 					<form:form id="login" method="POST"

@@ -74,7 +74,7 @@ $(document).ready(function () {
     		url:"/EEIT/adviceReport/" + arSN,
     		
     		success:function(data){
-    			var account = data.account;
+    			account = data.account;
     			var ret = new Date(data.adviceTime);
     			var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
     			var format = $('<container></container>').html(
