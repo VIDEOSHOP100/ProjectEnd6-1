@@ -24,7 +24,7 @@
         	
         		<div class="col-md-4 offset-4">
         		
-        			<p>您的回報單</p>
+        			<p>您的意見已送出，謝謝您的回報。</p>
         			
         		</div>	
         	

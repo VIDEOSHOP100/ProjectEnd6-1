@@ -317,6 +317,19 @@
 	<script>
 	$('#modalLoginButton').click(checkAccPwd);
 	
+	
+	
+	
+	$(document).on("keyup","#logPwd", function(e){
+		
+		 if(e.keyCode == 13){
+			 console.log(e.keyCode);
+			 checkAccPwd();
+		 }
+	
+	})
+	
+	
 	function checkAccPwd(){
 		
 		
