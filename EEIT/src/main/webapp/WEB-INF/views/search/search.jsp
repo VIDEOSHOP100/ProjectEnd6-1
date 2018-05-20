@@ -24,18 +24,12 @@
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 		<div class="container">
-			<div class="row">
-				<div class="col-md-10">
-					<h1 class="mt-4 mb-3">影片管理
-					</h1>
-				</div>
-			</div>
-			<div class="row">
+			<div class="row searchResultBlock">
 				<div class="col-lg-3 col-md-4  divOutside" style="padding:0px">
 					<div class="divInsideTitle">直播</div>
 					<c:forEach var="searchBean" items="${inputLiveStreamTimeBeanList }">
 						<div class="divInsideDescription">
-							<div class="divInsideDescriptionImage"><a href="${pageContext.request.contextPath}/LiveStream/${searchBean.liveStreamSeqNo}"><img width="100px" height="100px" src="${pageContext.request.contextPath}/getImage/LiveCoverPath/${searchBean.liveStreamSeqNo}"></a></div>
+							<div class="divInsideDescriptionImage"><a href="${pageContext.request.contextPath}/LiveStream/${searchBean.liveStreamSeqNo}"><img width="200px" height="120px" src="${pageContext.request.contextPath}/getImage/LiveCoverPath/${searchBean.liveStreamSeqNo}"></a></div>
 							<div class="divInsideDescriptionTitle"><p><a href="${pageContext.request.contextPath}/LiveStream/${searchBean.liveStreamSeqNo}">${searchBean.streamName }</a></p></div>
 							<div class="divInsideDescriptionAccount"><p><a href="${pageContext.request.contextPath}/profile/${searchBean.account}">${searchBean.account }</a></p></div>
 <%-- 							<div class="divInsideDescriptionDetail"><p>${searchBean.videoDescription }</p></div> --%>
@@ -46,7 +40,7 @@
 					<div class="divInsideTitle">商品</div>
 					<c:forEach var="searchBean" items="${productSaleBeanList }">
 						<div class="divInsideDescription">
-							<div class="divInsideDescriptionImage"><a href="${pageContext.request.contextPath}/searchProductIntro/${searchBean.productSeqNo}"><img width="100px" height="100px" src="${pageContext.request.contextPath}/getImage/Product/${searchBean.productSeqNo}"></a></div>
+							<div class="divInsideDescriptionImage"><a href="${pageContext.request.contextPath}/searchProductIntro/${searchBean.productSeqNo}"><img width="200px" height="120px" src="${pageContext.request.contextPath}/getImage/Product/${searchBean.productSeqNo}"></a></div>
 							<div class="divInsideDescriptionTitle"><p><a href="${pageContext.request.contextPath}/searchProductIntro/${searchBean.productSeqNo}">${searchBean.proName }</a></p></div>
 							<div class="divInsideDescriptionAccount"><p><a href="${pageContext.request.contextPath}/profile/${searchBean.account}">${searchBean.account }</a></p></div>
 							<div class="divInsideDescriptionDetail"><p>${searchBean.proDescription }</p></div>
@@ -57,7 +51,7 @@
 					<div class="divInsideTitle">影片</div>
 					<c:forEach var="searchBean" items="${videoBeanList }">
 						<div class="divInsideDescription">
-							<div class="divInsideDescriptionImage"><a href="${pageContext.request.contextPath}/videoRoom/${searchBean.videoSeqNo}"><img width="100px" height="100px" src="${pageContext.request.contextPath}/getImage/video/${searchBean.videoSeqNo}"></a></div>
+							<div class="divInsideDescriptionImage"><a href="${pageContext.request.contextPath}/videoRoom/${searchBean.videoSeqNo}"><img width="200px" height="120px" src="${pageContext.request.contextPath}/getImage/video/${searchBean.videoSeqNo}"></a></div>
 							<div class="divInsideDescriptionTitle"><p><a href="${pageContext.request.contextPath}/videoRoom/${searchBean.videoSeqNo}">${searchBean.videoTitle }</a></p></div>
 							<div class="divInsideDescriptionAccount"><p><a href="${pageContext.request.contextPath}/profile/${searchBean.account}">${searchBean.account }</a></p></div>
 							<div class="divInsideDescriptionDetail"><p>${searchBean.videoDescription }</p></div>
@@ -68,7 +62,7 @@
 					<div class="divInsideTitle">會員</div>
 					<c:forEach var="searchBean" items="${memberBeanList }">
 						<div class="divInsideDescription">
-							<div class="divInsideDescriptionImage"><a href="${pageContext.request.contextPath}/profile/${searchBean.account}"><img width="100px" height="100px" src="${pageContext.request.contextPath}/getImage/member/${searchBean.account}"></a></div>
+							<div class="divInsideDescriptionImage"><a href="${pageContext.request.contextPath}/profile/${searchBean.account}"><img width="200px" height="120px" src="${pageContext.request.contextPath}/getImage/member/${searchBean.account}"></a></div>
 <!-- 							<div class="divInsideDescriptionTitle"><p>Title</p></div> -->
 							<div class="divInsideDescriptionAccount"><p><a href="${pageContext.request.contextPath}/profile/${searchBean.account}">${searchBean.account }</a></p></div>
 <!-- 							<div class="divInsideDescriptionDetail"><p>Detail</p></div> -->

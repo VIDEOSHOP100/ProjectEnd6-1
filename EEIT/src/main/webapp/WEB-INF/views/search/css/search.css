@@ -4,24 +4,36 @@
 }
 
 .divInsideTitle{
-	border: solid 1px gray;
+/* 	border: solid 1px gray; */
+	border-bottom: solid 1px #d8d7d9;
 	text-align: center;
+	color:white;
+	background-color:#7401a5;
+	border-radius: 100px 100px 0px 0px;
 }
-.divInsideDescription{
-	border-bottom: solid 1px gray;
-	width: 100%;
-	height: 103px;
-	border-left: solid 1px gray;
-	border-right: solid 1px gray;
-	line-height: 20px;
+.searchResultBlock{
+	border-radius: 100px 100px 0px 0px;
+	margin-top: 50px;
 }
 
+.divInsideDescription{
+	border-bottom: solid 1px #d8d7d9;
+	width: 100%;
+	height: 103px;
+/* 	border-left: solid 1px gray; */
+/* 	border-right: solid 1px gray; */
+	line-height: 20px;
+	margin-bottom:10px;
+}
+.divInsideDescription:hover{
+	background-color:#fbf2ff;
+}
 .divInsideDescription .divInsideDescriptionTitle{
 	
 	float: left;
 	display: inline-block;
 	height:23px;
-	width: 74%;
+	width: 50%;
 	text-align:justify;
 	font-size: 20px;
 	overflow: hidden;
@@ -35,11 +47,12 @@
 	float: left;
 	display: inline-block;
 	height:44px;
-	width: 74%;
+	width: 50%;
 /* 	border: solid 1px yellow; */
 	overflow: hidden;
 	text-align:justify;
 	color: gray;
+	font-size: 12px
 /* 	margin-top: 5px; */
 }
 .divInsideDescription .divInsideDescriptionTitle a:hover{
@@ -57,7 +70,7 @@
 	float: left;
 	display: inline-block;
 	height:25px;
-	width: 74%;
+	width: 50%;
 /* 	border: solid 1px yellow; */
 	overflow: hidden;
 	text-align:justify;
@@ -69,7 +82,8 @@
 	float: left;
 	display: inline-block;
 	height:100px;
-	width: 100px;
+	width: 200px;
+	
 /* 	border: solid 1px green; */
 	overflow: hidden;
 }

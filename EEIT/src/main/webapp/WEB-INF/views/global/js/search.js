@@ -3,6 +3,14 @@
  */
 
 $(document).ready(function() {
+//    $(".divInsideDescriptionImage").fadeIn();
+    $(".divInsideDescriptionImage").fadeIn("slow");
+//    $(".divInsideDescriptionImage").fadeIn(10000);
+	$(document).on('click','.searchAllButton', function(e){
+		$('.searchForm').attr("action", "/EEIT/search/all/" + $('.searchInput').val())
+		$('.searchForm').submit();
+	    return false;
+	})
     $(document).on('keydown','.searchInput',function(e){
 //    	alert('aaaaa')
 //    	e.preventDefault()

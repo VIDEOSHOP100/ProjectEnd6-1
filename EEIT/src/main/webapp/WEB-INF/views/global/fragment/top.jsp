@@ -74,7 +74,7 @@
 					</li>
 					<li class="nav-item">
 						<span class="input-group-btn">
-							<button class="btn btn-secondary" type="button">Go!</button>
+							<button class="btn btn-secondary searchAllButton" type="button">Go!</button>
 						</span>
 					</li>
 				</ul>
