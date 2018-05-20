@@ -19,12 +19,17 @@ import com.iii._01_.AdviceReport.bean.AdviceReportBean;
 import com.iii._01_.AdviceReport.service.AdviceReportService;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.MemberReport.bean.MemberReportBean;
+import com.iii._01_.MyMessage.bean.MyMessageBean;
+import com.iii._01_.MyMessage.service.MyMessageService;
 
 @Controller
 public class AdviceReportController {
 
 	@Autowired
 	AdviceReportService adviceReportService;
+	
+	@Autowired
+	MyMessageService myMessageService;
 	
 	
 	@RequestMapping(value= "/MemberCenter/adviceReport" , method=RequestMethod.GET)
@@ -73,7 +78,7 @@ public class AdviceReportController {
 	
 	
 	@RequestMapping(value = "/adviceReport" , method=RequestMethod.PUT)
-	public @ResponseBody void updateadviceReport(@RequestParam("replyContent")String replyContent ,  @RequestParam("adviceReportSeqNo")Integer adviceReportSeqNo) {
+	public @ResponseBody void updateadviceReport(@RequestParam("replyContent")String replyContent ,  @RequestParam("adviceReportSeqNo")Integer adviceReportSeqNo ,@RequestParam("account")String account) {
 		
 		AdviceReportBean arb = adviceReportService.getAdviceReportByAdviceReportSeqNo(adviceReportSeqNo);
 		
@@ -84,8 +89,16 @@ public class AdviceReportController {
 		adviceReportService.updateAdviceReport(arb);
 		
 		
+		MyMessageBean mmb = new MyMessageBean();
+		mmb.setMyMessageFrom("Manager");
+		mmb.setMyMessageStatus("unread");
+		mmb.setMyMessageTime(replyTime);
+		mmb.setMyMessageTo(account);
+		mmb.setMyMessageContent(replyContent);
+		mmb.setMyMessageTitle("意見回覆");
 		
-		
+		myMessageService.saveMyMessage(mmb);
+				
 	}
 	
 	

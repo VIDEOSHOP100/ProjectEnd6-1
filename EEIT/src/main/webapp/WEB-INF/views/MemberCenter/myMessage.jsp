@@ -16,6 +16,15 @@
 			
 			<div class="row">
 			
+				<div class="col-md-6 offset-3">
+				
+					<c:forEach var="myMessage" items="${myMessageList}">
+						
+						
+						
+					</c:forEach>
+					
+				</div>
 			
 			</div>
 		
