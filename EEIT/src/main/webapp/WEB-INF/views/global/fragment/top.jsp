@@ -348,6 +348,52 @@
 	<script src="<c:url value='/global/js/top.js'/> "></script>
 
 	<script>
+	$('#modalLoginButton').click(checkAccPwd);
+	
+	function checkAccPwd(){
+		
+		
+		
+		
+		var logAcc = $('#logAcc').val();
+		var logPwd = $('#logPwd').val();
+		var botCheckResp = $('#g-recaptcha-response-1').val();
+
+		
+		
+		
+		$.ajax({
+			
+			type:"POST",
+			url:"/EEIT/checkBotAccPwd",
+			data:{ botCheckResp:botCheckResp , logAcc:logAcc , logPwd:logPwd},
+			success:function(result){
+				var checkResult = result.loginCheck;
+				var botResult = result.botCheck;
+				
+				if(checkResult == true && botResult == true){
+					$('#loginForm').submit();
+				}else if(checkResult == false && botResult == true){
+					grecaptcha.reset(widgetId2);
+					$('#loginErrMsg').html(
+						'<div class="p-2 mb-2 bg-warning text-dark rounded">帳號或密碼錯誤!</div>');
+				}else if(botResult == false){
+					grecaptcha.reset(widgetId2);
+					$('#loginErrMsg').html(
+					'<div class="p-2 mb-2 bg-warning text-dark rounded">機器人驗證失敗!</div>');
+				}
+			},
+			error : function(e) {
+				console.log("ERROR : ", e);
+				alert(e);
+			}
+			
+		})
+		
+	
+	}
+	
+	
 		function onloadCallback(){
 	      
       	if(($('#rec1').val()!= null) || $('#manaLogout').text()!=null ){

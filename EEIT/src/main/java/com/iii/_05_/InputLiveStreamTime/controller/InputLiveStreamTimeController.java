@@ -304,7 +304,7 @@ public class InputLiveStreamTimeController {
 			) throws SQLException {
 //		new LiveStreamHistoryBean( 0,account,LiveStreamSeqNo, now,  "1");
 		//瀏覽紀錄
-		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+//		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		
 //		lb.setLiveStreamSeqNo(LiveStreamSeqNo);
 //		lb.setHistoryTime(now);
