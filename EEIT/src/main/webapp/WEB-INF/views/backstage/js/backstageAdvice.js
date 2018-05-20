@@ -61,6 +61,8 @@ $(document).ready(function () {
    
     var arSN;
     
+    var account;
+    
     $(document).on("click",'.AdviceReportSeqNo',function(){
     	arSN = $(this).text();
     	    	
@@ -72,6 +74,7 @@ $(document).ready(function () {
     		url:"/EEIT/adviceReport/" + arSN,
     		
     		success:function(data){
+    			var account = data.account;
     			var ret = new Date(data.adviceTime);
     			var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
     			var format = $('<container></container>').html(
@@ -122,7 +125,7 @@ $(document).ready(function () {
     		
     		type:"POST",
     		url:"/EEIT/adviceReport",
-    		data:{ _method : "PUT" ,adviceReportSeqNo:arSN ,replyContent:reply},
+    		data:{ _method : "PUT" ,adviceReportSeqNo:arSN ,replyContent:reply ,account:account},
     		
     		success:function(){
     		

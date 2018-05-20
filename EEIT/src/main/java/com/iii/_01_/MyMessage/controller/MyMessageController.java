@@ -28,8 +28,8 @@ public class MyMessageController {
 		
 			List<MyMessageBean>list = myMessageService.getAllMyMessage(account);
 			
-		map.put("MyMessageList", list);
-		
+			map.put("MyMessageList", list);
+			
 		
 		
 		
