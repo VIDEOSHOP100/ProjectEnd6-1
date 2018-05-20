@@ -53,11 +53,11 @@
 							<tr>
 								<th></th>
 								<th></th>
-								<th></th>
-								<th>商品名稱</th>
-								<th>數量</th>
-								<th>單價</th>
-								<th>總價</th>
+								<th>訂單編號</th>
+								<th>訂單付款方式</th>
+								<th>訂單金額</th>
+								<th>訂單日期</th>
+								<th>訂單狀態</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -66,23 +66,15 @@
 						<tbody class="tbodyOutside">
 									
 							<c:set var="total" value="0.0" />
-							<c:forEach var="xxx" items="${readyforpaypro}">
+							<c:forEach var="xxx" items="${orderlists}">
 								<tr class="trkill">
 									<td></td>
 									<td></td>
-									<td></td>
-									<td><h5>${xxx.productBean.proName}</h5></td>
-									<td>${xxx.productCount }</td>
-									<td>NT ${xxx.productPrice}</td>
-									<td>NT ${xxx.productTotal}</td>
-<%-- 									<c:set var="total" --%>
-<%-- 										value="${total + xxx.productCount * xxx.productbean.productPrice}" /> --%>
-									<td>
-<!-- 										<button id="buttonAdd" type="button" -->
-<!-- 											class="btn btn-danger kill"> -->
-<!-- 											<i class="far fa-trash-alt"></i> -->
-<!-- 										</button> -->
-									</td>
+									<td><h5>${xxx.orderSeqNo}</h5></td>
+									<td>${xxx.howToPay}</td>
+									<td>NT${xxx.orderTotalPrice}</td>
+									<td>${xxx.orderDateTime}</td>							
+									<td>${xxx.transorderStatus}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -91,10 +83,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
-								<td>訂單總價</td>
 								<td></td>
 								<td></td>
-								<td>NT <fmt:formatNumber value="${readyforpay.orderTotalPrice}" pattern="#,##0" /></td>
+								<td></td>
+								<td></td>
 								<td></td>
 							</tr>
 						</tfoot>
@@ -102,7 +94,7 @@
 					<br>
 					
 						<!-- 每頁不同的內容從這裡開始 -->
-					<h4>感謝您的訂購</h4><h2><a href="${pageContext.request.contextPath}/getPdfFile/pdf/${readyforpay.orderSeqNo}">訂單列印</a></h2>
+<%-- 					<h4>感謝您的訂購</h4><h2><a href="${pageContext.request.contextPath}/getPdfFile/pdf/${readyforpay.orderSeqNo}">訂單列印</a></h2> --%>
 			</div>
 		</div>
 	</div>
@@ -110,7 +102,7 @@
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="http://malsup.github.com/jquery.form.js"></script>
+
 	
 	
 

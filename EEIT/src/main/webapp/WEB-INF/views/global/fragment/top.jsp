@@ -90,7 +90,7 @@
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/goMarketHomePage">商城首頁</a>
 						<c:if test="${!empty LoginOK}">		 
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/sale.do">商品上架</a>
-				<a class="dropdown-item" href="">我的訂單查詢</a>
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/orderManage">我的訂單查詢</a>
 				<a class="dropdown-item" href="">追蹤商品查詢</a>
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/CartList/getCart/${LoginOK.account}">購物車</a>
 						</c:if>

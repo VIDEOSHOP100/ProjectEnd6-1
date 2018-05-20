@@ -3,6 +3,7 @@ package com.iii._16_.OrderSystem.Order.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -118,6 +119,7 @@ public class OrderController {
 		 ob.setOrderSeqNo(0);
 		 //設定訂單未付款的訂單狀態為1
 		 ob.setOrderStatus(1);
+		 ob.setAccount(member.getAccount());
 		 int orderNum =orderservice.insertGetId(ob);	 
 		// 先將使用者帳號傳回購物車service方法 用帳號找出所有購物明細
 			List<ProCartListBean> list = procartlistservice.getByAccountStatus(member.getAccount());
