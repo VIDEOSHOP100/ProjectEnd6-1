@@ -57,11 +57,7 @@
       </div>
 
     </div>
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; IIITube 2018</p>
-      </div>
-    </footer>
+	<%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
 		<script src="<c:url value='/backstage/js/backstage.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageLive.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageAdvice.js'/> "></script>

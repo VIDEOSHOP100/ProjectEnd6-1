@@ -31,15 +31,22 @@ $(document).ready(function() {
 	})
 //	var auctionSeqNo = $('#auctionSeqNo').val();
 //	alert(auctionSeqNo)
+
+	
 $('.deleteAuction').click(function(){
 		var thisDeleteButton = $(this) 
 		var productSeqNo = $('#auctionSeqNo').val();
+//		SendEndBid(account, productSeqNo)
 		$.ajax({
 			type: "POST",
 			url: "/EEIT/endAuction",
 			data: {_method : "PUT", productSeqNo : productSeqNo, auctionStatus : 2},
 			timeout: 600000,
 			success: function (data) {
+				var statusdata = data.status;
+				var account = statusdata.account;
+				var productSeqNo = statusdata.productSeqNo;
+				
 //				var parentElement = thisDeleteButton.parents('.row')
 //				parentElement.find('.col-md-7').remove();
 //				parentElement.find('.col-md-5').remove();
@@ -138,6 +145,13 @@ function addView(account, liveStreamView){
 	$('#showViewAfter+div').remove();
 $('#showViewAfter').after('<div><p>目前觀看人數：'+(liveStreamView)+++'</p></div>') 
 }
+//拍賣結束出現在中間-------------------------------------
+//function addAuctionend(account, productSeqNo){
+//	responsiveVoice.speak("拍賣物品"+productSeqNo+"已賣給"+account,"Chinese Female");
+//	
+//	append('<div class="relative2"><p class="hahaha">'+"拍賣物品"+ productSeqNo + "已賣給 "+ account +'</p></div>')
+//}
+//--------------------------------------------------
  //增加會員購買商品到聊天室窗----------------------------------------------------
 //var productSeqNo = $('.productSeqNo').val();
 function addBid(account, productSeqNo,bidPrice,auctionSeqNo){
@@ -147,6 +161,8 @@ function addBid(account, productSeqNo,bidPrice,auctionSeqNo){
 
 var flag = 0;
 //增加會員聊天到聊天室窗----------------------------------------------------
+
+//-------------------------------------彈幕開始----------------------------------------
 var colors = ['#FFFFFF','#99FFFF','#FFFFBB','#99FF33'];
 function addMessage(account,liveChatArticle){
 
@@ -195,6 +211,9 @@ function move(){
 	}
 	}
 }
+
+
+//---------------------------------------彈幕結束-----------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------
 
 function sendBid(account, productSeqNo,bidPrice){
@@ -241,6 +260,19 @@ $(document).on('keyup','.input-Bid>input',function(e){
 
 //console.log("asdasd");
 //console.log(stompClient); 
+
+//叫價結束開始----------------------------------------
+//function SendEndBid(account, productSeqNo){
+//	var senderAccountFistWord = account.substring(0,1).charCodeAt()
+//	var liveStreamSeqNo = $('.seqNo').val();
+//	var productSeqNo = $('#productSeqNo').val();
+//
+//	stompClient.send("/app/endAuction/" + productSeqNo , {}, JSON.stringify({ 'productSeqNo':productSeqNo, 'account':account}));
+//	
+//}   
+//叫價結束END----------------------------------------
+
+
 //聊天室開始----------------------------------
 stompClient.connect({}, function(frame) {
     console.log('Connected: ' + frame);
@@ -250,6 +282,15 @@ stompClient.connect({}, function(frame) {
     });
 //聊天室結束----------------------------------
    
+//叫價結束訂閱---------------------------
+//    stompClient.subscribe('/target/endAuction/subscription/' + productSeqNo , function(auctionendreturn){
+////    	var account = $('#catch-account').val();
+//    	addAuctionend(JSON.parse(auctionendreturn.body).account,JSON.parse(auctionendreturn.body).productSeqNo)
+//    	
+//    });
+//叫價結束訂閱----------------------------------------
+    
+    
 //觀看人數開始----------------------------------
     stompClient.subscribe('/target/ShowHistory/subscription/' + liveStreamSeqNo , function(historyreturn){
 //    	var account = $('#catch-account').val();
@@ -257,6 +298,8 @@ stompClient.connect({}, function(frame) {
     	
     });
 //觀看人數開始----------------------------------   
+    
+    
     
 //觀看人數結束----------------------------------  
     stompClient.subscribe('/target/ShowEndHistory/subscription/' + liveStreamSeqNo , function(historyreturn){
