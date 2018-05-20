@@ -24,25 +24,25 @@ public class SearchDAOImpl implements SearchDAO{
 	@Override
 	public List<VideoBean> getSearchVideoBean(String queryString) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createNativeQuery("Select * from Video where videoTitle like :queryString and videoStatus = '1'").addEntity(VideoBean.class).setParameter("queryString", "%" + queryString + "%").setMaxResults(8).list();
+		return session.createNativeQuery("Select * from Video where videoTitle like :queryString and videoStatus = '1'").addEntity(VideoBean.class).setParameter("queryString", "%" + queryString + "%").setMaxResults(4).list();
 	}
 
 	@Override
 	public List<MemberBean> getSearchMemberBean(String queryString) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createNativeQuery("Select * from Member where account like :queryString and ban = 0").addEntity(MemberBean.class).setParameter("queryString", "%" + queryString + "%").setMaxResults(8).list();
+		return session.createNativeQuery("Select * from Member where account like :queryString and ban = 0").addEntity(MemberBean.class).setParameter("queryString", "%" + queryString + "%").setMaxResults(4).list();
 	}
 
 	@Override
 	public List<InputLiveStreamTimeBean> getSearchInputLiveStreamTimeBean(String queryString) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createNativeQuery("Select * from LiveStream where streamName like :queryString and liveStatus = '1'").addEntity(InputLiveStreamTimeBean.class).setParameter("queryString", "%" + queryString + "%").setMaxResults(8).list();
+		return session.createNativeQuery("Select * from LiveStream where streamName like :queryString and liveStatus = '1'").addEntity(InputLiveStreamTimeBean.class).setParameter("queryString", "%" + queryString + "%").setMaxResults(4).list();
 	}
 
 	@Override
 	public List<ProductSaleBean> getProductSaleBean(String queryString) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createNativeQuery("Select * from Product where proName like :queryString and proStatus = 1").addEntity(ProductSaleBean.class).setParameter("queryString", "%" + queryString + "%").setMaxResults(8).list();
+		return session.createNativeQuery("Select * from Product where proName like :queryString and proStatus = 1").addEntity(ProductSaleBean.class).setParameter("queryString", "%" + queryString + "%").setMaxResults(4).list();
 	}
 
 }

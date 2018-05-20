@@ -48,17 +48,25 @@
 					<li style="width:500px" class="nav-item dropdown">
 						<input type="text" class="form-control searchInput" placeholder="找點什麼...?">
 						<div style="width:500px" class="dropdown-menu dropdown-menu-left diplaySearchResult" aria-labelledby="navbarDropdownPortfolio">
-							<div class="searchTitleBlock liveStreaSearchmDropdown">
-								<a class="dropdown-item searchTitle" href="">直播</a>
+							<div class="searchTitleBlock liveStreaSearchDropdown">
+								<a class="dropdown-item searchTitle liveStreaSearchTitle">直播</a>
+							</div>
+							<div class="liveStreaSearchBlock">
 							</div>
 							<div class="searchTitleBlock productSearchDropdown">
-								<a class="dropdown-item searchTitle" href="">商品</a>
+								<a class="dropdown-item searchTitle productSearchTitle">商品</a>
+							</div>
+							<div class="productSearchBlock">
 							</div>
 							<div class="searchTitleBlock videoSearchDropdown">
-								<a class="dropdown-item searchTitle" href="">影片</a>
+								<a class="dropdown-item searchTitle videoSearchTitle">影片</a>
+							</div>
+							<div class="videoSearchBlock">
 							</div>
 							<div class="searchTitleBlock memberSearchDropdown">
-								<a class="dropdown-item searchTitle" href="">會員</a>
+								<a class="dropdown-item searchTitle memberSearchTitle">會員</a>
+							</div>
+							<div class="memberSearchBlock">
 							</div>
 						</div>
 					</li>
