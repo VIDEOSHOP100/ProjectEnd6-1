@@ -13,5 +13,8 @@ public interface SearchService {
 	public List<InputLiveStreamTimeBean> getSearchInputLiveStreamTimeBean(String queryString);
 	public List<ProductSaleBean> getProductSaleBean(String queryString);
 	
-	
+	public List<VideoBean> getTopFiftySearchVideoBean(String queryString);
+	public List<MemberBean> getTopFiftySearchMemberBean(String queryString);
+	public List<InputLiveStreamTimeBean> getTopFiftySearchInputLiveStreamTimeBean(String queryString);
+	public List<ProductSaleBean> getTopFiftyProductSaleBean(String queryString);
 }

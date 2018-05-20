@@ -34,6 +34,26 @@ public class SearchServiceImpl implements SearchService{
 	public List<ProductSaleBean> getProductSaleBean(String queryString) {
 		return searchDAO.getProductSaleBean(queryString);
 	}
+
+	@Override
+	public List<VideoBean> getTopFiftySearchVideoBean(String queryString) {
+		return searchDAO.getTopFiftySearchVideoBean(queryString);
+	}
+
+	@Override
+	public List<MemberBean> getTopFiftySearchMemberBean(String queryString) {
+		return searchDAO.getTopFiftySearchMemberBean(queryString);
+	}
+
+	@Override
+	public List<InputLiveStreamTimeBean> getTopFiftySearchInputLiveStreamTimeBean(String queryString) {
+		return searchDAO.getSearchInputLiveStreamTimeBean(queryString);
+	}
+
+	@Override
+	public List<ProductSaleBean> getTopFiftyProductSaleBean(String queryString) {
+		return searchDAO.getTopFiftyProductSaleBean(queryString);
+	}
 	
 
 }

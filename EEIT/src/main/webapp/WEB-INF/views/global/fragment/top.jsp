@@ -46,25 +46,27 @@
 			<div class="searchBlock">
 				<ul class="navbar-nav ml-auto ">
 					<li style="width:500px" class="nav-item dropdown">
-						<input type="text" class="form-control searchInput" placeholder="找點什麼...?">
-						<div style="width:500px" class="dropdown-menu dropdown-menu-left diplaySearchResult" aria-labelledby="navbarDropdownPortfolio">
+						<form class="searchForm" method="GET">
+							<input type="text" class="form-control searchInput" placeholder="找點什麼...?">
+						</form>
+						<div style="width:500px; height:500px" class="dropdown-menu dropdown-menu-left diplaySearchResult" aria-labelledby="navbarDropdownPortfolio">
 							<div class="searchTitleBlock liveStreaSearchDropdown">
-								<a class="dropdown-item searchTitle liveStreaSearchTitle">直播</a>
+								<a class="dropdown-item searchTitle liveStreamSearchTitle">直播<i class="fas fa-angle-double-right moreSearchIcon"></i></a>
 							</div>
 							<div class="liveStreaSearchBlock">
 							</div>
 							<div class="searchTitleBlock productSearchDropdown">
-								<a class="dropdown-item searchTitle productSearchTitle">商品</a>
+								<a class="dropdown-item searchTitle productSearchTitle">商品<i class="fas fa-angle-double-right moreSearchIcon"></i></a>
 							</div>
 							<div class="productSearchBlock">
 							</div>
 							<div class="searchTitleBlock videoSearchDropdown">
-								<a class="dropdown-item searchTitle videoSearchTitle">影片</a>
+								<a class="dropdown-item searchTitle videoSearchTitle">影片<i class="fas fa-angle-double-right moreSearchIcon"></i></a>
 							</div>
 							<div class="videoSearchBlock">
 							</div>
 							<div class="searchTitleBlock memberSearchDropdown">
-								<a class="dropdown-item searchTitle memberSearchTitle">會員</a>
+								<a class="dropdown-item searchTitle memberSearchTitle">會員<i class="fas fa-angle-double-right moreSearchIcon"></i></a>
 							</div>
 							<div class="memberSearchBlock">
 							</div>

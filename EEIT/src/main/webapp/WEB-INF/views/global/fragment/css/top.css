@@ -46,4 +46,14 @@
 
 .searchTitleBlock{
 	background-color: #b693ff;
+	border-bottom: solid 1px gray;
+	border-top: solid 1px gray;
+}
+.diplaySearchResult{
+	overflow: auto;
+}
+
+.moreSearchButton{
+	float: right;
+	overflow: auto;
 }
