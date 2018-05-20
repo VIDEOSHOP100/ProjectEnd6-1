@@ -101,21 +101,24 @@ $(document).ready(function() {
       var widgetId2;
 	
 	
-	
-      	if($('#rec1').val()!= null){
-        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
-        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
-        widgetId1 = grecaptcha.render(document.getElementById('rec1'), {
-          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
-
-        });
-        widgetId2 = grecaptcha.render(document.getElementById('rec2'), {
-          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
-        });
-	
-	
-      	
-	}
+//      function onloadCallback(){
+//      
+//      	if(($('#rec1').val()!= null) || $('#manaLogout').text()!=null ){
+//        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+//        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+//        widgetId1 = grecaptcha.render(document.getElementById('rec1'), {
+//          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
+//
+//        	  
+//        });
+//        widgetId2 = grecaptcha.render(document.getElementById('rec2'), {
+//          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
+//        });
+//	
+//	
+//      	}
+//      	
+//	}
 	
 	
 	
@@ -134,34 +137,34 @@ $(document).ready(function() {
 
 		
 		
-		
-		$.ajax({
-			
-			type:"POST",
-			url:"/EEIT/checkBotAccPwd",
-			data:{ botCheckResp:botCheckResp , logAcc:logAcc , logPwd:logPwd},
-			success:function(result){
-				var checkResult = result.loginCheck;
-				var botResult = result.botCheck;
-				
-				if(checkResult == true && botResult == true){
-					$('#loginForm').submit();
-				}else if(checkResult == false && botResult == true){
-					grecaptcha.reset(widgetId2);
-					$('#loginErrMsg').html(
-						'<div class="p-2 mb-2 bg-warning text-dark rounded">帳號或密碼錯誤!</div>');
-				}else if(botResult == false){
-					grecaptcha.reset(widgetId2);
-					$('#loginErrMsg').html(
-					'<div class="p-2 mb-2 bg-warning text-dark rounded">機器人驗證失敗!</div>');
-				}
-			},
-			error : function(e) {
-				console.log("ERROR : ", e);
-				alert(e);
-			}
-			
-		})
+//		
+//		$.ajax({
+//			
+//			type:"POST",
+//			url:"/EEIT/checkBotAccPwd",
+//			data:{ botCheckResp:botCheckResp , logAcc:logAcc , logPwd:logPwd},
+//			success:function(result){
+//				var checkResult = result.loginCheck;
+//				var botResult = result.botCheck;
+//				
+//				if(checkResult == true && botResult == true){
+//					$('#loginForm').submit();
+//				}else if(checkResult == false && botResult == true){
+//					grecaptcha.reset(widgetId2);
+//					$('#loginErrMsg').html(
+//						'<div class="p-2 mb-2 bg-warning text-dark rounded">帳號或密碼錯誤!</div>');
+//				}else if(botResult == false){
+//					grecaptcha.reset(widgetId2);
+//					$('#loginErrMsg').html(
+//					'<div class="p-2 mb-2 bg-warning text-dark rounded">機器人驗證失敗!</div>');
+//				}
+//			},
+//			error : function(e) {
+//				console.log("ERROR : ", e);
+//				alert(e);
+//			}
+//			
+//		})
 		
 	
 	}

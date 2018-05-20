@@ -11,7 +11,7 @@
     <body>
         <footer class="py-5 bg-dark myfooter">
             <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; IIITube 2018
+                <p class="m-0 text-center text-white">Copyright &copy; Live Market 2018
                 </p>
             </div>
         </footer>
