@@ -53,7 +53,9 @@ public class AuctionItemSelectController {
 	BidService BidService;
 	//關閉拍賣
 	@RequestMapping(value = "/endAuction",method = RequestMethod.PUT)
-	public @ResponseBody Map<String,String> closeAuction(
+//	@MessageMapping(value="endAuction/{productSeqNo}")
+//	@SendTo("/target/endAuction/subscription/{productSeqNo}")
+	public @ResponseBody Map<String,Object> closeAuction(
 			@RequestParam("productSeqNo") Integer productSeqNo,
 //			@RequestParam("LiveStreamHistorySeqNo") Integer LiveStreamHistorySeqNo,
 			@RequestParam("auctionStatus") Integer auctionStatus,
@@ -90,10 +92,14 @@ public class AuctionItemSelectController {
 			AuctionEndBean.setProductSeqNo(BidAucBean.getProductSeqNo());
 			//設置得標物PICID
 			AuctionEndBean.setPicSeqNo(pb.getPicSeqNo());
+			//設置得標物名字
+			AuctionEndBean.setProName(pb.getProName());
 			auctionEndService.saveAuctionEnd(AuctionEndBean);
-		
-		Map<String, String> map = new HashMap<String,String>();
-		map.put("status", "success");
+			
+//		Map<String, String> map = new HashMap<String,String>();
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("status", AuctionEndBean);
+//		map.put("status", "success");
 		return map;
 	}
 	

@@ -19,6 +19,7 @@ public class AuctionEndBean {
 	private String proPrice;
 	private Integer productSeqNo;
 	private Integer picSeqNo;
+	private String proName;
 	public Integer getAuctionEndSeqNo() {
 		return auctionEndSeqNo;
 	}
@@ -72,6 +73,12 @@ public class AuctionEndBean {
 	}
 	public void setPicSeqNo(Integer picSeqNo) {
 		this.picSeqNo = picSeqNo;
+	}
+	public String getProName() {
+		return proName;
+	}
+	public void setProName(String proName) {
+		this.proName = proName;
 	}
 
 	
