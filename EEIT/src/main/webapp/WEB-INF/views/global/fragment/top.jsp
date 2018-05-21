@@ -10,6 +10,11 @@
 <meta http-equiv="Pragma" content="no-cache"> 
 <meta http-equiv="Cache-Control" content="no-cache"> 
 <meta http-equiv="Expires" content="0"> 
+
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="63977180850-ljlinbc7jsd1epeuo3ec34lhmr94at5h.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
 <title>Navigation</title>
 
 
@@ -18,7 +23,7 @@
     </script>
 
 <!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
-<!--  <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+ <script src="https://apis.google.com/js/platform.js" async defer></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 
 <!-- Bootstrap core CSS -->
@@ -185,7 +190,7 @@
 					<a class="nav-link dropdown-toggle"	href="#" 
 					   id="navbarDropdownBlog" data-toggle="dropdown"
 					   aria-haspopup="true" aria-expanded="false"><img height="25px" width="25px"
-					src='${pageContext.request.contextPath}/getImage/member/${LoginOK.account}'> ${LoginOK.nickname}</a>
+					src='${pageContext.request.contextPath}/getImage/member/${LoginOK.account}'> ${LoginOK.account}</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog"> 
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/profile/${LoginOK.account}">我的個人頁面</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/memberUpdate">修改會員資料</a>
@@ -196,7 +201,8 @@
 					</div></li>
 			 
 
-					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-danger" type="button" >登出</button></a></li>
+<%-- 					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-danger" id="logoutButton" type="button" >登出</button></a></li> --%>
+					<li class="nav-item"><button class="btn btn-danger" id="logoutButton" type="button" >登出</button></li>
 				</c:if>
 
 			</ul>
@@ -326,6 +332,7 @@
 					<div class="form-group col-md-6" >
 						<a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword"><button  type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button></a>
 					</div>
+					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 				</div>
 				<div class="modal-footer">
 					<p id="loginErrMsg">${ErrorMessageKey.error}</p>
@@ -352,8 +359,7 @@
 
 	<script>
 	$('#modalLoginButton').click(checkAccPwd);
-	
-	
+
 	
 	
 	$(document).on("keyup","#logPwd", function(e){
@@ -364,6 +370,22 @@
 		 }
 	
 	})
+	
+
+		$("#loginButton").click(function(){
+			setTimeout(function(){
+			$('#logAcc').focus();
+			},500)
+			
+		})
+
+		$("#regButton").click(function(){
+			setTimeout(function(){
+			$('#regAcc').focus();
+			},500)
+			
+		})
+		
 	
 	
 	function checkAccPwd(){
@@ -428,6 +450,57 @@
       	}
       	
 	}
+		
+		function onSignIn(googleUser) {
+	        // Useful data for your client-side scripts:
+	        var profile = googleUser.getBasicProfile();
+	        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+	        console.log('Full Name: ' + profile.getName());
+	        console.log('Given Name: ' + profile.getGivenName());
+	        console.log('Family Name: ' + profile.getFamilyName());
+	        console.log("Image URL: " + profile.getImageUrl());
+	        console.log("Email: " + profile.getEmail());
+
+	        // The ID token you need to pass to your backend:
+	        var id_token = googleUser.getAuthResponse().id_token;
+	        console.log("ID Token: " + id_token);
+	      };
+		
+	      $(document).on("click",'#logoutButton',signOut);
+	      
+	     	{
+	          gapi.load('auth2', function() {
+	            gapi.auth2.init();
+	          });
+	        }
+	      
+	      
+	      
+	      
+	      function signOut() {
+	    	  
+	    	    var auth2 = gapi.auth2.getAuthInstance().disconnect();
+	    	  $.ajax({
+    		
+	    		  type:"GET",
+	    		  url:"/EEIT/logout",
+	    		  
+	    		  success:function(){
+	    			  location.pathname = "/EEIT/";
+	    		  },
+	  			error : function(e) {
+					console.log("ERROR : ", e);
+					alert(e);
+				}
+	    	
+	    		  
+	    	  })
+	    	  
+	    	  
+	    	  }
+	      
+	      
+		
 	</script>
 
 	

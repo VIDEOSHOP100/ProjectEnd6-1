@@ -14,5 +14,6 @@ public interface RegisterService {
 	void saveMember(MemberBean mb, String extPhoto, MultipartFile Photo) throws SQLException;
 
 	void savePhotoToFile(String photoFileFolderPath, String photoFilePath, MultipartFile photo);
-
+	
+	
 }

@@ -33,7 +33,7 @@ public class ForgotPasswordServiceImpl implements ForgotPasswordService {
 			String newPassword = getRandomString();
 			mb.setPassword(newPassword);
 			dao.updateMember(mb);
-
+			
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 

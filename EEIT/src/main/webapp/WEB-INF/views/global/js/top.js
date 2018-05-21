@@ -54,6 +54,19 @@ $(document).ready(function() {
 	
 	})
 	
+//		$(document).on("focus",".rc-anchor-content", function(e){
+//			
+//			alert('"focus",".rc-anchor-content"')
+//			
+//			$('#modalLoginButton').trigger('focus');
+//		 if(e.keyCode == 13){
+//			 console.log(e.keyCode);
+//			 checkAccPwd();
+//		 }
+//	
+//	})
+//	
+	
 	
 	
 //	---------------------------------------------------------
