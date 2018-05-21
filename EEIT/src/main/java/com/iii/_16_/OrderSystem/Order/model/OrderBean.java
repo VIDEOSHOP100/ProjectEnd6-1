@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="OrderList")
@@ -30,9 +31,39 @@ public class OrderBean {
 	private java.util.Date orderTime;
 	private Integer orderStatus;
 	private Long orderTotalPrice;
+	private String account;
+	@Transient
+	private String orderDateTime;
+	@Transient
+	private String howToPay;
+	@Transient
+	private String transorderStatus;
 	
 	
-	
+	public String getTransorderStatus() {
+		return transorderStatus;
+	}
+	public void setTransorderStatus(String transorderStatus) {
+		this.transorderStatus = transorderStatus;
+	}
+	public String getHowToPay() {
+		return howToPay;
+	}
+	public void setHowToPay(String howToPay) {
+		this.howToPay = howToPay;
+	}
+	public String getOrderDateTime() {
+		return orderDateTime;
+	}
+	public void setOrderDateTime(String orderDateTime) {
+		this.orderDateTime = orderDateTime;
+	}
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
 	public Long getOrderTotalPrice() {
 		return orderTotalPrice;
 	}

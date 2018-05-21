@@ -40,7 +40,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
     	registry.addInterceptor(loginInterceptor())
-    	.excludePathPatterns("/","/loginPage","/*","/getImage/**","/getImageTest/**","/getVideo/**","/videoRoom/*","/LiveStream/*","/memberReport/*","/liveStreamReport/*","/adviceReport/*","/goMarketHomePage/*","/Register/*");
+    	.excludePathPatterns("/","/loginPage","/*","/getImage/**","/getImageTest/**","/getVideo/**","/videoRoom/*","/LiveStream/*","/memberReport/*","/liveStreamReport/*","/adviceReport/*","/goMarketHomePage/*","/search/**","/messageSystem/**","/target/message/subscription/**","/endPoint/**","/Register/*","/searchProductIntro/*");
         registry.addInterceptor(notificationRecordingIntercepter());
         registry.addInterceptor(messageSystemIntercepter());
     }
@@ -89,6 +89,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/likeUnlikeVideos/**").addResourceLocations("/WEB-INF/views/likeUnlikeVideos/");
 		registry.addResourceHandler("/Product/**").addResourceLocations("/WEB-INF/views/Product/");
 		registry.addResourceHandler("/videoChat/**").addResourceLocations("/WEB-INF/views/videoChat/");
+		registry.addResourceHandler("/search/**").addResourceLocations("/WEB-INF/views/search/");
 
 		
 		

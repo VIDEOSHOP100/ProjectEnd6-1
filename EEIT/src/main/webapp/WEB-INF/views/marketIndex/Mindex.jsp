@@ -102,12 +102,6 @@ ul li {
 	<!-- Navigation -->
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<!-- 功能選單 Start -->
-	<div class="col-sm-2">
-		<a class="btn btn-sm btn-secondary btn-block" href="goPersonHomePage">商店首頁</a>
-	</div>
-	
-
-
 
 	<!-- Page Content -->
 	<div class="container">
@@ -139,7 +133,7 @@ ul li {
 
 <div class="row cate" style="width:20%;float:left">	
 <ul class="list-group">
- <li> <i class="fal fa-cart-plus"></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
+ <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
  <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
  <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
  <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
@@ -213,12 +207,11 @@ ul li {
 		
 		
 		
-		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-			<script type="text/javascript"
-				src="<c:url value='/global/js/myscroll.js'/>"></script>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="<c:url value='/marketIndex/js/myscroll.js'/>"></script>
 	<script src="<c:url value='/marketIndex/js/market.js'/> "></script>	
 		<script type="text/javascript">
-		$(function() {
+		$(document).ready(function(){
 				// 调用
 				$('#banner1').myscroll({
 					picEl : $('#move'), //图片父级，不传默认为banner内第1个div
@@ -256,40 +249,9 @@ ul li {
 			            $(this).text(text);
 			        }
 			    });
-			
-			
-		
 		})
 		</script>
-		<script>window.jQuery || document.write('<script src="js/jquery-2.1.1.min.js"><\/script>')</script>
-	
-	<script>
-	$(document).ready(function (ev) {
-	    var toggle = $('#ss_toggle');
-	    var menu = $('#ss_menu');
-	    var rot;
-	    $('#ss_toggle').on('click', function (ev) {
-	        rot = parseInt($(this).data('rot')) - 180;
-	        menu.css('transform', 'rotate(' + rot + 'deg)');
-	        menu.css('webkitTransform', 'rotate(' + rot + 'deg)');
-	        if (rot / 180 % 2 == 0) {
-	            toggle.parent().addClass('ss_active');
-	            toggle.addClass('close');
-	        } else {
-	            toggle.parent().removeClass('ss_active');
-	            toggle.removeClass('close');
-	        }
-	        $(this).data('rot', rot);
-	    });
-	    menu.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
-	        if (rot / 180 % 2 == 0) {
-	            $('#ss_menu div i').addClass('ss_animate');
-	        } else {
-	            $('#ss_menu div i').removeClass('ss_animate');
-	        }
-	    });
-	});
-	</script>
+		
 		
 	
 </body>

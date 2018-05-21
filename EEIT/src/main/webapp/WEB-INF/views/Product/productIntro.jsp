@@ -42,8 +42,8 @@
 
 			<div class="col-md-4">
 				<h3 class="my-3">${productSaleBean.proName }</h3>
-				<p>${productSaleBean.proDescription }</p>
 				<h3 class="my-3">商品介紹</h3>
+				<p>${productSaleBean.proDescription }</p>
 				<ul>
 					<li>Lorem Ipsum</li>
 					<li>Dolor Sit Amet</li>
@@ -76,33 +76,18 @@
 		<!-- /.row -->
 
 		<!-- Related Projects Row -->
-		<h3 class="my-4">Related Projects</h3>
+		<h3 class="my-4"><a href="${pageContext.request.contextPath}/profile/${productSaleBean.account}">${productSaleBean.account}</a>商店中的其他商品</h3>
 
-		<div class="row">
-
+		<div class="row" style="height:400px; overflow-x:scroll;">
+		<c:forEach var="relationproduct" items="${relationProduct}">
 			<div class="col-md-3 col-sm-6 mb-4">
-				<a href="#"> <img class="img-fluid"
-					src="http://placehold.it/500x300" alt="">
+			<h4 class="card-title JQellipsisTitle">${relationproduct.proName}</h4>
+				<a href="${pageContext.request.contextPath}/searchProductIntro/${relationproduct.productSeqNo}"> <img class="img-fluid"
+				width="250px"  src="${pageContext.request.contextPath}/getImage/Product/${relationproduct.productSeqNo}" alt="">
 				</a>
 			</div>
-
-			<div class="col-md-3 col-sm-6 mb-4">
-				<a href="#"> <img class="img-fluid"
-					src="http://placehold.it/500x300" alt="">
-				</a>
-			</div>
-
-			<div class="col-md-3 col-sm-6 mb-4">
-				<a href="#"> <img class="img-fluid"
-					src="http://placehold.it/500x300" alt="">
-				</a>
-			</div>
-
-			<div class="col-md-3 col-sm-6 mb-4">
-				<a href="#"> <img class="img-fluid"
-					src="http://placehold.it/500x300" alt="">
-				</a>
-			</div>
+		</c:forEach>
+		
 
 		</div>
 		<!-- /.row -->
@@ -119,7 +104,16 @@
 	</footer>
 	<!-- /.container -->
 	<script src="<c:url value='/Product/js/js.js'/>"></script>
-	
+	<script type="text/javascript">
+	 var len = 20; // 超過50個字以"..."取代
+	    $(".JQellipsisTitle").each(function(i){
+	        if($(this).text().length>len){
+	            $(this).attr("title",$(this).text());
+	            var text=$(this).text().substring(0,len-1)+"";
+	            $(this).text(text);
+	        }
+	    });
+	</script>
 
 </body>
 </html>

@@ -310,16 +310,25 @@ $(document).ready(function() {
 					$('#' + receiverAccount +'1>.box-body').append('<p class="me"><a class="messageFile" href="/EEIT/getFile/messageFile/'+ seqNo +'" name="'+ seqNo +'"><i class="far fa-file"></i>'+ fileName +'</a></p>')
 				}else if(messageType == 'video'){
 					$('#' + receiverAccount +'1>.box-body').append('<p class="me"><video controls="controls" height="150px" width="200px" class="messageVideo" src="/EEIT/getVideo/messageVideo/'+ messageArticle + '"></p>')
+				}else if(messageType == 'call'){
+					$( "#dialog" ).dialog( "open" );
+					$('.whoCall').val(receiverAccount)
+					$('.whoCallDisplay').text("正在接通....")
 				}
-				
-				
-				
-				if($('#' + receiverAccount +'1').is('.box-close')){
-					$('#' + receiverAccount +'1').find('.box-head').addClass('box-headAlert')
+				if(messageType != 'call'){
+					if($('#' + receiverAccount +'1').is('.box-close')){
+						$('#' + receiverAccount +'1').find('.box-head').addClass('box-headAlert')
+					}
 				}
 			}else if($('#' + receiverAccount +'1>.box-body').length==0){
-				
-				$('#' + receiverAccount).addClass('sidebarUserButtonAlert')
+				if(messageType == 'call'){
+					$( "#dialog" ).dialog( "open" );
+					$('.whoCall').val(receiverAccount)
+					$('.whoCallDisplay').text("正在接通....")
+				}
+				if(messageType != 'call'){
+					$('#' + receiverAccount).addClass('sidebarUserButtonAlert')
+				}
 			}
 		}else if(account != senderAccount){
 			if($('#' + account +'1>.box-body').length > 0){
@@ -336,12 +345,30 @@ $(document).ready(function() {
 					$('#' + account +'1>.box-body').append('<p class="him"><a class="messageFile" href="/EEIT/getFile/messageFile/'+ seqNo +'" name="'+ seqNo +'"><i class="far fa-file"></i>'+ fileName +'</a></p>')
 				}else if(messageType == 'video'){
 					$('#' + account +'1>.box-body').append('<p class="him"><video controls="controls" height="150px" width="200px" class="messageVideo" src="/EEIT/getVideo/messageVideo/'+ messageArticle + '"></p>')
+				}else if(messageType == 'call'){
+					$( "#dialog" ).dialog( "open" );
+					$('.whoCall').val(account)
+					$('.whoCallDisplay').text(messageArticle)
+					$( ".callUser" ).show();
+					$( ".disconnectUser" ).hide();
 				}
-				if($('#' + account +'1').is('.box-close')){
-					$('#' + account +'1').find('.box-head').addClass('box-headAlert')
+				if(messageType != 'call'){
+					if($('#' + account +'1').is('.box-close')){
+						$('#' + account +'1').find('.box-head').addClass('box-headAlert')
+					}
 				}
 			}else if($('#' + account +'1>.box-body').length == 0){
-				$('#' + account).addClass('sidebarUserButtonAlert')
+				if(messageType == 'call'){
+					$( "#dialog" ).dialog( "open" );
+					$('.whoCall').val(account)
+					$('.whoCallDisplay').text(messageArticle)
+					$( ".callUser" ).show();
+					$( ".disconnectUser" ).hide();
+				}
+				if(messageType != 'call'){
+					$('#' + account).addClass('sidebarUserButtonAlert')
+				}
+				
 			}
 		}
 		updateScroll();

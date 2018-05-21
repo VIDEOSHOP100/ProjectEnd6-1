@@ -50,4 +50,9 @@ public class OrderService {
 		 dao.update(bean);
 		 return 1;
 	}
+	//訂單管理使用
+	@Transactional
+	public List<OrderBean> findAllByAccount(String account) throws SQLException{
+		return dao.findAllbyAccount(account);
+	}
 }

@@ -43,10 +43,44 @@
 					aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			<div class="searchBlock">
+				<ul class="navbar-nav ml-auto ">
+					<li style="width:500px" class="nav-item dropdown">
+						<form class="searchForm" method="GET">
+							<input type="text" class="form-control searchInput" placeholder="找點什麼...?">
+						</form>
+						<div style="width:500px; height:500px" class="dropdown-menu dropdown-menu-left diplaySearchResult" aria-labelledby="navbarDropdownPortfolio">
+							<div class="searchTitleBlock liveStreaSearchDropdown">
+								<a class="dropdown-item searchTitle liveStreamSearchTitle">直播<i class="fas fa-angle-double-right moreSearchIcon"></i></a>
+							</div>
+							<div class="liveStreaSearchBlock">
+							</div>
+							<div class="searchTitleBlock productSearchDropdown">
+								<a class="dropdown-item searchTitle productSearchTitle">商品<i class="fas fa-angle-double-right moreSearchIcon"></i></a>
+							</div>
+							<div class="productSearchBlock">
+							</div>
+							<div class="searchTitleBlock videoSearchDropdown">
+								<a class="dropdown-item searchTitle videoSearchTitle">影片<i class="fas fa-angle-double-right moreSearchIcon"></i></a>
+							</div>
+							<div class="videoSearchBlock">
+							</div>
+							<div class="searchTitleBlock memberSearchDropdown">
+								<a class="dropdown-item searchTitle memberSearchTitle">會員<i class="fas fa-angle-double-right moreSearchIcon"></i></a>
+							</div>
+							<div class="memberSearchBlock">
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<span class="input-group-btn">
+							<button class="btn btn-secondary searchAllButton" type="button">Go!</button>
+						</span>
+					</li>
+				</ul>
+			</div>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><input type="text" class="form-control" placeholder="找點什麼...?"></li>
-				<li class="nav-item"><span class="input-group-btn"><button class="btn btn-secondary" type="button">Go!</button></span></li>
 				<li class="nav-item dropdown" >
 				<a class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
@@ -56,7 +90,7 @@
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/goMarketHomePage">商城首頁</a>
 						<c:if test="${!empty LoginOK}">		 
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/sale.do">商品上架</a>
-				<a class="dropdown-item" href="">我的訂單查詢</a>
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/orderManage">我的訂單查詢</a>
 				<a class="dropdown-item" href="">追蹤商品查詢</a>
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/CartList/getCart/${LoginOK.account}">購物車</a>
 						</c:if>
@@ -312,10 +346,24 @@
 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="<c:url value='/global/js/search.js'/> "></script>
 	<script src="<c:url value='/global/js/top.js'/> "></script>
 
 	<script>
 	$('#modalLoginButton').click(checkAccPwd);
+	
+	
+	
+	
+	$(document).on("keyup","#logPwd", function(e){
+		
+		 if(e.keyCode == 13){
+			 console.log(e.keyCode);
+			 checkAccPwd();
+		 }
+	
+	})
+	
 	
 	function checkAccPwd(){
 		
