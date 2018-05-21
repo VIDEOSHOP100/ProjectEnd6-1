@@ -30,18 +30,20 @@
 		</ol>
 		<div class="row">
 			<div class="col-md-9">
-				<video controlsList="nodownload" class="video" width="1150" height="600" src="${pageContext.request.contextPath}/getVideo/video/${video.videoSeqNo}"
+				<video controlsList="nodownload" muted controlsList="nodownload" class="video" width="1150" height="600" src="${pageContext.request.contextPath}/getVideo/video/${video.videoSeqNo}"
 					controls="controls" autoplay poster="${pageContext.request.contextPath}/getImage/video/${video.videoSeqNo}"></video>
 				<div class="col-md-12 ">
 					<h1 class="lead videoTitleInside" title="${video.videoTitle}"><strong><b>${video.videoTitle}</b></strong></h1>
 					<hr>
 					<div class="media mb-4">
-						<img class="d-flex mr-3 rounded-circle" width="50px" height="50px"
-							src="${pageContext.request.contextPath}/getImage/member/${video.account}"
-							alt="">
+						<a class="uploaderLink"	href="<c:url value='/profile/${video.account}' />">
+							<img class="d-flex mr-3 rounded-circle" width="50px" height="50px"
+								src="${pageContext.request.contextPath}/getImage/member/${video.account}"
+								alt="">
+						</a>
 						<div class="media-body videoDetail">
 							<h5 class="mt-0 uploaderaccount">
-								<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${video.account}' />">
+								<a class="uploaderLink"	href="<c:url value='/profile/${video.account}' />">
 									<p>${video.account}</p>
 								</a>
 							</h5>
@@ -119,10 +121,12 @@
 					<div id="allComments" class="allCommentsHide">
 						<c:forEach var="aCommentBean" items="${commentVideo}" >
 							<div class="media mb-4">
-								<img class="d-flex mr-3 rounded-circle" src="${pageContext.request.contextPath}/getImage/member/${aCommentBean.account}" alt="" height="50px" width="50px">
+								<a class="uploaderLink"	href="<c:url value='/profile/${aCommentBean.account}' />">
+									<img class="d-flex mr-3 rounded-circle" src="${pageContext.request.contextPath}/getImage/member/${aCommentBean.account}" alt="" height="50px" width="50px">
+								</a>
 								<div class="media-body">
 									<h5 class="mt-0">
-										<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aCommentBean.account}' />">
+										<a class="uploaderLink"	href="<c:url value='/profile/${aCommentBean.account}' />">
 											${aCommentBean.account}
 										</a>
 										<c:set var="string1" value="${aCommentBean.commentDate}"/>
@@ -174,10 +178,12 @@
 									</div>
 									<c:forEach var="aReplyCommentVideoBean" items="${aCommentBean.replyCommentVideoBeanList}">
 										<div class="media mb-4 replyBlock">
-											<img class="d-flex mr-3 rounded-circle" height="50px" width="50px" src="/EEIT/getImage/member/${aReplyCommentVideoBean.account}">
+											<a class="uploaderLink"	href="<c:url value='/profile/${aCommentBean.account}' />">
+												<img class="d-flex mr-3 rounded-circle" height="50px" width="50px" src="/EEIT/getImage/member/${aReplyCommentVideoBean.account}">
+											</a>
 											<div class="media-body">
 												<h5 class="mt-0">
-													<a class="uploaderLink"	href="<c:url value='/uploaderHomePage/${aCommentBean.account}' />">
+													<a class="uploaderLink"	href="<c:url value='/profile/${aCommentBean.account}' />">
 														${aReplyCommentVideoBean.account}
 													</a>
 													<c:set var="string1" value="${aReplyCommentVideoBean.replyCommentDate}"/>
@@ -253,7 +259,7 @@
 								</div>
 								<p class="advicedVideoUploaderAccount videoSmallWords">
 									<a class="uploaderLink"
-										href="<c:url value='/uploaderHomePage/${uploaderVideos.account}' />">${uploaderVideos.account}</a>
+										href="<c:url value='/profile/${uploaderVideos.account}' />">${uploaderVideos.account}</a>
 								</p>
 								<p class="videoSmallWords">觀看次數:${uploaderVideos.videoViews}</p>
 							</div>

@@ -158,8 +158,8 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+				<c:if test="${!empty LoginOK}">
 				<div class="modal-body">
-
 
 					<form:form id="memberReport" method="POST"
 						action="${pageContext.request.contextPath}/memberReport"
@@ -192,6 +192,7 @@
 
 					</form:form>
 				</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -222,7 +223,7 @@
 				</div>
 				<div class="modal-body">
 
-
+				<c:if test="${!empty LoginOK}">
 					<form:form id="MyMessageBean" method="POST"
 						action="${pageContext.request.contextPath}/sendMyMessage"
 						modelAttribute="MyMessageBean" class=""
@@ -254,6 +255,7 @@
 
 					</form:form>
 				</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
