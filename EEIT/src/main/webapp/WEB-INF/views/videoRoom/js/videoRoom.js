@@ -37,15 +37,17 @@ $(document).ready(function() {
 			}
 		})
 		//影片描述隱藏內容
-		var element = $('.videoDescription')[0]
-		console.log(element)
+		var element = $('#allComments')[0]
 		if (element.offsetHeight < element.scrollHeight ||
 			element.offsetWidth < element.scrollWidth) {
-			// your element have overflow			
 		} else {
-			// your element doesn't have overflow
+			$('.showAllCommentButton').hide();
+		}
+		var element = $('.videoDescriptionHide')[0]
+		if (element.offsetHeight < element.scrollHeight ||
+			element.offsetWidth < element.scrollWidth) {
+		} else {
 			$('.showDescriptionButton').hide();
-			$('.videoDescription').removeClass('videoDescriptionHide')
 		}
 		$(document).on('click','.showDescriptionButton',function(){
 //			alert('aaaa');
@@ -269,43 +271,47 @@ $(document).ready(function() {
 		//以上聊天室----------------------------------------------------------------------------------------------------------------------
 		var uploaderaccount = $('.uploaderaccount').find('p').text();
 		$('.subscription').click(function(){
-			var subscriptionStatus = $('.subscription').attr("name");
-			if(subscriptionStatus == "subscription"){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/subscriptionUploader",
-					data: {_method : "PUT", account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : "nonSubscription"},
-					timeout: 600000,
-					success: function (data) {
-						$('.subscription').attr("name","nonSubscription");
-						$('.subscription').css({
-							'-webkit-filter':'grayscale(100%)'
-						})
-						$('.subscription').text('訂閱')
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-			}else if(subscriptionStatus == "nonSubscription"){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/subscriptionUploader",
-					data: {account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : 'subscription'},
-					timeout: 600000,
-					success: function (data) {
-						$('.subscription').attr("name","subscription");
-						$('.subscription').css({
-							'-webkit-filter':'none'
-						})
-						$('.subscription').html('已訂閱&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-bell"></i>')
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
+			if($.trim($('#account').val()) == ""){
+				window.location.replace(loginUrl);
+			}else{
+				var subscriptionStatus = $('.subscription').attr("name");
+				if(subscriptionStatus == "subscription"){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/subscriptionUploader",
+						data: {_method : "PUT", account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : "nonSubscription"},
+						timeout: 600000,
+						success: function (data) {
+							$('.subscription').attr("name","nonSubscription");
+							$('.subscription').css({
+								'-webkit-filter':'grayscale(100%)'
+							})
+							$('.subscription').text('訂閱')
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}else if(subscriptionStatus == "nonSubscription"){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/subscriptionUploader",
+						data: {account : account, uploaderAccount : uploaderaccount, subscriptionUploaderStatus : 'subscription'},
+						timeout: 600000,
+						success: function (data) {
+							$('.subscription').attr("name","subscription");
+							$('.subscription').css({
+								'-webkit-filter':'none'
+							})
+							$('.subscription').html('已訂閱&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-bell"></i>')
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}
 			}
 		})
 		var videoSeqNo = $('input[name="videoSeqNo"]').val();
@@ -383,155 +389,164 @@ $(document).ready(function() {
 //					 });
 //				});
 //		})
-		$('#commentButton').click(function(){
-			var commentArticle = $.trim($('#commentArea').val());
-			var data = { account: account,videoSeqNo:videoSeqNo ,commentArticle:commentArticle};
-			if(commentArticle != ""){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/CommentVideos",
-					contentType : 'application/json; charset=utf-8',
-			        dataType: "json",
-//			        accepts: "application/json; charset=utf-8",
-			        data: JSON.stringify(data),
-					timeout: 600000,
-					success: function (data) {
-						var datareturn = data.message;
-						var allcomments = $('#allComments');
-						var commentTime= new Date(datareturn.commentDate)
-						var time =  commentTime.getFullYear()
-						             + '-' + ('0' + (commentTime.getMonth()+1)).slice(-2)
-						             + '-' + ('0' + commentTime.getDate()).slice(-2)
-						             + " " + ('0'  + commentTime.getHours()).slice(-2)+':'
-						             + ('0'  + commentTime.getMinutes()).slice(-2)+':'
-						             + ('0' + commentTime.getSeconds()).slice(-2);
-						var cell1 = $('<img></img>').addClass("d-flex mr-3 rounded-circle").attr({height:"50px" , width:"50px",src:"/EEIT/getImage/member/" + datareturn.account}) 
-						var cell2 = $('<div></div>').addClass("media-body")
-						var cell3 = $('<h5 class="mt-0"><a class="uploaderLink" href="/EEIT/uploaderHomePage/'+ datareturn.account +'">' + datareturn.account + '</a></h5>');
-						var cell7 = $('<span></span>').text(time).append($('<span></span>').addClass("hide").text(datareturn.commentVideoSeqNo));
-						var cell3 = cell3.append(cell7);
-						var cell4 = cell2.append('<p class="commentArticle commentArticleHide">'+ datareturn.commentArticle +'</p><p class="commentArticleShowButton">顯示完整內容</p>');
-						var cell8 = $('<p></p>').append(   $('<button></button>').addClass("btn btn-info replyButton").text("回復").append(   $('<i></i>').addClass("fas fa-pencil-alt "))).append('<input type="hidden" value = "" class="commentVideosLikeUnlikeStatus"/><span class="commentLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="likeButtonNone commentLike"></button><span class="commentUnLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="unlikeButtonNone commentUnlike"></button>')
-						var cell4 = cell4.append(cell8);
-						var cell5 = cell4.prepend(cell3);
-						var cell6 = $('<div></div>').addClass("media mb-4").append([cell1,cell5]);
-						allcomments.prepend(cell6);
-						var thisBlock = $('#allComments').find('.media:first').find('.commentArticle')[0]
-						var thisBlockForDelete = $('#allComments').find('.media:first').find('.commentArticle')
-						if (thisBlock.offsetHeight < thisBlock.scrollHeight ||
-							thisBlock.offsetWidth < thisBlock.scrollWidth) {
-						} else {
-							thisBlockForDelete.parents('.media-body').children('.commentArticleShowButton').remove();
-							thisBlockForDelete.removeClass('commentArticleHide');
+		$(document).on('click','#commentButton',function(){
+			if($.trim($('#account').val()) == ""){
+				window.location.replace(loginUrl);
+			}else{
+				var commentArticle = $.trim($('#commentArea').val());
+				var data = { account: account,videoSeqNo:videoSeqNo ,commentArticle:commentArticle};
+				if(commentArticle != ""){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/CommentVideos",
+						contentType : 'application/json; charset=utf-8',
+				        dataType: "json",
+	//			        accepts: "application/json; charset=utf-8",
+				        data: JSON.stringify(data),
+						timeout: 600000,
+						success: function (data) {
+							var datareturn = data.message;
+							var allcomments = $('#allComments');
+							var commentTime= new Date(datareturn.commentDate)
+							var time =  commentTime.getFullYear()
+							             + '-' + ('0' + (commentTime.getMonth()+1)).slice(-2)
+							             + '-' + ('0' + commentTime.getDate()).slice(-2)
+							             + " " + ('0'  + commentTime.getHours()).slice(-2)+':'
+							             + ('0'  + commentTime.getMinutes()).slice(-2)+':'
+							             + ('0' + commentTime.getSeconds()).slice(-2);
+							var cell1 = $('<a class="uploaderLink" href="/EEIT/profile/'+ datareturn.account +'"><img class="d-flex mr-3 rounded-circle" height="50px" width="50px" src="/EEIT/getImage/member/'+ datareturn.account +'"></img></a>')
+							var cell2 = $('<div></div>').addClass("media-body")
+							var cell3 = $('<h5 class="mt-0"><a class="uploaderLink" href="/EEIT/profile/'+ datareturn.account +'">' + datareturn.account + '</a></h5>');
+							var cell7 = $('<span></span>').text(time).append($('<span></span>').addClass("hide").text(datareturn.commentVideoSeqNo));
+							var cell3 = cell3.append(cell7);
+							var cell4 = cell2.append('<p class="commentArticle commentArticleHide">'+ datareturn.commentArticle +'</p><p class="commentArticleShowButton">顯示完整內容</p>');
+							var cell8 = $('<p></p>').append(   $('<button></button>').addClass("btn btn-info replyButton").text("回復").append(   $('<i></i>').addClass("fas fa-pencil-alt "))).append('<input type="hidden" value = "" class="commentVideosLikeUnlikeStatus"/><span class="commentLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="likeButtonNone commentLike"></button><span class="commentUnLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="unlikeButtonNone commentUnlike"></button>')
+							var cell4 = cell4.append(cell8);
+							var cell5 = cell4.prepend(cell3);
+							var cell6 = $('<div></div>').addClass("media mb-4").append([cell1,cell5]);
+							allcomments.prepend(cell6);
+							var thisBlock = $('#allComments').find('.media:first').find('.commentArticle')[0]
+							var thisBlockForDelete = $('#allComments').find('.media:first').find('.commentArticle')
+							if (thisBlock.offsetHeight < thisBlock.scrollHeight ||
+								thisBlock.offsetWidth < thisBlock.scrollWidth) {
+							} else {
+								thisBlockForDelete.parents('.media-body').children('.commentArticleShowButton').remove();
+								thisBlockForDelete.removeClass('commentArticleHide');
+							}
+							 
+							 
+	//							$(".replyButton").click(function(){
+	//								if($(this).parent('p').children('form').length == 0){
+	//									    var cell1 = $('<textarea></textarea>').addClass("form-control").attr({rows:"3",id:"replyArea"})
+	//									    var cell2 = $('<div></div>').addClass("form-group")
+	//									     var cell2 = cell2.append(cell1);
+	//									    var cell3 = $('<button></button>').addClass("btn btn-primary replySubmit").attr({type:"button"}).text("Submit")
+	//									     var cell4 = $('<form></form>')
+	//									     var cell4 = cell4.append([cell2,cell3]);
+	//									    $(this).parents('p').append(cell4)
+	//								}
+	//								$(".replySubmit").click(function(){
+	//									var replyCommentArticle = $(this).parents('form').find('textarea').val().replace(/\s+/g, "");
+	//									alert(replyCommentArticle)
+	//									if(replyCommentArticle != ""){
+	//
+	//										var thisinsubmit = $(this)
+	//										 var commentVideoSeqNo =  $(this).parents('.media-body').find('.hide:first').text();
+	//										 var data = {account: account,commentVideoSeqNo:commentVideoSeqNo ,replyCommentArticle:replyCommentArticle}
+	//										 $.ajax({
+	//												type: "POST",
+	//												url: "/EEIT/replyCommentVideo",
+	//												contentType : 'application/json; charset=utf-8',
+	//										        dataType: "json",
+	//										        data: JSON.stringify(data),
+	//												timeout: 600000,
+	//												success: function (data) {
+	//													var datareturn = data.replyCommentVideoBean;
+	//													var commentTime = new Date(datareturn.replyCommentDate);
+	//													var time = commentTime.getFullYear() + '-' + ( commentTime.getMonth() + 1 ) + '-' + commentTime.getDate() + "  " + commentTime.getHours() + ":" + commentTime.getMinutes() + ":" + commentTime.getSeconds()
+	//													 var upperComment = thisinsubmit.parents('p');
+	//													 var cell1 = $('<img></img>').addClass("d-flex mr-3 rounded-circle").attr({height:"50px" , width:"50px",src:"/EEIT/getImage/member/" + datareturn.account}) 
+	//													 var cell2 = $('<div></div>').addClass("media-body")
+	//													 var cell3 = $('<h5></h5>').addClass("mt-0").text(datareturn.account);
+	//													 var cell7 = $('<span></span>').text(time).append($('<span></span>').addClass("hide").text(datareturn.replyCommentVideoSeqNo));
+	//													 var cell3 = cell3.append(cell7);
+	//													 var cell4 = cell2.text(datareturn.replyCommentArticle).append($('<p><span><input type="hidden" value="" class="replyCommentVideosLikeUnlikeStatus"><span class="replyCommentLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentLike likeButtonNone"></button><span class="replyCommentUnLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentUnlike unlikeButtonNone"></button></span></p>'));
+	//													 var cell5 = cell4.prepend(cell3);
+	//													 var cell6 = $('<div></div>').addClass("media mb-4").append([cell1,cell5]);
+	//													 upperComment.after(cell6);
+	//												},
+	//												error: function (e) {
+	//													console.log("ERROR : ", e);
+	//													alert(e);
+	//												}
+	//										});
+	//										$(this).parents('form').find('textarea').val("");
+	//									}
+	//								});
+	//								 
+	//							});
+							
+						},
+						error: function (xhr, status, error) {
+							console.log("ERROR : ", e);
+							alert(e);
 						}
-						 
-						 
-//							$(".replyButton").click(function(){
-//								if($(this).parent('p').children('form').length == 0){
-//									    var cell1 = $('<textarea></textarea>').addClass("form-control").attr({rows:"3",id:"replyArea"})
-//									    var cell2 = $('<div></div>').addClass("form-group")
-//									     var cell2 = cell2.append(cell1);
-//									    var cell3 = $('<button></button>').addClass("btn btn-primary replySubmit").attr({type:"button"}).text("Submit")
-//									     var cell4 = $('<form></form>')
-//									     var cell4 = cell4.append([cell2,cell3]);
-//									    $(this).parents('p').append(cell4)
-//								}
-//								$(".replySubmit").click(function(){
-//									var replyCommentArticle = $(this).parents('form').find('textarea').val().replace(/\s+/g, "");
-//									alert(replyCommentArticle)
-//									if(replyCommentArticle != ""){
-//
-//										var thisinsubmit = $(this)
-//										 var commentVideoSeqNo =  $(this).parents('.media-body').find('.hide:first').text();
-//										 var data = {account: account,commentVideoSeqNo:commentVideoSeqNo ,replyCommentArticle:replyCommentArticle}
-//										 $.ajax({
-//												type: "POST",
-//												url: "/EEIT/replyCommentVideo",
-//												contentType : 'application/json; charset=utf-8',
-//										        dataType: "json",
-//										        data: JSON.stringify(data),
-//												timeout: 600000,
-//												success: function (data) {
-//													var datareturn = data.replyCommentVideoBean;
-//													var commentTime = new Date(datareturn.replyCommentDate);
-//													var time = commentTime.getFullYear() + '-' + ( commentTime.getMonth() + 1 ) + '-' + commentTime.getDate() + "  " + commentTime.getHours() + ":" + commentTime.getMinutes() + ":" + commentTime.getSeconds()
-//													 var upperComment = thisinsubmit.parents('p');
-//													 var cell1 = $('<img></img>').addClass("d-flex mr-3 rounded-circle").attr({height:"50px" , width:"50px",src:"/EEIT/getImage/member/" + datareturn.account}) 
-//													 var cell2 = $('<div></div>').addClass("media-body")
-//													 var cell3 = $('<h5></h5>').addClass("mt-0").text(datareturn.account);
-//													 var cell7 = $('<span></span>').text(time).append($('<span></span>').addClass("hide").text(datareturn.replyCommentVideoSeqNo));
-//													 var cell3 = cell3.append(cell7);
-//													 var cell4 = cell2.text(datareturn.replyCommentArticle).append($('<p><span><input type="hidden" value="" class="replyCommentVideosLikeUnlikeStatus"><span class="replyCommentLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentLike likeButtonNone"></button><span class="replyCommentUnLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentUnlike unlikeButtonNone"></button></span></p>'));
-//													 var cell5 = cell4.prepend(cell3);
-//													 var cell6 = $('<div></div>').addClass("media mb-4").append([cell1,cell5]);
-//													 upperComment.after(cell6);
-//												},
-//												error: function (e) {
-//													console.log("ERROR : ", e);
-//													alert(e);
-//												}
-//										});
-//										$(this).parents('form').find('textarea').val("");
-//									}
-//								});
-//								 
-//							});
-					},
-					error: function (xhr, status, error) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
+					});
+				}
+				$('#commentArea').val("")
 			}
-			$('#commentArea').val("")
 		})
 		$(document).on('click',".replyButton",function(){
-			if($(this).parent('p').children('form').length == 0){
-				    var cell1 = $('<textarea></textarea>').addClass("form-control").attr({rows:"3",id:"replyArea"})
-				    var cell2 = $('<div></div>').addClass("form-group")
-				     var cell2 = cell2.append(cell1);
-				    var cell3 = $('<button></button>').addClass("btn btn-primary replySubmit").attr({type:"button"}).text("Submit")
-				     var cell4 = $('<form></form>')
-				     var cell4 = cell4.append([cell2,cell3]);
-				    $(this).parents('p').append(cell4)
+			if($.trim($('#account').val()) == ""){
+				window.location.replace(loginUrl);
+			}else{
+				if($(this).parent('p').children('form').length == 0){
+					    var cell1 = $('<textarea></textarea>').addClass("form-control").attr({rows:"3",id:"replyArea"})
+					    var cell2 = $('<div></div>').addClass("form-group")
+					     var cell2 = cell2.append(cell1);
+					    var cell3 = $('<button></button>').addClass("btn btn-primary replySubmit").attr({type:"button"}).text("Submit")
+					     var cell4 = $('<form></form>')
+					     var cell4 = cell4.append([cell2,cell3]);
+					    $(this).parents('p').append(cell4)
+				}
+	//			 $(".replySubmit").click(function(){
+	//				 var replyCommentArticle = $(this).parents('form').find('textarea').val().replace(/\s+/g, "");
+	//				 if(replyCommentArticle != ""){
+	//					 var thisinsubmit = $(this)
+	//					 var commentVideoSeqNo =  $(this).parents('.media-body').find('.hide:first').text();
+	//					 var seqNo = $('').val();
+	//					 var data = {account: account,commentVideoSeqNo:commentVideoSeqNo ,replyCommentArticle:replyCommentArticle}
+	//					 $.ajax({
+	//							type: "POST",
+	//							url: "/EEIT/replyCommentVideo",
+	//							contentType : 'application/json; charset=utf-8',
+	//					        dataType: "json",
+	//					        data: JSON.stringify(data),
+	//							timeout: 600000,
+	//							success: function (data) {
+	//								var datareturn = data.replyCommentVideoBean;
+	//								var commentTime = new Date(datareturn.replyCommentDate);
+	//								var time = commentTime.getFullYear() + '-' + ( commentTime.getMonth() + 1 ) + '-' + commentTime.getDate() + "  " + commentTime.getHours() + ":" + commentTime.getMinutes() + ":" + commentTime.getSeconds()
+	//								 var upperComment = thisinsubmit.parents('p');
+	//								 var cell1 = $('<img></img>').addClass("d-flex mr-3 rounded-circle").attr({height:"50px" , width:"50px",src:"/EEIT/getImage/member/" + datareturn.account}) 
+	//								 var cell2 = $('<div></div>').addClass("media-body")
+	//								 var cell3 = $('<h5 class = "mt-0"><a class="uploaderLink" href="/uploaderHomePage/'+ datareturn.account +'">' + datareturn.account + '</a></h5>');
+	//								 var cell7 = $('<span></span>').text(time).append($('<span></span>').addClass("hide").text(datareturn.replyCommentVideoSeqNo));
+	//								 var cell3 = cell3.append(cell7);
+	//								 var cell4 = cell2.text(datareturn.replyCommentArticle).append($('<p><span><input type="hidden" value="" class="replyCommentVideosLikeUnlikeStatus"><span class="replyCommentLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentLike likeButtonNone"></button><span class="replyCommentUnLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentUnlike unlikeButtonNone"></button></span></p>'));
+	//								 var cell5 = cell4.prepend(cell3);
+	//								 var cell6 = $('<div></div>').addClass("media mb-4").append([cell1,cell5]);
+	//								 upperComment.after(cell6);
+	//							},
+	//							error: function (e) {
+	//								console.log("ERROR : ", e);
+	//								alert(e);
+	//							}
+	//						});
+	//				 	}
+	//				 $(this).parents('form').find('textarea').val("");
+	//			 });
 			}
-//			 $(".replySubmit").click(function(){
-//				 var replyCommentArticle = $(this).parents('form').find('textarea').val().replace(/\s+/g, "");
-//				 if(replyCommentArticle != ""){
-//					 var thisinsubmit = $(this)
-//					 var commentVideoSeqNo =  $(this).parents('.media-body').find('.hide:first').text();
-//					 var seqNo = $('').val();
-//					 var data = {account: account,commentVideoSeqNo:commentVideoSeqNo ,replyCommentArticle:replyCommentArticle}
-//					 $.ajax({
-//							type: "POST",
-//							url: "/EEIT/replyCommentVideo",
-//							contentType : 'application/json; charset=utf-8',
-//					        dataType: "json",
-//					        data: JSON.stringify(data),
-//							timeout: 600000,
-//							success: function (data) {
-//								var datareturn = data.replyCommentVideoBean;
-//								var commentTime = new Date(datareturn.replyCommentDate);
-//								var time = commentTime.getFullYear() + '-' + ( commentTime.getMonth() + 1 ) + '-' + commentTime.getDate() + "  " + commentTime.getHours() + ":" + commentTime.getMinutes() + ":" + commentTime.getSeconds()
-//								 var upperComment = thisinsubmit.parents('p');
-//								 var cell1 = $('<img></img>').addClass("d-flex mr-3 rounded-circle").attr({height:"50px" , width:"50px",src:"/EEIT/getImage/member/" + datareturn.account}) 
-//								 var cell2 = $('<div></div>').addClass("media-body")
-//								 var cell3 = $('<h5 class = "mt-0"><a class="uploaderLink" href="/uploaderHomePage/'+ datareturn.account +'">' + datareturn.account + '</a></h5>');
-//								 var cell7 = $('<span></span>').text(time).append($('<span></span>').addClass("hide").text(datareturn.replyCommentVideoSeqNo));
-//								 var cell3 = cell3.append(cell7);
-//								 var cell4 = cell2.text(datareturn.replyCommentArticle).append($('<p><span><input type="hidden" value="" class="replyCommentVideosLikeUnlikeStatus"><span class="replyCommentLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentLike likeButtonNone"></button><span class="replyCommentUnLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentUnlike unlikeButtonNone"></button></span></p>'));
-//								 var cell5 = cell4.prepend(cell3);
-//								 var cell6 = $('<div></div>').addClass("media mb-4").append([cell1,cell5]);
-//								 upperComment.after(cell6);
-//							},
-//							error: function (e) {
-//								console.log("ERROR : ", e);
-//								alert(e);
-//							}
-//						});
-//				 	}
-//				 $(this).parents('form').find('textarea').val("");
-//			 });
 		});
 		
 		$(document).on('click',".replySubmit",function(){
@@ -553,15 +568,34 @@ $(document).ready(function() {
 							var commentTime = new Date(datareturn.replyCommentDate);
 							var time = commentTime.getFullYear() + '-' + ( commentTime.getMonth() + 1 ) + '-' + commentTime.getDate() + "  " + commentTime.getHours() + ":" + commentTime.getMinutes() + ":" + commentTime.getSeconds()
 							 var upperComment = thisinsubmit.parents('p');
-							 var cell1 = $('<img></img>').addClass("d-flex mr-3 rounded-circle").attr({height:"50px" , width:"50px",src:"/EEIT/getImage/member/" + datareturn.account}) 
+							 var cell1 = $('<a class="uploaderLink" href="/profile/'+ datareturn.account +'"><img class="d-flex mr-3 rounded-circle" height="50px" width="50px" src="/EEIT/getImage/member/'+ datareturn.account +'"></img></a>')
 							 var cell2 = $('<div></div>').addClass("media-body")
-							 var cell3 = $('<h5 class = "mt-0"><a class="uploaderLink" href="/uploaderHomePage/'+ datareturn.account +'">' + datareturn.account + '</a></h5>');
+							 var cell3 = $('<h5 class = "mt-0"><a class="uploaderLink" href="/profile/'+ datareturn.account +'">' + datareturn.account + '</a></h5>');
 							 var cell7 = $('<span></span>').text(time).append($('<span></span>').addClass("hide").text(datareturn.replyCommentVideoSeqNo));
 							 var cell3 = cell3.append(cell7);
 							 var cell4 = cell2.append("<p class='commentArticle commentArticleHide'>"+datareturn.replyCommentArticle+"</p><p class='commentArticleShowButton'>顯示完整內容</p>").append($('<p><span><input type="hidden" value="" class="replyCommentVideosLikeUnlikeStatus"><span class="replyCommentLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentLike likeButtonNone"></button><span class="replyCommentUnLikeNumber">&nbsp0&nbsp</span><button type="button" value="" class="replyCommentUnlike unlikeButtonNone"></button></span></p>'));
 							 var cell5 = cell4.prepend(cell3);
 							 var cell6 = $('<div></div>').addClass("media mb-4").append([cell1,cell5]);
 							 upperComment.after(cell6);
+							 
+							 $( ".commentArticle" ).each(function() {
+								var thisBlock= $(this)[0]
+								console.log(thisBlock)
+								if (thisBlock.offsetHeight < thisBlock.scrollHeight ||
+										thisBlock.offsetWidth < thisBlock.scrollWidth) {
+								} else {
+									$(this).parents('.media-body').children('.commentArticleShowButton').remove();
+									$(this).removeClass('commentArticleHide');
+								}
+							});
+							 
+							 thisinsubmit.closest('.media-body').find('.replyBlock').show()
+							 thisinsubmit.closest('.media-body').find('.showReplyButton').remove();
+//							console.log($(this).closest('.media-body').find('.replyBlock'));
+//							$( $(this).closest('.media-body').find('.replyBlock') ).each(function() {
+//								console.log($( this ));
+//								  $( this ).show();
+//							});
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
@@ -598,275 +632,291 @@ $(document).ready(function() {
 		
 		//影片讚
 		$(document).on('click','.like',function() {
-			var likeUnlikeStatus = $('input[name="likeUnlikeStatus"]').val();
-			if(likeUnlikeStatus == "like"){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/likeUnlikeVideos",
-					data: {_method : "PUT", account : account, videoSeqNo : videoSeqNo, likeUnlikeStatus : "none"},
-					timeout: 600000,
-					success: function (data) {
-						$('.like').addClass('likeButtonNone').removeClass('likeButton');
-						$('#likeNumber').text(data.likeNumber)
-						$('#unlikeNumber').text(data.unlikeNumber)
-						$('input[name="likeUnlikeStatus"]').val("none");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-				
-			}else if(likeUnlikeStatus == "unlike" || likeUnlikeStatus == "none" ){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/likeUnlikeVideos",
-					data: {_method : "PUT", account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "like"},
-					timeout: 600000,
-					success: function (data) {
-						$('.like').addClass('likeButton').removeClass('likeButtonNone');
-						$('.unlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
-						$('#likeNumber').text(data.likeNumber)
-						$('#unlikeNumber').text(data.unlikeNumber)
-						$('input[name="likeUnlikeStatus"]').val("like");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-			}else if(!likeUnlikeStatus){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/likeUnlikeVideos",
-					data: {account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "like"},
-					timeout: 600000,
-					success: function (data) {
-						$('.like').addClass('likeButton').removeClass('likeButtonNone');
-						$('#likeNumber').text(data.likeNumber)
-						$('#unlikeNumber').text(data.unlikeNumber)
-						$('input[name="likeUnlikeStatus"]').val("like");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
+			if($.trim($('#account').val()) == ""){
+				window.location.replace(loginUrl);
+			}else{
+				var likeUnlikeStatus = $('input[name="likeUnlikeStatus"]').val();
+				if(likeUnlikeStatus == "like"){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/likeUnlikeVideos",
+						data: {_method : "PUT", account : account, videoSeqNo : videoSeqNo, likeUnlikeStatus : "none"},
+						timeout: 600000,
+						success: function (data) {
+							$('.like').addClass('likeButtonNone').removeClass('likeButton');
+							$('#likeNumber').text(data.likeNumber)
+							$('#unlikeNumber').text(data.unlikeNumber)
+							$('input[name="likeUnlikeStatus"]').val("none");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+					
+				}else if(likeUnlikeStatus == "unlike" || likeUnlikeStatus == "none" ){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/likeUnlikeVideos",
+						data: {_method : "PUT", account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "like"},
+						timeout: 600000,
+						success: function (data) {
+							$('.like').addClass('likeButton').removeClass('likeButtonNone');
+							$('.unlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
+							$('#likeNumber').text(data.likeNumber)
+							$('#unlikeNumber').text(data.unlikeNumber)
+							$('input[name="likeUnlikeStatus"]').val("like");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}else if(!likeUnlikeStatus){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/likeUnlikeVideos",
+						data: {account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "like"},
+						timeout: 600000,
+						success: function (data) {
+							$('.like').addClass('likeButton').removeClass('likeButtonNone');
+							$('#likeNumber').text(data.likeNumber)
+							$('#unlikeNumber').text(data.unlikeNumber)
+							$('input[name="likeUnlikeStatus"]').val("like");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}
+	//			var datas = $('form[name="likeVideo"]').serialize();
+	//			$.getJSON('../likeUnlikeVideos/likeunlikeVideo.do',datas,function(datareturn){
+	//				$('#likeNumber').text(datareturn.like);
+	//				$('#unlikeNumber').text(datareturn.unlike);
+	//				if(datareturn.likeStatus == 'like'){
+	//					$('.unlikeButton').css({
+	//						'background-image': 'url(images/unlikefinalgray.jpg)'
+	//					})
+	//					$('.likeButton').css({
+	//						
+	//						'background-image': 'url(images/likefinal.jpg)'
+	//					})
+	//				}else if(datareturn.likeStatus == 'unlike'){
+	//					$('.likeButton').css({
+	//						
+	//						'background-image': 'url(images/likefinalgray.jpg)'
+	//					})
+	//					$('.unlikeButton').css({
+	//						'background-image': 'url(images/unlikefinal.jpg)'
+	//					})
+	//				}else if(datareturn.likeStatus == 'none'){
+	//					$('.unlikeButton').css({
+	//						'background-image': 'url(images/unlikefinalgray.jpg)'
+	//							
+	//					})
+	//					$('.likeButton').css({
+	//						'background-image': 'url(images/likefinalgray.jpg)'
+	//					})
+	//				}
+	//				
+	//
+	//		    });
 			}
-//			var datas = $('form[name="likeVideo"]').serialize();
-//			$.getJSON('../likeUnlikeVideos/likeunlikeVideo.do',datas,function(datareturn){
-//				$('#likeNumber').text(datareturn.like);
-//				$('#unlikeNumber').text(datareturn.unlike);
-//				if(datareturn.likeStatus == 'like'){
-//					$('.unlikeButton').css({
-//						'background-image': 'url(images/unlikefinalgray.jpg)'
-//					})
-//					$('.likeButton').css({
-//						
-//						'background-image': 'url(images/likefinal.jpg)'
-//					})
-//				}else if(datareturn.likeStatus == 'unlike'){
-//					$('.likeButton').css({
-//						
-//						'background-image': 'url(images/likefinalgray.jpg)'
-//					})
-//					$('.unlikeButton').css({
-//						'background-image': 'url(images/unlikefinal.jpg)'
-//					})
-//				}else if(datareturn.likeStatus == 'none'){
-//					$('.unlikeButton').css({
-//						'background-image': 'url(images/unlikefinalgray.jpg)'
-//							
-//					})
-//					$('.likeButton').css({
-//						'background-image': 'url(images/likefinalgray.jpg)'
-//					})
-//				}
-//				
-//
-//		    });
 		})
 		$(document).on('click','.unlike',function() {
-			var likeUnlikeStatus = $('input[name="likeUnlikeStatus"]').val();
-			if(likeUnlikeStatus == "unlike"){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/likeUnlikeVideos",
-					data: {_method : "PUT", account : account, videoSeqNo : videoSeqNo, likeUnlikeStatus : "none"},
-					timeout: 600000,
-					success: function (data) {
-						$('.unlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
-						$('#likeNumber').text(data.likeNumber)
-						$('#unlikeNumber').text(data.unlikeNumber)
-						$('input[name="likeUnlikeStatus"]').val("none");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-				
-			}else if(likeUnlikeStatus == "like" || likeUnlikeStatus == "none" ){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/likeUnlikeVideos",
-					data: {_method : "PUT", account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "unlike"},
-					timeout: 600000,
-					success: function (data) {
-						$('.unlike').addClass('unlikeButton').removeClass('unlikeButtonNone');
-						$('.like').addClass('likeButtonNone').removeClass('likeButton');
-						$('#likeNumber').text(data.likeNumber)
-						$('#unlikeNumber').text(data.unlikeNumber)
-						$('input[name="likeUnlikeStatus"]').val("unlike");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-			}else if(!likeUnlikeStatus){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/likeUnlikeVideos",
-					data: {account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "unlike"},
-					timeout: 600000,
-					success: function (data) {
-						$('.unlike').addClass('unlikeButton').removeClass('unlikeButtonNone');
-						$('#likeNumber').text(data.likeNumber)
-						$('#unlikeNumber').text(data.unlikeNumber)
-						$('input[name="likeUnlikeStatus"]').val("unlike");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
+			if($.trim($('#account').val()) == ""){
+				window.location.replace(loginUrl);
+			}else{
+				var likeUnlikeStatus = $('input[name="likeUnlikeStatus"]').val();
+				if(likeUnlikeStatus == "unlike"){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/likeUnlikeVideos",
+						data: {_method : "PUT", account : account, videoSeqNo : videoSeqNo, likeUnlikeStatus : "none"},
+						timeout: 600000,
+						success: function (data) {
+							$('.unlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
+							$('#likeNumber').text(data.likeNumber)
+							$('#unlikeNumber').text(data.unlikeNumber)
+							$('input[name="likeUnlikeStatus"]').val("none");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+					
+				}else if(likeUnlikeStatus == "like" || likeUnlikeStatus == "none" ){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/likeUnlikeVideos",
+						data: {_method : "PUT", account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "unlike"},
+						timeout: 600000,
+						success: function (data) {
+							$('.unlike').addClass('unlikeButton').removeClass('unlikeButtonNone');
+							$('.like').addClass('likeButtonNone').removeClass('likeButton');
+							$('#likeNumber').text(data.likeNumber)
+							$('#unlikeNumber').text(data.unlikeNumber)
+							$('input[name="likeUnlikeStatus"]').val("unlike");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}else if(!likeUnlikeStatus){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/likeUnlikeVideos",
+						data: {account : account,  videoSeqNo : videoSeqNo, likeUnlikeStatus : "unlike"},
+						timeout: 600000,
+						success: function (data) {
+							$('.unlike').addClass('unlikeButton').removeClass('unlikeButtonNone');
+							$('#likeNumber').text(data.likeNumber)
+							$('#unlikeNumber').text(data.unlikeNumber)
+							$('input[name="likeUnlikeStatus"]').val("unlike");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}
 			}
 		})
 		
 		//留言讚
 		
 		$(document).on('click','.commentLike',function() {
-			var thisCommentLike = $(this)
-			var likeUnlikeVideoCommentStatus = thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val();
-			var commentVideoSeqNo = thisCommentLike.parents('.media-body').find('.hide:first').text()
-			if(likeUnlikeVideoCommentStatus == "like"){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/CommentVideosLikeUnlike",
-					data: {_method : "PUT", commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "none"},
-					timeout: 600000,
-					success: function (data) {
-						thisCommentLike.addClass('likeButtonNone').removeClass('likeButton');
-						thisCommentLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisCommentLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("none");
-						
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-				
-			}else if(likeUnlikeVideoCommentStatus == "unlike" || likeUnlikeVideoCommentStatus == "none" ){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/CommentVideosLikeUnlike",
-					data: {_method : "PUT", commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "like"},
-					timeout: 600000,
-					success: function (data) {
-						thisCommentLike.addClass('likeButton').removeClass('likeButtonNone');
-						thisCommentLike.parents('p').find('.commentUnlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
-						thisCommentLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisCommentLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("like");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-			}else if(!likeUnlikeVideoCommentStatus){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/CommentVideosLikeUnlike",
-					data: {commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "like"},
-					timeout: 600000,
-					success: function (data) {
-						thisCommentLike.addClass('likeButton').removeClass('likeButtonNone');
-						thisCommentLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisCommentLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("like");
-						
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
+			if($.trim($('#account').val()) == ""){
+				window.location.replace(loginUrl);
+			}else{
+				var thisCommentLike = $(this)
+				var likeUnlikeVideoCommentStatus = thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val();
+				var commentVideoSeqNo = thisCommentLike.parents('.media-body').find('.hide:first').text()
+				if(likeUnlikeVideoCommentStatus == "like"){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/CommentVideosLikeUnlike",
+						data: {_method : "PUT", commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "none"},
+						timeout: 600000,
+						success: function (data) {
+							thisCommentLike.addClass('likeButtonNone').removeClass('likeButton');
+							thisCommentLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisCommentLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("none");
+							
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+					
+				}else if(likeUnlikeVideoCommentStatus == "unlike" || likeUnlikeVideoCommentStatus == "none" ){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/CommentVideosLikeUnlike",
+						data: {_method : "PUT", commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "like"},
+						timeout: 600000,
+						success: function (data) {
+							thisCommentLike.addClass('likeButton').removeClass('likeButtonNone');
+							thisCommentLike.parents('p').find('.commentUnlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
+							thisCommentLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisCommentLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("like");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}else if(!likeUnlikeVideoCommentStatus){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/CommentVideosLikeUnlike",
+						data: {commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "like"},
+						timeout: 600000,
+						success: function (data) {
+							thisCommentLike.addClass('likeButton').removeClass('likeButtonNone');
+							thisCommentLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisCommentLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisCommentLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("like");
+							
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}
 			}
 		})
 		
 		$(document).on('click','.commentUnlike',function() {
-			var thisCommentUnLike = $(this)
-			var likeUnlikeVideoCommentStatus = thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val();
-			var commentVideoSeqNo = thisCommentUnLike.parents('.media-body').find('.hide:first').text()
-//			alert(likeUnlikeVideoCommentStatus)
-//			alert(commentVideoSeqNo)
-			if(likeUnlikeVideoCommentStatus == "unlike"){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/CommentVideosLikeUnlike",
-					data: {_method : "PUT", commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "none"},
-					timeout: 600000,
-					success: function (data) {
-						thisCommentUnLike.addClass('unlikeButtonNone').removeClass('unlikeButton');
-						thisCommentUnLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisCommentUnLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("none");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-				
-			}else if(likeUnlikeVideoCommentStatus == "like" || likeUnlikeVideoCommentStatus == "none" ){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/CommentVideosLikeUnlike",
-					data: {_method : "PUT", commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "unlike"},
-					timeout: 600000,
-					success: function (data) {
-						thisCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
-						thisCommentUnLike.parents('p').find('.commentLike').addClass('likeButtonNone').removeClass('likeButton');
-						thisCommentUnLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisCommentUnLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("unlike");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-			}else if(!likeUnlikeVideoCommentStatus){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/CommentVideosLikeUnlike",
-					data: {commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "unlike"},
-					timeout: 600000,
-					success: function (data) {
-						thisCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
-						thisCommentUnLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisCommentUnLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("unlike");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
+			if($.trim($('#account').val()) == ""){
+				window.location.replace(loginUrl);
+			}else{
+				var thisCommentUnLike = $(this)
+				var likeUnlikeVideoCommentStatus = thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val();
+				var commentVideoSeqNo = thisCommentUnLike.parents('.media-body').find('.hide:first').text()
+	//			alert(likeUnlikeVideoCommentStatus)
+	//			alert(commentVideoSeqNo)
+				if(likeUnlikeVideoCommentStatus == "unlike"){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/CommentVideosLikeUnlike",
+						data: {_method : "PUT", commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "none"},
+						timeout: 600000,
+						success: function (data) {
+							thisCommentUnLike.addClass('unlikeButtonNone').removeClass('unlikeButton');
+							thisCommentUnLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisCommentUnLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("none");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+					
+				}else if(likeUnlikeVideoCommentStatus == "like" || likeUnlikeVideoCommentStatus == "none" ){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/CommentVideosLikeUnlike",
+						data: {_method : "PUT", commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "unlike"},
+						timeout: 600000,
+						success: function (data) {
+							thisCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
+							thisCommentUnLike.parents('p').find('.commentLike').addClass('likeButtonNone').removeClass('likeButton');
+							thisCommentUnLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisCommentUnLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("unlike");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}else if(!likeUnlikeVideoCommentStatus){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/CommentVideosLikeUnlike",
+						data: {commentVideoSeqNo : commentVideoSeqNo, commentLikeUnlikeStatus : "unlike"},
+						timeout: 600000,
+						success: function (data) {
+							thisCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
+							thisCommentUnLike.parents('p').find('.commentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisCommentUnLike.parents('p').find('.commentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisCommentUnLike.parents('p').find('.commentVideosLikeUnlikeStatus').val("unlike");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}
 			}
 		})
 		
@@ -874,124 +924,132 @@ $(document).ready(function() {
 		
 		//回復讚
 		$(document).on('click','.replyCommentLike',function() {
-			var thisReplyCommentLike = $(this)
-			var likeUnlikeVideoReplyCommentStatus = thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val();
-			var replyCommentVideoSeqNo = thisReplyCommentLike.closest('.media-body').find('.hide:first').text()
-			if(likeUnlikeVideoReplyCommentStatus == "like"){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/ReplyCommentVideoLikeUnlike",
-					data: {_method : "PUT", replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "none"},
-					timeout: 600000,
-					success: function (data) {
-						thisReplyCommentLike.addClass('likeButtonNone').removeClass('likeButton');
-						thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("none");
-						
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-				
-			}else if(likeUnlikeVideoReplyCommentStatus == "unlike" || likeUnlikeVideoReplyCommentStatus == "none" ){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/ReplyCommentVideoLikeUnlike",
-					data: {_method : "PUT", replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "like"},
-					timeout: 600000,
-					success: function (data) {
-						thisReplyCommentLike.addClass('likeButton').removeClass('likeButtonNone');
-						thisReplyCommentLike.parents('span').find('.replyCommentUnlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
-						thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("like");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-			}else if(!likeUnlikeVideoReplyCommentStatus){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/ReplyCommentVideoLikeUnlike",
-					data: {replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "like"},
-					timeout: 600000,
-					success: function (data) {
-						thisReplyCommentLike.addClass('likeButton').removeClass('likeButtonNone');
-						thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("like");
-						
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
+			if($.trim($('#account').val()) == ""){
+				window.location.replace(loginUrl);
+			}else{
+				var thisReplyCommentLike = $(this)
+				var likeUnlikeVideoReplyCommentStatus = thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val();
+				var replyCommentVideoSeqNo = thisReplyCommentLike.closest('.media-body').find('.hide:first').text()
+				if(likeUnlikeVideoReplyCommentStatus == "like"){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/ReplyCommentVideoLikeUnlike",
+						data: {_method : "PUT", replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "none"},
+						timeout: 600000,
+						success: function (data) {
+							thisReplyCommentLike.addClass('likeButtonNone').removeClass('likeButton');
+							thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("none");
+							
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+					
+				}else if(likeUnlikeVideoReplyCommentStatus == "unlike" || likeUnlikeVideoReplyCommentStatus == "none" ){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/ReplyCommentVideoLikeUnlike",
+						data: {_method : "PUT", replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "like"},
+						timeout: 600000,
+						success: function (data) {
+							thisReplyCommentLike.addClass('likeButton').removeClass('likeButtonNone');
+							thisReplyCommentLike.parents('span').find('.replyCommentUnlike').addClass('unlikeButtonNone').removeClass('unlikeButton');
+							thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("like");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}else if(!likeUnlikeVideoReplyCommentStatus){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/ReplyCommentVideoLikeUnlike",
+						data: {replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "like"},
+						timeout: 600000,
+						success: function (data) {
+							thisReplyCommentLike.addClass('likeButton').removeClass('likeButtonNone');
+							thisReplyCommentLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisReplyCommentLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisReplyCommentLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("like");
+							
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}
 			}
 		})
 		
 		$(document).on('click','.replyCommentUnlike',function() {
-			var thisReplyCommentUnLike = $(this)
-			var likeUnlikeVideoReplyCommentStatus = thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val();
-			var replyCommentVideoSeqNo = thisReplyCommentUnLike.closest('.media-body').find('.hide:first').text()
-			if(likeUnlikeVideoReplyCommentStatus == "unlike"){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/ReplyCommentVideoLikeUnlike",
-					data: {_method : "PUT", replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "none"},
-					timeout: 600000,
-					success: function (data) {
-						thisReplyCommentUnLike.addClass('unlikeButtonNone').removeClass('unlikeButton');
-						thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("none");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-				
-			}else if(likeUnlikeVideoReplyCommentStatus == "like" || likeUnlikeVideoReplyCommentStatus == "none" ){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/ReplyCommentVideoLikeUnlike",
-					data: {_method : "PUT", replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "unlike"},
-					timeout: 600000,
-					success: function (data) {
-						thisReplyCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
-						thisReplyCommentUnLike.parents('span').find('.replyCommentLike').addClass('likeButtonNone').removeClass('likeButton');
-						thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("unlike");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
-			}else if(!likeUnlikeVideoReplyCommentStatus){
-				$.ajax({
-					type: "POST",
-					url: "/EEIT/ReplyCommentVideoLikeUnlike",
-					data: {replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "unlike"},
-					timeout: 600000,
-					success: function (data) {
-						thisReplyCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
-						thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
-						thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
-						thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("unlike");
-					},
-					error: function (e) {
-						console.log("ERROR : ", e);
-						alert(e);
-					}
-				});
+			if($.trim($('#account').val()) == ""){
+				window.location.replace(loginUrl);
+			}else{
+				var thisReplyCommentUnLike = $(this)
+				var likeUnlikeVideoReplyCommentStatus = thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val();
+				var replyCommentVideoSeqNo = thisReplyCommentUnLike.closest('.media-body').find('.hide:first').text()
+				if(likeUnlikeVideoReplyCommentStatus == "unlike"){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/ReplyCommentVideoLikeUnlike",
+						data: {_method : "PUT", replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "none"},
+						timeout: 600000,
+						success: function (data) {
+							thisReplyCommentUnLike.addClass('unlikeButtonNone').removeClass('unlikeButton');
+							thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("none");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+					
+				}else if(likeUnlikeVideoReplyCommentStatus == "like" || likeUnlikeVideoReplyCommentStatus == "none" ){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/ReplyCommentVideoLikeUnlike",
+						data: {_method : "PUT", replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "unlike"},
+						timeout: 600000,
+						success: function (data) {
+							thisReplyCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
+							thisReplyCommentUnLike.parents('span').find('.replyCommentLike').addClass('likeButtonNone').removeClass('likeButton');
+							thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("unlike");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}else if(!likeUnlikeVideoReplyCommentStatus){
+					$.ajax({
+						type: "POST",
+						url: "/EEIT/ReplyCommentVideoLikeUnlike",
+						data: {replyCommentVideoSeqNo : replyCommentVideoSeqNo, replyCommentVideoLikeUnlikeStatus : "unlike"},
+						timeout: 600000,
+						success: function (data) {
+							thisReplyCommentUnLike.addClass('unlikeButton').removeClass('unlikeButtonNone');
+							thisReplyCommentUnLike.parents('span').find('.replyCommentLikeNumber').html('&nbsp' + data.likeNumber + '&nbsp')
+							thisReplyCommentUnLike.parents('span').find('.replyCommentUnLikeNumber').html('&nbsp' + data.unlikeNumber + '&nbsp')
+							thisReplyCommentUnLike.parents('span').find('.replyCommentVideosLikeUnlikeStatus').val("unlike");
+						},
+						error: function (e) {
+							console.log("ERROR : ", e);
+							alert(e);
+						}
+					});
+				}
 			}
 		})
 		function reportVideo(){

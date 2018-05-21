@@ -48,7 +48,13 @@ public class VideoReportController {
 			HttpSession session
 			) {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
-		String account = memberBean.getAccount();
+		String account = null;
+		if(memberBean != null) {
+			account = memberBean.getAccount();
+		}else if(memberBean == null) {
+			account = "visitor";
+		}
+		
 		videoReportBean.setAccount(account);
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		videoReportBean.setVideoReportDate(now);

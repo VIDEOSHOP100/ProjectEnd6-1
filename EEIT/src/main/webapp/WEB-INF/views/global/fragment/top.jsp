@@ -28,7 +28,6 @@
 <!-- Custom styles for this template -->
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/fragment/css/top.css'/>" rel="stylesheet">
-
 </head>
 <body>
 
@@ -342,12 +341,14 @@
 	<!--	登入彈窗結束 	--> 
 
 	<!-- Bootstrap core JavaScript -->
+	<script src="<c:url value='/global/js/config.js'/> "></script>
 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="<c:url value='/global/js/search.js'/> "></script>
 	<script src="<c:url value='/global/js/top.js'/> "></script>
+	
 
 	<script>
 	$('#modalLoginButton').click(checkAccPwd);
