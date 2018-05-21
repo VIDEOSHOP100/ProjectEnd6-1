@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -89,13 +90,12 @@ public class PersonShopController {
 	// return null;
 	// }
 
-	@RequestMapping(value = "/goPersonHomePage", method = RequestMethod.GET)
-	public String goPersonHomePage(Map<String, Object> map, HttpSession session) throws SQLException {
-		MemberBean member = (MemberBean) session.getAttribute("LoginOK");
-		String account = member.getAccount();
+	@RequestMapping(value = "/goPersonHomePage/{account}", method = RequestMethod.GET)
+	public String goPersonHomePage(@PathVariable String account,Map<String, Object> map, HttpSession session) throws SQLException {
+		
 		List<PersonShopBean> shoplist = pshopService.getBeanByAccount(account);
 		List<ProductSaleBean> productlist = productservice.getByAccount(account);
-		map.put("personshopbean", shoplist);
+		map.put("personshopbean", account);
 		map.put("productbean", productlist);
 
 		return "PersonShop/PersonShopHomePage";
