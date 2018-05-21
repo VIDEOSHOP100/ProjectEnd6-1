@@ -19,7 +19,7 @@
 
 	<div class="container">
 
-		<h1 class="mt-4 mb-3">${LoginOK.nickname}的個人商店首頁
+		<h1 class="mt-4 mb-3">${personshopbean}的個人商店首頁
 			<small>Subheading</small>
 		</h1>
 

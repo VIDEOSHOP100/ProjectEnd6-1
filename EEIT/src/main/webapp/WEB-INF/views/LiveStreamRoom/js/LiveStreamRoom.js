@@ -436,6 +436,5 @@ $(document).on('click','.chatrow',function(){
 			  }
 			  );
 	
-	 
 })
 

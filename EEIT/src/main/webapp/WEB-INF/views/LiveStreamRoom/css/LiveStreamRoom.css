@@ -1,6 +1,9 @@
 @charset "UTF-8";
 
-
+/* .movespan{ */
+/* 	position:absolute; */
+/* 	 z-index : 999; */
+/* } */
 .draggable{
 	
 	z-index:100;

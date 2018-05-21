@@ -14,14 +14,6 @@
 
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-<link
-	href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
-	rel="stylesheet">
-<link href="<c:url value='/global/css/modern-business.css'/> "
-	rel="stylesheet">
-<link href="<c:url value='/videoManage/css/videoManage.css'/> "
-	rel="stylesheet">
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	
@@ -42,8 +34,6 @@
 			<div class="card">
 				<div class="card-header">我的訂單管理</div>
 				<div class="card-body">
-					<button id="buttonAdd" type="button" class="btn btn-success">
-						<i class="fas fa-cart-plus"></i>
 					</button>
 					<h6>xxxx</h6>
 					<h6>ooooo</h6>

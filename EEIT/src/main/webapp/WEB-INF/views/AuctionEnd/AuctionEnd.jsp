@@ -8,14 +8,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="<c:url value='/AuctionEnd/css/AuctionEnd.css'/>" rel="stylesheet">
 </head>
 <body>
 <div class="container">
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
+<input id="catch-account" type="hidden" name = "account" value= "${LoginOK.account}">
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">得標管理
+      
 <!--         <small>Subheading</small> -->
       </h1>
+       <button id="allPay" name="payment" value="allPay" class="btn btn-outline-info">歐付寶</button>
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -41,9 +45,12 @@
               </a>
             </div>
             <div class="col-lg-6">
+<!--設置時間+切割 -->
               <h2 class="card-title">${AllAuctionLista.proName}</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-              <a href="#" class="btn btn-primary">Read More &rarr;</a>
+        <c:set var="string1" value="${AllAuctionLista.proTime}"/>
+		<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
+              <p class="card-text">得標時間：${string2}</p>
+<!--               <a href="#" class="btn btn-primary">Read More &rarr;</a> -->
             </div>
           </div>
         </div>
@@ -67,7 +74,10 @@
 </c:if> 
     </div>
 
-  </div>
+
+  <div id="responce">
+    </div>
   <!-- /.container -->
+  <script src="<c:url value='/AuctionEnd/js/AuctionEnd.js'/> "></script>
 </body>
 </html>

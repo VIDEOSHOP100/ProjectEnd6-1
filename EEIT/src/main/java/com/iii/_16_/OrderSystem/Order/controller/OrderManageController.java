@@ -3,6 +3,7 @@ package com.iii._16_.OrderSystem.Order.controller;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,15 +15,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._16_.OrderSystem.Order.model.OrderBean;
 import com.iii._16_.OrderSystem.Order.model.OrderService;
+import com.iii._16_.OrderSystem.OrderProduct.model.OrderProductBean;
 import com.iii._16_.OrderSystem.OrderProduct.model.OrderProductService;
 import com.iii._16_.PDF.model.PdfProduceService;
 import com.iii._16_.PDF.model.orderPdfService;
 import com.iii._16_.ProductSale.PayType.model.PayTypeBean;
 import com.iii._16_.ProductSale.PayType.model.PayTypeService;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 
 @Controller
 @RequestMapping("/orderManage")
@@ -32,7 +37,7 @@ public class OrderManageController {
 	@Autowired
 	private OrderProductService orderproductservice;
 	@Autowired
-	private PdfProduceService pdfservice;
+	private ProductSaleService productsaleservice;
 	@Autowired
 	private orderPdfService orderpdfservice;
 	@Autowired
@@ -76,12 +81,20 @@ public class OrderManageController {
 	}
 	
 	@RequestMapping(value="/manageOrderProduct/{orderSeqNo}",method=RequestMethod.GET)
-	public String orderProduct(@PathVariable("orderSeqNo")Integer orderSeqNo,
-			Map<String,Object> map,HttpSession session) {
+	public @ResponseBody Map<String,Object> orderProduct(@PathVariable("orderSeqNo")Integer orderSeqNo,
+			Map<String,Object> map,HttpSession session) throws SQLException {
+		System.out.println("givemeproduct");
 		MemberBean member = (MemberBean) session.getAttribute("LoginOK");
 		String account = member.getAccount();
+		Map<String,Object> result =  new HashMap<String, Object>();
+		List<OrderProductBean> productlist = orderproductservice.getByorderSeqNo(orderSeqNo);
+		for(OrderProductBean orderproduct : productlist) {
+			Integer productSeqNo = orderproduct.getProductSeqNo();
+			ProductSaleBean productbean = productsaleservice.getBySeqNo(productSeqNo);
+			orderproduct.setProductBean(productbean);
+		}
 		
-		
-		return "OrderSystem/orderProductList";
+		result.put("productlist", productlist);
+		return result;
 	}
 }
