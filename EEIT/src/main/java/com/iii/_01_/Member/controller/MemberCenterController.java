@@ -37,7 +37,7 @@ public class MemberCenterController {
 		return "MemberCenter/MemberCenter";
 	}
 	
-	@RequestMapping("/profile/{account}")
+//	@RequestMapping("/profile/{account}")
 	public String profile(@PathVariable("account")String othersideaccount , Model model ,HttpSession session) {
 		
 		MemberBean bean = memberCenterService.getProfile(othersideaccount);
