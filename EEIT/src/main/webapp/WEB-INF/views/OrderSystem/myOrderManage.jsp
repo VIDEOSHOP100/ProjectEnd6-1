@@ -54,7 +54,7 @@
 								<th>訂單金額</th>
 								<th>訂單日期</th>
 								<th>訂單狀態</th>
-								<th></th>
+								<th>訂單補印</th>
 							</tr>
 						</thead>
 
@@ -66,12 +66,12 @@
 								<tr class="trkill">
 									<td></td>
 									<td><i class="far fa-caret-square-down fa-2x product"></i></td>									
-									<td><h5><a href="${pageContext.request.contextPath}/orderManage/manageOrderProduct/${xxx.orderSeqNo}">${xxx.orderSeqNo}</a>
-										</h5></td>
+									<td><h5>${xxx.orderSeqNo}</h5></td>
 									<td class="puthere">${xxx.howToPay}</td>
 									<td>NT${xxx.orderTotalPrice}</td>
 									<td>${xxx.orderDateTime}</td>
 									<td>${xxx.transorderStatus}</td>
+									<td><a href="${pageContext.request.contextPath}/getPdfFile/pdf/${xxx.orderSeqNo}"><i class="fas fa-cloud-download-alt"></i></a></td>
 								</tr>
 							</c:forEach>
 						

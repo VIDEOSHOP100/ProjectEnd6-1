@@ -9,25 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link
-	href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
-	rel="stylesheet">
-<link href="<c:url value='/global/css/modern-business.css'/> "
-	rel="stylesheet">
-<style>
 
-#MyBlog {
-	position: fixed; /*固定在網頁上不隨卷軸移動，若要隨卷軸移動用absolute*/
-	top: 80%; /*設置垂直位置*/
-	right: -1400px; /*設置水平位置，依所放的內容多寡需要自行手動調整*/
-	
-	padding: 10px 20px;
-	border-radius: 10px; /*圓角*/
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	z-index: 999;
-}
-</style>
+
 </head>
 <body>
 	<!-- Navigation -->
@@ -149,10 +132,10 @@
 								value="${param.recipientAddr}" />
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<form:checkbox path="" class="checkbox" value="1" />
-						是否同意商城<a href="license">條款</a>
-					</div>
+<!-- 					<div class="col-sm-6"> -->
+<%-- 						<form:checkbox path="" class="checkbox" value="1" /> --%>
+<!-- 						是否同意商城<a href="license">條款</a> -->
+<!-- 					</div> -->
 
 				</div>
 
@@ -160,33 +143,33 @@
 					<h3 class="dark-grey">付款方式</h3>
 					<div class="form-group row">
 						<div class="col-sm-6">
-							<form:radiobutton name="pay" class="checkbox"
+							<form:radiobutton id="paywebatm" name="pay" class="checkbox"
 								path="proPayTypeSeqNo" value="1" />
-							WebATM
+							<label for="paywebatm">WebATM</label>
 						</div>
 
 						<div class="col-sm-6">
-							<form:radiobutton id="paycredit" class="checkbox"
+							<form:radiobutton id="paycredit" name="pay" class="checkbox"
 								path="proPayTypeSeqNo" value="2" />
 							<label for="paycredit">信用卡付款</label>
 						</div>
 
 						<div class="col-sm-6">
-							<form:radiobutton name="pay" class="checkbox"
+							<form:radiobutton id="payatm" name="pay" class="checkbox"
 								path="proPayTypeSeqNo" value="3" />
-							ATM轉帳
+							<label for="payatm">ATM轉帳</label>
 						</div>
 
 						<div class="col-sm-6">
-							<form:radiobutton name="pay" class="checkbox"
+							<form:radiobutton id="payonline" name="pay" class="checkbox"
 								path="proPayTypeSeqNo" value="4" />
-							線上支付(paypal)
+						<label for="payonline">線上支付(paypal)</label>
 						</div>
 
 						<div class="col-sm-6">
-							<form:radiobutton name="pay" class="checkbox"
+							<form:radiobutton id="payinshop" name="pay" class="checkbox"
 								path="proPayTypeSeqNo" value="5" />
-							超商取貨付款
+							<label for="payinshop">超商取貨付款</label>
 						</div>
 					</div>
 
@@ -196,27 +179,27 @@
 					<h3 class="dark-grey">取貨方式</h3>
 					<div class="form-group row">
 						<div class="col-sm-6">
-							<form:radiobutton name="ship" class="checkbox"
+							<form:radiobutton id="Transportpost" name="ship" class="checkbox"
 								path="proTransportSeqNo" value="1" />
-							包裹郵寄
+						<label for="Transportpost">包裹郵寄</label>
 						</div>
 
 						<div class="col-sm-6">
-							<form:radiobutton name="ship" class="checkbox"
+							<form:radiobutton id="Transportseven" name="ship" class="checkbox"
 								path="proTransportSeqNo" value="2" />
-							7-11店到店付款
+							<label for="Transportseven">7-11店到店付款</label>
 						</div>
 
 						<div class="col-sm-6">
-							<form:radiobutton name="ship" class="checkbox"
+							<form:radiobutton id="TransportFami" name="ship" class="checkbox"
 								path="proTransportSeqNo" value="3" />
-							Fami店到店付款
+							<label for="TransportFami">Fami店到店付款</label>
 						</div>
 
 						<div class="col-sm-6">
-							<form:radiobutton name="ship" class="checkbox"
+							<form:radiobutton id="Transportblack" name="ship" class="checkbox"
 								path="proTransportSeqNo" value="4" />
-							黑貓宅急便
+							<label for="Transportblack">黑貓宅急便</label>
 						</div>
 					</div>
 				</div>

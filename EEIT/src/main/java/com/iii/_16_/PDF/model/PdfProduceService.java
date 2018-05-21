@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -124,22 +125,28 @@ public class PdfProduceService {
 			p10.setSpacingBefore(10f);
 			p11.add(new Phrase("    ", font));
 			p11.setSpacingBefore(10f);
-
-			p12.add(new Phrase(" 商品名稱                                    商品數量                商品價格 ", font1));
-			p12.setSpacingBefore(10f);
-
+			//取出該訂單的商品資訊 放入paragraph
 			List<Paragraph> paragraphlist = new ArrayList<>();
+			List<Integer> namelen = new ArrayList<>();
 			for (OrderProductBean orderbean : productlist) {
 				Paragraph paragraph = new Paragraph();
-
 				ProductSaleBean oneproduct = productservice.getBySeqNo(orderbean.getProductSeqNo());
-
-				paragraph.add(new Phrase(oneproduct.getProName().substring(0, 10) + "        "
-						+ orderbean.getProductCount() + "                " + orderbean.getProductPrice(), font1));
+				int proNamelen = oneproduct.getProName().length();
+				paragraph.add(new Phrase(oneproduct.getProName()+ "     "+String.valueOf(orderbean.getProductCount())+"     "+String.valueOf(orderbean.getProductPrice()), font1));
 				paragraph.setSpacingBefore(10f);
 				paragraphlist.add(paragraph);
-
+				namelen.add(proNamelen);
 			}
+			String space = " ";
+		    Integer max1 = Collections.max(namelen);
+		    for(int i=0 ; i<=max1 ;i ++) {
+		    	space += " ";
+		    }
+		    	 
+			
+
+			p12.add(new Phrase("商品名稱"+space+"商品數量                商品價格 ", font1));
+			p12.setSpacingBefore(10f);
 			Paragraph para1 = new Paragraph();
 			Anchor anchorTarget2 = new Anchor("                             " + "LiveMarket線上訂單明細", font2);
 			para1.setSpacingBefore(10f);

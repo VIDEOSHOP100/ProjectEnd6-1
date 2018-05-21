@@ -15,7 +15,7 @@ public class OrderBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderSeqNo;
-	private Integer orderproductNum;
+
 	private String ordererName;
 	private Integer ordererTel;
 	private Integer ordererHomeTel;
@@ -100,12 +100,7 @@ public class OrderBean {
 	public void setOrderSeqNo(Integer orderSeqNo) {
 		this.orderSeqNo = orderSeqNo;
 	}
-	public Integer getOrderproductNum() {
-		return orderproductNum;
-	}
-	public void setOrderproductNum(Integer orderproductNum) {
-		this.orderproductNum = orderproductNum;
-	}
+	
 	public String getOrdererName() {
 		return ordererName;
 	}
@@ -168,13 +163,13 @@ public class OrderBean {
 	}
 
 	
-	public OrderBean(Integer orderSeqNo, Integer orderproductNum, String ordererName, Integer ordererTel,
+	public OrderBean(Integer orderSeqNo, String ordererName, Integer ordererTel,
 			Integer ordererHomeTel, String ordererEmail, String ordererAddr, String recipientName, Integer recipientTel,
 			Integer recipientHomeTel, String recipientEmail, String recipientAddr, Integer proPayTypeSeqNo,
 			Integer proTransportSeqNo, Date orderTime, Integer orderStatus) {
 		super();
 		this.orderSeqNo = orderSeqNo;
-		this.orderproductNum = orderproductNum;
+		
 		this.ordererName = ordererName;
 		this.ordererTel = ordererTel;
 		this.ordererHomeTel = ordererHomeTel;
@@ -192,7 +187,7 @@ public class OrderBean {
 	}
 	@Override
 	public String toString() {
-		return "OrderBean [orderSeqNo=" + orderSeqNo + ", orderproductNum=" + orderproductNum + ", ordererName="
+		return "OrderBean [orderSeqNo=" + orderSeqNo +", ordererName="
 				+ ordererName + ", ordererTel=" + ordererTel + ", ordererHomeTel=" + ordererHomeTel + ", ordererEmail="
 				+ ordererEmail + ", ordererAddr=" + ordererAddr + ", recipientName=" + recipientName + ", recipientTel="
 				+ recipientTel + ", recipientHomeTel=" + recipientHomeTel + ", recipientEmail=" + recipientEmail
