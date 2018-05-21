@@ -43,8 +43,6 @@
 				<div class="card-body">
 			
 			
-					<h6>xxxx</h6>
-					<h6>ooooo</h6>
 					<!-- 每頁不同的內容從這裡開始 -->
 					<table id="productTable" class="table table-condensed">
 						<thead>
@@ -67,7 +65,7 @@
 							<c:forEach var="xxx" items="${orderlists}">
 								<tr class="trkill">
 									<td></td>
-									<td><button class="product"><i class="far fa-caret-square-down fa-2x product"></i></button></a></td>									
+									<td><i class="far fa-caret-square-down fa-2x product"></i></td>									
 									<td><h5><a href="${pageContext.request.contextPath}/orderManage/manageOrderProduct/${xxx.orderSeqNo}">${xxx.orderSeqNo}</a>
 										</h5></td>
 									<td class="puthere">${xxx.howToPay}</td>
