@@ -3,7 +3,19 @@
  */
 
 $(document).ready(function() {	
-
+	//聊天框拖曳-------------
+	var grid = $(".draggable");
+	grid.draggable({cursor: "progress"});
+	//聊天框拖曳------------
+//	$('#JQellipsis').readmore({
+//		  speed: 75,
+//		  maxHeight: 500
+//	});
+//	grid.resizable({
+//		 ghost: true,
+//	 animate: true
+//	});
+	
 	var account = $('#catch-account').val();
 	var bidPrice = $('.bidPrice').val();
 	var productSeqNo = $('#productSeqNo').val();
@@ -36,22 +48,25 @@ $(document).ready(function() {
 $('.deleteAuction').click(function(){
 		var thisDeleteButton = $(this) 
 		var productSeqNo = $('#auctionSeqNo').val();
-//		SendEndBid(account, productSeqNo)
+		
 		$.ajax({
 			type: "POST",
 			url: "/EEIT/endAuction",
 			data: {_method : "PUT", productSeqNo : productSeqNo, auctionStatus : 2},
 			timeout: 600000,
 			success: function (data) {
-				var statusdata = data.status;
-				var account = statusdata.account;
-				var productSeqNo = statusdata.productSeqNo;
+//				alert(data)
+//				var statusdata = data.status;
+//				var account = statusdata.account;
+//				var productSeqNo = statusdata.productSeqNo;
 				
 //				var parentElement = thisDeleteButton.parents('.row')
 //				parentElement.find('.col-md-7').remove();
 //				parentElement.find('.col-md-5').remove();
-				alert("拍賣物品"+productSeqNo+"已賣給"+account);
-				responsiveVoice.speak("拍賣物品"+productSeqNo+"已賣給"+account,"Chinese Female");
+				
+				
+//				alert("拍賣物品"+productSeqNo+"已賣給"+account);
+//				responsiveVoice.speak("拍賣物品"+productSeqNo+"已賣給"+account,"Chinese Female");
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
@@ -95,6 +110,8 @@ $(document).on('keyup','.input-group>input',function(e){
     }
     
 });
+
+
 //進入聊天室---------------------------------------
 window.onload=sendView;
 function sendView(account, liveStreamView){
@@ -145,12 +162,54 @@ function addView(account, liveStreamView){
 	$('#showViewAfter+div').remove();
 $('#showViewAfter').after('<div><p>目前觀看人數：'+(liveStreamView)+++'</p></div>') 
 }
+
+
+//叫價結束開始----------------------------------------
+function SendEndBid(account, productSeqNo){
+	var senderAccountFistWord = account.substring(0,1).charCodeAt()
+	var liveStreamSeqNo = $('.seqNo').val();
+	var productSeqNo = $('#productSeqNo').val();
+
+	stompClient.send("/app/endAuction/" + productSeqNo , {}, JSON.stringify({ 'productSeqNo':productSeqNo, 'account':account}));
+	
+}   
+$(document).on('click','.deleteAuction',function(e){
+	SendEndBid(account, productSeqNo);
+});
+//叫價結束END----------------------------------------
 //拍賣結束出現在中間-------------------------------------
-//function addAuctionend(account, productSeqNo){
-//	responsiveVoice.speak("拍賣物品"+productSeqNo+"已賣給"+account,"Chinese Female");
-//	
+function addAuctionEnd(account, productSeqNo,proName){
+	
+	responsiveVoice.speak("拍賣物品"+proName+"已賣給"+account,"Chinese Female");
 //	append('<div class="relative2"><p class="hahaha">'+"拍賣物品"+ productSeqNo + "已賣給 "+ account +'</p></div>')
-//}
+$('.hahaha').text("拍賣物品"+ proName + "已賣給 "+ account);
+	
+	$('.hahaha').dialog({
+		autoOpen:false,
+		show:{
+			effect: "fold",
+			duration:500
+		},
+		hide:{
+			effect:"fold",
+			duration:500
+		}
+	})
+	$('.hahaha').dialog({
+		height:500,
+		width:400,
+		modal:true,
+		title: account,
+		buttons:{
+			Ok:function(){
+				$(this).dialog("close");
+			}
+		}
+	})
+	$('.hahaha').dialog("open");
+	$('.proitemcontroller').remove();
+}
+
 //--------------------------------------------------
  //增加會員購買商品到聊天室窗----------------------------------------------------
 //var productSeqNo = $('.productSeqNo').val();
@@ -261,16 +320,7 @@ $(document).on('keyup','.input-Bid>input',function(e){
 //console.log("asdasd");
 //console.log(stompClient); 
 
-//叫價結束開始----------------------------------------
-//function SendEndBid(account, productSeqNo){
-//	var senderAccountFistWord = account.substring(0,1).charCodeAt()
-//	var liveStreamSeqNo = $('.seqNo').val();
-//	var productSeqNo = $('#productSeqNo').val();
-//
-//	stompClient.send("/app/endAuction/" + productSeqNo , {}, JSON.stringify({ 'productSeqNo':productSeqNo, 'account':account}));
-//	
-//}   
-//叫價結束END----------------------------------------
+
 
 
 //聊天室開始----------------------------------
@@ -283,11 +333,11 @@ stompClient.connect({}, function(frame) {
 //聊天室結束----------------------------------
    
 //叫價結束訂閱---------------------------
-//    stompClient.subscribe('/target/endAuction/subscription/' + productSeqNo , function(auctionendreturn){
-////    	var account = $('#catch-account').val();
-//    	addAuctionend(JSON.parse(auctionendreturn.body).account,JSON.parse(auctionendreturn.body).productSeqNo)
-//    	
-//    });
+    stompClient.subscribe('/target/endAuction/subscription/' + productSeqNo , function(auctreturn){
+//    	var account = $('#catch-account').val();
+    	addAuctionEnd(JSON.parse(auctreturn.body).account,JSON.parse(auctreturn.body).productSeqNo,JSON.parse(auctreturn.body).proName)
+    	
+    });
 //叫價結束訂閱----------------------------------------
     
     
@@ -359,13 +409,13 @@ $(document).on('click','.chatrow',function(){
         responsiveVoice.speak($(this).text().split(":",2)[1],"Chinese Female")
 
     });
-$(document).on('click','.ccc',function(){
-
-	  $('.ccc').balloon({ html: true,
-		  contents: '<h4 class="card-title JQellipsisTitle">${product.proName}</h4>'
-			    +'<input type="text" size="40">'
-			    +'<input type="submit" value="Search">'});
-	});
+//$(document).on('click','.ccc',function(){
+//
+//	  $('.ccc').balloon({ html: true,
+//		  contents: '<h4 class="card-title JQellipsisTitle">${product.proName}</h4>'
+//			    +'<input type="text" size="40">'
+//			    +'<input type="submit" value="Search">'});
+//	});
 
 //時間選擇器 
 	 $(function () {
@@ -374,5 +424,18 @@ $(document).on('click','.ccc',function(){
 	 $(function () {
         $('#aucEnd').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
     });
+	 
+//動態標題 HOVER
+	 
+	 $(".mt-4").hover(
+			  function () {
+			    $(this).addClass('animated infinite bounce');
+			  }, 
+			  function () {
+			    $(this).removeClass('animated infinite bounce');
+			  }
+			  );
+	
+	 
 })
 

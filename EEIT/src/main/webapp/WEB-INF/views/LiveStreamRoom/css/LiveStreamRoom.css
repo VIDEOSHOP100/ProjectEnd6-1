@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.draggable{
+	
+	z-index:100;
+}
 .relative2 {
   position: relative;
   top: -20px;

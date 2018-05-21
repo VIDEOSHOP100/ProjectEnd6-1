@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title> 
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
 <link href="<c:url value='/InsertLiveStream/css/bootstrap-datetimepicker.css'/> " rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
@@ -100,7 +101,7 @@ justify-content: center;
 <iframe width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe> 
                 <h2 id="showViewAfter">${sb.streamName}</h2>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 draggable">
           	<div class="chat-sidebara">
 				<div class="sidebar-namea">
 			<div class="card mb-4">
@@ -390,10 +391,12 @@ justify-content: center;
 
 
 
-<!-- 測試 VOICE-->
-
-  
-<!-- 測試VOICE -->
+<!-- 測試 log-->
+<div class="relative2">
+<p class="hahaha">拍賣物品productSeqNo已賣給account</p>
+</div>
+ 
+<!-- 測試log -->
 
 
 
