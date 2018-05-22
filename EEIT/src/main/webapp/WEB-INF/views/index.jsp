@@ -110,11 +110,14 @@
 	</div>
 	</header>
 	<div class="container">
-		<h1>
+		<h2>
 		<a class="indexTitle" href="<c:url value='/LiveStreamHall' />">
+		<i class="fas fa-wifi"></i>
 			正在直播
 		</a>
-		</h1>
+		<small class="suptitle">點擊觀看及時串流直播</small>
+		</h2>
+		
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${liveStream}">
 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
@@ -141,6 +144,7 @@
 			</c:forEach>
 
 		</div>
+		<hr>
 		<h1>
 		<a class="indexTitle"  href="<c:url value='/hotVideo' />">
 			熱門影片
@@ -180,6 +184,7 @@
 			</c:forEach>
 
 		</div>
+		<hr>
 		<h1>
 		<a class="indexTitle"  href="<c:url value='/newVideo' />">
 			最新影片
@@ -217,6 +222,7 @@
 				</div>
 			</c:forEach>
 		</div>
+		<hr>
 		<c:forEach var="videoTypes" items="${sortedVideos}">
 			<h1>
 				<a  class="indexTitle"  href="<c:url value='/videoType/${videoTypes[0].videoType}' />">
@@ -253,10 +259,13 @@
 							</div>
 						</div>
 					</div>
+					
 				</c:forEach>
 			</div>
+			<hr>
 		</c:forEach>
 	</div>
+	
 	<footer class="py-5 bg-dark">
 	<div class="container">
 		<p class="m-0 text-center text-white">Copyright &copy; Your
@@ -265,6 +274,7 @@
 	</footer>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script src="<c:url value='/global/js/index.js'/> "></script>
+<!-- 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> -->
 
 </body>
 

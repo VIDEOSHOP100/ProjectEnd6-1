@@ -25,6 +25,8 @@ import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.LoginService;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
+import com.iii._05_.customized.model.CustomizedBean;
+import com.iii._05_.customized.model.CustomizedService;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 import com.iii._16_.PersonShop.service.PersonShopService;
 import com.iii._16_.ProductSale.ProductPicture.model.ProPicBean;
@@ -67,6 +69,9 @@ public class GetImageController {
 
 	@Autowired
 	InputLiveStreamTimeService inputLiveStreamTimeService;
+	
+	@Autowired
+	CustomizedService CustomizedService;
 	@RequestMapping(value = "/getImage/{dataType}/{pk}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse response, @PathVariable("dataType") String dataType,
 			@PathVariable("pk") String pk) {
@@ -105,6 +110,9 @@ public class GetImageController {
 		}else if(dataType.equalsIgnoreCase("messageImage")) {
 			MessageImageBean messageImageBean = messageImageService.selectMessageImageBySeqNo(Integer.parseInt(pk));
 			path = messageImageBean.getMessageImageFilePath();
+		}else if(dataType.equals("customizedPic")) { 
+			CustomizedBean CustomizedBean = CustomizedService.getCustomizedBySeqNo(Integer.parseInt(pk));
+			path = CustomizedBean.getCustomizedPic();
 		}
 		
 		HttpHeaders headers = new HttpHeaders();

@@ -6,9 +6,14 @@ body > div.container > div > div > div > div > div > button{
 	float : right;
 }
 
-
+.suptitle{
+	color: 	#bdbdbd;
+	font-size: 16px;
+}
 .indexTitle{
 	color: black;
+	font-weight: 100;
+	margin-top: 50px;
 }
 
 .indexTitle:hover{
