@@ -3,6 +3,8 @@
  */
 
 $(document).ready(function() {	
+	//進入畫面隱藏控制單
+	 $('.editform').hide();
 	//聊天框拖曳-------------
 	var grid = $(".draggable");
 	grid.draggable({cursor: "progress"});
@@ -147,20 +149,20 @@ function senEndView(account, liveStreamView){
 }
 //出聊天室----------------------------------------
 window.onbeforeunload=senEndView;
-function addEndView(account, liveStreamView){
+function addEndView(account, liveStreamView ,allLiveStreamView){
 //	var liveStreamView = $('#showView').text();
 //alert(liveStreamView)
 	
 	$('#showViewAfter+div').remove();
-$('#showViewAfter').after('<div><p>目前觀看人數：'+(liveStreamView)--+'</p></div>') 
+$('#showViewAfter').after('<div><p><i class="fas fa-user"></i>&nbsp;&nbsp;目前觀看人數：'+(liveStreamView)--+'&nbsp;&nbsp;&nbsp;<i class="fas fa-users"></i>&nbsp;&nbsp;總觀看人次：'+(allLiveStreamView)+'</p></div>') 
 }
 
-function addView(account, liveStreamView){
+function addView(account, liveStreamView,allLiveStreamView){
 //	var liveStreamView = $('#showView').text();
 //alert(liveStreamView)
 	
 	$('#showViewAfter+div').remove();
-$('#showViewAfter').after('<div><p>目前觀看人數：'+(liveStreamView)+++'</p></div>') 
+$('#showViewAfter').after('<div><p><i class="fas fa-user"></i>&nbsp;&nbsp;目前觀看人數：'+(liveStreamView)+++'&nbsp;&nbsp;&nbsp;<i class="fas fa-users"></i>&nbsp;&nbsp;總觀看人次：'+(allLiveStreamView)+++'</p></div>') 
 }
 
 
@@ -344,7 +346,7 @@ stompClient.connect({}, function(frame) {
 //觀看人數開始----------------------------------
     stompClient.subscribe('/target/ShowHistory/subscription/' + liveStreamSeqNo , function(historyreturn){
 //    	var account = $('#catch-account').val();
-    	addView(JSON.parse(historyreturn.body).account,JSON.parse(historyreturn.body).liveStreamView)
+    	addView(JSON.parse(historyreturn.body).account,JSON.parse(historyreturn.body).liveStreamView,JSON.parse(historyreturn.body).allLiveStreamView)
     	
     });
 //觀看人數開始----------------------------------   
@@ -354,7 +356,7 @@ stompClient.connect({}, function(frame) {
 //觀看人數結束----------------------------------  
     stompClient.subscribe('/target/ShowEndHistory/subscription/' + liveStreamSeqNo , function(historyreturn){
 //    	var account = $('#catch-account').val();
-    	addEndView(JSON.parse(historyreturn.body).account,JSON.parse(historyreturn.body).liveStreamView)
+    	addEndView(JSON.parse(historyreturn.body).account,JSON.parse(historyreturn.body).liveStreamView,JSON.parse(historyreturn.body).allLiveStreamView)
     	
     });
     
@@ -435,6 +437,55 @@ $(document).on('click','.chatrow',function(){
 			    $(this).removeClass('animated infinite bounce');
 			  }
 			  );
-	
+//開關插劍	
+	 $("[name='my-checkbox']").bootstrapSwitch();
+	 
+	 
+	 $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+		 
+		 if(state==true){
+//			 alert(true)
+			 //顯示物品並隱藏控制列
+			 $('.onsaleitems').show();
+			 $('.editform').hide();
+			 
+			
+		 }else{
+			 //顯示控制列並隱藏物品
+			 $('.onsaleitems').hide();
+			 $('.editform').show();
+		 }
+		  console.log(this); // DOM element
+		  console.log(event); // jQuery event
+		  console.log(state); // true | false
+		});
+	 
+	 
+	//新增插件開始-----------------------------------------
+//	 $('#customizedSubmit').click(function(){
+//	 	
+//	 	var customizedTitle = $('#customizedTitle').val();
+//	 	var customizedDesc = $('#customizedDesc').val();
+//	 	var customizedPic = $('#customizedPic').val();
+////	 	var reportType = $('#reportType').val();
+////	 	var accountTo = $('.uploadaccount').text();
+//	 	$.ajax({
+//	 		type:"POST",
+//	 		url:"/EEIT/CustomizedControl",
+//	 		data:{ customizedTitle:customizedTitle , customizedDesc:customizedDesc,customizedPic:customizedPic},
+//	 		timeout: 600000,
+//	 		success:function(){
+////	 			$('#memberReportButton').attr("disabled","disabled").text("已檢舉");
+////	 			$('#cancel').trigger("click");
+//	 		
+//	 		},
+//	 		error: function (e) {
+//	 			console.log("ERROR : ", e);
+//	 			alert(e);
+//	 		}
+//	 	})
+//	 	
+//	 })
+	 //新增插件結束------------------------------------------
 })
 

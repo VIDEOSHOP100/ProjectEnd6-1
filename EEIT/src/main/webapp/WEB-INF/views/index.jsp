@@ -109,7 +109,7 @@
 		</a>
 	</div>
 	</header>
-	<div class="container" style="margin-left:100px">
+	<div class="container" style="margin-left:50px">
 		<h1 style="margin-top:50px;margin-bottom:10px">
 		
 		<a class="indexTitle" href="<c:url value='/LiveStreamHall' />">
@@ -259,6 +259,7 @@
 			</div>
 		</c:forEach>
 	</div>
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script src="<c:url value='/global/js/index.js'/> "></script>
 </body>
 
