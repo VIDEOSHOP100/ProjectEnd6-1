@@ -46,13 +46,16 @@
 
 
 		<div id="accordion">
+			
 			<c:forEach items = "${allQuestionList }" var="questionListBean">
 				<h3>${questionListBean.questionListTitle }</h3>
+<%-- <c:if test="${questionListBean.questionListType }"> --%>
 				<div>
 					<p>
 						${questionListBean.questionListArticle }
 					</p>
 				</div>
+<%-- </c:if> --%>
 			</c:forEach>
 		</div>
 	</div>	

@@ -90,7 +90,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/Product/**").addResourceLocations("/WEB-INF/views/Product/");
 		registry.addResourceHandler("/videoChat/**").addResourceLocations("/WEB-INF/views/videoChat/");
 		registry.addResourceHandler("/search/**").addResourceLocations("/WEB-INF/views/search/");
-
+		registry.addResourceHandler("/AuctionEnd/**").addResourceLocations("/WEB-INF/views/AuctionEnd/");
 		
 		
 		//		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/views/marketIndex/css/");

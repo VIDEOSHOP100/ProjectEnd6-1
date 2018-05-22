@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.iii._01_.Manager.bean.ManagerBean;
+import com.iii._01_.Member.bean.MemberBean;
 
 @Controller
 @RequestMapping("/backstage")
@@ -20,6 +21,8 @@ public class BackstageController {
 		if (mb != null) {
 			return "backstage/backstage";
 		} else {
+
+			
 			return "redirect:managerLogin";
 		}
 
