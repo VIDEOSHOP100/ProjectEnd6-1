@@ -89,7 +89,6 @@ public class QuestionListController {
 	
 	@RequestMapping(value = "/getAllQuestionList" ,method = RequestMethod.GET)
 	public @ResponseBody List<QuestionListBean> getAllQuestionList() {
-//	public @ResponseBody List<MemberReportBean> getAllMemberReport() {	
 		List<QuestionListBean> questionListBeanList = questionListService.getAllQuestionListBean();
 		return questionListBeanList;
 	}
@@ -101,6 +100,15 @@ public class QuestionListController {
 		QuestionListBean questionListBean = new QuestionListBean();
 		map.put("questionListBean", questionListBean);
 		return "questionList/addQuestionList";
+	}
+	
+	//新增
+	@RequestMapping(value = "/updateQuestionList" ,method = RequestMethod.GET)
+	public String updateQuesListBean(Map<String,Object> map,HttpSession session) {	
+		System.out.println("new");
+		QuestionListBean questionListBean = new QuestionListBean();
+		map.put("questionListBean", questionListBean);
+		return "questionList/updateQuestionList";
 	}
 
 	

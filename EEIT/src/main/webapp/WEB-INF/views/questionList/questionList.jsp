@@ -9,56 +9,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">	
 	  
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>會員問題</title>
 	<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 	<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 	<link href="<c:url value='/global/css/index.css'/>" rel="stylesheet">
+	
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	
   </head>
 
   <body>
 
-    <div class="container">
+<!--     <div class="container"> -->
 	  <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
       <h1 class="mt-4 mb-3">客服
         <small>常見問題集</small>
       </h1>
 
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item">
-			<a href="${pageContext.request.contextPath}/QuestionList/Main">會員問題</a>
-		</li>	
-	</ol>
-	
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item">
-			<a href="/EEIT">商品問題</a>
-		</li>
-	</ol>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item">
-				<a href="/EEIT">帳號問題</a>
-			</li>
-		</ol>
 
-
-
-		<div id="accordion">
-			
-			<c:forEach items = "${allQuestionList }" var="questionListBean">
-				<h3>${questionListBean.questionListTitle }</h3>
-<%-- <c:if test="${questionListBean.questionListType }"> --%>
+	<div id="accordion">
+		<c:forEach items = "${allQuestionList }" var="questionListBean">
+			<h3>${questionListBean.questionListTitle }</h3>
 				<div>
 					<p>
 						${questionListBean.questionListArticle }
 					</p>
 				</div>
-<%-- </c:if> --%>
-			</c:forEach>
-		</div>
-	</div>	
+		</c:forEach>
+	</div>
+
+
 
     <footer class="py-5 bg-dark">
       <div class="container">
@@ -70,8 +59,9 @@
 	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	  <script>
 	  	  $( function() {
-		    $( "#accordion" ).accordion();
+		    $( "#accordion").accordion();
 		  } );
+
 	  </script>
   </body>
 </html>
