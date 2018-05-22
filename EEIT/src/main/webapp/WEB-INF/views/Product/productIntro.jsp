@@ -22,7 +22,7 @@
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 
 	<!-- Page Content -->
-	<div class="container">
+  <div class="container" style="margin-left:50px">
 
 		<!-- Portfolio Item Heading -->
 		<h1 class="my-4">
@@ -114,6 +114,6 @@
 	        }
 	    });
 	</script>
-
+<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>

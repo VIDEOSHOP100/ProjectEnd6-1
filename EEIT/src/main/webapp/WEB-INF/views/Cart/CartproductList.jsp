@@ -31,7 +31,7 @@
 	<!-- Navigation -->
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<!-- Page Content -->
-	<div class="container">
+  <div class="container" style="margin-left:50px">
 
 		<!-- Portfolio Item Heading -->
 		<h1 class="my-4 account">
@@ -129,6 +129,6 @@
 	<script src="http://malsup.github.com/jquery.form.js"></script>
 	
 	<script src="<c:url value='/Cart/js/cart.js'/> "></script>
-
+<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>
