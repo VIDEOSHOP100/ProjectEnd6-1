@@ -15,16 +15,6 @@
 	rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/global/css/index2.css'/>">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/marketIndex/css/animate.min.css'/>">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/marketIndex/css/default.css'/>">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/marketIndex/css/normalize.css'/>">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/marketIndex/css/styles2.css'/>">
 
 <link
 	href="<c:url value='http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css'/>"
@@ -112,8 +102,7 @@ ul li {
 	<!-- 功能選單 Start -->
 
 	<!-- Page Content -->
-	<div class="container">
-
+  <div class="container" style="margin-left:50px">
 
 
 		<!-- Jumbotron Header -->
@@ -330,7 +319,7 @@ ul li {
 		})
 	</script>
 
-
+<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 
 </body>
 </html>
