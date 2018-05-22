@@ -23,7 +23,7 @@
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container"  style="margin-left:50px">
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">喜歡的影片

@@ -516,12 +516,7 @@
 	    	  
 	    	  
 	    	  }
-	      
-	      
-		
 	</script>
-
-	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
 </body>
 

@@ -15,7 +15,7 @@
 </head>
 <body>
 	<c:if test="${!empty LoginOK }">
-		<div class="chat-sidebar" style="z-index: 5">
+		<div class="chat-sidebar">
 			<p class="chat-sidebar-title">好友</p>
 			<hr class="chat-sidebar-line">
 			<div class="chat-sidebar-inside chat-sidebar-inside-Friend chat-sidebar-insideHide">

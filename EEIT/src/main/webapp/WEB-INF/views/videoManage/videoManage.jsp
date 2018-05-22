@@ -23,7 +23,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-		<div class="container">
+		<div class="container"  style="margin-left:50px">
 		
 			<div class="row">
 				<div class="col-md-10">

@@ -13,7 +13,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
     
-    <div class="container">
+    <div class="container"  style="margin-left:50px">
 	    <input id="account" type="hidden" name="account" value="${LoginOK.account}">
 		<input id="othersideaccount" type="hidden" name="othersideaccount" value="${otherside.account}">
 		<div class="profileButtonBlock">
