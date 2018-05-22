@@ -183,6 +183,7 @@
 <!-- 							附加照片 -->
 <%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
 <!-- 						</div> -->
+					</form:form>
 				</div>
 				<div class="modal-footer">
 
@@ -190,7 +191,6 @@
 						data-dismiss="modal">取消</button>
 					<button id="reportSubmit" type="button" class="btn btn-warning">確認檢舉</button>
 
-					</form:form>
 				</div>
 				</c:if>
 			</div>
@@ -246,6 +246,7 @@
 <!-- 							附加照片 -->
 <%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
 <!-- 						</div> -->
+					</form:form>
 				</div>
 				<div class="modal-footer">
 
@@ -253,7 +254,6 @@
 						data-dismiss="modal">取消</button>
 					<button id="myMessageSubmit" type="button" class="btn btn-warning">送出</button>
 
-					</form:form>
 				</div>
 				</c:if>
 			</div>
