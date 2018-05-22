@@ -72,7 +72,7 @@ public class AuctionEndController {
 		
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-//		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+        //Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		// 設定交易時間
 		aio.setMerchantTradeDate(sdf.format(date));	
 		// 商品名稱＋單價＋數量

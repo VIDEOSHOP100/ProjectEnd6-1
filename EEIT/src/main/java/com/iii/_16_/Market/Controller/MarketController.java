@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._01_.Member.bean.MemberBean;
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._09_.addproduct.model.ProductBean;
 import com.iii._16_.OrderSystem.Order.model.OrderBean;
 import com.iii._16_.OrderSystem.Order.model.OrderService;
@@ -31,7 +33,8 @@ public class MarketController {
 	private ProductSaleService productservice;
 	@Autowired
 	private OrderService orderservice;
-
+	@Autowired 	
+	InputLiveStreamTimeService InputLiveStreamTimeService;
 	//進入商城首頁 controller 進入時取得會session attribute 判斷會員是否登入
 	//會員有登入會送出isMember的屬性字串
 	//進入商城會執行商品service方法 取出所有資料庫中的商品資訊
@@ -41,7 +44,8 @@ public class MarketController {
 	public String goPersonHomePage(HttpSession session,Map<String, Object> map) throws SQLException {
 		List<ProductSaleBean> productlist = productservice.selectAllProduct();
 		MemberBean memberbean = (MemberBean) session.getAttribute("LoginOK");
-		
+		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
+		map.put("AllLiveStream", AllLiveStreamList);
 		map.put("isMember",memberbean);
 		
 		map.put("productbeans", productlist);
