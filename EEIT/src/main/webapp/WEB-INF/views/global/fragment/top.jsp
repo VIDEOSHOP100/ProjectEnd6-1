@@ -189,8 +189,15 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"	href="#" 
 					   id="navbarDropdownBlog" data-toggle="dropdown"
-					   aria-haspopup="true" aria-expanded="false"><img height="25px" width="25px"
+					   aria-haspopup="true" aria-expanded="false">
+					<c:if test="${!empty LoginOK.birthday}">
+					   <img height="25px" width="25px"
 					src='${pageContext.request.contextPath}/getImage/member/${LoginOK.account}'> ${LoginOK.account}</a>
+					</c:if>
+					<c:if test="${empty LoginOK.birthday}">
+					 <img height="25px" width="25px"
+					src='${LoginOK.photoPath}'> ${LoginOK.account}</a>
+					</c:if>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog"> 
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/profile/${LoginOK.account}">我的個人頁面</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/memberUpdate">修改會員資料</a>
@@ -463,6 +470,26 @@
 	        // The ID token you need to pass to your backend:
 	        var id_token = googleUser.getAuthResponse().id_token;
 	        console.log("ID Token: " + id_token);
+	        
+	        
+	        $.ajax({
+	        
+	        	type:"POST",
+	        	url:"/EEIT/googleLogin",
+	        	data:{"ID_Token":id_token},
+	        	
+	        	success:function(data){
+	        		location.reload();
+	        	},
+	        	error : function(e) {
+					console.log("ERROR : ", e);
+					alert(e);
+				}
+	        
+	        
+	        })
+	        
+	        
 	      };
 		
 	      $(document).on("click",'#logoutButton',signOut);
