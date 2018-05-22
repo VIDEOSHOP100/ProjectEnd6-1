@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+ <div class="container" style="margin-left:50px">
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>	
 	<form:form id="myForm" name = "myForm" action = "/EEIT/QuestionList" ENCTYPE="multipart/form-data"  modelAttribute="questionListBean" method="POST">
 		<fieldset>
@@ -26,5 +27,7 @@
 			
 		</fieldset>
 	</form:form>
+</div>
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>

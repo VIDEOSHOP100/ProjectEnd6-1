@@ -29,7 +29,7 @@
 
   <body>
 
-<!--     <div class="container"> -->
+    <div class="container" style="margin-left:50px">
 	  <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
       <h1 class="mt-4 mb-3">客服
         <small>常見問題集</small>
@@ -46,15 +46,14 @@
 				</div>
 		</c:forEach>
 	</div>
+</div>
 
-
-
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-      </div>
-    </footer>
-	
+<!--     <footer class="py-5 bg-dark"> -->
+<!--       <div class="container"> -->
+<!--         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p> -->
+<!--       </div> -->
+<!--     </footer> -->
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	  <script>
@@ -63,5 +62,6 @@
 		  } );
 
 	  </script>
+	  <%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
   </body>
 </html>

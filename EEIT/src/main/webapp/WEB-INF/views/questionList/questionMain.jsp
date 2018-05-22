@@ -12,7 +12,7 @@
 
 </head>
 <body>
-<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>	
+
 
 	<a href = "${pageContext.request.contextPath}/QuestionList/addQuestionList">新增問題</a>
 	<br>
@@ -21,6 +21,6 @@
 	<a href = "${pageContext.request.contextPath}/QuestionList/insertQuestionList">修改問題</a>
 	<br>
 	<a href = "${pageContext.request.contextPath}/QuestionList/updateQuestionList">上傳問題</a>
-
+<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>
