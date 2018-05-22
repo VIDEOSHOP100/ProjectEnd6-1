@@ -125,9 +125,7 @@
 						<div class="card-body">
 							<h6 class="card-title videoTitle">
 								<a href="<c:url value='/LiveStream/${aVideoBean.liveStreamSeqNo}' />"><b>${aVideoBean.streamName}</b></a>
-								
 							</h6>
-							
 							<a class="uploaderLink"	href="<c:url value='/profile/${aVideoBean.account}' />">
 								<p class="videoSmallWords">${aVideoBean.account}</p>
 							</a>
@@ -139,7 +137,6 @@
 					</div>
 				</div>
 			</c:forEach>
-
 		</div>
 		<h1>
 		<a class="indexTitle"  href="<c:url value='/hotVideo' />">

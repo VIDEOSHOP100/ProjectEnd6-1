@@ -208,8 +208,12 @@
 					</div></li>
 			 
 
+<<<<<<< HEAD
+					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn" type="button" style="background-color:#ba7bd5; color: white">登出</button></a></li>
+=======
 <%-- 					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-danger" id="logoutButton" type="button" >登出</button></a></li> --%>
 					<li class="nav-item"><button class="btn btn-danger" id="logoutButton" type="button" >登出</button></li>
+>>>>>>> branch 'master' of https://github.com/VIDEOSHOP100/ProjectEnd6-1.git
 				</c:if>
 
 			</ul>
