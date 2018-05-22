@@ -26,7 +26,8 @@ $(document).ready(function () {
                 	var row = $('<div></div>').addClass('row');
                     
                 	var btn1 = $('<div></div> ').addClass('').html('<input type="button" value="新增問題" id="btn01" class="btn btn-primary">')
-                    
+//               <a href = "${pageContext.request.contextPath}/QuestionList/addQuestionList">新增問題</a>
+	    
                     var btn2 = $('<div></div> ').html('<input type="button" value="刪除問題" id="btn02" class="btn btn-primary">')
                     
                     var btn3 = $('<div></div> ').html('<input type="button" value="修改問題" id="btn03" class="btn btn-primary">')
