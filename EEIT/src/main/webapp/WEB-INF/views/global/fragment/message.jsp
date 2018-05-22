@@ -16,21 +16,71 @@
 <body>
 	<c:if test="${!empty LoginOK }">
 		<div class="chat-sidebar">
-			<input type="hidden" class="accountForMessage" value="${LoginOK.account}">
-			<c:forEach var="friendBean" items="${friendBeanList }" >
+			<p class="chat-sidebar-title">好友</p>
+			<hr class="chat-sidebar-line">
+			<div class="chat-sidebar-inside chat-sidebar-insideHide">
+				<input type="hidden" class="accountForMessage" value="${LoginOK.account}">
+				<c:forEach var="friendBean" items="${friendBeanList }" >
+					<div class="sidebar-name">
+						<c:if test="${LoginOK.account == friendBean.friendTo}">
+							<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
+								<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/${friendBean.friendSend}"> <span>${friendBean.friendSend }</span>
+							</button>				
+						</c:if>
+						<c:if test="${LoginOK.account == friendBean.friendSend}">
+							<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendTo)}" id="${friendBean.friendTo }">
+								<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/${friendBean.friendTo}"> <span>${friendBean.friendTo }</span>
+							</button>				
+						</c:if>
+					</div>
+				</c:forEach>
+			</div>
+			<p class="chat-sidebar-title">訂閱</p>
+			<hr class="chat-sidebar-line">
+			<div class="chat-sidebar-inside chat-sidebar-insideHide">
+				
 				<div class="sidebar-name">
-					<c:if test="${LoginOK.account == friendBean.friendTo}">
 						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
-							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/${friendBean.friendSend}"> <span>${friendBean.friendSend }</span>
+							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/bob"> <p>aaaaa</p><p><small class="subtitle">點擊觀看及時串流直播</small></span>
 						</button>				
-					</c:if>
-					<c:if test="${LoginOK.account == friendBean.friendSend}">
-						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendTo)}" id="${friendBean.friendTo }">
-							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/${friendBean.friendTo}"> <span>${friendBean.friendTo }</span>
-						</button>				
-					</c:if>
 				</div>
-			</c:forEach>
+				<div class="sidebar-name">
+						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
+							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/bob"> <p>AAAAA</p><p><small class="subtitle">點擊觀看及時串流直播</small></p>
+						</button>				
+				</div>
+				<div class="sidebar-name">
+						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
+							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/bob"> <p>vvvvv</p><p><small class="subtitle">點擊觀看及時串流直播</small></p>
+						</button>				
+				</div>
+				<div class="sidebar-name">
+						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
+							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/bob"> <p>bbbbbbbbbbbb</p><p><small class="subtitle">點擊觀看及時串流直播</small></p>
+						</button>				
+				</div>
+				<div class="sidebar-name">
+						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
+							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/bob"> <p>zxcvzxcvzzzzz</p><p><small class="subtitle">點擊觀看及時串流直播</small></p>
+						</button>				
+				</div>
+				<div class="sidebar-name">
+						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
+							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/member/bob"><p>zxcvzxcvzxcv</p><p><small class="subtitle">點擊觀看及時串流直播</small></p>
+						</button>				
+				</div>
+			</div>
+			<p class="chat-sidebar-title">購物車</p>
+			<hr class="chat-sidebar-line">
+			<div class="chat-sidebar-inside chat-sidebar-inside-cart chat-sidebar-insideHide">
+				<c:forEach var="product" items="${cartDetailList }">
+					<div class="sidebar-name">
+						<button type="button" class="sidebarUserButton sidebarUserButtonNone">
+							<img width="30" height="30" src="${pageContext.request.contextPath}/getImage/Product/${product.productbean.productSeqNo}"><p>${product.productbean.proName}</p><p><small class="subtitle">${product.productbean.proDescription}</small></p>
+						</button>				
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 		<div class="chatplace"></div>
 		<div id="insert-messageImage-form" title="圖片"  class="hideForm">

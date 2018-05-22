@@ -38,7 +38,7 @@
 
 
 	<!-- Navigation -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:#4b367c">
 		<div class="container">
 			<a class="navbar-brand" href="<c:url value='/' />">Live Market</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -157,7 +157,7 @@
 						<a class="nav-link dropdown-toggle notificatiolink" href="#" 
 							id="navbarDropdownPortfolio" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
-							<span class="notificationNone notification">
+							<span class="notificationNone notification"  style="background-color:#4b367c">
 								<i class="fas fa-exclamation-circle"></i>通知
 							</span>
 						</a>
@@ -201,12 +201,7 @@
 					</div></li>
 			 
 
-<<<<<<< HEAD
-					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn" type="button" style="background-color:#ba7bd5; color: white">登出</button></a></li>
-=======
-<%-- 					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-danger" id="logoutButton" type="button" >登出</button></a></li> --%>
-					<li class="nav-item"><button class="btn btn-danger" id="logoutButton" type="button" >登出</button></li>
->>>>>>> branch 'master' of https://github.com/VIDEOSHOP100/ProjectEnd6-1.git
+					<li class="nav-item"><button class="btn btn-danger" id="logoutButton" type="button"  style="background-color:#ba7bd5; color: white">登出</button></li>
 				</c:if>
 
 			</ul>

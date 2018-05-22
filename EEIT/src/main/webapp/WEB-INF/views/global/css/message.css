@@ -3,7 +3,7 @@
 
 /* 以上聊天室------------------------------------------------------------------- */
 .chat-sidebar {
-	width: 150px;
+	width: 250px;
 	position: fixed;
 	height: 94%;
 	right: 0px;
@@ -12,37 +12,37 @@
 	padding-bottom: 10px;
 	border: 1px solid rgba(29, 49, 91, .3);
 	display: block;
-	background-color: #271746;
+	background-color: rgba(23,20,31);
 }
 
-.chat-sidebar>.sidebar-name {
-	height: 60px;
+.chat-sidebar .sidebar-name {
+	height: 50px;
 	margin-bottom: 0px;
 	
 /* 	padding: 10px 0px 10px 0px; */
 }
 
-.chat-sidebar>.sidebar-name>.sidebarUserButton {
+.chat-sidebar .sidebar-name .sidebarUserButton {
 
 }
 
-.chat-sidebar>.sidebar-name>.sidebarUserButtonNone {
+.chat-sidebar .sidebar-name .sidebarUserButtonNone {
 /* 	height: 80px; */
 	width: 100%;
 	cursor: pointer;
 	display: block;
 	height: 100%;
 	text-align: left;
-	background-color: #271746;
+	background-color:  rgba(23,20,31);
 	border: none;
-	color: white;
+	color: #c5c2c9;
 	margin-top:0px;
 	
 }
-.chat-sidebar>.sidebar-name>.sidebarUserButtonNone:hover {
+.chat-sidebar .sidebar-name .sidebarUserButtonNone:hover {
 	background-color: #523092;
 }
-.chat-sidebar>.sidebar-name>.sidebarUserButtonAlert {
+.chat-sidebar .sidebar-name .sidebarUserButtonAlert {
 
 }
 
@@ -479,3 +479,66 @@
 /* 	overflow: hidden; */
 /* 	height: 500px; */
 /* } */
+
+.chat-sidebar-line{
+	border-color :gray;
+	margin-top:5px;
+	margin-bottom:10px;
+}
+
+.chat-sidebar-inside{
+}
+.chat-sidebar-insideHide{
+	height:200px;
+	width: 200px;
+	overflow:hidden;
+}
+.chat-sidebar-insideShow{
+	height:200px;
+	overflow:auto;
+}
+
+
+.chat-sidebar-inside-cart{
+	height:350px;
+}
+
+.subtitle{
+	color : gray;
+	font-size: 10px;
+	float:left;
+}
+
+.sidebarUserButton img,.sidebarUserButton p{
+	float:left;
+}
+.sidebarUserButton p{
+	width: 180px;
+	overflow: hidden;
+	margin: 0px;
+}
+.chat-sidebar-title{
+	color : #a4a1ac;
+	margin-left: 5px;
+	margin-bottom: 0px;
+}
+
+.chat-sidebar-inside::-webkit-scrollbar-track,body::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: rgba(23 20 31);
+}
+
+.chat-sidebar-inside::-webkit-scrollbar,body::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: rgba(23 20 31);
+}
+
+.chat-sidebar-inside::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb
+{
+	border-radius: 20px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: gray;
+}

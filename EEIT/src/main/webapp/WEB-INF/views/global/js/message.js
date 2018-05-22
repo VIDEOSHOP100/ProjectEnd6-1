@@ -628,5 +628,12 @@ $(document).ready(function() {
 	var form = dialogMessageImageInsert.find( "form" ).on( "submit", function( event ) {
 	      event.preventDefault();
 	});
-})
+	
 	//以上聊天室-------------------------------------------------------------------
+	$('.chat-sidebar-inside').mouseenter(function(){
+		$(this).animate(5000).css('overflow', 'auto');
+	})
+	$('.chat-sidebar-inside').mouseleave(function(){
+		$(this).animate(5000).css('overflow', 'hidden');
+	})
+})
