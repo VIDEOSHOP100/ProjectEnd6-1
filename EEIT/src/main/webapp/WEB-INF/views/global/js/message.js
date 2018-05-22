@@ -18,7 +18,10 @@ $(document).ready(function() {
         $("#insert-messageFile-form").removeClass('hideForm')
         $("#insert-messageVideo-form").removeClass('hideForm')
      }, 2000);
-    $('.sidebarUserButton').click(function () {
+    $(document).on('click','.chat-sidebar-inside-subscribe .sidebarUserButton',function () {
+    	
+    })
+    $(document).on('click','.chat-sidebar-inside-Friend .sidebarUserButton',function () {
         var right = 220;
         id = $(this).attr('id');
         right = $('div.box').length * 320 + right;

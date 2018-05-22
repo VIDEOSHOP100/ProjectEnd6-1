@@ -259,9 +259,7 @@
 			</div>
 		</c:forEach>
 	</div>
-	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script src="<c:url value='/global/js/index.js'/> "></script>
-
 </body>
 
 </html>

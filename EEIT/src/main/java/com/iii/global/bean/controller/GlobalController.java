@@ -17,33 +17,39 @@ import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 import com.iii._19_.messageFile.model.MessageFileBean;
 import com.iii._19_.messageImage.model.MessageImageBean;
 import com.iii._19_.messageVideo.model.MessageVideoBean;
+import com.iii._19_.subscriptionUploader.model.SubscriptionUploaderService;
 
 @ControllerAdvice
 public class GlobalController {
-	
+	@Autowired
+	SubscriptionUploaderService subscriptionUploaderService;
 	@Autowired
 	private ProCartListService procartlistservice;
 	@Autowired
 	private ProductSaleService productsaleservice;
+
 	@ModelAttribute
-	public void getAttribute(Map<String,Object> map,HttpSession session) {
+	public void getAttribute(Map<String, Object> map, HttpSession session) {
 		map.put("messageImageBean", new MessageImageBean());
 		map.put("messageFileBean", new MessageFileBean());
 		map.put("messageVideoBean", new MessageVideoBean());
-		MemberBean memberbean = (MemberBean)session.getAttribute("LoginOK");
-		if(memberbean != null) {
-			
-		String account = memberbean.getAccount();
-		List<ProCartListBean> list = null;
-		try {
-			list = procartlistservice.getByAccountStatus(account);
-			for(ProCartListBean bean :list) {
-				bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
+		MemberBean memberbean = (MemberBean) session.getAttribute("LoginOK");
+		if (memberbean != null) {
+
+			String account = memberbean.getAccount();
+			List<ProCartListBean> list = null;
+			try {
+				list = procartlistservice.getByAccountStatus(account);
+				for (ProCartListBean bean : list) {
+					bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 			map.put("cartDetailList", list);
+			List<MemberBean> memberBeanList = subscriptionUploaderService.getAllSubscriptionUploader(account);
+			
+			map.put("subscriptionUploader", memberBeanList);
 		}
 		
 	}

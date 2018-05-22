@@ -18,7 +18,7 @@
 .chat-sidebar .sidebar-name {
 	height: 50px;
 	margin-bottom: 0px;
-	
+	overflow: hidden;
 /* 	padding: 10px 0px 10px 0px; */
 }
 
@@ -414,6 +414,7 @@
 /* 	border: solid red 1px; */
 /* 	float: left; */
 	width:300px;
+	
 }
 
 .notificationItemTime{
@@ -487,10 +488,11 @@
 }
 
 .chat-sidebar-inside{
+	
+	overflow: hidden;
 }
 .chat-sidebar-insideHide{
-	height:200px;
-	width: 200px;
+/* 	width: 200px; */
 	overflow:hidden;
 }
 .chat-sidebar-insideShow{
@@ -516,6 +518,32 @@
 	width: 180px;
 	overflow: hidden;
 	margin: 0px;
+	height:20px;
+}
+
+.chatIcon{
+	float:right;
+	margin-top: 10px;
+}
+.subscribeIcon{
+	float:right;
+	margin-top: -10px;
+}
+
+.sidebarUserButton .shoppingCartProductDescription{
+	width: 180px;
+	overflow: hidden;
+	margin: 0px;
+	height:20px;
+}
+.sidebarUserButton .shoppingCartProductName{
+	width: 150px;
+	overflow: hidden;
+	margin: 0px;
+	height:20px;
+}
+.sidebarUserButton .shoppingCartProductNumber{
+	color : white;
 }
 .chat-sidebar-title{
 	color : #a4a1ac;
