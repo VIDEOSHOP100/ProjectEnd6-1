@@ -28,6 +28,8 @@ import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectBean;
 import com.iii._05_.Bid.model.BidBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
+import com.iii._05_.customized.model.CustomizedBean;
+import com.iii._05_.customized.model.CustomizedService;
 import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryBean;
 import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryService;
 import com.iii._05_.liveStreamReport.model.liveStreamReportBean;
@@ -48,6 +50,8 @@ public class InputLiveStreamTimeController {
 	ProductSaleService productSaleService;
 	@Autowired
 	liveStreamReportService liveStreamReportService;
+	@Autowired
+	CustomizedService CustomizedService;
 //	@RequestMapping("/LiveStream")
 //	public String getLiveStreamsBySeqNo(@RequestParam("LiveNo") Integer LiveNo,Model model) {
 //		
@@ -108,6 +112,10 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb : AllProductList) {
 			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
 		}
+		//增加一個CustomizedBean
+		CustomizedBean CustomizedBean = new CustomizedBean();
+		map.put("CustomizedBean", CustomizedBean);
+		
 		//增加一個REPORTBean
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
 		map.put("AllProduct0", AllProduct0);
@@ -259,6 +267,7 @@ public class InputLiveStreamTimeController {
 		
 		sb.setLiveStreamPath(pppath);
 		sb.setLiveStreamView(0);
+		sb.setAllLiveStreamView(0);
 		map.put("sb", sb);
 		InputLiveStreamTimeService.saveLiveStreams(sb, extPhoto, photo);
 		//給INSERTROOM REPORT
@@ -288,7 +297,7 @@ public class InputLiveStreamTimeController {
 //		LiveStreamHistoryService.saveLiveStreamHistory(lb);
 		InputLiveStreamTimeBean InputLiveStreamTimeBean = InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo);
 		
-		 
+		InputLiveStreamTimeBean.setAllLiveStreamView(InputLiveStreamTimeBean.getAllLiveStreamView()+1);
 		InputLiveStreamTimeBean.setLiveStreamView(InputLiveStreamTimeBean.getLiveStreamView()+1);
 		InputLiveStreamTimeService.updateLiveStreams(InputLiveStreamTimeBean);
 		

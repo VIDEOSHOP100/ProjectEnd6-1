@@ -60,7 +60,7 @@
 		value="${otherside.account}">
 	<img height="240px" width="240px" class="memberPhoto"
 		src='${pageContext.request.contextPath}/getImage/member/${otherside.account}'>
-	<div class="container procon">
+	<div class="container procon" style="margin-left:100px">
 
 		<div class="row">
 

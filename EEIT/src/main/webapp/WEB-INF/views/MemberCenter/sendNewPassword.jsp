@@ -12,8 +12,8 @@
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 
-	<div class="container">
-
+	<div class="container" style="margin-left:50px">
+ 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">忘記密碼</h1>
 
@@ -37,12 +37,6 @@
 
 	</div>
 	<!-- /.container -->
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; IIITube
-			2018</p>
-	</div>
-	</footer>
+
 </body>
 </html>
