@@ -189,3 +189,15 @@ body.loading .modal {
 /* 	margin-bottom: -100px */
 	
 }
+
+.divOutside:nth-child(odd){
+	background-color: #f4f4f4;	
+}
+
+.divOutside{
+	margin: 0px;
+	padding: 0px;
+	padding-top: 30px;
+	padding-bottom: 10px;
+	
+}

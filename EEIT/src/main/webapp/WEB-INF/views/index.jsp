@@ -58,7 +58,7 @@
 </style>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
+	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 	<input value="${LoginOK.account}" class="account" type="hidden">
 	<header>
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -109,28 +109,26 @@
 		</a>
 	</div>
 	</header>
-	<div class="container">
-		<h2>
+	<div class="container" style="margin-left:50px">
+		<h1 style="margin-top:50px;margin-bottom:10px">
+		
 		<a class="indexTitle" href="<c:url value='/LiveStreamHall' />">
-		<i class="fas fa-wifi"></i>
+			<i class="fas fa-wifi"></i>
 			正在直播
 		</a>
 		<small class="suptitle">點擊觀看及時串流直播</small>
-		</h2>
-		
+		</h1>
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${liveStream}">
 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
-					<div class="card h-100 videoBlockInner">
+					<div class="card h-100 videoBlockInner" style="border:none">
 						<a href="<c:url value='/LiveStream/${aVideoBean.liveStreamSeqNo}' />">
 							<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/LiveCoverPath/${aVideoBean.liveStreamSeqNo}'>
 						</a>
 						<div class="card-body">
 							<h6 class="card-title videoTitle">
 								<a href="<c:url value='/LiveStream/${aVideoBean.liveStreamSeqNo}' />"><b>${aVideoBean.streamName}</b></a>
-								
 							</h6>
-							
 							<a class="uploaderLink"	href="<c:url value='/profile/${aVideoBean.account}' />">
 								<p class="videoSmallWords">${aVideoBean.account}</p>
 							</a>
@@ -142,18 +140,17 @@
 					</div>
 				</div>
 			</c:forEach>
-
 		</div>
-		<hr>
-		<h1>
+		<h1 style="margin-top:20px;margin-bottom:10px">
 		<a class="indexTitle"  href="<c:url value='/hotVideo' />">
 			熱門影片
 		</a>
+		<small class="suptitle">點擊觀看及時串流直播</small>
 		</h1>
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${hotVideos}">
 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
-					<div class="card h-100 videoBlockInner">
+					<div class="card h-100 videoBlockInner"  style="border:none">
 						<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 							<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 						</a>
@@ -184,16 +181,16 @@
 			</c:forEach>
 
 		</div>
-		<hr>
-		<h1>
+		<h1 style="margin-top:20px;margin-bottom:10px">
 		<a class="indexTitle"  href="<c:url value='/newVideo' />">
 			最新影片
 		</a>
+		<small class="suptitle">點擊觀看及時串流直播</small>
 		</h1>
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${newVideos}">
 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
-					<div class="card h-100 videoBlockInner">
+					<div class="card h-100 videoBlockInner" style="border:none">
 						<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 							<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 						</a>
@@ -222,9 +219,8 @@
 				</div>
 			</c:forEach>
 		</div>
-		<hr>
 		<c:forEach var="videoTypes" items="${sortedVideos}">
-			<h1>
+			<h1 style="margin-top:20px;margin-bottom:10px">
 				<a  class="indexTitle"  href="<c:url value='/videoType/${videoTypes[0].videoType}' />">
 					<c:out value="${videoTypes[0].videoType}" />
 				</a>
@@ -232,7 +228,7 @@
 			<div class="row">
 				<c:forEach var="aVideoBean" items="${videoTypes}">
 					<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
-						<div class="card h-100 videoBlockInner">
+						<div class="card h-100 videoBlockInner" style="border:none">
 							<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 								<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 							</a>
@@ -259,23 +255,12 @@
 							</div>
 						</div>
 					</div>
-					
 				</c:forEach>
 			</div>
-			<hr>
 		</c:forEach>
 	</div>
-	
-	<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2018</p>
-	</div>
-	</footer>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script src="<c:url value='/global/js/index.js'/> "></script>
-<!-- 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> -->
-
 </body>
 
 </html>

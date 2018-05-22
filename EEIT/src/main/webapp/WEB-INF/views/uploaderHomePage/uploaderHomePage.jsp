@@ -14,16 +14,38 @@
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
     
     <div class="container">
+	    <input id="account" type="hidden" name="account" value="${LoginOK.account}">
+		<input id="othersideaccount" type="hidden" name="othersideaccount" value="${otherside.account}">
+		<div class="profileButtonBlock">
+				<c:if test="${LoginOK.account != otherside.account}">
+					<c:if test="${!empty LoginOK}">
 
+						<c:if test="${friendstatus == 1}">
+							<button name="nonFriend" type="button" value='1'
+								class="btn btn-danger nonfriendButton friend">取消好友</button>
+						</c:if>
+						<c:if test="${friendstatus == 0}">
+							<button name="friend" type="button" value='0'
+								class="btn btn-success friendButton friend">加為好友</button>
+						</c:if>
+
+						<button id="memberReportButton"
+							class="btn btn-warning memberReportButton memberReport"
+							type="button" data-toggle="modal" data-target="#popMemberReport">檢舉會員</button>
+							
+						<button id="sendMessage" class="btn btn-success" 
+						type="button" data-toggle="modal" data-target="#popSendMessage">發送訊息</button>
+
+
+					</c:if>
+
+				</c:if>
+		</div>
       <h1 class="mt-4 mb-3">${uploaderAccount }
       	<input type="hidden" class="uploaderAccountForUploaderHomePage" value="${uploaderAccount }">
       </h1>
-
+		
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="index.html">Home</a>
-        </li>
-        <li class="breadcrumb-item active">Services</li>
       </ol>
 
       <img class="img-fluid rounded mb-6" src="<c:url value='/uploaderHomePage/images/images.jpg' />" alt="" width="1600px"><!--       http://placehold.it/1200x300 -->
@@ -118,6 +140,7 @@
 		          </div>
 	       		</div>
 	      	</c:forEach>
+      </div>
       </div>
     <%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
   	<script src="<c:url value='/uploaderHomePage/js/uploaderHomePage.js'/> "></script>

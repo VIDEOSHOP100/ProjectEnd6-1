@@ -1,5 +1,6 @@
 package com.iii._19_.uploaderHomePage.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iii._01_.Friend.service.FriendService;
 import com.iii._01_.Member.bean.MemberBean;
+import com.iii._01_.Member.service.MemberCenterService;
+import com.iii._01_.MyMessage.bean.MyMessageBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._19_.uploaderHomePage.model.UploaderHomePageService;
@@ -30,10 +34,28 @@ public class UploaderHomePageController {
 	@Autowired
 	UploaderHomePageService uploaderHomePageService; 
 	
+	@Autowired
+	MemberCenterService memberCenterService;
+	
+	@Autowired
+	FriendService friendService;
+	
 	@RequestMapping(value="profile/{uploaderAccount}",method = RequestMethod.GET)
 	public String getUserHomePage(@PathVariable("uploaderAccount") String uploaderAccount, HttpSession session, Map<String,Object> map) {
-		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
-		String account = memberBean.getAccount();
+//		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+//		String account = memberBean.getAccount();
+		MemberBean bean = memberCenterService.getProfile(uploaderAccount);
+		map.put("otherside", bean);
+		
+		
+		if (session.getAttribute("LoginOK")!=null) {
+			MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+			String myAccount = memberBean.getAccount();
+			Integer friendstatus = friendService.getFriendStatus(myAccount, uploaderAccount);
+			if(friendstatus==null)friendstatus=0;
+			map.put("friendstatus", friendstatus);
+			map.put("MyMessageBean", new MyMessageBean());
+		}
 		List<VideoBean> videoBeanList = uploaderHomePageService.getUserTopTwelveVideos(uploaderAccount);
 		List<InputLiveStreamTimeBean> inputLiveStreamTimeBeanList =  uploaderHomePageService.getUserTopTwelveLiveStream(uploaderAccount);
 		List<ProductSaleBean> productSaleBeanList = uploaderHomePageService.getUserTopTwelveProducts(uploaderAccount);
@@ -46,8 +68,8 @@ public class UploaderHomePageController {
 	
 	@RequestMapping(value="uploaderHomePage/{uploaderAccount}/type/{type}",method = RequestMethod.GET)
 	public @ResponseBody Map<String,Object> getUserSubPage(@PathVariable("uploaderAccount") String uploaderAccount,@PathVariable("type") String type, HttpSession session) {
-		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
-		String account = memberBean.getAccount();
+//		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+//		String account = memberBean.getAccount();
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(type.equals("homePage")) {
 			List<ProductSaleBean> pageResultProduct = uploaderHomePageService.getUserTopTwelveProducts(uploaderAccount);
@@ -60,15 +82,16 @@ public class UploaderHomePageController {
 			List<ProductSaleBean> pageResult = uploaderHomePageService.getUserAllProducts(uploaderAccount);
 			map.put("pageResult", pageResult);
 		}else if(type.equals("video")) {
-			List<VideoBean> pageResult= videoManageService.getAllVideoByAccount(account);
+			List<VideoBean> pageResult= videoManageService.getAllVideoByAccount(uploaderAccount);
 			map.put("pageResult", pageResult);
 		}else if(type.equals("detail")) {
-			MemberBean pageResult = uploaderHomePageService.getUserDetail(uploaderAccount);
+//			MemberBean pageResult = uploaderHomePageService.getUserDetail(uploaderAccount);
 //			map.put("pageResult", pageResult);
 		}else if(type.equals("livestream")) {
 			List<InputLiveStreamTimeBean> pageResult = uploaderHomePageService.getUserAllLiveStream(uploaderAccount);
 			map.put("pageResult", pageResult);
 		}
+		List<ArrayList<Integer>> a  = new ArrayList<ArrayList<Integer>>();
 		return map;
 	}
 }
