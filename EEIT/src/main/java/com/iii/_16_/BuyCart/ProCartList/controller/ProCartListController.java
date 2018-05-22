@@ -1,36 +1,27 @@
 package com.iii._16_.BuyCart.ProCartList.controller;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._01_.Member.bean.MemberBean;
-import com.iii._16_.BuyCart.ProCart.model.ProCartBean;
-
 import com.iii._16_.BuyCart.ProCartList.model.ProCartListBean;
 import com.iii._16_.BuyCart.ProCartList.model.ProCartListService;
-import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
-import com.iii._19_.videoManage.model.VideoBean;
 
 @Controller
 @RequestMapping("/CartList")
@@ -106,6 +97,20 @@ public class ProCartListController {
 		return result;
 	}
 
-	
+	@RequestMapping(value = "/getCartDetailList", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> getCartDetailListCount(HttpSession session) throws SQLException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		
+		MemberBean memberbean = (MemberBean)session.getAttribute("LoginOK");
+		String account = memberbean.getAccount();
+		List<ProCartListBean> list = procartlistservice.getByAccountStatus(account);
+		for(ProCartListBean bean :list) {
+			bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
+		}
+		map.put("cartDetailList", list);
+		return map;
+	}
 	
 }

@@ -38,7 +38,7 @@
 
 
 	<!-- Navigation -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:#4b367c">
 		<div class="container">
 			<a class="navbar-brand" href="<c:url value='/' />">Live Market</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -157,7 +157,7 @@
 						<a class="nav-link dropdown-toggle notificatiolink" href="#" 
 							id="navbarDropdownPortfolio" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
-							<span class="notificationNone notification">
+							<span class="notificationNone notification"  style="background-color:#4b367c">
 								<i class="fas fa-exclamation-circle"></i>通知
 							</span>
 						</a>
@@ -189,7 +189,8 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle"	href="#" 
 					   id="navbarDropdownBlog" data-toggle="dropdown"
-					   aria-haspopup="true" aria-expanded="false"><img height="25px" width="25px"
+					   aria-haspopup="true" aria-expanded="false">
+					   <img height="25px" width="25px"
 					src='${pageContext.request.contextPath}/getImage/member/${LoginOK.account}'> ${LoginOK.account}</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog"> 
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/profile/${LoginOK.account}">我的個人頁面</a>
@@ -199,10 +200,7 @@
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/QuestionList/Main">常見問題</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/adviceReport">意見回饋</a>
 					</div></li>
-			 
-
-<%-- 					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-danger" id="logoutButton" type="button" >登出</button></a></li> --%>
-					<li class="nav-item"><button class="btn btn-danger" id="logoutButton" type="button" >登出</button></li>
+					<li class="nav-item"><button class="btn btn-danger" id="logoutButton" style="background-color:#ba7bd5; color: white" type="button" >登出</button></li>
 				</c:if>
 
 			</ul>
@@ -464,6 +462,26 @@
 	        // The ID token you need to pass to your backend:
 	        var id_token = googleUser.getAuthResponse().id_token;
 	        console.log("ID Token: " + id_token);
+	        
+	        
+	        $.ajax({
+	        
+	        	type:"POST",
+	        	url:"/EEIT/googleLogin",
+	        	data:{"ID_Token":id_token},
+	        	
+	        	success:function(data){
+	        		location.reload();
+	        	},
+	        	error : function(e) {
+					console.log("ERROR : ", e);
+					alert(e);
+				}
+	        
+	        
+	        })
+	        
+	        
 	      };
 		
 	      $(document).on("click",'#logoutButton',signOut);
@@ -503,7 +521,7 @@
 		
 	</script>
 
-	
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
 </body>
 

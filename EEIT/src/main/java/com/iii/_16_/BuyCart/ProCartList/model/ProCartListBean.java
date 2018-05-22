@@ -8,7 +8,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
-import com.iii._16_.ProductSale.ProductPicture.model.ProPicBean;
 
 @Entity
 @Table(name = "ProCartList")

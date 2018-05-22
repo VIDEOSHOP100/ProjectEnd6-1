@@ -63,4 +63,9 @@ public class RegisterServiceImpl implements RegisterService {
 		}
 	}
 
+	@Override
+	public void saveMember(MemberBean mb) throws SQLException {
+		dao.saveMember(mb);
+	}
+
 }
