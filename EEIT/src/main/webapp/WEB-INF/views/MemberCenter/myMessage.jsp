@@ -20,7 +20,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 
-	<div class="container">
+	<div class="container" style="margin-left:50px">
 
 		<h2 class="mt-4 md-3">我的訊息</h2>
 
@@ -130,6 +130,5 @@ $(document).on("click", ".myMessageSeqNo", function() {
 </script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
 </body>
 </html>

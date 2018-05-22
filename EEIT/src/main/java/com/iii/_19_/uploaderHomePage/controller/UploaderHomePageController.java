@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.iii._01_.Friend.service.FriendService;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.service.MemberCenterService;
+import com.iii._01_.MemberReport.bean.MemberReportBean;
 import com.iii._01_.MyMessage.bean.MyMessageBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
@@ -55,6 +56,7 @@ public class UploaderHomePageController {
 			if(friendstatus==null)friendstatus=0;
 			map.put("friendstatus", friendstatus);
 			map.put("MyMessageBean", new MyMessageBean());
+			map.put("MemberReportBean",new MemberReportBean());
 		}
 		List<VideoBean> videoBeanList = uploaderHomePageService.getUserTopTwelveVideos(uploaderAccount);
 		List<InputLiveStreamTimeBean> inputLiveStreamTimeBeanList =  uploaderHomePageService.getUserTopTwelveLiveStream(uploaderAccount);

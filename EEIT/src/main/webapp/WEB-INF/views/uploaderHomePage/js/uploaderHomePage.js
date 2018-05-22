@@ -225,4 +225,14 @@ $(document).ready(function() {
 	})
 	
 	
+	$('#popSendMessage').click(function(){
+	
+		
+		
+		
+	})
+	
+	
+	
+	
 })
