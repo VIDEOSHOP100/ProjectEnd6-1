@@ -28,10 +28,10 @@
 		  <li class="breadcrumb-item">
 		  </li>
 		</ol>
-			<div class="row">
+			<div class="row" style="margin-left:20px">
 				<c:forEach var="aVideoBean" items="${watchLaterVideo}">
 					<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
-						<div class="card h-100 videoBlockInner">
+						<div class="card h-100 videoBlockInner"  style="border:none">
 							<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 								<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 							</a>

@@ -37,10 +37,10 @@
 <!--         <li class="breadcrumb-item active">Portfolio 2</li> -->
       </ol>
 
-      <div class="row">
+      <div class="row" style="margin-left:20px">
       	<c:forEach var="aVideoBean" items="${likeVideos}">
         <div class="col-lg-2 portfolio-item">
-          <div class="card h-100">
+          <div class="card h-100"  style="border:none">
           <a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 			<img class="card-img-top" height="150px" width="50px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 		  </a>

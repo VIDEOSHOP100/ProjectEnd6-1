@@ -208,7 +208,7 @@ $(document).ready(function() {
     stompClient.connect({}, function(frame) {
     	var roomNumber = $('.roomNumber').val();
         console.log('Connected: ' + frame);
-        $('.sidebarUserButton').each(function(){
+        $('.sidebarUserButtonFriend').each(function(){
         	var receiverAccount = $(this).attr('id');
         	var senderAccountFistWord = senderAccount.substring(0,1).charCodeAt()
         	var receiverAccountFistWord = receiverAccount.substring(0,1).charCodeAt()

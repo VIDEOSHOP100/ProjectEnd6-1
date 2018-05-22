@@ -100,7 +100,7 @@
 	cursor: pointer;
 	width: 100%;
 	height: 30px;
-	background-color: #4A0080;
+	background-color: #4b367c;
 	color: white;
 	font-size: 20px;
 	line-height: 25px;
@@ -109,7 +109,7 @@
 	cursor: pointer;
 	width: 100%;
 	height: 30px;
-	background-color: red;
+	background-color: white;
 	color: white;
 	font-size: 20px;
 	line-height: 25px;
@@ -188,7 +188,7 @@
 	background:-ms-linear-gradient(top, #c123de 5%, #a20dbd 100%);
 	background:linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c123de', endColorstr='#a20dbd',GradientType=0);
-	background-color:#c123de;
+	background-color:#6441a4;
 	border:1px solid #a511c0;
 	display:inline-block;
 	cursor:pointer;
@@ -209,7 +209,7 @@
 	background:-ms-linear-gradient(top, #a20dbd 5%, #c123de 100%);
 	background:linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a20dbd', endColorstr='#c123de',GradientType=0);
-	background-color:#a20dbd;
+	background-color:#6441a4;
 }
 .box-message > .messagePlus > .btn:active {
 	position:relative;
@@ -491,13 +491,13 @@
 .chat-sidebar-inside{
 	
 	overflow: hidden;
+	height:200px;
 }
 .chat-sidebar-insideHide{
 /* 	width: 200px; */
 	overflow:hidden;
 }
 .chat-sidebar-insideShow{
-	height:200px;
 	overflow:auto;
 }
 
@@ -558,16 +558,84 @@
 	border-radius: 10px;
 	background-color: rgba(23 20 31);
 }
-
 .chat-sidebar-inside::-webkit-scrollbar,body::-webkit-scrollbar
 {
 	width: 5px;
 	background-color: rgba(23 20 31);
 }
-
 .chat-sidebar-inside::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb
 {
 	border-radius: 20px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: gray;
+}
+.chat-sidebar-liveStream{
+	height: 500px;
+	width: 500px;
+}
+.liveStreamDiv{
+	height: 100px;
+	width: 500px;
+}
+.liveStreamDiv img, .liveStreamDiv p{
+	float:left;
+}
+.liveStreamDiv p{
+	width: 400px;
+}
+
+.friendPopup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.friendPopup div {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.friendPopup div::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.friendPopup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
 }

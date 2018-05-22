@@ -30,12 +30,12 @@
 		</ol>
 		<c:forEach var="videoTypes" items="${sortedVideos}">
 			<a href="<c:url value='/videoType/${videoTypes[0].videoType}' />" class="videoTypeTitle">
-				<h1><c:out value="${videoTypes[0].videoType}" /></h1>
+				<h1 style="margin-left:20px"><c:out value="${videoTypes[0].videoType}" /></h1>
 			</a>
-			<div class="row">
+			<div class="row" style="margin-left:20px">
 				<c:forEach var="aVideoBean" items="${videoTypes}">
 					<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
-						<div class="card h-100 videoBlockInner">
+						<div class="card h-100 videoBlockInner"  style="border:none">
 							<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 								<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 							</a>

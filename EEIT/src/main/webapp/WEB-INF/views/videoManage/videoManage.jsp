@@ -67,7 +67,7 @@
 									
 									<p>影片喜歡數: ${videoBean.videoLikes}</p>
 									<p>影片不喜歡數: ${videoBean.videoUnlikes}</p>
-									<p>影片播放清單類別: ${videoBean.videoUplodaerListType}</p>
+<%-- 									<p>影片播放清單類別: ${videoBean.videoUplodaerListType}</p> --%>
 									
 									<p class="videoDescriptionOutSide">影片描述:</p>
 									<p class="videoDescription" title="${videoBean.videoDescription}">${videoBean.videoDescription}</p>
@@ -145,7 +145,7 @@
 			</form:form>
 		</div>
 <!-- 	新增影片表格	-------------------------- -->
-		<div id="insert-dialog-form" title="新增影片資料" class="hideForm">
+		<div id="insert-dialog-form" title="新增影片資料" class="hideForm" style="overflow:hidden">
 			<p class="validateTips">請輸入欲新增影片資料</p>
 			<form:form id="insertForm" name = "insertForm" ENCTYPE="multipart/form-data" modelAttribute="insertVideoBean" method="POST">
 				<fieldset>
@@ -163,9 +163,9 @@
 					<label for="videofileInsert">影片檔案</label>
 					<form:input path="videoFile" type="file" name="videoFileInsert" id="videoFileInsert" class="text ui-widget-content ui-corner-all"/>
 					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
-					<video  height="300px" width="500px" src="" id="videoPreview" controls="controls"></video>
-					<p>影片封面截圖:</p>
-					<canvas id=myCanvas></canvas>
+					<p>請選擇影片封面截圖:</p>
+					<video  height="300px" width="500px" src="" id="videoPreview" controls="controls" controlsList="nodownload nofullscreen"></video>
+					<canvas id=myCanvas style="display:none"></canvas>
 				</fieldset>
 			</form:form>
 		</div>

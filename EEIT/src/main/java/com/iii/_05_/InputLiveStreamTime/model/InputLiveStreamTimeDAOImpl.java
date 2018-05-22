@@ -84,5 +84,12 @@ public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 	}
 
 
+	@Override
+	public List<InputLiveStreamTimeBean> getAllTopFiveLiveStreams() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM InputLiveStreamTimeBean WHERE LiveStatus = '1' AND LiveEnd is NULL",InputLiveStreamTimeBean.class).setMaxResults(5).list();
+	}
+
+
 	
 }
