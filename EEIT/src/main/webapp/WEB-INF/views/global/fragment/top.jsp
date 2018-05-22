@@ -190,14 +190,8 @@
 					<a class="nav-link dropdown-toggle"	href="#" 
 					   id="navbarDropdownBlog" data-toggle="dropdown"
 					   aria-haspopup="true" aria-expanded="false">
-					<c:if test="${!empty LoginOK.birthday}">
 					   <img height="25px" width="25px"
 					src='${pageContext.request.contextPath}/getImage/member/${LoginOK.account}'> ${LoginOK.account}</a>
-					</c:if>
-					<c:if test="${empty LoginOK.birthday}">
-					 <img height="25px" width="25px"
-					src='${LoginOK.photoPath}'> ${LoginOK.account}</a>
-					</c:if>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog"> 
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/profile/${LoginOK.account}">我的個人頁面</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/memberUpdate">修改會員資料</a>
@@ -206,9 +200,7 @@
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/QuestionList/Main">常見問題</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/adviceReport">意見回饋</a>
 					</div></li>
-			 
-
-					<li class="nav-item"><button class="btn btn-danger" id="logoutButton" type="button"  style="background-color:#ba7bd5; color: white">登出</button></li>
+					<li class="nav-item"><button class="btn btn-danger" id="logoutButton" style="background-color:#ba7bd5; color: white" type="button" >登出</button></li>
 				</c:if>
 
 			</ul>

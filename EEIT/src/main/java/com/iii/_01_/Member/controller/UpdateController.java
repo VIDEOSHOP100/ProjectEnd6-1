@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.mail.Session;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._01_.Member.dao.MemberDAO;
 import com.iii._01_.Member.service.UpdateService;
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 @Controller
 public class UpdateController {
