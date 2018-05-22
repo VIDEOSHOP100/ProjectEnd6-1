@@ -196,7 +196,7 @@
 					</div></li>
 			 
 
-					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn btn-danger" type="button" >登出</button></a></li>
+					<li class="nav-item"><a href="<c:url value='/logout'/>"><button class="btn" type="button" style="background-color:#ba7bd5; color: white">登出</button></a></li>
 				</c:if>
 
 			</ul>

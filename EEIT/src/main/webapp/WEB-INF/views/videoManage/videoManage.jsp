@@ -46,8 +46,8 @@
 			</ol>
 			<div class="row divOutsideRow">
 				<c:forEach var="videoBean" items="${videos}">
-					<div class="col-md-12 row divOutside">
-						<div class="col-md-10">
+					<div class="col-md-12 row divOutside" style="padding:0px">
+						<div class="col-md-10" style="padding:0px">
 							<div class="media mb-4">
 								<a	href="<c:url value='/videoRoom/${videoBean.videoSeqNo}' />">
 									<img class="d-flex mr-3 picVideo" height="200px" width="400px"	src='${pageContext.request.contextPath}/getImage/video/${videoBean.videoSeqNo}'>

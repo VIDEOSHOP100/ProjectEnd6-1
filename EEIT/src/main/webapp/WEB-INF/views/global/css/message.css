@@ -12,12 +12,14 @@
 	padding-bottom: 10px;
 	border: 1px solid rgba(29, 49, 91, .3);
 	display: block;
-	background-color: #faf4ff;
+	background-color: #271746;
 }
 
 .chat-sidebar>.sidebar-name {
-	height: 40px;
-	margin-bottom: 10px;
+	height: 60px;
+	margin-bottom: 0px;
+	
+/* 	padding: 10px 0px 10px 0px; */
 }
 
 .chat-sidebar>.sidebar-name>.sidebarUserButton {
@@ -25,15 +27,20 @@
 }
 
 .chat-sidebar>.sidebar-name>.sidebarUserButtonNone {
-	height: 40px;
+/* 	height: 80px; */
 	width: 100%;
 	cursor: pointer;
 	display: block;
 	height: 100%;
 	text-align: left;
-	background-color: #6f00d2;
+	background-color: #271746;
 	border: none;
 	color: white;
+	margin-top:0px;
+	
+}
+.chat-sidebar>.sidebar-name>.sidebarUserButtonNone:hover {
+	background-color: #523092;
 }
 .chat-sidebar>.sidebar-name>.sidebarUserButtonAlert {
 
