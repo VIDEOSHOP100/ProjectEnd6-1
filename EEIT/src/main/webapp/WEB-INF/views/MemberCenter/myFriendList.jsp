@@ -30,7 +30,7 @@ width:240px;
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 
 
-	<div class="container">
+	<div class="container" style="margin-left:50px">
 		<h1 class="mt-4 mb-3">我的好友</h1>
 		<div class="row">
 			
@@ -64,6 +64,5 @@ width:240px;
 		</div>
 	</div>
 
- <%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
 </body>
 </html>
