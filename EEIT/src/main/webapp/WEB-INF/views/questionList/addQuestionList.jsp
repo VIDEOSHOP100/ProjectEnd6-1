@@ -10,17 +10,24 @@
 <title>Insert title here</title>
 </head>
 <body>
+ <div class="container" style="margin-left:50px">
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>	
 	<form:form id="myForm" name = "myForm" action = "/EEIT/QuestionList" ENCTYPE="multipart/form-data"  modelAttribute="questionListBean" method="POST">
 		<fieldset>
+			<hr>
 			<label for="questionListTitle">問題標題</label>
 			<form:input path="questionListTitle" type="text" name="questionListTitle" id="questionListTitle"/>
+			<hr>
 			<label for="questionListArticle">問題內容</label>
 			<form:input path="questionListArticle" type="text" name="questionListArticle" id="questionListArticle" value="" class="text ui-widget-content ui-corner-all" />
+			<hr>
 			<label for="managerId">管理員帳號</label>
 			<form:input path="managerId" type="text" name="managerId" id="managerId" value="" class="text ui-widget-content ui-corner-all" />
-			<input type="submit">
+			<input type="submit" value = "送出">
+			
 		</fieldset>
 	</form:form>
+</div>
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>

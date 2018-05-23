@@ -15,4 +15,6 @@ public interface QuestionListService {
 	public List<QuestionListBean> selectQuestionList();
 	
 	public List<QuestionListBean> getAllQuestionListBean();
+	
+//	public List<QuestionListBean> getAllQuestionListInPage();
 }

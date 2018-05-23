@@ -1,6 +1,7 @@
 package com.iii._09_.questionList.controller;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.iii._01_.MemberReport.bean.MemberReportBean;
 import com.iii._09_.questionList.model.QuestionListBean;
 import com.iii._09_.questionList.model.QuestionListService;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 
 
 @Controller
@@ -37,8 +39,10 @@ public class QuestionListController {
 		return "questionList/Success";
 	}
 
-	@RequestMapping(method = RequestMethod.PUT)
-	public String updateQuestionList(QuestionListBean questionListBean) {
+	
+	
+	@RequestMapping(value = "update" ,method = RequestMethod.POST)
+	public String updateQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean) {
 		questionListService.updateQuestionList(questionListBean);
 		return "OK";
 	}
@@ -89,7 +93,6 @@ public class QuestionListController {
 	
 	@RequestMapping(value = "/getAllQuestionList" ,method = RequestMethod.GET)
 	public @ResponseBody List<QuestionListBean> getAllQuestionList() {
-//	public @ResponseBody List<MemberReportBean> getAllMemberReport() {	
 		List<QuestionListBean> questionListBeanList = questionListService.getAllQuestionListBean();
 		return questionListBeanList;
 	}
@@ -100,7 +103,31 @@ public class QuestionListController {
 		System.out.println("new");
 		QuestionListBean questionListBean = new QuestionListBean();
 		map.put("questionListBean", questionListBean);
+		
+		
+
+		
 		return "questionList/addQuestionList";
+	}
+	
+	//修改
+	@RequestMapping(value = "/updateQuestionList" ,method = RequestMethod.GET)
+	public String updateQuesListBean(Map<String,Object> map,HttpSession session) {	
+		System.out.println("UPDATE");
+		QuestionListBean questionListBean = new QuestionListBean();
+		
+//		List<QuestionListBean> AllProductListNoonsale = questionListService.getAllProByStatus(gpa.getAccount(), 0);
+//		
+//		Map<Integer,String> productNameMapnoonsale = new HashMap<Integer,String>(); 
+//		for(ProductSaleBean pb : AllProductListNoonsale) {
+//			productNameMapnoonsale.put(pb.getProductSeqNo(),pb.getProName());
+//		}
+//		map.put("productNameMapnoonsale", productNameMapnoonsale);
+		
+		
+		
+		map.put("questionListBean", questionListBean);
+		return "questionList/updateQuestionList";
 	}
 
 	

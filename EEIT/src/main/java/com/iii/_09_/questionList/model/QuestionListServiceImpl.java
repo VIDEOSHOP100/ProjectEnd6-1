@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class QuestionListServiceImpl implements QuestionListService{
+	
 	@Autowired
 	QuestionListDAO questionListDAO;
 	
@@ -41,5 +42,8 @@ public class QuestionListServiceImpl implements QuestionListService{
 		
 		return questionListDAO. getAllQuestionListBean();
 	}
+	
+	
+	
 
 }
