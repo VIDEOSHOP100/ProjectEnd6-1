@@ -89,7 +89,7 @@ public class ProductIntroController {
 			// 如果是狀態2代表選購過又刪除 要在新增一次該商品
 		} else {
 			for (ProCartListBean alreadyhavebean : alreadyhavebeans) {
-				if (alreadyhavebean.getProductSeqNo() == id && alreadyhavebean.getProductStatus() == 1) {
+				if (alreadyhavebean.getProductSeqNo().equals(id) && alreadyhavebean.getProductStatus().equals(1)) {
 					alreadyhavebean.setProductCount(alreadyhavebean.getProductCount() + count);
 					countupdate = procartlistservice.update(alreadyhavebean);
 

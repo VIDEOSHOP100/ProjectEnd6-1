@@ -44,13 +44,7 @@
 				<h3 class="my-3">${productSaleBean.proName }</h3>
 				<h3 class="my-3">商品介紹</h3>
 				<p>${productSaleBean.proDescription }</p>
-				<ul>
-					<li>Lorem Ipsum</li>
-					<li>Dolor Sit Amet</li>
-					<li>Consectetur</li>
-					<li>Adipiscing Elit</li>
-				</ul>
-
+			
 				
 				 <br> <br>
 				<h6>庫存數量:${productSaleBean.proPcs}</h6>	
