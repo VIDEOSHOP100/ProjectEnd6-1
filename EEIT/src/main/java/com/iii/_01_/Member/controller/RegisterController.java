@@ -34,17 +34,14 @@ public class RegisterController {
 	// }
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,
+	public String register(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,Map<String,Object> map,
 			HttpServletRequest request) throws SQLException {
 
-		System.out.println("進入/register");
-
+		
 		HttpSession session = request.getSession();
 		String target = (String) session.getAttribute("target");
 		target = target.substring(target.lastIndexOf("/EEIT/") + 5);
 
-		Map<String, String> registerErrorMessage = new HashMap<String, String>();
-		session.setAttribute("registerErrorMap", registerErrorMessage);
 
 		if (registerService.checkAccountDuplicate(mb.getAccount()) != true) {
 			MultipartFile photo = mb.getPhoto();
@@ -56,7 +53,7 @@ public class RegisterController {
 			return "redirect:Register/registerSuccess";
 			// 有異常時
 		} else {
-			registerErrorMessage.put("Duplicate", "帳號重複");
+			map.put("Duplicate", "帳號重複");
 		}
 		return "redirect:" + target;
 	}

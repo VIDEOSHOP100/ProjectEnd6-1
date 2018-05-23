@@ -7,14 +7,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.iii._01_.MemberReport.bean.MemberReportBean;
+import com.iii._19_.videoManage.model.VideoBean;
+import com.iii._19_.videoManage.model.VideoManageService;
 import com.iii._19_.videoReport.model.VideoReportBean;
 import com.iii._19_.videoReport.model.VideoReportService;
 
@@ -28,6 +28,9 @@ public class BackVideoReportController {
 	
 	@Autowired
 	VideoReportService videoReportService;
+	
+	@Autowired
+	VideoManageService videoManageService;
 	
 	
 	@RequestMapping(value = "/getAllVideoReport" ,method=RequestMethod.GET)
@@ -43,14 +46,15 @@ public class BackVideoReportController {
 	
 	@RequestMapping(value = "/getVideoReport/{VideoReportSeqNo}", method = RequestMethod.GET)
 	public @ResponseBody Map<String,Object> getVideoReport(
-			@PathVariable("VideoReportSeqNo") Integer VideoReportSeqNo) {
+			@PathVariable("VideoReportSeqNo") Integer videoReportSeqNo) {
 			Map<String,Object> map = new HashMap<String,Object>();
 			
-			VideoReportBean vrb = videoReportService.getVideoReportByVideoReportSeqNo(VideoReportSeqNo);
+			VideoReportBean vrb = videoReportService.getVideoReportByVideoReportSeqNo(videoReportSeqNo);
+			String videoTitle = videoManageService.getVideo(vrb.getVideoSeqNo()).getVideoTitle();
 			
 			map.put("VideoReport", vrb);
+			map.put("videoTitle", videoTitle);
 				
-		
 		return map;
 	}
 
