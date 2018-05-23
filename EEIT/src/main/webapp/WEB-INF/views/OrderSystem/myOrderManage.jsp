@@ -29,7 +29,7 @@
 	<!-- Navigation -->
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<!-- Page Content -->
-	<div class="container">
+  <div class="container" style="margin-left:50px">
 
 		<!-- Portfolio Item Heading -->
 		<h1 class="my-4 account">
@@ -44,7 +44,7 @@
 			
 			
 					<!-- 每頁不同的內容從這裡開始 -->
-					<table id="productTable" class="table table-condensed">
+					<table id="" class="table table-condensed">
 						<thead>
 							<tr>
 								<th></th>
@@ -116,5 +116,6 @@
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="<c:url value='/OrderSystem/js/orderaddr.js'/> "></script>
 		<script src="<c:url value='/OrderSystem/js/managepro.js'/> "></script>
+		<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>

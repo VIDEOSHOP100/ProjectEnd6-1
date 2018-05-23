@@ -1,11 +1,44 @@
 		$(document).ready(function() {
+			var $dialog = $('<div></div>').append('請選擇數量')
+			.dialog({
+			      autoOpen: false,
+			      show: {
+			        effect: "fold",
+			        duration: 300
+			      },
+			      hide: {
+			        effect: "fold",
+			        duration: 300
+			      },
+	  				title: "小提醒",
+	  				overlay: { opacity: 1.1, background: "red" },
+	  				draggable: false,
+	                resizable: false,
+			    });
 			
+			var $dialogCheck = $('<div></div>').append('加入購物車!')
+			.dialog({
+			      autoOpen: false,
+			      show: {
+			        effect: "blind",
+			        duration: 300
+			      },
+			      hide: {
+			        effect: "fold",
+			        duration: 300
+			      },
+	  				title: "小提醒",
+	  				overlay: { opacity: 1.1, background: "red" },
+	  				draggable: false,
+	                resizable: false,
+			    });
+		
 			var product = $("#productSeqNo").val();
 			var account = $("#account").val();
 			$('.buy').click(function() {
 				var count = $("#productCount").val();				
 				if(count==0)					
-					alert("請選擇數量");
+					$dialog.dialog('open');
 				else
 				$.ajax({
 
@@ -18,8 +51,11 @@
 					},
 					timeout : 600000,
 					success : function(data,result) {
-						alert("已加入購物車");
-						location.reload();  
+						
+						$dialogCheck.dialog('open');
+						
+						setTimeout(function(){location.reload(); }, 1200);
+						  
 					},
 					error : function(e) {
 

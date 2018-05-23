@@ -45,6 +45,7 @@
 					<button id="buttonAdd" type="button" class="btn btn-success">
 						<i class="fas fa-cart-plus"></i>
 					</button>
+					<input type="hidden" id=thisOrder value="${readyforpay.orderSeqNo}"/>
 					<h6>訂單編號  : ${readyforpay.orderSeqNo}</h6>
 					<h6>銷售日期  : ${readyforpay.orderTime}</h6>
 					<!-- 每頁不同的內容從這裡開始 -->
@@ -102,7 +103,11 @@
 					<br>
 					
 						<!-- 每頁不同的內容從這裡開始 -->
-					<h4>感謝您的訂購</h4><h2><a href="${pageContext.request.contextPath}/getPdfFile/pdf/${readyforpay.orderSeqNo}">訂單列印</a></h2>
+					<h4>感謝您的訂購</h4>
+					<h2><a href="${pageContext.request.contextPath}/getPdfFile/pdf/${readyforpay.orderSeqNo}">訂單列印</a></h2>
+					<h5 id="allpay">前往付款頁面</h5>
+						 <div id="response">
+			    		 </div>
 			</div>
 		</div>
 	</div>
@@ -111,7 +116,7 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script>
-	
+	<script src="<c:url value='/OrderSystem/js/allpay.js'/> "></script>
 	
 
 </body>

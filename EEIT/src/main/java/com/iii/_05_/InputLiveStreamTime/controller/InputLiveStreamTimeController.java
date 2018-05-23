@@ -116,6 +116,8 @@ public class InputLiveStreamTimeController {
 		CustomizedBean CustomizedBean = new CustomizedBean();
 		map.put("CustomizedBean", CustomizedBean);
 		
+		List<CustomizedBean> CustomizedList = CustomizedService.getAllByAccount(gpa.getAccount());
+		
 		//增加一個REPORTBean
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
 		map.put("AllProduct0", AllProduct0);
@@ -124,6 +126,8 @@ public class InputLiveStreamTimeController {
 		map.put("productNameMapnoonsale", productNameMapnoonsale);
 		//拍賣中物品
 		map.put("AllProductLista", productNameMap);
+		//賣家資料的LIST
+		map.put("CustomizedList", CustomizedList);
 //		map.put("hb", LiveStreamHistoryBean);
 		map.put("AllProduct", AllProduct);
 		map.put("sb", InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo));
@@ -166,8 +170,13 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb : AllProductList) {
 			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
 		}
+		List<CustomizedBean> CustomizedList = CustomizedService.getAllByAccount(account);
+		//增加一個CustomizedBean
+				CustomizedBean CustomizedBean = new CustomizedBean();
+				map.put("CustomizedBean", CustomizedBean);
 		//給INSERTROOM REPORT
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
+		map.put("CustomizedList", CustomizedList);
 		map.put("liveStreamReportBean", liveStreamReportBean);
 		map.put("AllProductList", productNameMap);
 		map.put("AllLiveStream", AllLiveStreamList);
@@ -272,6 +281,7 @@ public class InputLiveStreamTimeController {
 		InputLiveStreamTimeService.saveLiveStreams(sb, extPhoto, photo);
 		//給INSERTROOM REPORT
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
+		
 		map.put("liveStreamReportBean", liveStreamReportBean);
 		return "LiveStreamRoom/LiveStreamRoom";
 		}else {

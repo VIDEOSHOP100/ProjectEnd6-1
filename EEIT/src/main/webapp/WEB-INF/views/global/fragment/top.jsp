@@ -130,11 +130,11 @@
 				<c:if test="${empty LoginOK}">
 
 					<li class="nav-item">
-						<button id="regButton" class="btn btn-info" type="button" data-toggle="modal" data-target="#popregister">註冊</button>
+						<button id="regButton" class="btn btn-outline" type="button" data-toggle="modal" data-target="#popregister" style="background-color:#6441a4; color: white">註冊</button>
 					</li>
 					<li>&nbsp;</li>
 					<li class="nav-item">
-						<button id="loginButton" class="btn btn-success" type="button" data-toggle="modal" data-target="#poplogin">登入</button>
+						<button id="loginButton" class="btn btn-outline" type="button" data-toggle="modal" data-target="#poplogin" style="background-color:#6441a4; color: white">登入</button>
 					</li>
 				</c:if>
 				
@@ -200,7 +200,7 @@
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/QuestionList/Main">常見問題</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/adviceReport">意見回饋</a>
 					</div></li>
-					<li class="nav-item"><button class="btn btn-danger" id="logoutButton" style="background-color:#ba7bd5; color: white" type="button" >登出</button></li>
+					<li class="nav-item"><button class="btn btn-outline" id="logoutButton" style="background-color:#6441a4; color: white" type="button" >登出</button></li>
 				</c:if>
 
 			</ul>
@@ -516,12 +516,7 @@
 	    	  
 	    	  
 	    	  }
-	      
-	      
-		
 	</script>
-
-	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
 </body>
 

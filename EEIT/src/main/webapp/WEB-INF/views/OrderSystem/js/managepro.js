@@ -30,15 +30,24 @@
 			        	  data : 'json',
 			        	  success : function(data) {
 								console.log("SUCCESS : ", data);
+								var tablehead = 
+									'<table id="productTable" class="table table-condensed"><thead>'+
+								'<tr><th>訂單商品名稱</th><th>訂單商品數量</th><th>訂單商品單價</th><th>訂單商品總價</th></tr>'+
+							'</thead><tbody>';
+								var tableEnd = '</tbody></table>';
+								var docFrag = $(document.createDocumentFragment());
+								
 								$.each(data.productlist,function(key, oneproductBean){
-								product = '<table id="productTable" class="table table-condensed"><thead>'+
-							'<tr><th>訂單商品名稱</th><th>訂單商品數量</th><th>訂單商品單價</th></tr>'+
-						'</thead><tbody><tr>'+'<td>'+ oneproductBean.productBean.proName + '</td>'
+								product = '<tr>'+'<td>'+ oneproductBean.productBean.proName + '</td>'
 												+'<td>'+ oneproductBean.productCount + '</td>'
-												+'<td>'+ oneproductBean.productPrice + '</td>' +
-												'</tr></tbody></table>';
+												+'<td>'+ oneproductBean.productPrice + '</td>' 
+												+'<td>'+ oneproductBean.productTotal + '</td>' 
+												+'</tr>';
+								docFrag.append(product);
 								})
-								var $dialog = $('<div></div>').append(product)
+								
+								var all = tablehead + tableEnd;
+								var $dialog = $('<div></div>').html(all)
 						  		.dialog({
 						  				autoOpen: false,
 						  				 show: {
@@ -57,6 +66,8 @@
 						  				draggable: false,
 						                resizable: false
 						  			});
+								
+								$('#productTable>tbody').html(docFrag);
 						         
 						  		 
 						          

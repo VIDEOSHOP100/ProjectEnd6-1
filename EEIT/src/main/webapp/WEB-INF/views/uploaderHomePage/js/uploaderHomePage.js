@@ -170,11 +170,8 @@ $(document).ready(function() {
 				data: {_method : "PUT", account : myaccount, othersideaccount : othersideaccount, friendStatus : 0},
 				timeout: 600000,
 				success: function (data) {
-					$('.friend').attr("value",0);
+					$('.friend').attr("value",0).addClass('btn-success').removeClass('btn-danger').text('加為好友');
 
-					$('.friend').addClass('btn-success').removeClass('btn-danger');
-					
-					$('.friend').text('加為好友')
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
@@ -188,9 +185,7 @@ $(document).ready(function() {
 				data: {account : myaccount, othersideaccount : othersideaccount, friendStatus : 1},
 				timeout: 600000,
 				success: function (data) {
-					$('.friend').attr("value",1);
-					$('.friend').addClass('btn-danger').removeClass('btn-success');
-					$('.friend').text('取消好友')
+					$('.friend').attr("value",1).addClass('btn-danger').removeClass('btn-success').text('取消好友');
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
@@ -225,12 +220,64 @@ $(document).ready(function() {
 	})
 	
 	
-	$('#popSendMessage').click(function(){
+	$('#myMessageSubmit').click(function(){
 	
+		var myMessageTitle = $('#myMessageTitle').val();
+		var myMessageContent = $('#myMessageContent').val();
+
+		$.ajax({
+			url:"/EEIT/sendMessage",
+			type:"POST",
+			data:{ myMessageTo:othersideaccount,myMessageTitle:myMessageTitle,myMessageContent:myMessageContent},
+			success:function(){
+				alert('訊息已傳送!');
+				$('#cancel2').trigger("click");
+			},
+			error: function (e) {
+				console.log("ERROR : ", e);
+				alert(e);
+			}
+		})
 		
 		
 		
 	})
+	
+	
+	$('.ban').click(function(){
+		var banStatus = $('.ban').attr("value");
+		if(banStatus == 1){
+			$.ajax({
+				type: "POST",
+				url: "/EEIT/banMember",
+				data: {_method : "PUT", account:othersideaccount, banStatus:0},
+				timeout: 600000,
+				success: function (data) {
+					$('.ban').attr("value",0).addClass('btn-danger').removeClass('btn-success').text('封鎖會員');
+				},
+				error: function (e) {
+					console.log("ERROR : ", e);
+					alert(e);
+				} 
+			}); 
+		}else if(banStatus == 0){
+			$.ajax({
+				type: "POST",
+				url: "/EEIT/banMember",
+				data: {_method : "PUT", account:othersideaccount, banStatus:1},
+				timeout: 600000,
+				success: function (data) {
+					$('.ban').attr("value",1).addClass('btn-success').removeClass('btn-danger').text('解除封鎖');
+				},
+				error: function (e) {
+					console.log("ERROR : ", e);
+					alert(e);
+				} 
+			});
+		}
+	})
+	
+	
 	
 	
 	

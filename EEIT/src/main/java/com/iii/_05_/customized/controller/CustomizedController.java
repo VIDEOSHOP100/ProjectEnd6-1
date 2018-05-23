@@ -1,6 +1,8 @@
 package com.iii._05_.customized.controller;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iii._01_.Member.bean.MemberBean;
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.customized.model.CustomizedBean;
 import com.iii._05_.customized.model.CustomizedService;
 
@@ -51,6 +54,7 @@ public class CustomizedController {
 		cb.setCustomizedStatus(customizedStatus);
 		cb.setCustomizedTime(customizedTime);
 		cb.setAccount(account);
+		cb.setSortNum(0);
 //		cb.setCustomizedPic(originalPhotoName);
 //		 cb = new CustomizedBean(0,  customizedPic, customizedTitle, customizedTime,
 //				customizedDesc,customizedStatus,account);
@@ -59,4 +63,28 @@ public class CustomizedController {
 
 		return "redirect:"+target;
 	}
+	
+//	@RequestMapping(value = "/sortable",method = RequestMethod.PUT)
+//	public @ResponseBody Map<String,String> updateLiveStream(
+////			@RequestParam("liveStreamSeqNo") Integer liveStreamSeqNo,
+////			@RequestParam("LiveStreamHistorySeqNo") Integer LiveStreamHistorySeqNo,
+//			@RequestParam("sortNum") Integer[] sortNum,
+//			HttpSession session
+//			) {
+//		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
+//		String account = memberBean.getAccount();
+//		
+//		System.out.println("=============================================");
+//		System.out.println(sortNum);
+//		
+//		Map<String, String> map = new HashMap<String,String>();
+//		map.put("status", "success");
+//		return map;
+//	}
+	
+	
+	
+	
+	
+	
 }

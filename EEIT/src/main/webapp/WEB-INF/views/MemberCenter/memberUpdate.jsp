@@ -142,7 +142,7 @@
 
 
 	<!-- Contact form JavaScript -->
-
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 
 </html>

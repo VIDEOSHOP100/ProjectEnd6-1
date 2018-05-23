@@ -48,5 +48,6 @@
 	</div>
 	<!-- /.container -->
 	<!-- Footer -->
+		<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>

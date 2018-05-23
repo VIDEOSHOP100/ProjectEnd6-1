@@ -127,26 +127,39 @@ public class PdfProduceService {
 			p11.setSpacingBefore(10f);
 			//取出該訂單的商品資訊 放入paragraph
 			List<Paragraph> paragraphlist = new ArrayList<>();
-			List<Integer> namelen = new ArrayList<>();
+//			List<Integer> namelen = new ArrayList<>();
+			
+			int i =1;
 			for (OrderProductBean orderbean : productlist) {
 				Paragraph paragraph = new Paragraph();
 				ProductSaleBean oneproduct = productservice.getBySeqNo(orderbean.getProductSeqNo());
-				int proNamelen = oneproduct.getProName().length();
-				paragraph.add(new Phrase(oneproduct.getProName()+ "     "+String.valueOf(orderbean.getProductCount())+"     "+String.valueOf(orderbean.getProductPrice()), font1));
+//				int proNamelen = oneproduct.getProName().length();
+				
+				paragraph.add(new Phrase(String.valueOf(i)+". ",font1));
+				paragraph.setSpacingBefore(10f);
+				paragraph.add(new Phrase("商品名稱 :"+ oneproduct.getProName()+"    ",font1));
+				paragraph.setSpacingBefore(10f);
+				paragraph.add(new Phrase("商品數量 :"+ String.valueOf(orderbean.getProductCount())+"    ",font1));
+				paragraph.setSpacingBefore(10f);
+				paragraph.add(new Phrase("商品單價 :NT"+ String.valueOf(orderbean.getProductPrice())+"元      ",font1));
+				paragraph.setSpacingBefore(10f);
+				paragraph.add(new Phrase("商品總價 :NT"+ String.valueOf(orderbean.getProductTotal())+"元      ",font1));
+				paragraph.setSpacingBefore(10f);
+				paragraph.add(new Phrase(" ", font1));
 				paragraph.setSpacingBefore(10f);
 				paragraphlist.add(paragraph);
-				namelen.add(proNamelen);
+				i++;
+//				namelen.add(proNamelen);
 			}
-			String space = " ";
-		    Integer max1 = Collections.max(namelen);
-		    for(int i=0 ; i<=max1 ;i ++) {
-		    	space += " ";
-		    }
+//			String space = " ";
+//		    Integer max1 = Collections.max(namelen);
+//		    for(int i=0 ; i<=max1 ;i ++) {
+//		    	space += " ";
+//		    }
+
 		    	 
 			
 
-			p12.add(new Phrase("商品名稱"+space+"商品數量                商品價格 ", font1));
-			p12.setSpacingBefore(10f);
 			Paragraph para1 = new Paragraph();
 			Anchor anchorTarget2 = new Anchor("                             " + "LiveMarket線上訂單明細", font2);
 			para1.setSpacingBefore(10f);
@@ -162,58 +175,37 @@ public class PdfProduceService {
 			cell.addElement(p9);
 			cell.addElement(p10);
 			cell.addElement(p11);
-			cell.addElement(p12);
+//			cell.addElement(p12);
 			for (Paragraph readyp : paragraphlist) {
 				cell.addElement(readyp);
 			}
 			table1.addCell(cell);
 			table1.setSpacingBefore(20f);
 
-			// // table2 旅客資訊
-			// PdfPTable table2 = new PdfPTable(1);
+		
+			 PdfPTable table2 = new PdfPTable(1);
 			// table2.setWidthPercentage(100);
 			// table2.setHorizontalAlignment(10);
 			//
-			// PdfPCell cell2 = new PdfPCell();
+			 PdfPCell cell2 = new PdfPCell();
 			//
-			// Paragraph pp = new Paragraph();
-			//
-			// pp.add(new Phrase("訂購商品資訊 見官網" + font));
-			// pp.setSpacingBefore(10f);
-			// pp.setSpacingAfter(10f);
-			// cell2.addElement(pp);
-			// table2.addCell(cell2);
+			 Paragraph pp = new Paragraph();
+			 Paragraph pp1 = new Paragraph();
+			// 
+			Anchor anchorTarget3 = new Anchor("                          " + "LiveMartket  感謝您的蒞臨", font2);
+			Anchor anchorTarget4 = new Anchor("               " + "LiveMarket 聯絡方式  :  livemarket@gmail.com", font2);
+			pp.setSpacingBefore(10f);
+			pp.add(anchorTarget3);
+			pp1.setSpacingBefore(10f);
+			pp1.add(anchorTarget4);
 
-			// java.util.List<OrderProductBean> list =
-			// opservice.getByorderSeqNo(odbean.getOrderSeqNo());
-			//
-			//
-			// for( int i=1 ;i<=list.size(); i++) {
-			// Paragraph ppp = new Paragraph();
-			// pp.add(new Phrase("商品 : " + ", 單價 :" + ", 數量 :" +k +" " + font));
-			//
-			// }
-			// PdfPCell cell21 = new PdfPCell();
-			//
-			// Paragraph p21 = new Paragraph();
-			// p21.add(new Phrase("旅客1：" + odbean.getOrdererName()
-			// + font));
-			// p21.setSpacingBefore(10f);
-			//
-			// Paragraph p22 = new Paragraph();
-			// p22.add(new Phrase("旅客2：GAY FOOTER" + "性別+", font));
-			// p22.setSpacingBefore(10f);
-			// p22.setSpacingAfter(10f);
-			//
-			// cell21.addElement(p21);
-			// cell21.addElement(p22);
-			// table2.addCell(cell21);
-//			table2.setSpacingBefore(20f);
+		
 
 			document.add(para1);
 			document.add(table1);
-//			document.add(table2);s
-
+	
+			document.add(pp);
+			document.add(pp1);
 		} finally {
 			System.out.println(document);
 			document.close();

@@ -28,4 +28,6 @@ public interface InputLiveStreamTimeService {
 	public void deleteLiveStreams(InputLiveStreamTimeBean InputLiveStreamTimeBean);
 
 	public void savePhotoToFile(String photoFileFolderPath, String photoFilePath, MultipartFile photo);
+	
+	public List<InputLiveStreamTimeBean> getAllTopFiveLiveStreams();
 }

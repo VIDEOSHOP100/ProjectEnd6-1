@@ -31,7 +31,7 @@
 	<!-- Navigation -->
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<!-- Page Content -->
-	<div class="container">
+  <div class="container" style="margin-left:50px">
 
 		<!-- Portfolio Item Heading -->
 		<h1 class="my-4 account">
@@ -100,10 +100,12 @@
 							</tr>
 						</tfoot>
 					</table>
+					<div class="container">
 					<br>
-					<a href="${pageContext.request.contextPath}/goMarketHomePage">繼續購買</a>
-					<br>
-					<a href="${pageContext.request.contextPath}/order.do">馬上結帳</a>
+					<a href="${pageContext.request.contextPath}/goMarketHomePage"><button type="button" class="btn btn-primary">繼續購買</button></a>
+				
+					<a href="${pageContext.request.contextPath}/order.do"><button type="button" class="btn btn-success">馬上結帳</button></a>
+					</div>
 					<!-- 	刪除商品表格	-------------------------- -->
 					<div id="delete-dialog-form" title="刪除資料">
 						<p class="validateTips">確認刪除此資料?</p>
@@ -129,6 +131,6 @@
 	<script src="http://malsup.github.com/jquery.form.js"></script>
 	
 	<script src="<c:url value='/Cart/js/cart.js'/> "></script>
-
+<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>
