@@ -1,11 +1,8 @@
 $(document).ready(function(){
-	
-
 	$('.cate > ul > .list-group-item-action').click(function(){
 		buttonType=$(this).val(); 
 		var myUrl = "/EEIT/goMarketHomePage/selectProByType/" + buttonType;
 		$('.prorow').empty();
-		
 		$.ajax({
 			type: 'get',
             url: myUrl,
@@ -51,13 +48,8 @@ $(document).ready(function(){
 				console.log("ERROR : ", e);
 				alert(e);
 			}
-		
-		
-		})
-		
-		
-		
-	})
+		})//.ajax end
+	})//.click end
 
 	
 	
