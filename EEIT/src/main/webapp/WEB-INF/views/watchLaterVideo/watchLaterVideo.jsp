@@ -20,7 +20,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-	<div class="container">
+	<div class="container"  style="margin-left:50px">
 		<h1 class="mt-4 mb-3">稍後觀看
 		</h1>
 			
@@ -28,10 +28,10 @@
 		  <li class="breadcrumb-item">
 		  </li>
 		</ol>
-			<div class="row">
+			<div class="row" style="margin-left:20px">
 				<c:forEach var="aVideoBean" items="${watchLaterVideo}">
 					<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
-						<div class="card h-100 videoBlockInner">
+						<div class="card h-100 videoBlockInner"  style="border:none">
 							<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 								<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 							</a>

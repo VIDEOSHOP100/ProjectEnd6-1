@@ -215,7 +215,9 @@ $( function() {
 	});
 	dialoginsert = $( "#insert-dialog-form" ).dialog({
 		autoOpen: false,
-		height: 800,
+		draggable: false,
+		show:"slide",
+		height: 820,
 		width: 600,
 		modal: true,
 		buttons: {
@@ -271,8 +273,8 @@ $( function() {
 				             + " " + ('0'  + uploadDate.getHours()).slice(-2)+':'
 				             + ('0'  + uploadDate.getMinutes()).slice(-2)+':'
 				             + ('0' + uploadDate.getSeconds()).slice(-2);
-				var vb = $('<div class="col-md-12 row divOutside">'+
-						'<div class="col-md-10">'+
+				var vb = $('<div class="col-md-12 row divOutside" style="padding:0px">'+
+						'<div class="col-md-10" style="padding:0px">'+
 							'<div class="media mb-4">'+
 								'<a	href="/EEIT/videoRoom/'+videoBean.videoSeqNo +'">'+
 									'<img class="d-flex mr-3 picVideo" height="200px" width="400px"	src="getImage/video/' + videoBean.videoSeqNo + '">'+
@@ -289,7 +291,7 @@ $( function() {
 									
 									'<p>影片喜歡數: '+videoBean.videoLikes+'</p>'+
 									'<p>影片不喜歡數: '+videoBean.videoUnlikes+'</p>'+
-									'<p>影片播放清單類別: '+videoBean.videoUplodaerListType+'</p>'+
+//									'<p>影片播放清單類別: '+videoBean.videoUplodaerListType+'</p>'+
 									
 									'<p class="videoDescriptionOutSide">影片描述:</p>'+
 									'<p class="videoDescription" title="'+ videoBean.videoDescription +'">'+videoBean.videoDescription+'</p>'+
@@ -343,10 +345,10 @@ $( function() {
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         var i;
-        i = window.setInterval(function() {ctx.drawImage(v,5,5,260,125)},20)
+        i = window.setInterval(function() {ctx.drawImage(v,0,0,300,150)},20)
         v.addEventListener("play", function() {
         		i = window.setInterval(function() {
-        				ctx.drawImage(v,5,5,260,125)
+        				ctx.drawImage(v,0,0,300,150)
         				
         			},20);
         	}, false);

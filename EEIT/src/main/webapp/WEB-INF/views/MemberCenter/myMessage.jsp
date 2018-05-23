@@ -126,7 +126,7 @@ $(document).on("click", ".myMessageSeqNo", function() {
 
 });
 
-
+<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

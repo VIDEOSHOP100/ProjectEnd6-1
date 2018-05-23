@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$('.cate > ul > .list-group-item-action').click(function(){
 		buttonType=$(this).val(); 
 		var myUrl = "/EEIT/goMarketHomePage/selectProByType/" + buttonType;
-		$('.productstart').remove();
+		$('.prorow').empty();
 		
 		$.ajax({
 			type: 'get',
@@ -29,7 +29,6 @@ $(document).ready(function(){
 					var	dor = $('.prorow');
 					dor.prepend(product);	
 				})
-				
 				var len = 15; // 超過50個字以"..."取代
 			    $(".JQellipsis").each(function(i){
 			        if($(this).text().length>len){
