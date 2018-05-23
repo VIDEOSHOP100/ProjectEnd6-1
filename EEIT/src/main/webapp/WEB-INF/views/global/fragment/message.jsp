@@ -15,7 +15,7 @@
 </head>
 <body>
 	<c:if test="${!empty LoginOK }">
-		<div class="chat-sidebar" style="z-index: 5">
+		<div class="chat-sidebar">
 			<p class="chat-sidebar-title">好友</p>
 			<hr class="chat-sidebar-line">
 			<div class="chat-sidebar-inside chat-sidebar-inside-Friend chat-sidebar-insideHide">
@@ -23,12 +23,12 @@
 				<c:forEach var="friendBean" items="${friendBeanList }" >
 					<div class="sidebar-name">
 						<c:if test="${LoginOK.account == friendBean.friendTo}">
-							<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
+							<button type="button" class="sidebarUserButton sidebarUserButtonNone sidebarUserButtonFriend" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
 								<img width="40" height="40" src="${pageContext.request.contextPath}/getImage/member/${friendBean.friendSend}"> <span>${friendBean.friendSend }</span><span class="chatIcon"><i class="far fa-comments"></i></span>
 							</button>				
 						</c:if>
 						<c:if test="${LoginOK.account == friendBean.friendSend}">
-							<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendTo)}" id="${friendBean.friendTo }">
+							<button type="button" class="sidebarUserButton sidebarUserButtonNone sidebarUserButtonFriend" name="${fn:toUpperCase(friendBean.friendTo)}" id="${friendBean.friendTo }">
 								<img width="40" height="40" src="${pageContext.request.contextPath}/getImage/member/${friendBean.friendTo}"> <span>${friendBean.friendTo }</span><span class="chatIcon"><i class="far fa-comments"></i></span>
 							</button>				
 						</c:if>
@@ -40,9 +40,11 @@
 			<div class="chat-sidebar-inside chat-sidebar-inside-subscribe chat-sidebar-insideHide">
 				<c:forEach var="subscriptionBean" items="${subscriptionUploader }" >
 					<div class="sidebar-name">
-						<button type="button" class="sidebarUserButton sidebarUserButtonNone" name="${fn:toUpperCase(friendBean.friendSend)}" id="${friendBean.friendSend }">
-							<img width="40" height="40" src="${pageContext.request.contextPath}/getImage/member/${subscriptionBean.account}"> <p>${subscriptionBean.account}</p><p><small class="subtitle">點擊觀看及時串流直播</small></p><span class="subscribeIcon"><i class="fas fa-heart"></i></span>
-						</button>				
+						<a href="<c:url value='/profile/${subscriptionBean.account}' />">
+							<button type="button" class="sidebarUserButton sidebarUserButtonNone">
+								<img width="40" height="40" src="${pageContext.request.contextPath}/getImage/member/${subscriptionBean.account}"> <p>${subscriptionBean.account}</p><p><small class="subtitle">點擊觀看及時串流直播</small></p><span class="subscribeIcon"><i class="fas fa-heart"></i></span>
+							</button>				
+						</a>
 					</div>
 				</c:forEach>
 			</div>
@@ -102,6 +104,29 @@
 					<button class="btn btn-danger disconnectUser"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDUzMy4zMzMgNTMzLjMzMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTMzLjMzMyA1MzMuMzMzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTUyOS44ODQsMjgzLjMzYzQuMTY4LDI4Ljg5Nyw2Ljg4Miw2OC40MzQtNi4wNzUsODMuNTY2Yy0yMS40MjksMjUuMDIyLTE1Ny4xNDMsMjUuMDIyLTE1Ny4xNDMtMjUuMDIxICAgYzAtMjUuMjA3LDIyLjMyMS00MS43MzYsMC44OTMtNjYuNzYxYy0yMS4wOC0yNC42MTQtNTguODY5LTI1LjAxNC0xMDAuODkzLTI1LjAyMWMtNDIuMDI0LDAuMDA2LTc5LjgxNCwwLjQwNi0xMDAuODkzLDI1LjAyMSAgIGMtMjEuNDI4LDI1LjAyNCwwLjg5Myw0MS41NTMsMC44OTMsNjYuNzZjMCw1MC4wNDUtMTM1LjcxNCw1MC4wNDUtMTU3LjE0MywyNS4wMjJjLTEyLjk1Ny0xNS4xMzMtMTAuMjQ0LTU0LjY2OC02LjA3NC04My41NjYgICBjMy4yMDgtMTkuMjkyLDExLjMxNC00MC4xMDIsMzcuMjY1LTY2LjY2NGMwLTAuMDAxLDAuMDAxLTAuMDAxLDAuMDAxLTAuMDAyYzM4LjkyNi0zNi4zMjMsOTcuODM2LTY2LjAwOCwyMjMuODY4LTY2LjY0OVYxNTAgICBjMC43LDAsMS4zODgsMC4wMDUsMi4wODMsMC4wMDdjMC42OTctMC4wMDIsMS4zODMtMC4wMDcsMi4wODMtMC4wMDd2MC4wMTVjMTI2LjAzMSwwLjY0MSwxODQuOTQxLDMwLjMyNiwyMjMuODY3LDY2LjY1ICAgYzAuMDAxLDAuMDAxLDAuMDAxLDAuMDAyLDAuMDAxLDAuMDAyQzUxOC41NjgsMjQzLjIyNyw1MjYuNjc1LDI2NC4wMzksNTI5Ljg4NCwyODMuMzN6IiBmaWxsPSIjRkZGRkZGIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" /></button>
 				</div>
 	  		</div>
+		</div>
+	</c:if>
+	<c:if test="${empty LoginOK }">
+		<div class="chat-sidebar">
+			<p class="chat-sidebar-title">熱門直播</p>
+			<hr class="chat-sidebar-line">
+			<div class="chat-sidebar-inside chat-sidebar-inside-Friend chat-sidebar-insideHide chat-sidebar-liveStream">
+				<c:forEach var="inputLiveStreamTimeBean" items="${inputLiveStreamTimeBeanList }" >
+					<div class="liveStreamDiv">
+						<a href="${pageContext.request.contextPath}/LiveStream/${inputLiveStreamTimeBean.liveStreamSeqNo}">
+							<img width="100" height="100" src="${pageContext.request.contextPath}/getImage/LiveCoverPath/${inputLiveStreamTimeBean.liveStreamSeqNo}"> <p>${inputLiveStreamTimeBean.streamName}</p><p><small class="subtitle">點擊觀看及時串流直播</small></p>
+						</a>
+					</div>
+				</c:forEach>
+			</div>
+			<p class="chat-sidebar-title">熱門商品</p>
+			<hr class="chat-sidebar-line">
+			<div class="chat-sidebar-inside chat-sidebar-inside-subscribe chat-sidebar-insideHide">
+			</div>
+			<p class="chat-sidebar-title">熱門影片</p>
+			<hr class="chat-sidebar-line">
+			<div class="chat-sidebar-inside chat-sidebar-inside-cart chat-sidebar-insideHide">
+			</div>
 		</div>
 	</c:if>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.0.3/sockjs.js"></script>

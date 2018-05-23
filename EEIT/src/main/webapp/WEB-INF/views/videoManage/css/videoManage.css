@@ -201,3 +201,7 @@ body.loading .modal {
 	padding-bottom: 10px;
 	
 }
+
+#insert-dialog-form{
+	height:800px;
+}

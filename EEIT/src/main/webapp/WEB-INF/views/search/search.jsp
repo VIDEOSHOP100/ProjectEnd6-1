@@ -23,7 +23,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-		<div class="container">
+		<div class="container"  style="margin-left:50px">
 			<div class="row searchResultBlock">
 				<div class="col-lg-3 col-md-4  divOutside" style="padding:0px">
 					<div class="divInsideTitle">直播</div>

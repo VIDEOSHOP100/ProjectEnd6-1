@@ -263,13 +263,10 @@
 					<button type="button" class="btn btn-secondary" id="cancel2"
 						data-dismiss="modal">取消</button>
 					<button id="myMessageSubmit" type="button" class="btn btn-warning">送出</button>
-
 				</div>
 				</c:if>
 			</div>
 		</div>
 	</div>
-  	
   </body>
-
 </html>

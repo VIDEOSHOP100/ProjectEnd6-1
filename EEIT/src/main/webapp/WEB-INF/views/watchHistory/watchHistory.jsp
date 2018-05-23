@@ -17,7 +17,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-  <div class="container watchHistoryContainer">
+  <div class="container watchHistoryContainer"  style="margin-left:50px">
     <h1 class="mt-4 mb-3">瀏覽紀錄
     </h1>
 

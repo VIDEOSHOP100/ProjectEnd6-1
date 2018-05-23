@@ -16,7 +16,7 @@
 <link href="<c:url value='/videoRoomdeco/css/videoRoom.css'/> " rel="stylesheet">
 </head>
 <body>
-	<div class="container">
+	<div class="container"  style="margin-left:50px">
 		<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 		<input id="account" type="hidden" name = "account" value= "${LoginOK.account }">
 		<input type="hidden" name = "videoSeqNo" value= "${video.videoSeqNo}">
