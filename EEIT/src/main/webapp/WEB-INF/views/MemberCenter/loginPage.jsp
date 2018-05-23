@@ -65,7 +65,7 @@
 		</div>
 
 	</div>
-
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 
 </html>

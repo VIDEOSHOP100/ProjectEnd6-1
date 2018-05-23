@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface VideoReportDAO {
 	
+	public VideoReportBean getVideoReportByVideoReportSeqNo(Integer VideoReportSeqNo);
+	
 	public List<VideoReportBean> getVideoReportByAccountAndVideoSeqNo(String account, Integer videoSeqNo);
 	
 	public List<VideoReportBean> getAllVideoReport();

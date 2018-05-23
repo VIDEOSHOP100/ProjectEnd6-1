@@ -40,7 +40,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
     	registry.addInterceptor(loginInterceptor())
-    	.excludePathPatterns("/","/loginPage","/*","/getImage/**","/getImageTest/**","/getVideo/**","/videoRoom/*","/videoType/*","/LiveStream/*","/memberReport/*","/liveStreamReport/*","/adviceReport/*","/goMarketHomePage/*","/search/**","/messageSystem/**","/target/message/subscription/**","/endPoint/**","/Register/*","/searchProductIntro/*","/profile/**","/uploaderHomePage/**","/MemberCenter/forgotPassword");
+    	.excludePathPatterns("/","/loginPage","/*","/getImage/**","/getImageTest/**","/getVideo/**","/videoRoom/*","/videoType/*","/LiveStream/*","/memberReport/*","/liveStreamReport/*","/adviceReport/*","/goMarketHomePage/*","/search/**","/messageSystem/**","/target/message/subscription/**","/endPoint/**","/Register/*","/searchProductIntro/*","/profile/**","/uploaderHomePage/**","/MemberCenter/forgotPassword","/getVideoReport/**");
         registry.addInterceptor(notificationRecordingIntercepter());
         registry.addInterceptor(messageSystemIntercepter());
     }

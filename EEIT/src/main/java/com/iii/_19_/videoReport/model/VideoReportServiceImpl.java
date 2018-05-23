@@ -13,6 +13,12 @@ public class VideoReportServiceImpl implements VideoReportService {
 	VideoReportDAO videoReportDAO;
 	
 	@Override
+	public VideoReportBean getVideoReportByVideoReportSeqNo(Integer VideoReportSeqNo) {
+		return videoReportDAO.getVideoReportByVideoReportSeqNo(VideoReportSeqNo);
+	}
+	
+	
+	@Override
 	public List<VideoReportBean> getVideoReportByAccountAndVideoSeqNo(String account, Integer videoSeqNo) {
 		return videoReportDAO.getVideoReportByAccountAndVideoSeqNo(account, videoSeqNo);
 	}
@@ -46,5 +52,6 @@ public class VideoReportServiceImpl implements VideoReportService {
 	public void deleteVideoReport(VideoReportBean videoReportBean) {
 		videoReportDAO.deleteVideoReport(videoReportBean);
 	}
+
 
 }

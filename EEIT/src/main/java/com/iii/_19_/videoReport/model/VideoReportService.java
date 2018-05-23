@@ -3,6 +3,9 @@ package com.iii._19_.videoReport.model;
 import java.util.List;
 
 public interface VideoReportService {
+	
+	public VideoReportBean getVideoReportByVideoReportSeqNo(Integer VideoReportSeqNo);
+	
 	public List<VideoReportBean> getVideoReportByAccountAndVideoSeqNo(String account, Integer videoSeqNo);
 	
 	public List<VideoReportBean> getAllVideoReport();
