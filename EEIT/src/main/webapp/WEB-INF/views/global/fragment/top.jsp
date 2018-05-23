@@ -477,24 +477,15 @@
 					console.log("ERROR : ", e);
 					alert(e);
 				}
-	        
-	        
 	        })
-	        
-	        
 	      };
 		
 	      $(document).on("click",'#logoutButton',signOut);
-	      
 	     	{
 	          gapi.load('auth2', function() {
 	            gapi.auth2.init();
 	          });
 	        }
-	      
-	      
-	      
-	      
 	      function signOut() {
 	    	  
 	    	    var auth2 = gapi.auth2.getAuthInstance().disconnect();
@@ -509,15 +500,10 @@
 	  			error : function(e) {
 					console.log("ERROR : ", e);
 					alert(e);
-				}
-	    	
-	    		  
-	    	  })
-	    	  
-	    	  
-	    	  }
+				}  
+	    	 }) 
+	     }
 	</script>
-	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
 </body>
 
 </html>

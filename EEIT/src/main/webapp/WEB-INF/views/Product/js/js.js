@@ -52,10 +52,38 @@
 					timeout : 600000,
 					success : function(data,result) {
 						
-						$dialogCheck.dialog('open');
+//						$dialogCheck.dialog('open');
 						
-						setTimeout(function(){location.reload(); }, 1200);
-						  
+						$('.cartbar').remove;
+						//.ajax
+						$.ajax({
+							type : 'GET',
+							url : "/EEIT/CartList/getCartDetailList",
+							dataType : 'json',
+							success : 
+							function(data,result) {
+												var product;
+												var docFrag = $(document.createDocumentFragment());
+													$.each(data.cartDetailList,function(key, oneproductBean){
+														product = '<div class="sidebar-name cart">'+
+														'<button type="button" class="sidebarUserButton sidebarUserButtonNone">'+
+														'<img width="40" height="40" src="/EEIT/getImage/Product/'+oneproductBean.productSeqNo+'">'+
+														'<p class="shoppingCartProductName">'+oneproductBean.productbean.proName+'</p><p class="shoppingCartProductDescription"><small class="subtitle">'+
+														oneproductBean.productbean.proDescription+'</small></p><span  class="shoppingCartProductNumber">'+
+														oneproductBean.productCount+'</span></button></div>';
+														docFrag.append(product);	
+													})
+														$('.cartoutside').html(docFrag) ;
+												
+							},	
+							error : function(e) {
+
+								console.log("ERROR : ", e);
+							
+							}
+						})	
+						
+					
 					},
 					error : function(e) {
 
