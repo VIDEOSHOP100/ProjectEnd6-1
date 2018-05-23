@@ -197,34 +197,7 @@ ul li {
 		</div>
 		<div class="row text-center prorow"
 			style="width: 80%; margin: 0 auto; float: right">
-	<div class='row'>
-			<!-- 			直播商品 ------------------------------------------------------------------------------>
-			<c:forEach var="aLiveStreamBean" items="${AllLiveStream}">
-				<div class="col-lg-3 col-md-6 mb-4">
-					<div class="card">
-						<a
-							href="<c:url value='/LiveStream/${aLiveStreamBean.liveStreamSeqNo}' />">
-							<img class="card-img-top"  height="238px"
-							src='${pageContext.request.contextPath}/getImage/LiveCoverPath/${aLiveStreamBean.liveStreamSeqNo}'>
-						</a>
-						<div class="card-body">
-							<h4 class="card-title">
-								<a
-									href="<c:url value='/LiveStream/${aLiveStreamBean.liveStreamSeqNo}' />">${aLiveStreamBean.streamName}</a>
-							</h4>
-							<div class="card-footer">
-							<p>
-								UP主:<a class="uploaderLink"
-									href="<c:url value='/uploaderHomePage/${aLiveStreamBean.account}' />">${aLiveStreamBean.account}</a>
-							</p>
-							<p>觀看次數:${aLiveStreamBean.liveStreamView}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-			
-		</div>
+	
 			<!-- 			直播商品 ------------------------------------------------------------------------------>
 			<!--            商城商品 ------------------------------------------------------------------------------>
 			<c:forEach var="product" items="${productbeans}">

@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Modern Business - Start Bootstrap Template</title>
+<title>商品上架</title>
 
 </head>
 
@@ -29,8 +29,8 @@
 		</h1>
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="/EEIT">Home</a></li>
-			<li class="breadcrumb-item active">Services</li>
+			<li class="breadcrumb-item"><a href="/EEIT">首頁</a></li>
+			<li class="breadcrumb-item active">商品上架</li>
 		</ol>
 
 		<!-- Image Header -->
@@ -198,9 +198,12 @@
 					<form:input type="hidden" class="form-control" id="account"
 						path="account" value="${LoginOK.account}" />
 					<!-- For success/fail messages -->
+					<div class="container">
 					<input type="submit" class="btn btn-primary" id="sendMessageButton"
 						value="submit" />
-				</form:form>
+						<button type="button" class="btn btn-warning">Demo</button>
+				    </div>
+					</form:form>
 			</div>
 
 		</div>

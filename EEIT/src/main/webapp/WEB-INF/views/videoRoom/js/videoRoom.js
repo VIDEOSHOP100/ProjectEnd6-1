@@ -2,7 +2,7 @@
  * 
  */
 $(document).ready(function() {	
-		$( ".sidebar-name>button" ).each(function() {
+		$( ".sidebarUserButtonFriend" ).each(function() {
 			$(this).attr('name',$(this).attr('name').toUpperCase())
 		})
 		var videoSeqNo = $('input[name="videoSeqNo"]').val();
