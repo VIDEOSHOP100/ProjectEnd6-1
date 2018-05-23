@@ -44,7 +44,7 @@
 			
 			
 					<!-- 每頁不同的內容從這裡開始 -->
-					<table id="productTable" class="table table-condensed">
+					<table id="" class="table table-condensed">
 						<thead>
 							<tr>
 								<th></th>
