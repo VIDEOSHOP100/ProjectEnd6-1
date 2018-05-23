@@ -41,6 +41,7 @@
   </script>
 <title>Insert title here</title>
 </head>
+<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 <body>
 <div class="container" style="margin-left:50px">
 	<form:form action="/EEIT/QuestionList" method="post">
