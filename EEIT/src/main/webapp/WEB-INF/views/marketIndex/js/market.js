@@ -29,7 +29,6 @@ $(document).ready(function(){
 					var	dor = $('.prorow');
 					dor.prepend(product);	
 				})
-				
 				var len = 15; // 超過50個字以"..."取代
 			    $(".JQellipsis").each(function(i){
 			        if($(this).text().length>len){
