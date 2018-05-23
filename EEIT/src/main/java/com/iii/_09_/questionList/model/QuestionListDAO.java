@@ -14,6 +14,8 @@ public interface QuestionListDAO {
 	
 	public List<QuestionListBean> selectQuestionList();
 	
+	public QuestionListBean selectQuestionListByType(Integer questionListType);
+	
 	public List<QuestionListBean> getAllQuestionListBean();
 	
 	

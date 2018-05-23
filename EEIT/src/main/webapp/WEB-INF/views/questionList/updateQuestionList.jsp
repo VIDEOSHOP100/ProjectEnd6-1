@@ -44,34 +44,29 @@
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 <body>
 <div class="container" style="margin-left:50px">
-	<form:form action="/EEIT/QuestionList" method="post">
-	  <input type="hidden" name="_method" value="PUT"/>
-		修改問題編號:<input type="text" name="questionListSeqNo" >
-		questionListTitle:<input type="text" name="questionListTitle" >
-		questionListArticle:<input type="text" name="questionListArticle">
-<!-- 		questionListStatus:<input type="text" name="questionListStatus"> -->
-		managerId:<input type="text" name="managerId">
-		questionListType:<input type="text" name="questionListType">
+	<form:form modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post">
+<!-- 	  <input type="hidden" name="_method" value="PUT"/> -->
+<!-- 		<p class="reasontitle modal-title">請選擇欲拍賣商品：</p> -->
+			 	<form:select id="topic" path="questionListSeqNo">
+					<form:options items="${questionListSeqNo}" />
+				</form:select><br><br>
+<%-- 		修改問題編號:<form:input type="text" path="questionListSeqNo"/> --%>
+		修改問題標題:<form:input type="text" path="questionListTitle" />
+		修改問題內容:<form:input type="text" path="questionListArticle"/>
+		修改管理員:<form:input type="text" path="managerId"/>
+		問題類型:<form:input type="text" path="questionListType"/>
+      	<form:select  id="topic" path="questionListStatus">
+			<form:option value="1">顯示</form:option>
+			<form:option value="0">不顯示</form:option>		
+		</form:select>
+
+
+
 		
       <input type="submit" value="Update"/>
      
 	</form:form>
-	<div class="demo">
- 
-	<form action="#">
-	<fieldset>
-    <label for="speed">是否顯示問題</label>
-    <select name="speed" id="speed">
-      <option>顯示</option>
-      <option>不顯示</option>
-<!--       <option selected="selected">Medium</option> -->
-    
-    </select>
-      </fieldset>
- 
-</form>
- 
-</div>
+
 	
 </div>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
