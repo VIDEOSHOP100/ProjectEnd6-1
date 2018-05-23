@@ -119,10 +119,10 @@ public class GoogleAccountController {
         	
         	
         	
-        	mb.setLastname(resJSON.getString("family_name"));
-        	System.out.println(resJSON.getString("family_name"));
-        	mb.setFirstname(resJSON.getString("given_name"));
-        	System.out.println(resJSON.getString("given_name"));
+//        	mb.setLastname(resJSON.getString("family_name"));
+//        	System.out.println(resJSON.getString("family_name"));
+//        	mb.setFirstname(resJSON.getString("given_name"));
+//        	System.out.println(resJSON.getString("given_name"));
         	mb.setEmail(resJSON.getString("email"));
         	System.out.println(resJSON.getString("email"));
         	mb.setBan(false);
