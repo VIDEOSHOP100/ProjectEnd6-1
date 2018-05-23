@@ -40,6 +40,12 @@
 					</c:if>
 
 				</c:if>
+				<c:if test="${(!empty ManagerLoginOK) && otherside.ban==false}">
+					<button class="btn btn-danger ban" value="0">封鎖會員</button>
+				</c:if>
+				<c:if test="${(!empty ManagerLoginOK) && otherside.ban==true}">
+					<button class="btn btn-success ban" value="1">解除封鎖</button>
+				</c:if>
 		</div>
       <h1 class="mt-4 mb-3">${uploaderAccount }
       	<input type="hidden" class="uploaderAccountForUploaderHomePage" value="${uploaderAccount }">
@@ -257,13 +263,10 @@
 					<button type="button" class="btn btn-secondary" id="cancel2"
 						data-dismiss="modal">取消</button>
 					<button id="myMessageSubmit" type="button" class="btn btn-warning">送出</button>
-
 				</div>
 				</c:if>
 			</div>
 		</div>
 	</div>
-  	
   </body>
-
 </html>

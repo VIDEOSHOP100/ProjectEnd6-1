@@ -12,14 +12,18 @@ $(document).ready(function() {
 	    return false;
 	})
     $(document).on('keydown','.searchInput',function(e){
-//    	alert('aaaaa')
 //    	e.preventDefault()
         if(e.keyCode == 13)
         {
+//        	alert('aaaaa')
+//        	console.log($('.searchInput').val())
 //        	alert($('.searchInput').val())
 			$('.searchForm').attr("action", "/EEIT/search/all/" + $('.searchInput').val())
-			$('.searchForm').submit();
-    	    return false;
+			
+			if($.trim($('.searchInput').val())!= ""){
+				$('.searchForm').submit();
+			}
+			return false;
         }
         
     });

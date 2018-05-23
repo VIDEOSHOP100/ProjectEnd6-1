@@ -22,18 +22,18 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
-	<div class="container">
-		<h1 class="mt-4 mb-3 videoTypeTitle">${videoType}
+	<div class="container"  style="margin-left:50px">
+		<h1 class="mt-4 mb-3 videoTypeTitle" style="margin-left:20px">${videoType}
 		</h1>
 			
 		<ol class="breadcrumb">
 		  <li class="breadcrumb-item">
 		  </li>
 		</ol>
-		<div class="row">
+		<div class="row" style="margin-left:20px">
 			<c:forEach var="aVideoBean" items="${sortedVideos}">
 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
-					<div class="card h-100 videoBlockInner">
+					<div class="card h-100 videoBlockInner" style="border:none">
 						<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 							<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 						</a>

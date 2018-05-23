@@ -26,4 +26,6 @@ public interface InputLiveStreamTimeDAO {
 
 	public void deleteLiveStreams(InputLiveStreamTimeBean InputLiveStreamTimeBean);
 	
+	public List<InputLiveStreamTimeBean> getAllTopFiveLiveStreams();
+	
 }

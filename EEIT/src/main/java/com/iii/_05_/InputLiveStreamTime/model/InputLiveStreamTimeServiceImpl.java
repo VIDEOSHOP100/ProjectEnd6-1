@@ -115,6 +115,10 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 		}
 	}
 
-
+	@Transactional
+	@Override
+	public List<InputLiveStreamTimeBean> getAllTopFiveLiveStreams() {
+		return InputLiveStreamTimeDAO.getAllLiveStreams();
+	}
 
 }
