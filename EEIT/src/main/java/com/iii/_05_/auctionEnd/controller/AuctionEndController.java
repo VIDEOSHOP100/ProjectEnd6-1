@@ -64,29 +64,36 @@ public class AuctionEndController {
 		MemberBean memberBean = (MemberBean)session.getAttribute("LoginOK");
 		account = memberBean.getAccount();
 		List<AuctionEndBean> AllAuctionList = auctionEndService.getAuctionEndByAccount(account);
-		
+		String proName = "";
+		Integer proPrice = 0;
 		for(AuctionEndBean ab: AllAuctionList) {
-			String proName = ab.getProName()+"#";
-			String proPrice = ab.getProPrice();
+			
+			 proName += ab.getProName()+ " "+ ab.getProPrice()+"元 X1"+"#";
+			 
+			 proPrice += ab.getProPrice();
 		
+		}
+		
+		System.out.println(proName);
+		System.out.println(proPrice);
 		
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-//		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+        //Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		// 設定交易時間
 		aio.setMerchantTradeDate(sdf.format(date));	
 		// 商品名稱＋單價＋數量
 		aio.setItemName(proName);
 		// 交易金額
-		aio.setTotalAmount(String.valueOf(proPrice));
+		aio.setTotalAmount(Integer.toString(proPrice));
 		// 交易描述
 		aio.setTradeDesc("工三小");
 		aio.setHoldTradeAMT("0");
 		// 顯示付款成功的頁面（預設
 		aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
 		// 付款成功後轉跳的頁面
-		// aio.setClientBackURL("http://localhost:8080/startrip/");
-		}
+		// aio.setClientBackURL("http://localhost:8080/EEIT/");
+		
 		try {
 			String html = all.aioCheckOut(aio, invoice);
 			System.out.println(html);

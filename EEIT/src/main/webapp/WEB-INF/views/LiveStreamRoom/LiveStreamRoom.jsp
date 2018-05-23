@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title> 
+<link href="<c:url value='/LiveStreamRoom/css/bootstrap-switch.css'/>" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
 <link href="<c:url value='/InsertLiveStream/css/bootstrap-datetimepicker.css'/> " rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
@@ -100,7 +101,7 @@ justify-content: center;
         		  
 <!--         <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
 <iframe width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe> 
-                <h2 id="showViewAfter">${sb.streamName}</h2>
+                <h3 id="showViewAfter" class="TitleName">${sb.streamName}</h3>
         </div>
         <div class="col-lg-6 draggable">
           	<div class="chat-sidebara">
@@ -173,8 +174,73 @@ justify-content: center;
 </div> 
 	
 			 </div>
+			 <br><br>
+			 <c:if test="${LoginOK.account == sb.account}">
+			 
+	<input type="checkbox" id="#myCheckBox" name="my-checkbox"  checked>  <small>&nbsp;&nbsp;編輯自訂頁面</small>
+	</c:if>
 	
-      <div class="row">
+	
+	
+	<!-- 開始設定表單 --> 
+	<div class="row editform hidden col-lg-4 mb-4 offset-4">
+	<div class="" id="" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">${sb.account}的直播介紹控制列</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+
+					<form:form id="CustomizedControl" method="POST"
+						action="${pageContext.request.contextPath}/CustomizedControl"
+						modelAttribute="CustomizedBean" class=""
+						enctype="multipart/form-data">
+
+
+						<p class="reasontitle modal-title">介面標題</p>
+						<div class="form-group">
+							<form:input path="customizedTitle" type="text"
+								class="form-control input-sm" id="customizedTitle"
+								placeholder="請輸入標題" />
+						</div>
+						<p class="reasontitle modal-title">新增影像</p>
+<!-- 						<input type="file" id="file"/> -->
+						<form:input path="photo" type="file" name="customizedPic" id="customizedPic" class="text ui-widget-content ui-corner-all"/>
+					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
+				
+  						<br><br>
+			<p class="reasontitle modal-title">描述</p>
+						<div class="form-group">
+							<form:textarea path="customizedDesc" type="text"
+								class="form-control input-sm" id="customizedDesc"
+								placeholder="描述內容" />
+						</div>
+						<!-- 						<div class="form-group"> -->
+						<!-- 							附加照片 -->
+						<%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
+						<!-- 						</div> -->
+				
+				
+
+					<button type="button" class="btn btn-outline-info" id="cancel"
+						data-dismiss="modal">取消</button>
+							<input type="submit" class="btn btn-primary" id="customizedSubmit" value="確定"/>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- 設定表單結束 -->
+      <div class="row onsaleitems">
 		<div class="col-lg-12 "> 
 		 <div class="col-lg-12 text-center">
 		 <c:if test="${!empty AllProduct}">
@@ -220,7 +286,7 @@ justify-content: center;
 
       <!-- Our Customers -->
     
-      <div class="row">
+      <div class="row onsaleitems">
       <div class="col-lg-12 text-center">
         <h2 class="sellproduct">賣家其他熱門商品</h2>
         </div>
@@ -314,7 +380,7 @@ justify-content: center;
 				<div class="modal-footer">
 <%-- 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p> --%>
 					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" id="sub" value="註冊"/>
+					<input type="submit" class="btn btn-primary" id="sub" value="確定"/>
 				</div>
 					</form:form>
 					
@@ -452,6 +518,7 @@ justify-content: center;
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	   <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
+	<script src="<c:url value='/LiveStreamRoom/js/bootstrap-switch.js'/> "></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 		<script src="<c:url value='/LiveStreamRoom/js/jquery.balloon.js'/> "></script>
 		<script src="<c:url value='/InsertLiveStream/js/bootstrap-datetimepicker.js'/>"></script>

@@ -18,7 +18,7 @@
 <body>
         <%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
         
-        <div class="container">
+      <div class="container" style="margin-left:50px">
         	<h1 class="mt-4 mb-3">回報完成</h1>
         	<div class="row">
         	
@@ -34,6 +34,5 @@
         	
         </div>
         
-        <%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
 </body>
 </html>

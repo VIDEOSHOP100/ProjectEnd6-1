@@ -30,7 +30,7 @@
 	<!-- Navigation -->
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<!-- Page Content -->
-	<div class="container">
+	<div class="container" style="margin-left:50px">
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">更新會員資料</h1>
@@ -140,7 +140,6 @@
 	<!-- /.container -->
 	<!-- Footer -->
 
-	<%@ include file="/WEB-INF/views/global/fragment/footer.jsp"%>
 
 	<!-- Contact form JavaScript -->
 

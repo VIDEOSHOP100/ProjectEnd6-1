@@ -85,7 +85,7 @@ public class AuctionItemSelectController {
 			//取得+設置得標者帳號
 			AuctionEndBean.setAccount(BidAucBean.getAccount());
 			//取得+設置得標價格
-			AuctionEndBean.setProPrice(Integer.toString(BidAucBean.getBidPrice()));
+			AuctionEndBean.setProPrice(BidAucBean.getBidPrice());
 			//取得現在時間
 			Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 			AuctionEndBean.setProTime(now);
@@ -125,7 +125,7 @@ public class AuctionItemSelectController {
 			//取得+設置得標者帳號
 			AuctionEndBean.setAccount(BidAucBean.getAccount());
 			//取得+設置得標價格
-			AuctionEndBean.setProPrice(Integer.toString(BidAucBean.getBidPrice()));
+			AuctionEndBean.setProPrice(BidAucBean.getBidPrice());
 			//取得現在時間
 			Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 			AuctionEndBean.setProTime(now);

@@ -16,7 +16,7 @@ public class AuctionEndBean {
 	private Integer auctionEndSeqNo;
 	private String account;
 	private Timestamp proTime;
-	private String proPrice;
+	private Integer proPrice;
 	private Integer productSeqNo;
 	private Integer picSeqNo;
 	private String proName;
@@ -38,10 +38,10 @@ public class AuctionEndBean {
 	public void setProTime(Timestamp proTime) {
 		this.proTime = proTime;
 	}
-	public String getProPrice() {
+	public Integer getProPrice() {
 		return proPrice;
 	}
-	public void setProPrice(String proPrice) {
+	public void setProPrice(Integer proPrice) {
 		this.proPrice = proPrice;
 	}
 	public Integer getProductSeqNo() {
@@ -49,24 +49,6 @@ public class AuctionEndBean {
 	}
 	public void setProductSeqNo(Integer productSeqNo) {
 		this.productSeqNo = productSeqNo;
-	}
-	@Override
-	public String toString() {
-		return "AuctionEndBean [auctionEndSeqNo=" + auctionEndSeqNo + ", account=" + account + ", proTime=" + proTime
-				+ ", proPrice=" + proPrice + ", productSeqNo=" + productSeqNo + "]";
-	}
-	public AuctionEndBean(Integer auctionEndSeqNo, String account, Timestamp proTime, String proPrice,
-			Integer productSeqNo) {
-		super();
-		this.auctionEndSeqNo = auctionEndSeqNo;
-		this.account = account;
-		this.proTime = proTime;
-		this.proPrice = proPrice;
-		this.productSeqNo = productSeqNo;
-	}
-	public AuctionEndBean() {
-		super();
-		
 	}
 	public Integer getPicSeqNo() {
 		return picSeqNo;
@@ -80,7 +62,27 @@ public class AuctionEndBean {
 	public void setProName(String proName) {
 		this.proName = proName;
 	}
-
+	@Override
+	public String toString() {
+		return "AuctionEndBean [auctionEndSeqNo=" + auctionEndSeqNo + ", account=" + account + ", proTime=" + proTime
+				+ ", proPrice=" + proPrice + ", productSeqNo=" + productSeqNo + ", picSeqNo=" + picSeqNo + ", proName="
+				+ proName + "]";
+	}
+	public AuctionEndBean(Integer auctionEndSeqNo, String account, Timestamp proTime, Integer proPrice,
+			Integer productSeqNo, Integer picSeqNo, String proName) {
+		super();
+		this.auctionEndSeqNo = auctionEndSeqNo;
+		this.account = account;
+		this.proTime = proTime;
+		this.proPrice = proPrice;
+		this.productSeqNo = productSeqNo;
+		this.picSeqNo = picSeqNo;
+		this.proName = proName;
+	}
+	public AuctionEndBean() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	

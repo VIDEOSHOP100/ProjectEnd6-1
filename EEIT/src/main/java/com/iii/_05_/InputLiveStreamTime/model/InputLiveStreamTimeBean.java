@@ -27,7 +27,7 @@ public class InputLiveStreamTimeBean {
 	private String liveCoverName;
 	private String liveStreamPath;
 	private Integer liveStreamView;
-	
+	private Integer allLiveStreamView;
 	@Transient
 	private MultipartFile photo; // 照片
 	
@@ -168,6 +168,14 @@ public class InputLiveStreamTimeBean {
 	}
 	public void setLiveStreamView(Integer liveStreamView) {
 		this.liveStreamView = liveStreamView;
+	}
+
+	public Integer getAllLiveStreamView() {
+		return allLiveStreamView;
+	}
+
+	public void setAllLiveStreamView(Integer allLiveStreamView) {
+		this.allLiveStreamView = allLiveStreamView;
 	}
 
 

@@ -13,7 +13,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
     
-    <div class="container"  style="margin-left:50px">
+    <div class="container" style="margin-left:50px"> 
 	    <input id="account" type="hidden" name="account" value="${LoginOK.account}">
 		<input id="othersideaccount" type="hidden" name="othersideaccount" value="${otherside.account}">
 		<div class="profileButtonBlock">
@@ -144,6 +144,123 @@
       </div>
     <%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
   	<script src="<c:url value='/uploaderHomePage/js/uploaderHomePage.js'/> "></script>
-  </body>
+  	
+  	
+<!-------------------------------------檢舉會員------------------------------------->
 
+
+
+	<div class="modal fade" id="popMemberReport" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">檢舉會員</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<c:if test="${!empty LoginOK}">
+				<div class="modal-body">
+
+					<form:form id="memberReport" method="POST"
+						action="${pageContext.request.contextPath}/memberReport"
+						modelAttribute="MemberReportBean" class=""
+						enctype="multipart/form-data">
+
+
+
+						<div class="form-group">
+							<form:input path="reportTitle" type="text"
+								class="form-control input-sm" id="reportTitle"
+								placeholder="檢舉標題" />
+						</div>
+
+						<div class="form-group">
+							<form:textarea path="reportContent" type="text"
+								class="form-control input-sm" id="reportContent"
+								placeholder="檢舉內容" />
+						</div>
+<!-- 						<div class="form-group"> -->
+<!-- 							附加照片 -->
+<%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
+<!-- 						</div> -->
+					</form:form>
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-secondary" id="cancel"
+						data-dismiss="modal">取消</button>
+					<button id="reportSubmit" type="button" class="btn btn-warning">確認檢舉</button>
+
+				</div>
+				</c:if>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+<!-------------------------------------發送訊息 ------------------------------------->
+	
+	
+	
+	
+	
+	
+		<div class="modal fade" id="popSendMessage" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">發送信件</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+				<c:if test="${!empty LoginOK}">
+					<form:form id="MyMessageBean" method="POST"
+						action="${pageContext.request.contextPath}/sendMyMessage"
+						modelAttribute="MyMessageBean" class=""
+						enctype="multipart/form-data">
+
+
+
+						<div class="form-group">
+							<form:input path="myMessageTitle" type="text"
+								class="form-control input-sm" id="myMessageTitle"
+								placeholder="信件標題" />
+						</div>
+
+						<div class="form-group">
+							<form:textarea path="myMessageContent" type="text"
+								class="form-control input-sm" id="myMessageContent"
+								placeholder="信件內容" />
+						</div>
+<!-- 						<div class="form-group"> -->
+<!-- 							附加照片 -->
+<%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
+<!-- 						</div> -->
+					</form:form>
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-secondary" id="cancel"
+						data-dismiss="modal">取消</button>
+					<button id="myMessageSubmit" type="button" class="btn btn-warning">送出</button>
+				</div>
+				</c:if>
+			</div>
+		</div>
+	</div>
+  </body>
 </html>
