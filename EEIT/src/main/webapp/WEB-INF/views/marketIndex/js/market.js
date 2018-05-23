@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$('.cate > ul > .list-group-item-action').click(function(){
 		buttonType=$(this).val(); 
 		var myUrl = "/EEIT/goMarketHomePage/selectProByType/" + buttonType;
-		$('.productstart').remove();
+		$('.prorow').empty();
 		
 		$.ajax({
 			type: 'get',
