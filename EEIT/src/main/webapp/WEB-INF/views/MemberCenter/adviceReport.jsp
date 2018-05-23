@@ -64,6 +64,7 @@
 				</form:form>
 
 	</div>
+		<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<!-- /.row -->
 </body>
 </html>

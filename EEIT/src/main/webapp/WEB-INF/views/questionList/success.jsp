@@ -8,5 +8,6 @@
 </head>
 <body>
  <H4>OK</H4>
+ <%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iii._01_.Manager.bean.ManagerBean;
 import com.iii._01_.Member.bean.MemberBean;
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
@@ -17,8 +18,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 			throws Exception {
 			HttpSession session = request.getSession();
 			MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
-
-			if (mb != null) {
+			ManagerBean Mab = (ManagerBean) session.getAttribute("ManagerLoginOK");
+			
+			if (mb != null || Mab!=null) {
 				return true;
 			} else {
 				response.sendRedirect(request.getContextPath() + "/loginPage");

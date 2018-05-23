@@ -6,26 +6,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Button - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-  <script>
-  $( function() { 
-   $( ".widget input[type=submit], .widget a, .widget button" ).button(); 
-    $( "button, input, a" ).click( function( event ) { 
-       event.preventDefault(); 
-    } ); 
-  } ); 
-</script>
+<title>問題新增表格</title>
+
 </head>
 <body>
-<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>	
-<div class="widget">
+
+
 	<a href = "${pageContext.request.contextPath}/QuestionList/addQuestionList">新增問題</a>
 	<br>
 	<a href = "${pageContext.request.contextPath}/QuestionList/deleteQusetionList">刪除問題</a>
@@ -33,6 +21,6 @@
 	<a href = "${pageContext.request.contextPath}/QuestionList/insertQuestionList">修改問題</a>
 	<br>
 	<a href = "${pageContext.request.contextPath}/QuestionList/updateQuestionList">上傳問題</a>
-</div>
+<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>
