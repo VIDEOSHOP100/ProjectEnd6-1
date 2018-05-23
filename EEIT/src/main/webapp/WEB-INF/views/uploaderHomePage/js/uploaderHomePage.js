@@ -225,8 +225,24 @@ $(document).ready(function() {
 	})
 	
 	
-	$('#popSendMessage').click(function(){
+	$('#myMessageSubmit').click(function(){
 	
+		var myMessageTitle = $('#myMessageTitle').val();
+		var myMessageContent = $('#myMessageContent').val();
+
+		$.ajax({
+			url:"/EEIT/sendMessage",
+			type:"POST",
+			data:{ myMessageTo:othersideaccount,myMessageTitle:myMessageTitle,myMessageContent:myMessageContent},
+			success:function(){
+				alert('訊息已傳送!');
+				$('#cancel2').trigger("click");
+			},
+			error: function (e) {
+				console.log("ERROR : ", e);
+				alert(e);
+			}
+		})
 		
 		
 		

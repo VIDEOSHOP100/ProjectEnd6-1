@@ -225,10 +225,10 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+				<c:if test="${!empty LoginOK}">
 				<div class="modal-body">
 
-				<c:if test="${!empty LoginOK}">
-					<form:form id="MyMessageBean" method="POST"
+					<form:form id="MyMessageForm" method="POST"
 						action="${pageContext.request.contextPath}/sendMyMessage"
 						modelAttribute="MyMessageBean" class=""
 						enctype="multipart/form-data">
@@ -254,7 +254,7 @@
 				</div>
 				<div class="modal-footer">
 
-					<button type="button" class="btn btn-secondary" id="cancel"
+					<button type="button" class="btn btn-secondary" id="cancel2"
 						data-dismiss="modal">取消</button>
 					<button id="myMessageSubmit" type="button" class="btn btn-warning">送出</button>
 				</div>

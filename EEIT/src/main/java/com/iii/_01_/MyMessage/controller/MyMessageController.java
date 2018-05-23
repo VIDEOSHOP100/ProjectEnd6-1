@@ -1,5 +1,6 @@
 package com.iii._01_.MyMessage.controller;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,9 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iii._01_.Member.bean.MemberBean;
@@ -41,7 +44,7 @@ public class MyMessageController {
 	}
 	
 	
-	@RequestMapping(value= "getMyMessage/{myMessageSeqNo}", method=RequestMethod.GET)
+	@RequestMapping(value= "/getMyMessage/{myMessageSeqNo}", method=RequestMethod.GET)
 	public @ResponseBody Map<String,Object> getMyMessage(@PathVariable("myMessageSeqNo")Integer myMessageSeqNo){
 	
 		Map<String,Object>map = new HashMap<String,Object>();
@@ -54,6 +57,29 @@ public class MyMessageController {
 		return map;
 	}
 	
+	
+	@RequestMapping(value="/sendMessage" , method=RequestMethod.POST)
+	public @ResponseBody void sendMessage(@RequestParam("myMessageTo")String myMessageTo ,
+			@RequestParam("myMessageTitle")String myMessageTitle,
+			@RequestParam("myMessageContent")String myMessageContent,
+			HttpSession session) {
+		
+		MyMessageBean mmb = new MyMessageBean();
+		
+		mmb.setMyMessageTitle(myMessageTitle);
+		mmb.setMyMessageContent(myMessageContent);
+		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
+		String myMessageFrom = mb.getAccount();
+		mmb.setMyMessageFrom(myMessageFrom);
+		mmb.setMyMessageTo(myMessageTo);
+		Timestamp myMessageTime = new java.sql.Timestamp(System.currentTimeMillis());
+		mmb.setMyMessageTime(myMessageTime);
+		mmb.setMyMessageStatus("unread");
+		
+		
+		myMessageService.saveMyMessage(mmb);
+		
+	}
 	
 	
 	
