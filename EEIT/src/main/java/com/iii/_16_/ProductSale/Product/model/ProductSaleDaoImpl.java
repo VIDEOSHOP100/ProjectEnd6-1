@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
+import com.iii._19_.videoManage.model.VideoBean;
 @Repository
 public class ProductSaleDaoImpl implements ProductSaleDao {
 	@Autowired	
@@ -50,7 +51,7 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	@Override
 	public List<ProductSaleBean> getALL() throws SQLException {
 		Session session = factory.getCurrentSession();
-		return session.createQuery("FROM ProductSaleBean",ProductSaleBean.class).list();
+		return session.createQuery("FROM ProductSaleBean WHERE proStatus = '1'",ProductSaleBean.class).list();
 	}
 	@Override
 	public List<ProductSaleBean> findbyAccount(String account) throws SQLException {
@@ -94,5 +95,9 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 		return session.createQuery("FROM ProductSaleBean WHERE proCategorySeqNo = :proCategorySeqNo",ProductSaleBean.class).setParameter("proCategorySeqNo", proCategorySeqNo).list();
 	}
 	
+	public List<ProductSaleBean> getAllByPageNo(Integer pageNo) {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductSaleBean WHERE proStatus = '1' ", ProductSaleBean.class).setMaxResults(24).setFirstResult(pageNo).list();
+	}
 
 }
