@@ -17,10 +17,7 @@
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<!-- Portfolio Item Row -->
 <body>
-
 	<!-- Portfolio Item Row -->
-
-
 	<!--          訂購人資訊  --------------------------------------------------------- -->
 	<br>
 	<br>

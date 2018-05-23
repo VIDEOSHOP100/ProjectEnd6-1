@@ -105,8 +105,8 @@ $(document).ready(function() {
 								timeout : 600000,
 								success : function(data) {
 									console.log("SUCCESS : ", data);
-									location.reload();
 									selectedtbodyOutside.remove();
+									location.reload();
 							
 									dialog.dialog("close");
 									

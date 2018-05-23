@@ -54,6 +54,8 @@
 						
 //						$dialogCheck.dialog('open');
 						
+						
+						
 						$('.cartbar').remove;
 						//.ajax
 						$.ajax({
@@ -82,8 +84,6 @@
 							
 							}
 						})	
-						
-					
 					},
 					error : function(e) {
 
