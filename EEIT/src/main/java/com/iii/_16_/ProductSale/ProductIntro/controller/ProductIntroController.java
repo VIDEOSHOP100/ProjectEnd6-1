@@ -93,7 +93,7 @@ public class ProductIntroController {
 					alreadyhavebean.setProductCount(alreadyhavebean.getProductCount() + count);
 					countupdate = procartlistservice.update(alreadyhavebean);
 
-				} else if (alreadyhavebean.getProductSeqNo() == id && alreadyhavebean.getProductStatus() == 2) {
+				} else if (alreadyhavebean.getProductSeqNo().equals(id) && alreadyhavebean.getProductStatus() == 2) {
 					// 如果第一個購買該商品 又重購物車移除 商品狀態會變成2
 					// 第二次在購買該商品 因為商品編號相同 而且狀態為2
 					sameProIdAcount.add(alreadyhavebean);

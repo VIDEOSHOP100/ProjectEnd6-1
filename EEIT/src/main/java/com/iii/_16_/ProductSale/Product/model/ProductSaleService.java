@@ -82,13 +82,11 @@ public class ProductSaleService {
 	public List<ProductSaleBean> getProByType(Integer productType) throws SQLException{
 	return dao.getlistProByType(productType);
 	}
-
-	
 	//用SeqNo搜尋商品
-		@Transactional
-		public List<ProductSaleBean> getAllBySeqNo(Integer productSeqNo) throws SQLException{
-			List<ProductSaleBean> list = dao.getAllBySeqNo(productSeqNo);
-			return list;
-		}
+	@Transactional
+	public List<ProductSaleBean> getAllBySeqNo(Integer productSeqNo) throws SQLException{
+	List<ProductSaleBean> list = dao.getAllBySeqNo(productSeqNo);
+	return list;
+	}
 
 }

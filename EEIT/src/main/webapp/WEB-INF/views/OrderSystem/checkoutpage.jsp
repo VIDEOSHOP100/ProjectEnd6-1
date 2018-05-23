@@ -203,10 +203,7 @@
 						</div>
 					</div>
 				</div>
-			
 				<button type="submit" class="btn btn-primary" id="confirmorder">送出訂單</button>
-					
-			
 			</form:form>
 			<br>
 			<br>
