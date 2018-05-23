@@ -470,5 +470,32 @@ $(document).on('click','.chatrow',function(){
 		    $( "#sexmove" ).disableSelection();
 		  });
 	 
+//	  $("#sexmove").sortable({
+//	        update: function (event, ui) {
+//	            var order = $(this).sortable('serialize');
+//
+//	            $(document).on("click", "button", function () { 
+//	            	var sortNum = $("#sexmove").sortable("toArray");
+//	            
+//	            	  
+//	            	
+//	                $.ajax({
+//	                    data:	{_method : "PUT",sortNum:sortNum},
+//	                    type: 'POST',
+//	                    url: '/EEIT/sortable',
+//	                    traditional: true,
+//	                });
+//	            	
+//	            });
+//	        }
+//	    }).disableSelection();
+//	    $('button').on('click', function () {
+//	        var r = $("#sexmove").sortable("toArray");
+//	        var a = $("#sexmove").sortable("serialize", {
+//	            attribute: "id"
+//	        });
+//	        console.log(r, a);
+//	    });
+	 
 })
 

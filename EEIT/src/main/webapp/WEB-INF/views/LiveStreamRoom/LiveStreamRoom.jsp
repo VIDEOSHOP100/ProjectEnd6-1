@@ -321,7 +321,7 @@ justify-content: center;
      <!-- 網格測試 -->  
          <div class="row onsaleitems">
       <div class="col-lg-12 text-center">
-        <h2 class="sellproduct">賣家其他熱門商品</h2>
+        <h2 class="sellproduct">賣家介紹</h2>
         </div>
 <%--         <c:forEach var="AllProduct0" items="${AllProduct0}">  --%>
 <!--         <div class="col-lg-2 col-sm-4 mb-4"> -->
@@ -331,7 +331,7 @@ justify-content: center;
 <%--          </c:forEach> --%>
         <div class="row text-center" id="sexmove" style="width: 1200px; margin: 0 auto;">
 			<c:forEach var="CustomizedLista" items="${CustomizedList}">
-				<div class="col-lg-3 col-md-6 mb-4">
+				<div class="col-lg-3 col-md-6 mb-4" id="id_${CustomizedLista.sortNum}">
 					<div class="card">
 					<h4 class="card-title JQellipsisTitle">${CustomizedLista.customizedTitle}</h4>
 						<img class="card-img-top"
@@ -351,6 +351,7 @@ justify-content: center;
 				</div>
 			</c:forEach>
 		</div>
+<!-- 		<button>Ready</button> -->
       <!-- /.網格測試-->
       
       

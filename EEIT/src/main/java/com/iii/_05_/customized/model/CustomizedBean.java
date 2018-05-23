@@ -23,6 +23,7 @@ public class CustomizedBean {
 	private String customizedDesc;
 	private Integer customizedStatus;
 	private String account;
+	private Integer sortNum;
 	@Transient
 	private MultipartFile photo; // 照片 
 	public Integer getCustomizedSeqNo() {
@@ -67,21 +68,20 @@ public class CustomizedBean {
 	public void setAccount(String account) {
 		this.account = account;
 	}
+	public Integer getSortNum() {
+		return sortNum;
+	}
+	public void setSortNum(Integer sortNum) {
+		this.sortNum = sortNum;
+	}
 	public MultipartFile getPhoto() {
 		return photo;
 	}
 	public void setPhoto(MultipartFile photo) {
 		this.photo = photo;
 	}
-	@Override
-	public String toString() {
-		return "CustomizedBean [customizedSeqNo=" + customizedSeqNo + ", customizedPic=" + customizedPic
-				+ ", customizedTitle=" + customizedTitle + ", customizedTime=" + customizedTime + ", customizedDesc="
-				+ customizedDesc + ", customizedStatus=" + customizedStatus + ", account=" + account + ", photo="
-				+ photo + "]";
-	}
 	public CustomizedBean(Integer customizedSeqNo, String customizedPic, String customizedTitle,
-			Timestamp customizedTime, String customizedDesc, Integer customizedStatus, String account,
+			Timestamp customizedTime, String customizedDesc, Integer customizedStatus, String account, Integer sortNum,
 			MultipartFile photo) {
 		super();
 		this.customizedSeqNo = customizedSeqNo;
@@ -91,12 +91,22 @@ public class CustomizedBean {
 		this.customizedDesc = customizedDesc;
 		this.customizedStatus = customizedStatus;
 		this.account = account;
+		this.sortNum = sortNum;
 		this.photo = photo;
 	}
 	public CustomizedBean() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
+	@Override
+	public String toString() {
+		return "CustomizedBean [customizedSeqNo=" + customizedSeqNo + ", customizedPic=" + customizedPic
+				+ ", customizedTitle=" + customizedTitle + ", customizedTime=" + customizedTime + ", customizedDesc="
+				+ customizedDesc + ", customizedStatus=" + customizedStatus + ", account=" + account + ", sortNum="
+				+ sortNum + ", photo=" + photo + "]";
+	}
+	
+	
 	
 	
 	

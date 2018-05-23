@@ -170,8 +170,13 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb : AllProductList) {
 			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
 		}
+		List<CustomizedBean> CustomizedList = CustomizedService.getAllByAccount(account);
+		//增加一個CustomizedBean
+				CustomizedBean CustomizedBean = new CustomizedBean();
+				map.put("CustomizedBean", CustomizedBean);
 		//給INSERTROOM REPORT
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
+		map.put("CustomizedList", CustomizedList);
 		map.put("liveStreamReportBean", liveStreamReportBean);
 		map.put("AllProductList", productNameMap);
 		map.put("AllLiveStream", AllLiveStreamList);
@@ -276,6 +281,7 @@ public class InputLiveStreamTimeController {
 		InputLiveStreamTimeService.saveLiveStreams(sb, extPhoto, photo);
 		//給INSERTROOM REPORT
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
+		
 		map.put("liveStreamReportBean", liveStreamReportBean);
 		return "LiveStreamRoom/LiveStreamRoom";
 		}else {
