@@ -64,7 +64,7 @@ justify-content: center;
 
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
  <!-- Page Content -->
-    <div class="container">
+    <div class="container" style="margin-left:50px">
 
       <!-- Page Heading/Breadcrumbs -->
        
@@ -267,20 +267,6 @@ justify-content: center;
         
  </c:forEach>
    </div>
-<!--         <div class="col-lg-4 mb-4"> -->
-<!--           <div class="card h-100 text-center"> -->
-<!--             <img class="card-img-top" src="http://placehold.it/750x450" alt=""> -->
-<!--             <div class="card-body"> -->
-<!--               <h4 class="card-title"></h4> -->
-<!--               <h6 class="card-subtitle mb-2 text-muted">Position</h6> -->
-<!--               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p> -->
-<!--             </div> -->
-<!--             <div class="card-footer"> -->
-<!--               <a href="#">name@example.com</a> -->
-<!--             </div> -->
-<!--           </div> -->
-<!--         </div> -->
-
       </div>
       <!-- /.row -->
 
@@ -331,17 +317,51 @@ justify-content: center;
 <!--         </div> -->
       </div>
       <!-- /.row -->
-
+      
+     <!-- 網格測試 -->  
+         <div class="row onsaleitems">
+      <div class="col-lg-12 text-center">
+        <h2 class="sellproduct">賣家其他熱門商品</h2>
+        </div>
+<%--         <c:forEach var="AllProduct0" items="${AllProduct0}">  --%>
+<!--         <div class="col-lg-2 col-sm-4 mb-4"> -->
+<%--           <img class="img-fluid" src="${pageContext.request.contextPath}/getImage/Product/${AllProduct0.picSeqNo}" alt=""> --%>
+<%--          <h4 class="card-title">品名：${AllProduct0.proName}</h4> --%>
+<!--         </div> -->
+<%--          </c:forEach> --%>
+        <div class="row text-center" id="sexmove" style="width: 1200px; margin: 0 auto;">
+			<c:forEach var="CustomizedLista" items="${CustomizedList}">
+				<div class="col-lg-3 col-md-6 mb-4">
+					<div class="card">
+					<h4 class="card-title JQellipsisTitle">${CustomizedLista.customizedTitle}</h4>
+						<img class="card-img-top"
+							src="${pageContext.request.contextPath}/getImage/customizedPic/${CustomizedLista.customizedSeqNo}"
+							width="500px" height="238px" alt="">
+						<div class="card-body ccc">
+							
+							<p class="card-text">${CustomizedLista.customizedDesc}</p>
+<%-- 							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription}</p> --%>
+						</div>
+					
+<!-- 							<a -->
+<%-- 								href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}" --%>
+<!-- 								class="btn btn-primary">點我購買</a> -->
+						
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+      <!-- /.網格測試-->
+      
+      
+      
+      
    
     <!-- /.container -->
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-      </div>
+
       <!-- /.container -->
-    </footer>
+
     
 
 

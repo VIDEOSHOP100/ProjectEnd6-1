@@ -33,9 +33,9 @@ public class CustomizedServiceImpl implements CustomizedService {
 		CustomizedBean.setCustomizedSeqNo(ss);
 		
 		//圖片路徑
-		String photoFilePath = "C:/resources/images/LiveCoverPath/"+ CustomizedBean.getAccount() + "/" +  CustomizedBean.getCustomizedTitle() +"/"+  CustomizedBean.getCustomizedSeqNo()+ extPhoto;
+		String photoFilePath = "C:/resources/images/Desc/"+ CustomizedBean.getAccount() + "/" +  CustomizedBean.getCustomizedSeqNo() +"/"+  CustomizedBean.getCustomizedSeqNo()+ extPhoto;
 		//圖片資料夾路徑
-		String photoFileFolderPath = "C:/resources/images/LiveCoverPath/"+ CustomizedBean.getAccount() +"/"+  CustomizedBean.getCustomizedTitle() ;
+		String photoFileFolderPath = "C:/resources/images/Desc/"+ CustomizedBean.getAccount() +"/"+  CustomizedBean.getCustomizedSeqNo() ;
 		
 		CustomizedBean.setCustomizedPic(photoFilePath);
 		

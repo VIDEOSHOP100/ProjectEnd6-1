@@ -3,6 +3,8 @@
  */
 
 $(document).ready(function() {	
+	//隱藏左下訊息
+	$('.hahaha').hide();
 	//進入畫面隱藏控制單
 	 $('.editform').hide();
 	//聊天框拖曳-------------
@@ -184,8 +186,8 @@ function addAuctionEnd(account, productSeqNo,proName){
 	
 	responsiveVoice.speak("拍賣物品"+proName+"已賣給"+account,"Chinese Female");
 //	append('<div class="relative2"><p class="hahaha">'+"拍賣物品"+ productSeqNo + "已賣給 "+ account +'</p></div>')
-$('.hahaha').text("拍賣物品"+ proName + "已賣給 "+ account);
-	
+$('.hahaha').html("拍賣物品："+"<br><br><p style='color:red'>["+proName+"]</p>" + "已賣給： <p style='color:red'>"+ account+"</p>");
+$('.hahaha').show();
 	$('.hahaha').dialog({
 		autoOpen:false,
 		show:{
@@ -461,31 +463,12 @@ $(document).on('click','.chatrow',function(){
 		});
 	 
 	 
-	//新增插件開始-----------------------------------------
-//	 $('#customizedSubmit').click(function(){
-//	 	
-//	 	var customizedTitle = $('#customizedTitle').val();
-//	 	var customizedDesc = $('#customizedDesc').val();
-//	 	var customizedPic = $('#customizedPic').val();
-////	 	var reportType = $('#reportType').val();
-////	 	var accountTo = $('.uploadaccount').text();
-//	 	$.ajax({
-//	 		type:"POST",
-//	 		url:"/EEIT/CustomizedControl",
-//	 		data:{ customizedTitle:customizedTitle , customizedDesc:customizedDesc,customizedPic:customizedPic},
-//	 		timeout: 600000,
-//	 		success:function(){
-////	 			$('#memberReportButton').attr("disabled","disabled").text("已檢舉");
-////	 			$('#cancel').trigger("click");
-//	 		
-//	 		},
-//	 		error: function (e) {
-//	 			console.log("ERROR : ", e);
-//	 			alert(e);
-//	 		}
-//	 	})
-//	 	
-//	 })
-	 //新增插件結束------------------------------------------
+//網格位移sexmove
+	 
+	 $(function() {
+		    $( "#sexmove" ).sortable();
+		    $( "#sexmove" ).disableSelection();
+		  });
+	 
 })
 
