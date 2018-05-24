@@ -19,6 +19,8 @@
 <link
 	href="<c:url value='http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css'/>"
 	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/global/css/index2.css'/>">
 <style type="text/css">
 /*基础样式 此部分样式为插件展示页的一些样式，使用插件时不会理会，引入上方的link即可*/
 body {
