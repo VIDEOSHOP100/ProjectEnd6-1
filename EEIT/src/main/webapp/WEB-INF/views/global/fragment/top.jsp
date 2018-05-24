@@ -345,7 +345,13 @@
 	</div>
 </c:if>
 	<!--	登入彈窗結束 	--> 
-
+<c:if test="${!empty banMessage}">
+<div id="ban-message" title="封鎖訊息">
+	<p id="banMessageFrom">來信者:管理員</p>
+	<hr>
+	<p id="banMessageContent">${banMessage}</p>	
+</div>
+</c:if>
 	<!-- Bootstrap core JavaScript -->
 	<script src="<c:url value='/global/js/config.js'/> "></script>
 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
@@ -361,6 +367,11 @@
 
 	<script>
 
+	
+	
+	
+	
+	
 		$("#loginButton").click(function(){
 			setTimeout(function(){
 			$('#logAcc').focus();
