@@ -52,7 +52,7 @@
 					success : function(data,result) {
 						
 						if (data.successMessage == 1){
-							alert(data.successMessage);
+						
 						$('.cartbar').remove;
 						//.ajax
 						$.ajax({
