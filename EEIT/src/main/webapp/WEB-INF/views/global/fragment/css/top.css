@@ -9,7 +9,10 @@
 .searchInput {
 	
 }
-
+.textfamily{
+	font-family: 'Tangerine', cursive;
+	
+}
 .searchInputOutside {
 	display: inline-block;
 }
