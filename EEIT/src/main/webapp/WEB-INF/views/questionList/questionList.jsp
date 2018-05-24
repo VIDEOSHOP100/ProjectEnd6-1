@@ -37,7 +37,7 @@
 
 
 	<div id="accordion">
-		<c:forEach items = "${allQuestionList }" var="questionListBean">
+		<c:forEach items = "${QuestionList}" var="questionListBean">
 			<h3>${questionListBean.questionListTitle }</h3>
 				<div>
 					<p>

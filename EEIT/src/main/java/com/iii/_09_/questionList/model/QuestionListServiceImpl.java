@@ -40,10 +40,14 @@ public class QuestionListServiceImpl implements QuestionListService{
 	@Override
 	public List<QuestionListBean> getAllQuestionListBean() {
 		
-		return questionListDAO. getAllQuestionListBean();
+		return questionListDAO.getAllQuestionListBean();
 	}
-	
-	
-	
+
+	//顯示Type編號
+	@Override
+	public List<QuestionListBean> selectQuestionListByType(Integer questionListType) {
+		return questionListDAO.selectQuestionListByType(questionListType);
+	}
+
 
 }
