@@ -161,12 +161,15 @@ public class VideoManageController {
 	@ModelAttribute
 	public void getVideoBeans(Map<String, Object> map, HttpSession session) {
 		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
+		if(memberBean != null) {
+			
 		VideoBean insertVideoBean = new VideoBean(null, null, 0, "", memberBean.getAccount(), "", "", "", null, 0, 0, 0,
 				"1", "", "", "", "");
 		VideoBean updateVideoBean = new VideoBean(null, null, 0, "", memberBean.getAccount(), "", "", "", null, 0, 0, 0,
 				"1", "", "", "", "");
 		map.put("insertVideoBean", insertVideoBean);
 		map.put("updateVideoBean", updateVideoBean);
+		}
 		List<VideoTypeBean> videoTypeBeanList = videoTypeService.getVideoTypeBeanList();
 		Map<Integer, String> videoTypeMap = new HashMap<Integer, String>();
 		for(VideoTypeBean videoTypeBean: videoTypeBeanList) {

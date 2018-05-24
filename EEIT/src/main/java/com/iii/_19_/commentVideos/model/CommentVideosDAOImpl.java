@@ -19,19 +19,19 @@ public class CommentVideosDAOImpl implements CommentVideosDAO {
 	@Override
 	public List<CommentVideosBean> getCommentVideosByVideo(Integer videoSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM CommentVideosBean WHERE videoSeqNo = :videoSeqNo order by commentDate desc",CommentVideosBean.class).setParameter("videoSeqNo", videoSeqNo).list();
+		return session.createQuery("FROM CommentVideosBean WHERE videoSeqNo = :videoSeqNo and commentVideoStatus = '1' order by commentDate desc",CommentVideosBean.class).setParameter("videoSeqNo", videoSeqNo).list();
 	}
 	
 	@Override
 	public List<CommentVideosBean> getAllCommentVideos() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM CommentVideosBean",CommentVideosBean.class).list();
+		return session.createQuery("FROM CommentVideosBean WHERE commentVideoStatus = '1'",CommentVideosBean.class).list();
 	}
 
 	@Override
 	public List<CommentVideosBean> getCommentVideosByVideoAndAccount(Integer videoSeqNo, String account) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM CommentVideosBean WHERE videoSeqNo = :videoSeqNo and account = :account", CommentVideosBean.class).setParameter("videoSeqNo", videoSeqNo).setParameter("account", account).list();
+		return session.createQuery("FROM CommentVideosBean WHERE videoSeqNo = :videoSeqNo and account = :account and commentVideoStatus = '1'", CommentVideosBean.class).setParameter("videoSeqNo", videoSeqNo).setParameter("account", account).list();
 		
 	}
 

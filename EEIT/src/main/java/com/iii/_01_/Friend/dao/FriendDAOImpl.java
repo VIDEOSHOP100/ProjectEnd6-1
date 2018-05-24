@@ -61,13 +61,13 @@ public class FriendDAOImpl implements FriendDAO {
 	@Override
 	public List<FriendBean> getFriendByOneAccountSend(String account) {
 		Session session = sessionFactory.getCurrentSession();
-		List<FriendBean> friendBeanList = session.createNativeQuery("select * from Friend where friendsend = :account").setParameter("account", account).addEntity(FriendBean.class).list();
+		List<FriendBean> friendBeanList = session.createNativeQuery("select * from Friend where friendsend = :account and friendStatus = '1'").setParameter("account", account).addEntity(FriendBean.class).list();
 		return friendBeanList;
 	}
 	@Override
 	public List<FriendBean> getFriendByOneAccountTo(String account) {
 		Session session = sessionFactory.getCurrentSession();
-		List<FriendBean> friendBeanList = session.createNativeQuery("select * from Friend where friendto = :account").setParameter("account", account).addEntity(FriendBean.class).list();
+		List<FriendBean> friendBeanList = session.createNativeQuery("select * from Friend where friendto = :account and friendStatus = '1'").setParameter("account", account).addEntity(FriendBean.class).list();
 		return friendBeanList;
 	}
 

@@ -321,7 +321,7 @@
 /* The actual popup */
 .popup div {
     visibility: hidden;
-    width: 160px;
+    width: 320px;
     background-color: #555;
     color: #fff;
     text-align: center;
@@ -639,3 +639,7 @@
     from {opacity: 0;}
     to {opacity:1 ;}
 }
+
+/* .myPopup{ */
+/* 	width:320px; */
+/* } */

@@ -48,16 +48,16 @@ $(document).ready(function() {
 					$('.liveStreaSearchBlock').empty()
 					$('.memberSearchBlock').empty()
 					$.each(data.videoBeanList, function (idx,data) {
-						$('.videoSearchBlock').append($('<a class="dropdown-item" href="/EEIT/videoRoom/'+ data.videoSeqNo +'">'+ data.videoTitle +'</a>'))
+						$('.videoSearchBlock').append($('<a class="dropdown-item" href="/EEIT/videoRoom/'+ data.videoSeqNo +'" title="'+ data.videoTitle +'" title="'+ data.videoTitle +'">'+ data.videoTitle +'</a>'))
 					})
 					$.each(data.productSaleBeanList, function (idx,data) {
-						$('.productSearchBlock').append($('<a class="dropdown-item" href="/EEIT/searchProductIntro/'+ data.productSeqNo +'">'+ data.proName +'</a>'))
+						$('.productSearchBlock').append($('<a class="dropdown-item" href="/EEIT/searchProductIntro/'+ data.productSeqNo +'" title="'+ data.proName +'">'+ data.proName +'</a>'))
 					})
 					$.each(data.inputLiveStreamTimeBeanList, function (idx,data) {
-						$('.liveStreaSearchBlock').append($('<a class="dropdown-item" href="/EEIT/LiveStream/'+ data.liveStreamSeqNo +'">'+ data.streamName +'</a>'))
+						$('.liveStreaSearchBlock').append($('<a class="dropdown-item" href="/EEIT/LiveStream/'+ data.liveStreamSeqNo +'" title="'+ data.streamName +'">'+ data.streamName +'</a>'))
 					})
 					$.each(data.memberBeanList, function (idx,data) {
-						$('.memberSearchBlock').append($('<a class="dropdown-item" href="/EEIT/profile/'+ data.account +'">'+ data.account +'</a>'))
+						$('.memberSearchBlock').append($('<a class="dropdown-item" href="/EEIT/profile/'+ data.account +'" title="'+ data.account +'">'+ data.account +'</a>'))
 					})
 					$('.diplaySearchResult').addClass('show')
 					
@@ -180,7 +180,7 @@ $(document).ready(function() {
 				timeout: 600000,
 				success: function (data) {
 					$.each(data.topFiftyResult, function (idx,data) {
-						$('.liveStreaSearchBlock').append($('<a class="dropdown-item" href="/EEIT/LiveStream/'+ data.liveStreamSeqNo +'">'+ data.streamName +'</a>'))
+						$('.liveStreaSearchBlock').append($('<a class="dropdown-item" href="/EEIT/LiveStream/'+ data.liveStreamSeqNo +'" title="'+ data.streamName +'">'+ data.streamName +'</a>'))
 					})
 				}
 			});
@@ -211,7 +211,7 @@ $(document).ready(function() {
 				timeout: 600000,
 				success: function (data) {
 					$.each(data.topFiftyResult, function (idx,data) {
-						$('.productSearchBlock').append($('<a class="dropdown-item" href="/EEIT/searchProductIntro/'+ data.productSeqNo +'">'+ data.proName +'</a>'))
+						$('.productSearchBlock').append($('<a class="dropdown-item" href="/EEIT/searchProductIntro/'+ data.productSeqNo +'" title="'+ data.proName +'">'+ data.proName +'</a>'))
 					})
 				}
 			});
@@ -242,7 +242,7 @@ $(document).ready(function() {
 				timeout: 600000,
 				success: function (data) {
 					$.each(data.topFiftyResult, function (idx,data) {
-						$('.videoSearchBlock').append($('<a class="dropdown-item" href="/EEIT/videoRoom/'+ data.videoSeqNo +'">'+ data.videoTitle +'</a>'))
+						$('.videoSearchBlock').append($('<a class="dropdown-item" href="/EEIT/videoRoom/'+ data.videoSeqNo +'"  title="'+ data.videoTitle +'">'+ data.videoTitle +'</a>'))
 					})
 				}
 			});
@@ -273,7 +273,7 @@ $(document).ready(function() {
 				timeout: 600000,
 				success: function (data) {
 					$.each(data.topFiftyResult, function (idx,data) {
-						$('.memberSearchBlock').append($('<a class="dropdown-item" href="/EEIT/profile/'+ data.account +'">'+ data.account +'</a>'))
+						$('.memberSearchBlock').append($('<a class="dropdown-item" href="/EEIT/profile/'+ data.account +'"  title="'+ data.videoTitle +'">'+ data.account +'</a>'))
 					})
 				}
 			});

@@ -53,7 +53,8 @@
 	background-color: #4b367c !important;;
 }
 .diplaySearchResult{
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .moreSearchButton{

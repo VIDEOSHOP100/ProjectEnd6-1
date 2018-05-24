@@ -41,7 +41,7 @@ public class HomePageDAOImpl implements HomePageDAO {
 		for (VideoTypeBean videoTypeBean : videoTypeList) {
 			String videoType = videoTypeBean.getVideoType();
 			List<VideoBean> vblist = new ArrayList<>();
-			vblist = session.createQuery("FROM VideoBean where videoType = :videoType ",VideoBean.class).setParameter("videoType", videoType).setMaxResults(12).list();
+			vblist = session.createQuery("FROM VideoBean where videoType = :videoType and videoStatus = '1'",VideoBean.class).setParameter("videoType", videoType).setMaxResults(12).list();
 			sortedVideoBean.add(vblist);
 		}
 		return sortedVideoBean;

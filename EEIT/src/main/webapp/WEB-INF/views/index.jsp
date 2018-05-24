@@ -74,8 +74,8 @@
 <!-- 					frameborder="0"; encrypted-media" allowfullscreen></iframe> -->
 				<video controlsList="nodownload" muted controls="controls" class="indexVideo" autoplay width="1340" height="700" src="${pageContext.request.contextPath}/getVideo/video/1" ></video>
 				<div class="carousel-caption d-none d-md-block">
-					<h3>First Slide</h3>
-					<p>This is a description for the first slide.</p>
+<!-- 					<h3>First Slide</h3> -->
+<!-- 					<p>This is a description for the first slide.</p> -->
 				</div>
 			</div>
 			<div class="carousel-item indexVideoBackGround" style="background-image: url('global/images/indexBackground.jpg')">
@@ -84,8 +84,8 @@
 <!-- 					allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
 				<video controlsList="nodownload" muted controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/2" ></video>
 				<div class="carousel-caption d-none d-md-block">
-					<h3>Second Slide</h3>
-					<p>This is a description for the second slide.</p>
+<!-- 					<h3>Second Slide</h3> -->
+<!-- 					<p>This is a description for the second slide.</p> -->
 				</div>
 			</div>
 			<div class="carousel-item indexVideoBackGround"	style="background-image: url('global/images/indexBackground.jpg')">
@@ -94,8 +94,8 @@
 <!-- 					allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
 				<video controlsList="nodownload" muted controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/3" ></video>
 				<div class="carousel-caption d-none d-md-block">
-					<h3>Third Slide</h3>
-					<p>This is a description for the third slide.</p>
+<!-- 					<h3>Third Slide</h3> -->
+<!-- 					<p>This is a description for the third slide.</p> -->
 				</div>
 			</div>
 		</div>

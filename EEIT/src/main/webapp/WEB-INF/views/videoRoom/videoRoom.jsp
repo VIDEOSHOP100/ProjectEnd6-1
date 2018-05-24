@@ -19,11 +19,13 @@
 	<div class="container"  style="margin-left:50px">
 		<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 		<input id="account" type="hidden" name = "account" value= "${LoginOK.account }">
-		<input type="hidden" name = "videoSeqNo" value= "${video.videoSeqNo}">
+		<input type="hidden" class="videoSeqNo" name = "videoSeqNo" value= "${video.videoSeqNo}">
 		<h1 class="mt-4 mb-3 videoTitle" title="${video.videoTitle}">${video.videoTitle}
 <!-- 			<small>Subheading</small> -->
 		</h1>
-
+		<c:if test="${! empty ManagerLoginOK}">
+			<button class="btn btn-danger delete-video">封鎖影片</button>
+		</c:if>
 		<ol class="breadcrumb">
 <!-- 			<li class="breadcrumb-item"><a href="">Home</a></li> -->
 <!-- 			<li class="breadcrumb-item active">Portfolio Item</li> -->
@@ -286,6 +288,11 @@
 				<p><input type="submit" tabindex="-1" style="position:absolute; top:-1000px" /></p>
 			</fieldset>
 		</form:form>
+	</div>
+	<div id="delete-dialog-form" title="刪除資料" class="hideForm">
+		<p class="validateTips">確認封鎖此影片?</p>
+		<p>影片名稱:<span id="videoTitleDelete"></span></p>
+		<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 	</div>
 <!-- 	<div id="reportSuccess"> -->
 <!-- 	  <p> -->

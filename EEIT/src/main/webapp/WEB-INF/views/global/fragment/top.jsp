@@ -144,8 +144,8 @@
 				<c:if test="${! empty ManagerLoginOK}">
 					<li class="nav-item">
 						<a href="<c:url value='/managerLogout'/>">
-            <button id="" class="btn btn-danger float-right">管理員登出</button>
-          </a>
+           					 <button id="" class="btn btn-danger float-right">管理員登出</button>
+         				 </a>
 					</li>
 				</c:if>
 				
