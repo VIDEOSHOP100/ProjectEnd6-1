@@ -121,4 +121,10 @@ public class InputLiveStreamTimeServiceImpl implements InputLiveStreamTimeServic
 		return InputLiveStreamTimeDAO.getAllLiveStreams();
 	}
 
+
+	@Override
+	public List<InputLiveStreamTimeBean> getAllLiveStreamss() {
+		return InputLiveStreamTimeDAO.getAllLiveStreamss();
+	}
+
 }
