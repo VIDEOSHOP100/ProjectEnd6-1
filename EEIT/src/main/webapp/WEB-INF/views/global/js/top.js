@@ -121,16 +121,62 @@ function checkAccPwd(){
    	  $('#nickname').val('傑瑞');
    	  $('#firstname').val('張');
    	  $('#lastname').val('傑瑞');
-   	  $('#email').val('jerry@gmail.com');
+   	  $('#email').val('strike5931@gmail.com');
    	  $('#address').val('台北市大安區復興南路一段390號');
    	  $('#phone').val('0954873548');
    	  $('#birthday').val('1994-06-01');
    	  
      })
 
-	
+
+ 	$('#ban-message').dialog({
+ 	    autoOpen: false,
+ 	    show: {
+ 	        effect: "fold",
+ 	        duration: 500
+ 	      },
+ 	      hide: {
+ 	        effect: "fold",
+ 	        duration: 500
+ 	      }
+ 	});
 		
+	 if ($('#ban-message').length){
+		 $('#ban-message').dialog({
+				height: 300,
+				width: 300,
+				modal : true,
+		 })
+		 
+		$.ajax({
+		
+			type:"GET",
+			url:"/EEIT/logout",
+			
+			success:function(){
+				$( "#ban-message" ).dialog( "open" );
+				
+			},
+			error : function(e) {
+				console.log("ERROR : ", e);
+				alert(e);
+			}
+		
+			
+			
+		})
+		
+		var dialogClose = $('button.ui-button-icon-only');
+		
+		 $(document).on('click',dialogClose,function(){
+			 location.href="/EEIT/";
+		 })
+			 
 	
+		 
+		
+		
+	}
 
 	
 })
