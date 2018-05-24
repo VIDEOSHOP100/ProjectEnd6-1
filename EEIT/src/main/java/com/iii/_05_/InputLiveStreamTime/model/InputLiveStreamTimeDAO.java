@@ -18,6 +18,8 @@ public interface InputLiveStreamTimeDAO {
 	
 	public List<InputLiveStreamTimeBean> getAllLiveStreams();
 	
+	public List<InputLiveStreamTimeBean> getAllLiveStreamss();
+	
 	public List<InputLiveStreamTimeBean> getLiveStreamByAccount(String account);
 	
 	public int saveLiveStreams(InputLiveStreamTimeBean InputLiveStreamTimeBean);

@@ -26,7 +26,7 @@ $(document)
 					                timeout: 600000,
 					  
 					                success: function (data) {
-					                	var aa = data;
+					                	var aa = data.AAA;
 					             alert(aa);
 							
 							
