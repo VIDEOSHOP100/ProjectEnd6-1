@@ -21,7 +21,7 @@
 <body>
 
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
-	<div class="container">
+  <div class="container" style="margin-left:50px">
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
@@ -35,7 +35,7 @@
 
 		<!-- Image Header -->
 		<div class="col-lg-8 mb-4 offset-2">
-		<img class="img-fluid rounded mb-4" src="http://placehold.it/1200x300"
+		<img class="img-fluid rounded mb-4" src="${pageContext.request.contextPath}/getImageTest/product06"
 			alt="">
 		</div>
 		<!-- Contact Form -->
@@ -198,11 +198,11 @@
 					<form:input type="hidden" class="form-control" id="account"
 						path="account" value="${LoginOK.account}" />
 					<!-- For success/fail messages -->
-					<div class="container">
+					
 					<input type="submit" class="btn btn-primary" id="sendMessageButton"
 						value="submit" />
-						<button type="button" class="btn btn-warning">Demo</button>
-				    </div>
+						
+				    
 					</form:form>
 			</div>
 
@@ -210,14 +210,8 @@
 
 	</div>
 
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2018</p>
-		</div>
-	</footer>
 
 
 </body>
-
+<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </html>

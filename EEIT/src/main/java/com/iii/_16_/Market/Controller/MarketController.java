@@ -47,12 +47,9 @@ public class MarketController {
 		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
 		map.put("AllLiveStream", AllLiveStreamList);
 		map.put("isMember",memberbean);
-		
 		map.put("productbeans", productlist);
-	
 		return "marketIndex/Mindex";
 	}
-	
 	@RequestMapping(value="recept")
 	public void getshipment(@RequestParam("rv_name") String name) {
 		System.out.println("name = " + name);	

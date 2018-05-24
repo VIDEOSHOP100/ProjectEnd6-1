@@ -17,5 +17,6 @@
 		questionListStatus:<form:input path="questionListStatus"></form:input><br/>
 		<input type="submit" value="Submit" />
 	</form:form>
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>

@@ -5,8 +5,6 @@ import java.util.List;
 
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 
-
-
 public interface ProductSaleDao {
 	ProductSaleBean insert(ProductSaleBean pdb) throws SQLException;
 

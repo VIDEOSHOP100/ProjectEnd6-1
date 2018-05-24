@@ -44,19 +44,17 @@
 				<h3 class="my-3">${productSaleBean.proName }</h3>
 				<h3 class="my-3">商品介紹</h3>
 				<p>${productSaleBean.proDescription }</p>
-				<ul>
-					<li>Lorem Ipsum</li>
-					<li>Dolor Sit Amet</li>
-					<li>Consectetur</li>
-					<li>Adipiscing Elit</li>
-				</ul>
-
-				
+			
+				<c:set var="propcs" value="${productSaleBean.proPcs}"/>
 				 <br> <br>
+				 <c:if test="${ propcs>0 }" >
 				<h6>庫存數量:${productSaleBean.proPcs}</h6>	
+				</c:if>
 				<br>
 				<h4>限時特價:${productSaleBean.proPrice}</h4>	
 				<br>
+				
+				<c:if test="${ propcs>0 }" >
 					<span>選擇數量:<select id="productCount" name="productCount">
 						<option value="0">請選擇</option>
 				
@@ -64,11 +62,19 @@
                             <option value="${loop}">${loop}</option><br>
                         </c:forEach>
 				</select></span>
+				<hr>
+				<input type="button" class="btn btn-primary buy"  value="直接購買"/>
+				</c:if>
+				
+				
 				
 				<hr>
 				<input type="hidden" name="account" id="account"
-					value="${getLoginMemberBean.account}" /> <input type="button"
-					class="btn btn-primary buy"  value="直接購買">
+					value="${getLoginMemberBean.account}" /> 
+				<c:if test="${ propcs <= 0 }" >
+					<span><button type="button" class="btn btn-warning">商品 補貨中~~</button></span>
+				</c:if>
+				
 			</div>
 
 

@@ -99,10 +99,7 @@ public class ProCartListController {
 
 	@RequestMapping(value = "/getCartDetailList", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getCartDetailListCount(HttpSession session) throws SQLException {
-		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		
 		MemberBean memberbean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberbean.getAccount();
 		List<ProCartListBean> list = procartlistservice.getByAccountStatus(account);
@@ -110,6 +107,7 @@ public class ProCartListController {
 			bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
 		}
 		map.put("cartDetailList", list);
+		System.out.println(list);
 		return map;
 	}
 	

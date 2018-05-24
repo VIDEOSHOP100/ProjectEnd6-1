@@ -17,10 +17,7 @@
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<!-- Portfolio Item Row -->
 <body>
-
 	<!-- Portfolio Item Row -->
-
-
 	<!--          訂購人資訊  --------------------------------------------------------- -->
 	<br>
 	<br>
@@ -203,10 +200,7 @@
 						</div>
 					</div>
 				</div>
-			<div class="container">
 				<button type="submit" class="btn btn-primary" id="confirmorder">送出訂單</button>
-				<button type="button" class="btn btn-warning">Demo</button>		
-			</div>
 			</form:form>
 			<br>
 			<br>

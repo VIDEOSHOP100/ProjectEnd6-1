@@ -3,6 +3,7 @@ package com.iii._09_.questionList.model;
 import java.util.List;
 
 public interface QuestionListDAO {
+
 	public Integer saveQuestionList(QuestionListBean questionListBean);
 	
 	public void updateQuestionList(QuestionListBean questionListBean);
@@ -13,5 +14,9 @@ public interface QuestionListDAO {
 	
 	public List<QuestionListBean> selectQuestionList();
 	
+	public QuestionListBean selectQuestionListByType(Integer questionListType);
+	
 	public List<QuestionListBean> getAllQuestionListBean();
+	
+	
 }
