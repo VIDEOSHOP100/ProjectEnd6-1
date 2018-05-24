@@ -32,14 +32,11 @@
 <!-- Custom styles for this template -->
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/fragment/css/top.css'/>" rel="stylesheet">
-<<<<<<< HEAD
 <style>
 
 </style>
 
-=======
 <link href="<c:url value='/global/fragment/css/grumble.min.css'/>" rel="stylesheet">
->>>>>>> branch 'master' of https://github.com/VIDEOSHOP100/ProjectEnd6-1.git
 </head>
 <body>
 
@@ -461,6 +458,7 @@
 	     }
 
 	</script>
+	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
 </body>
 
 </html>
