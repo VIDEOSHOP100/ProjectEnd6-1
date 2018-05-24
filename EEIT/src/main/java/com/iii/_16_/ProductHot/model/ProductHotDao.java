@@ -1,9 +1,7 @@
-package com.iii._16_.ProductHot.dao;
+package com.iii._16_.ProductHot.model;
 
 import java.sql.SQLException;
 import java.util.List;
-
-import com.iii._16_.ProductHot.bean.ProductHotBean;
 
 
 
@@ -14,7 +12,7 @@ public interface ProductHotDao {
 
 	ProductHotBean delete(ProductHotBean hotbean) throws SQLException;
 
-	ProductHotBean findbyPrimaryKey(ProductHotBean hotbean) throws SQLException;
+	ProductHotBean findbyPrimaryKey(int seqno) throws SQLException;
 
 	List<ProductHotBean> getALL() throws SQLException;
 }

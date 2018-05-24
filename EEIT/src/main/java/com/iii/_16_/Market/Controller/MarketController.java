@@ -23,6 +23,8 @@ import com.iii._09_.addproduct.model.ProductBean;
 import com.iii._16_.OrderSystem.Order.model.OrderBean;
 import com.iii._16_.OrderSystem.Order.model.OrderService;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
+import com.iii._16_.ProductHot.model.ProductHotBean;
+import com.iii._16_.ProductHot.model.ProductHotService;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 
@@ -33,6 +35,8 @@ public class MarketController {
 	private ProductSaleService productservice;
 	@Autowired
 	private OrderService orderservice;
+	@Autowired
+	private ProductHotService hotproservice;
 	@Autowired 	
 	InputLiveStreamTimeService InputLiveStreamTimeService;
 	//進入商城首頁 controller 進入時取得會session attribute 判斷會員是否登入
@@ -45,9 +49,11 @@ public class MarketController {
 		List<ProductSaleBean> productlist = productservice.selectAllProduct();
 		MemberBean memberbean = (MemberBean) session.getAttribute("LoginOK");
 		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
+		List<ProductHotBean> hotbeanlist = hotproservice.getALL();
 		map.put("AllLiveStream", AllLiveStreamList);
 		map.put("isMember",memberbean);
 		map.put("productbeans", productlist);
+		map.put("ProductHotBeans", hotbeanlist);
 		return "marketIndex/Mindex";
 	}
 	@RequestMapping(value="recept")
@@ -64,4 +70,7 @@ public class MarketController {
 		result.put("productByType", list);
 		return result;	
 	}
+
+	
 }
+

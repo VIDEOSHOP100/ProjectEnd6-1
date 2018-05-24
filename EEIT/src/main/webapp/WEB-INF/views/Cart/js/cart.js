@@ -138,8 +138,7 @@ $(document).ready(function() {
 							}
 						});
 
-						form = dialog.find("form").on("submit",
-								function(event) {
+						form = dialog.find("form").on("submit",function(event) {
 									event.preventDefault();
 									addUser();
 								});
