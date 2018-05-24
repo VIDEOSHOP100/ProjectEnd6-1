@@ -86,14 +86,15 @@ $(document).ready(function () {
     							'</p>' +
     							'<p>Posted on' + formated + '</p><hr>' +
     							'<p>' + data.adviceContent +'</p><hr>' +
-    							'<div class="card my-4"><h5 class="card-header">回覆意見</h5><div class="card-body">' +
-    							'<form:form method="POST" action="/replyAdviceReport" modelAttribute="AdviceReportBean" class = "form-horizontal">' + 
-    							'<textarea id="replyARContent" path="replyContent" class="form-control" rows="3"></textarea>' + 
-    							'<button class = "btn btn-primary" id = "replyAdviceReportButton">回覆意見</button>' +
-    							'</form>' +
+    							'<div class="card my-4"><h5 class="card-header">回覆意見</h5>' +
+    								'<div class="card-body">' +
+    									'<form:form method="POST" action="/replyAdviceReport" modelAttribute="AdviceReportBean" class = "form-horizontal">' + 
+    										'<textarea id="replyARContent" path="replyContent" class="form-control" rows="3"></textarea>' + 
+    										'<button class = "btn btn-primary" id = "replyAdviceReportButton">回覆意見</button>' +
+    										'</form:form>' +
+    								'</div>'+
     							'</div>'+
-    							'</div>'+
-    							'</div>'+
+    						'</div>'+
     					'</row>'
     			
     				) 

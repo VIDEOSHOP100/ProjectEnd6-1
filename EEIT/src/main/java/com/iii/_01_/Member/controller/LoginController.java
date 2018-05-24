@@ -47,19 +47,18 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		session.removeAttribute("LoginOK");
 		session.removeAttribute("target");
-
+		session.removeAttribute("banMessage");
 		return "redirect:" + "/";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result, HttpServletRequest request) {
+	public String login(@ModelAttribute("MemberBean") MemberBean mb, BindingResult result,Map<String,Object>map, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String target = (String) session.getAttribute("target");
 		target = target.substring(target.lastIndexOf("/EEIT/") + 5);
-		Map<String, String> errorMessageMap = new HashMap<String, String>();
-		session.setAttribute("ErrorMessageKey", errorMessageMap);
 		MemberBean bean = loginService.checkIDPassword(mb.getAccount(), mb.getPassword());
-		if (bean != null) {
+		
+		if (bean != null && !bean.getBan()) {
 			bean = loginService.updateLastLogin(bean);
 			session.setAttribute("LoginOK", bean);
 			String account = bean.getAccount();
@@ -72,9 +71,17 @@ public class LoginController {
 			if (target.equals("/loginPage") || target.equals("/")) {
 				return "redirect:/";
 			}
-		} else {
-			errorMessageMap.put("error", "帳號或密碼錯誤!");
+		} else if(bean != null && bean.getBan()){
+			session.setAttribute("LoginOK", bean);
+			String account = bean.getAccount();
+			String banMessage = "您的帳號 " + account + " 已被封鎖，請待封鎖解除後再行登入。";
+			session.setAttribute("banMessage", banMessage);
+			
+		}else {
+			session.setAttribute("error", "帳號或密碼錯誤!");
 		}
+		
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh" + target+ "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 		return "redirect:" + target;
 	}
 

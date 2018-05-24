@@ -100,7 +100,7 @@ justify-content: center;
         <div class="col-lg-6" id="dm">
         		  
 <!--         <iframe width="750" height="450" src="https://www.youtube.com/embed/Rwon5jM2-44?list=RDRwon5jM2-44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-<iframe width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe> 
+<iframe  width="750" height="450" src="https://www.youtube.com/embed/${sb.liveStreamPath}?&autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen ></iframe> 
                 <h3 id="showViewAfter" class="TitleName">${sb.streamName}</h3>
         </div>
         <div class="col-lg-6 draggable">
@@ -537,7 +537,7 @@ justify-content: center;
 <%-- 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script> --%>
 <%-- 	<script src="<c:url value='/global/vendor/bootstrap/js/bootstrap.bundle.min.js'/> "></script> --%>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
-	   <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+	   <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 	<script src="<c:url value='/LiveStreamRoom/js/LiveStreamRoom.js'/> "></script>
 	<script src="<c:url value='/LiveStreamRoom/js/bootstrap-switch.js'/> "></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>

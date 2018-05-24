@@ -38,8 +38,8 @@ public class BackVideoReportController {
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		List<VideoReportBean>list = videoReportService.getAllVideoReport();
-		map.put("VideoReportList", list);
 		
+		map.put("VideoReportList", list);
 		return map;
 	}
 	
