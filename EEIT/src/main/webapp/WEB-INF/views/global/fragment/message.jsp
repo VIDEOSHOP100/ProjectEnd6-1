@@ -56,9 +56,9 @@
 			<div class="chat-sidebar-inside chat-sidebar-inside-cart chat-sidebar-insideHide cartoutside">
 				<c:forEach var="product" items="${cartDetailList }">
 					<div class="sidebar-name cartbar">
-						<button type="button" class="sidebarUserButton sidebarUserButtonNone">
+					<a href="${pageContext.request.contextPath}/searchProductIntro/${product.productbean.productSeqNo}"><button type="button" class="sidebarUserButton sidebarUserButtonNone">
 							<img width="40" height="40" src="${pageContext.request.contextPath}/getImage/Product/${product.productbean.productSeqNo}"><p class="shoppingCartProductName">${product.productbean.proName}</p><p class="shoppingCartProductDescription"><small class="subtitle">${product.productbean.proDescription}</small></p><span  class="shoppingCartProductNumber">${product.productCount}</span>
-						</button>				
+						</button></a>				
 					</div>
 				</c:forEach>
 			</div>
