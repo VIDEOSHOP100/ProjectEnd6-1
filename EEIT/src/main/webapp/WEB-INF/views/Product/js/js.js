@@ -16,7 +16,7 @@
 	                resizable: false,
 			    });
 			
-			var $dialogCheck = $('<div></div>').append('加入購物車!')
+			var $dialogCheck = $('<div></div>').append('庫存數量不足!請重新選擇')
 			.dialog({
 			      autoOpen: false,
 			      show: {
@@ -32,7 +32,6 @@
 	  				draggable: false,
 	                resizable: false,
 			    });
-		
 			var product = $("#productSeqNo").val();
 			var account = $("#account").val();
 			$('.buy').click(function() {
@@ -52,10 +51,8 @@
 					timeout : 600000,
 					success : function(data,result) {
 						
-//						$dialogCheck.dialog('open');
-						
-						
-						
+						if (data.successMessage == 1){
+							alert(data.successMessage);
 						$('.cartbar').remove;
 						//.ajax
 						$.ajax({
@@ -76,14 +73,17 @@
 														docFrag.append(product);	
 													})
 														$('.cartoutside').html(docFrag) ;
-												
 							},	
 							error : function(e) {
 
 								console.log("ERROR : ", e);
 							
 							}
-						})	
+						})}
+						else if(data.errorMessage == 2){
+							$dialogCheck.dialog('open');						
+						}
+							
 					},
 					error : function(e) {
 
