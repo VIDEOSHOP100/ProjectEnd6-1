@@ -19,6 +19,17 @@ $(document)
 
 						if (title == '報表') {
 
+							 $.ajax({
+					                type: "GET",
+					                url: "/EEIT/backstageroll",
+					                dataType: "json",
+					                timeout: 600000,
+					  
+					                success: function (data) {
+					                	var aa = data;
+					             alert(aa);
+							
+							
 							var tab = $('<div></div>').addClass('antai87');
 							$('#content>h2').after(tab);
 
@@ -70,7 +81,11 @@ $(document)
 												        ]
 												} ]
 											})
-											$('.highcharts-credits').remove();
+//											$('.highcharts-credits').remove();
+					                },error:function(){
+					                	alert("安泰北七")
+					                }
+							 })
 							// $(".antai87").highcharts(data);
 
 						}
