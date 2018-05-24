@@ -201,7 +201,7 @@
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/memberUpdate">修改會員資料</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/myFriendList">我的好友</a> 
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/myMessage">我的訊息</a> 
-						<a class="dropdown-item" href="${pageContext.request.contextPath}/QuestionList/Main">常見問題</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/QuestionList/1">常見問題</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/adviceReport">意見回饋</a>
 					</div></li>
 					<li class="nav-item"><button class="btn btn-outline" id="logoutButton" style="background-color:#6441a4; color: white" type="button" >登出</button></li>

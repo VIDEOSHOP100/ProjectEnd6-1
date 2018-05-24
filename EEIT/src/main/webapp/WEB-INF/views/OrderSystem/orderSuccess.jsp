@@ -47,7 +47,7 @@
 					</button>
 					<input type="hidden" id=thisOrder value="${readyforpay.orderSeqNo}"/>
 					<h6>訂單編號  : ${readyforpay.orderSeqNo}</h6>
-					<h6>銷售日期  : ${readyforpay.orderTime}</h6>
+					<h6>銷售日期  : ${readyforpay.orderDateTime}</h6>
 					<!-- 每頁不同的內容從這裡開始 -->
 					<table id="productTable" class="table table-condensed">
 						<thead>

@@ -120,7 +120,8 @@ public class OrderController {
 		 //設定訂單未付款的訂單狀態為1
 		 ob.setOrderStatus(1);
 		 ob.setAccount(member.getAccount());
-		 int orderNum =orderservice.insertGetId(ob);	 
+		 int orderNum =orderservice.insertGetId(ob);
+	
 		// 先將使用者帳號傳回購物車service方法 用帳號找出所有購物明細
 			List<ProCartListBean> list = procartlistservice.getByAccountStatus(member.getAccount());
 			List<OrderProductBean> orderproductlist = new ArrayList<>();
@@ -158,6 +159,11 @@ public class OrderController {
 			}
 			
 			OrderBean bill = orderservice.findByorderSeqNo(orderNum);
+			
+			java.util.Date time = bill.getOrderTime();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			String timeString = sdf.format(time);
+			bill.setOrderDateTime(timeString);
 			bill.setOrderTotalPrice(orderTotalPrice);
 			orderservice.update(bill);
 			//成立訂單的帳號  將該帳號購物車內所有物品刪除
