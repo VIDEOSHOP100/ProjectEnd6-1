@@ -24,7 +24,47 @@
 	rel="stylesheet">
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-	
+<style>
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>	
 </head>
 <body>
 	<!-- Navigation -->
@@ -47,7 +87,7 @@
 					</button>
 					<input type="hidden" id=thisOrder value="${readyforpay.orderSeqNo}"/>
 					<h6>訂單編號  : ${readyforpay.orderSeqNo}</h6>
-					<h6>銷售日期  : ${readyforpay.orderTime}</h6>
+					<h6>銷售日期  : ${readyforpay.orderDateTime}</h6>
 					<!-- 每頁不同的內容從這裡開始 -->
 					<table id="productTable" class="table table-condensed">
 						<thead>
@@ -104,10 +144,9 @@
 					
 						<!-- 每頁不同的內容從這裡開始 -->
 					<h4>感謝您的訂購</h4>
-					<h2><a href="${pageContext.request.contextPath}/getPdfFile/pdf/${readyforpay.orderSeqNo}">訂單列印</a></h2>
-					<h5 id="allpay">前往付款頁面</h5>
-						 <div id="response">
-			    		 </div>
+					<a href="${pageContext.request.contextPath}/getPdfFile/pdf/${readyforpay.orderSeqNo}"><button type="button" class="btn btn-primary">訂單列印</button></a>
+					<button type="button" id="allpay" class="btn btn-primary">前往付款頁面</button>
+						 <div id="response"></div>
 			</div>
 		</div>
 	</div>

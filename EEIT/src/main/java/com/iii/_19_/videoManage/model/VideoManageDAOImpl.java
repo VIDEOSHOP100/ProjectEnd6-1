@@ -32,7 +32,7 @@ public class VideoManageDAOImpl implements VideoManageDAO {
 	@Override
 	public VideoBean getVideo(Integer videoSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(VideoBean.class, videoSeqNo);
+		return session.createQuery("FROM VideoBean WHERE videoSeqNo = :videoSeqNo and videoStatus = '1'",VideoBean.class).setParameter("videoSeqNo", videoSeqNo).uniqueResult();
 	}
 	
 	@Override

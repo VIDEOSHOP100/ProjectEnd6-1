@@ -9,6 +9,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONStringer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -153,6 +156,37 @@ public class InputLiveStreamTimeController {
 		map.put("AllLiveStream", AllLiveStreamList);
 		
 		return "LiveStreamHall/LiveStreamHall";
+	}
+	
+	
+//後台圖表
+	@RequestMapping(value="/backstageroll",method=RequestMethod.GET)
+	public @ResponseBody JSONObject getAllLiveStreamListbk() {
+		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
+//		JSONArray myString = 
+		Map<String, String> map = new HashMap<String, String>();
+		JSONArray jArray = new JSONArray(AllLiveStreamList);
+//		JSONObject Obj = new JSONObject();
+		JSONObject jb = new JSONObject();
+		  for (int i = 0; i < jArray.length(); i++) {
+			  	jb = jArray.getJSONObject(i);
+			 	String account = jb.getString("account");
+			 	String streamName = jb.getString("streamName");
+//			 	map.put(account, streamName);
+			 	jb.put("account", account);
+			 	jb.put("streamName", streamName);
+		     }
+//		         .put("JSON", AllLiveStreamList).toString();
+	
+//		map.put("AAA", myString);
+				
+//		obj.put("business_images", new JSONArray(Arrays.toString(business_images)));	
+		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
+		System.out.println(jb);
+		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
+//		map.put("AllLiveStream", AllLiveStreamList);
+		
+		return jb;
 	}
 //新增直播
 	@RequestMapping(value="/InsertLiveStream",method=RequestMethod.GET)

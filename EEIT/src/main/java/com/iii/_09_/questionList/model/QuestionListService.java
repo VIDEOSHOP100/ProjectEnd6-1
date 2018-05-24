@@ -15,6 +15,7 @@ public interface QuestionListService {
 	public List<QuestionListBean> selectQuestionList();
 	
 	public List<QuestionListBean> getAllQuestionListBean();
-	
-//	public List<QuestionListBean> getAllQuestionListInPage();
+
+	//顯示Type編號
+	public List<QuestionListBean> selectQuestionListByType(Integer questionListType);
 }

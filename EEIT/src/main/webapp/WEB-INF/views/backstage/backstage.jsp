@@ -61,6 +61,11 @@
 		<script src="<c:url value='/backstage/js/backstageAdvice.js'/> "></script>
 		<script src="<c:url value='/backstage/js/vic.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageVideo.js'/> "></script>
+		<script src="<c:url value='/backstage/js/highcharts.js'/> "></script>
+		 <script src="http://code.highcharts.com/highcharts.js"></script>
+		 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+		 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+		 <script src="https://code.highcharts.com/modules/export-data.js"></script>
  
   </body>
 </html>

@@ -20,7 +20,7 @@ public class ReplyCommentVideoDAOImpl implements ReplyCommentVideoDAO {
 	@Override
 	public List<ReplyCommentVideoBean> getReplyCommentVideoByComment(Integer commentVideoSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM ReplyCommentVideoBean WHERE commentVideoSeqNo = :commentVideoSeqNo order by replyCommentDate desc",ReplyCommentVideoBean.class).setParameter("commentVideoSeqNo", commentVideoSeqNo).list();
+		return session.createQuery("FROM ReplyCommentVideoBean WHERE commentVideoSeqNo = :commentVideoSeqNo and replyCommentVideoStatus = '1' order by replyCommentDate desc",ReplyCommentVideoBean.class).setParameter("commentVideoSeqNo", commentVideoSeqNo).list();
 	}
 
 	@Override
@@ -33,13 +33,13 @@ public class ReplyCommentVideoDAOImpl implements ReplyCommentVideoDAO {
 	public List<ReplyCommentVideoBean> getReplyCommentVideoByCommentAndAccount(Integer commentVideoSeqNo,
 			String account) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM ReplyCommentVideoBean WHERE commentVideoSeqNo = :commentVideoSeqNo and account = :account",ReplyCommentVideoBean.class).list();
+		return session.createQuery("FROM ReplyCommentVideoBean WHERE commentVideoSeqNo = :commentVideoSeqNo and account = :account and replyCommentVideoStatus = '1'",ReplyCommentVideoBean.class).list();
 	}
 
 	@Override
 	public ReplyCommentVideoBean getReplyCommentVideoBySeqNo(Integer replyCommentVideoSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM ReplyCommentVideoBean WHERE replyCommentVideoSeqNo = :replyCommentVideoSeqNo",ReplyCommentVideoBean.class).setParameter("replyCommentVideoSeqNo", replyCommentVideoSeqNo).uniqueResult();
+		return session.createQuery("FROM ReplyCommentVideoBean WHERE replyCommentVideoSeqNo = :replyCommentVideoSeqNo  and replyCommentVideoStatus = '1'",ReplyCommentVideoBean.class).setParameter("replyCommentVideoSeqNo", replyCommentVideoSeqNo).uniqueResult();
 		
 	}
 

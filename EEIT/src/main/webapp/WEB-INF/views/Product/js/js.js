@@ -16,7 +16,7 @@
 	                resizable: false,
 			    });
 			
-			var $dialogCheck = $('<div></div>').append('加入購物車!')
+			var $dialogCheck = $('<div></div>').append('庫存數量不足!請重新選擇')
 			.dialog({
 			      autoOpen: false,
 			      show: {
@@ -32,7 +32,6 @@
 	  				draggable: false,
 	                resizable: false,
 			    });
-		
 			var product = $("#productSeqNo").val();
 			var account = $("#account").val();
 			$('.buy').click(function() {
@@ -52,9 +51,7 @@
 					timeout : 600000,
 					success : function(data,result) {
 						
-//						$dialogCheck.dialog('open');
-						
-						
+						if (data.successMessage == 1){
 						
 						$('.cartbar').remove;
 						//.ajax
@@ -67,23 +64,26 @@
 												var product;
 												var docFrag = $(document.createDocumentFragment());
 													$.each(data.cartDetailList,function(key, oneproductBean){
-														product = '<div class="sidebar-name cart">'+
+														product = '<div class="sidebar-name cart"><a href="/EEIT/searchProductIntro/'+oneproductBean.productSeqNo+'">'+
 														'<button type="button" class="sidebarUserButton sidebarUserButtonNone">'+
 														'<img width="40" height="40" src="/EEIT/getImage/Product/'+oneproductBean.productSeqNo+'">'+
 														'<p class="shoppingCartProductName">'+oneproductBean.productbean.proName+'</p><p class="shoppingCartProductDescription"><small class="subtitle">'+
 														oneproductBean.productbean.proDescription+'</small></p><span  class="shoppingCartProductNumber">'+
-														oneproductBean.productCount+'</span></button></div>';
+														oneproductBean.productCount+'</span></button></a></div>';
 														docFrag.append(product);	
 													})
 														$('.cartoutside').html(docFrag) ;
-												
 							},	
 							error : function(e) {
 
 								console.log("ERROR : ", e);
 							
 							}
-						})	
+						})}
+						else if(data.errorMessage == 2){
+							$dialogCheck.dialog('open');						
+						}
+							
 					},
 					error : function(e) {
 

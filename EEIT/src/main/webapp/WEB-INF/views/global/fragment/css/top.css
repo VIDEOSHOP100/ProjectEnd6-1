@@ -9,7 +9,10 @@
 .searchInput {
 	
 }
-
+.textfamily{
+	font-family: 'Tangerine', cursive;
+	
+}
 .searchInputOutside {
 	display: inline-block;
 }
@@ -53,7 +56,8 @@
 	background-color: #4b367c !important;;
 }
 .diplaySearchResult{
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .moreSearchButton{
@@ -61,3 +65,4 @@
 	overflow: auto;
 }
 
+>>>>>>> branch 'master' of https://github.com/VIDEOSHOP100/ProjectEnd6-1.git

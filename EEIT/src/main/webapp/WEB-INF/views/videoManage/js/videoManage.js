@@ -84,7 +84,7 @@ $( function() {
 					});
 		    	  
 		    	   loadingFlag = true;
-		       }, 3000);
+		       }, 1000);
 		       
 		    }
 			}
