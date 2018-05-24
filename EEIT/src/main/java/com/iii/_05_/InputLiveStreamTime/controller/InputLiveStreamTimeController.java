@@ -9,6 +9,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONStringer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -116,6 +119,8 @@ public class InputLiveStreamTimeController {
 		CustomizedBean CustomizedBean = new CustomizedBean();
 		map.put("CustomizedBean", CustomizedBean);
 		
+		List<CustomizedBean> CustomizedList = CustomizedService.getAllByAccount(gpa.getAccount());
+		
 		//增加一個REPORTBean
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
 		map.put("AllProduct0", AllProduct0);
@@ -124,6 +129,8 @@ public class InputLiveStreamTimeController {
 		map.put("productNameMapnoonsale", productNameMapnoonsale);
 		//拍賣中物品
 		map.put("AllProductLista", productNameMap);
+		//賣家資料的LIST
+		map.put("CustomizedList", CustomizedList);
 //		map.put("hb", LiveStreamHistoryBean);
 		map.put("AllProduct", AllProduct);
 		map.put("sb", InputLiveStreamTimeService.getLiveStreamsBySeqNo(LiveStreamSeqNo));
@@ -150,6 +157,37 @@ public class InputLiveStreamTimeController {
 		
 		return "LiveStreamHall/LiveStreamHall";
 	}
+	
+	
+//後台圖表
+	@RequestMapping(value="/backstageroll",method=RequestMethod.GET)
+	public @ResponseBody JSONObject getAllLiveStreamListbk() {
+		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
+//		JSONArray myString = 
+		Map<String, String> map = new HashMap<String, String>();
+		JSONArray jArray = new JSONArray(AllLiveStreamList);
+//		JSONObject Obj = new JSONObject();
+		JSONObject jb = new JSONObject();
+		  for (int i = 0; i < jArray.length(); i++) {
+			  	jb = jArray.getJSONObject(i);
+			 	String account = jb.getString("account");
+			 	String streamName = jb.getString("streamName");
+//			 	map.put(account, streamName);
+			 	jb.put("account", account);
+			 	jb.put("streamName", streamName);
+		     }
+//		         .put("JSON", AllLiveStreamList).toString();
+	
+//		map.put("AAA", myString);
+				
+//		obj.put("business_images", new JSONArray(Arrays.toString(business_images)));	
+		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
+		System.out.println(jb);
+		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
+//		map.put("AllLiveStream", AllLiveStreamList);
+		
+		return jb;
+	}
 //新增直播
 	@RequestMapping(value="/InsertLiveStream",method=RequestMethod.GET)
 	public String getInsertAllLiveStreamList(Map<String, Object> map, HttpSession session) throws SQLException {
@@ -166,8 +204,13 @@ public class InputLiveStreamTimeController {
 		for(ProductSaleBean pb : AllProductList) {
 			productNameMap.put(pb.getProductSeqNo(),pb.getProName());
 		}
+		List<CustomizedBean> CustomizedList = CustomizedService.getAllByAccount(account);
+		//增加一個CustomizedBean
+				CustomizedBean CustomizedBean = new CustomizedBean();
+				map.put("CustomizedBean", CustomizedBean);
 		//給INSERTROOM REPORT
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
+		map.put("CustomizedList", CustomizedList);
 		map.put("liveStreamReportBean", liveStreamReportBean);
 		map.put("AllProductList", productNameMap);
 		map.put("AllLiveStream", AllLiveStreamList);
@@ -272,6 +315,7 @@ public class InputLiveStreamTimeController {
 		InputLiveStreamTimeService.saveLiveStreams(sb, extPhoto, photo);
 		//給INSERTROOM REPORT
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
+		
 		map.put("liveStreamReportBean", liveStreamReportBean);
 		return "LiveStreamRoom/LiveStreamRoom";
 		}else {

@@ -27,7 +27,7 @@ public class QuestionListDAOImpl implements QuestionListDAO{
 	@Override
 	public void updateQuestionList(QuestionListBean questionListBean) {
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(sessionFactory);
+		session.saveOrUpdate(questionListBean);
 	}
 
 	@Override
@@ -48,12 +48,23 @@ public class QuestionListDAOImpl implements QuestionListDAO{
 		return session.createQuery("FROM QuestionListBean WHERE questionListStatus = '1'",QuestionListBean.class).list();
 	}
 	
+	
+
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<QuestionListBean> getAllQuestionListBean() {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from QuestionListBean").list();
 	}
+
+	//顯示Type編號
+	@Override
+	public List<QuestionListBean> selectQuestionListByType(Integer questionListType) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM QuestionListBean WHERE questionListStatus = '1' and questionListType = :questionListType", QuestionListBean.class).setParameter("questionListType", questionListType).list();
+	}
+
 	
 
 

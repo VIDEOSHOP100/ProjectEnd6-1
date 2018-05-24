@@ -19,7 +19,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
-	<div class="container" style="margin-left:50px">
+	<div class="container" style="margin-left: 50px">
 		<h1 class="mt-4 md-3">登入系統</h1>
 
 		<ol class="breadcrumb">
@@ -34,24 +34,23 @@
 			<div class="col-md-6 offset-3">
 
 				<div class="wrapper">
-					<form:form id="login" method="POST"
+					<form:form id="loginPageForm" method="POST"
 						action="${pageContext.request.contextPath}/login"
 						modelAttribute="MemberBean" class="wrapper">
-						<form:input class="form-control input-sm" id="logAcc" type="text"
+						<form:input class="form-control input-sm" id="logPAcc" type="text"
 							path="account" placeholder="account" />
 						<br>
-						<form:input class="form-control input-sm" id="logPwd"
+						<form:input class="form-control input-sm" id="logPPwd"
 							type="password" path="password" placeholder="password" />
 						<br>
 						<div class="form-group col-md-12">
-							<div class="g-recaptcha"
+							<div class="g-recaptcha col=md-6"
 								data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
 						</div>
 						<a
 							href="${pageContext.request.contextPath}/MemberCenter/forgotPassword">
-							<button type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button>
+							<button type="button" class="btn btn-primary">忘記密碼?</button>
 						</a>
-
 						<p>${ErrorMessageKey.error}</p>
 
 						<div class="float-right">
@@ -65,7 +64,7 @@
 		</div>
 
 	</div>
-	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp"%>
 </body>
 
 </html>

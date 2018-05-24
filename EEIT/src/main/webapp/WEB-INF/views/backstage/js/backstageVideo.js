@@ -70,6 +70,7 @@ $(document).ready(function () {
     		
     		success:function(datas){
     			var data = datas.VideoReport;
+    			var videoTitle = datas.videoTitle;
     			var ret = new Date(data.videoReportDate);
     			var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
     			var format = $('<container></container>').html(
@@ -79,7 +80,7 @@ $(document).ready(function () {
     							'<p class="lead"> 檢舉人 : ' +  
     								'<a  target="_blank" href="/EEIT/profile/' +data.account + '">' + data.account + '</a>' + 
     								'  被檢舉影片: ' + 
-    								'<a  target="_blank" href="/EEIT/videoRoom/' +data.videoSeqNo + '">' + data.videoSeqNo + '</a>' +
+    								'<a  target="_blank" href="/EEIT/videoRoom/' +data.videoSeqNo + '">' + videoTitle + '</a>' +
     							'</p>' +
     							'<p>Posted on' + formated + '</p><hr>' +
     							'<p>' + data.videoReportArticle +'</p><hr>' +

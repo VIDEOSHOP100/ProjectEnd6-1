@@ -59,8 +59,8 @@ font-family: 'Poiret One', cursive;
           <hr>
 
           <!-- Date/Time -->
-          <p>Live Stream Posted on ：${accountStream.liveStart}　目前觀看人次：${accountStream.liveStreamView}</p>
-
+          <p>Live Stream Posted on ：${accountStream.liveStart}　</p>
+			<div><p><i class="fas fa-user"></i>&nbsp;&nbsp;目前觀看人數：${accountStream.liveStreamView}&nbsp;&nbsp;&nbsp;<i class="fas fa-users"></i>&nbsp;&nbsp;總觀看人次：${accountStream.allLiveStreamView}</p></div>
           <hr>
 
           
@@ -94,15 +94,7 @@ font-family: 'Poiret One', cursive;
                       <!--    <h2>新增直播</h2><div class="col-md-2 addBidDiv"> -->
 					<button class="btn btn-outline-info addBidButton " data-toggle="modal" data-target="#addLiveStreamForm"><i class="fas fa-plus"></i>&nbsp;&nbsp;新增直播</button>
 <!-- 					</div> -->
-					
-
-                    </li>
-                    <li>
-                  
-                    </li>
-                    <li>
-                      <a href="#"></a>
-                    </li>
+		           </li>
                   </ul>
                 </div>
                 <div class="col-lg-6">
@@ -111,13 +103,24 @@ font-family: 'Poiret One', cursive;
 					<button class="btn btn-outline-info addBidButton " data-toggle="modal" data-target="#addAuctionForm"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;拍賣物品</button>
 <!-- 					</div> -->
                     <li>
-                      <a href="#"></a>
+                      <a href="#" style="text-decoration:none"> 　 </a>
                     </li>
                     <li>
-                      <a href="#"></a>
+                      <a href="#" style="text-decoration:none">  </a>
                     </li>
                   </ul>
                 </div>
+                
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <!--    <h2>新增直播</h2><div class="col-md-2 addBidDiv"> -->
+					<button class="btn btn-outline-info addBidButton " data-toggle="modal" data-target="#addDetailForm"><i class="fas fa-plus"></i>&nbsp;&nbsp;新增賣家資訊</button>
+<!-- 					</div> -->
+		           </li>
+                  </ul>
+                </div>
+                
               </div>
             </div>
           </div>
@@ -220,7 +223,64 @@ font-family: 'Poiret One', cursive;
 		</div>
 	</div>
 <!--// 直播表格 -->
+<!-- 新增直播DETAIL表格 -->
+	<div class="row editform hidden col-lg-4 mb-4 offset-4">
+	<div class="modal fade" id="addDetailForm" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">${sb.account}的直播介紹控制列</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
 
+
+					<form:form id="CustomizedControl" method="POST"
+						action="${pageContext.request.contextPath}/CustomizedControl"
+						modelAttribute="CustomizedBean" class=""
+						enctype="multipart/form-data">
+
+
+						<p class="reasontitle modal-title">介面標題</p>
+						<div class="form-group">
+							<form:input path="customizedTitle" type="text"
+								class="form-control input-sm" id="customizedTitle"
+								placeholder="請輸入標題" />
+						</div>
+						<p class="reasontitle modal-title">新增影像</p>
+<!-- 						<input type="file" id="file"/> -->
+						<form:input path="photo" type="file" name="customizedPic" id="customizedPic" class="text ui-widget-content ui-corner-all"/>
+					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
+				
+  						<br><br>
+			<p class="reasontitle modal-title">描述</p>
+						<div class="form-group">
+							<form:textarea path="customizedDesc" type="text"
+								class="form-control input-sm" id="customizedDesc"
+								placeholder="描述內容" />
+						</div>
+						<!-- 						<div class="form-group"> -->
+						<!-- 							附加照片 -->
+						<%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
+						<!-- 						</div> -->
+				
+				
+
+					<button type="button" class="btn btn-outline-info" id="cancel"
+						data-dismiss="modal">取消</button>
+							<input type="submit" class="btn btn-primary" id="customizedSubmit" value="確定"/>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+<!-- 新增直播DETAIL表格 -->
      <!-- Sart Modal -->
         <div class="modal fade" id="endLiveStream" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">

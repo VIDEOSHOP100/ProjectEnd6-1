@@ -48,14 +48,17 @@
 					</div>
 				</c:forEach>
 			</div>
-			<p class="chat-sidebar-title">購物車</p>
+		
+			<p class="chat-sidebar-title">購物車
+			<a href="${pageContext.request.contextPath}/CartList/getCart/${LoginOK.account}"><button type="button" class="btn btn-danger btn-sm">check out</button></a>
+			</p>
 			<hr class="chat-sidebar-line">
-			<div class="chat-sidebar-inside chat-sidebar-inside-cart chat-sidebar-insideHide">
+			<div class="chat-sidebar-inside chat-sidebar-inside-cart chat-sidebar-insideHide cartoutside">
 				<c:forEach var="product" items="${cartDetailList }">
-					<div class="sidebar-name">
-						<button type="button" class="sidebarUserButton sidebarUserButtonNone">
+					<div class="sidebar-name cartbar">
+					<a href="${pageContext.request.contextPath}/searchProductIntro/${product.productbean.productSeqNo}"><button type="button" class="sidebarUserButton sidebarUserButtonNone">
 							<img width="40" height="40" src="${pageContext.request.contextPath}/getImage/Product/${product.productbean.productSeqNo}"><p class="shoppingCartProductName">${product.productbean.proName}</p><p class="shoppingCartProductDescription"><small class="subtitle">${product.productbean.proDescription}</small></p><span  class="shoppingCartProductNumber">${product.productCount}</span>
-						</button>				
+						</button></a>				
 					</div>
 				</c:forEach>
 			</div>
@@ -136,5 +139,6 @@
 	<script src="http://malsup.github.com/jquery.form.js"></script> 
 	<script src="<c:url value='/global/js/message.js'/> "></script>
 	<script src="<c:url value='/global/js/videoChat.js'/> "></script>
+	<script src="<c:url value='/global/js/cart.js'/> "></script>
 </body>
 </html>

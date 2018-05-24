@@ -10,7 +10,7 @@
 <meta http-equiv="Pragma" content="no-cache"> 
 <meta http-equiv="Cache-Control" content="no-cache"> 
 <meta http-equiv="Expires" content="0"> 
-
+<link href="https://fonts.googleapis.com/css?family=Tangerine:700" rel="stylesheet">
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="63977180850-ljlinbc7jsd1epeuo3ec34lhmr94at5h.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -27,12 +27,16 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 
 <!-- Bootstrap core CSS -->
-<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
-	rel="stylesheet">
+<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/fragment/css/top.css'/>" rel="stylesheet">
+<style>
+
+</style>
+
+<link href="<c:url value='/global/fragment/css/grumble.min.css'/>" rel="stylesheet">
 </head>
 <body>
 
@@ -40,7 +44,7 @@
 	<!-- Navigation -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:#4b367c">
 		<div class="container">
-			<a class="navbar-brand" href="<c:url value='/' />">Live Market</a>
+			<a class="navbar-brand textfamily"  href="<c:url value='/' />"><img style="margin:-10px 0" src="https://i.imgur.com/Zq7r3H3.jpg"></a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 					data-toggle="collapse" data-target="#navbarResponsive"
 					aria-controls="navbarResponsive" aria-expanded="false"
@@ -197,7 +201,7 @@
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/memberUpdate">修改會員資料</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/myFriendList">我的好友</a> 
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/myMessage">我的訊息</a> 
-						<a class="dropdown-item" href="${pageContext.request.contextPath}/QuestionList/Main">常見問題</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/QuestionList/1">常見問題</a>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/MemberCenter/adviceReport">意見回饋</a>
 					</div></li>
 					<li class="nav-item"><button class="btn btn-outline" id="logoutButton" style="background-color:#6441a4; color: white" type="button" >登出</button></li>
@@ -217,6 +221,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLongTitle">註冊會員</h5>
+					<button id="AllinOneButton" class="btn btn-success">一鍵填寫</button>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -237,16 +242,16 @@
 			 				<form:input id="regPwd" path="password" type="password" class="form-control input-sm" placeholder="password"/>
 			 			</div>
 			 			<div class="col-md-12 form-group">
-			 				<small><label for="nickname">暱稱</label><span style="color: red">*</span></small>
+			 				<small><label for="nickname">暱稱</label></small>
 			 				<form:input path="nickname" id="nickname" type="text" class="form-control input-sm " placeholder="nickname"/>
 			 			</div>
 			 		 
 			 			<div class="col-md-6 form-group">
-			 				<small><label for="firstname">姓氏</label><span style="color: red">*</span></small>
+			 				<small><label for="firstname">姓氏</label></small>
 			 				<form:input path="firstname" id="firstname" type="text" class="form-control input-sm" placeholder="first name"/>
 						</div>
 						<div class="col-md-6 form-group"> 
-							<small><label for="lastname">名字</label><span style="color: red">*</span></small>
+							<small><label for="lastname">名字</label></small>
 							 <form:input path="lastname" id="lastname" type="text" class="form-control input-sm " placeholder="last name"/>
 			 			</div>
 							
@@ -257,20 +262,20 @@
 			 			</div>		
 						 		
 							<div class="col-md-6 form-group">
-							<small><label for="address">地址</label><span style="color: red">*</span></small>
+							<small><label for="address">地址</label></small>
 			 				<form:input path="address" id="address" type="text" class="form-control input-sm " placeholder="address"/>
 			 			</div>
 					
 						<div class="form-group col-md-6">
-							<small><label for="phone">電話號碼</label><span style="color: red">*</span></small>
+							<small><label for="phone">電話號碼</label></small>
 			 				<form:input path="phone" id="phone" type="text" class="form-control input-sm " placeholder="phone"/>
 			 			</div>
 					<div class="form-group col-md-6" >
 					
-					<small><label for="birthday">生日</label><span style="color: red">*</span></small><form:input path="birthday" id="birthday" type="date" class="form-control input-sm"/>
+					<small><label for="birthday">生日</label></small><form:input path="birthday" id="birthday" type="date" class="form-control input-sm"/>
 					</div>
 						<div class="form-group col-md-6">
-					<small><label for="gender">性別</label><span style="color: red">*</span></small>
+					<small><label for="gender">性別</label></small>
 			 				<form:select path="gender" id="gender" >
 								<form:option value="男性"/>	
 								<form:option value="女性"/>	
@@ -353,22 +358,12 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="<c:url value='/global/js/search.js'/> "></script>
 	<script src="<c:url value='/global/js/top.js'/> "></script>
+	<script src="<c:url value='/global/js/Bubble.js'/> "></script>
+	<script src="<c:url value='/global/js/grumble.min.js'/> "></script>
+	<script src="<c:url value='/global/js/browser.js'/> "></script>
 	
 
 	<script>
-	$('#modalLoginButton').click(checkAccPwd);
-
-	
-	
-	$(document).on("keyup","#logPwd", function(e){
-		
-		 if(e.keyCode == 13){
-			 console.log(e.keyCode);
-			 checkAccPwd();
-		 }
-	
-	})
-	
 
 		$("#loginButton").click(function(){
 			setTimeout(function(){
@@ -384,50 +379,6 @@
 			
 		})
 		
-	
-	
-	function checkAccPwd(){
-		
-		
-		
-		
-		var logAcc = $('#logAcc').val();
-		var logPwd = $('#logPwd').val();
-		var botCheckResp = $('#g-recaptcha-response-1').val();
-
-		
-		
-		
-		$.ajax({
-			
-			type:"POST",
-			url:"/EEIT/checkBotAccPwd",
-			data:{ botCheckResp:botCheckResp , logAcc:logAcc , logPwd:logPwd},
-			success:function(result){
-				var checkResult = result.loginCheck;
-				var botResult = result.botCheck;
-				
-				if(checkResult == true && botResult == true){
-					$('#loginForm').submit();
-				}else if(checkResult == false && botResult == true){
-					grecaptcha.reset(widgetId2);
-					$('#loginErrMsg').html(
-						'<div class="p-2 mb-2 bg-warning text-dark rounded">帳號或密碼錯誤!</div>');
-				}else if(botResult == false){
-					grecaptcha.reset(widgetId2);
-					$('#loginErrMsg').html(
-					'<div class="p-2 mb-2 bg-warning text-dark rounded">機器人驗證失敗!</div>');
-				}
-			},
-			error : function(e) {
-				console.log("ERROR : ", e);
-				alert(e);
-			}
-			
-		})
-		
-	
-	}
 	
 	
 		function onloadCallback(){
@@ -477,24 +428,17 @@
 					console.log("ERROR : ", e);
 					alert(e);
 				}
-	        
-	        
 	        })
-	        
-	        
 	      };
 		
 	      $(document).on("click",'#logoutButton',signOut);
-	      
+
 	     	{
 	          gapi.load('auth2', function() {
 	            gapi.auth2.init();
 	          });
 	        }
-	      
-	      
-	      
-	      
+
 	      function signOut() {
 	    	  
 	    	    var auth2 = gapi.auth2.getAuthInstance().disconnect();
@@ -509,13 +453,10 @@
 	  			error : function(e) {
 					console.log("ERROR : ", e);
 					alert(e);
-				}
-	    	
-	    		  
-	    	  })
-	    	  
-	    	  
-	    	  }
+				}  
+	    	 }) 
+	     }
+
 	</script>
 	<%@ include file="/WEB-INF/views/Cart/carticonLeft.jsp"%>
 </body>
