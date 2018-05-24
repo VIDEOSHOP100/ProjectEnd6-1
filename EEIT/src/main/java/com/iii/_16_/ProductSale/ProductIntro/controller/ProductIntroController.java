@@ -70,19 +70,10 @@ public class ProductIntroController {
 		
 		Integer pcs= oneproduct.getProPcs();
 		Map<String, Object> map = new HashMap<>();
-		//判斷庫存還有獲  而且庫存量大於使用者購物車當前選擇的量
-		
-		
+		//判斷庫存還有獲  而且庫存量大於使用者購物車當前選擇的量  (用於不同帳號同時要買這個商品避免已經有人下訂 另一個又要買
 		if(pcs > 0 && pcs>=count) {
-			
-		
-		
 		System.out.println("產品編號 = " + id + "  數量 = " + count + "   購買人 = " + account);
-		// 需要判斷有無帳號
-		if (account == "") {
-			map.put("errorMessage", "請先登入");
-			return map;
-		}
+	
 		ProCartListBean cartlistbean = new ProCartListBean(0, id, count, 1, account);
 		int countfirst = 0;
 		int countcreate = 0;
@@ -109,11 +100,17 @@ public class ProductIntroController {
 			// 分成兩種狀態 第一種是狀態1 第一次選購 如果是狀態1的商品 就代表還在購物車中 要update該筆資料
 			// 如果是狀態2代表選購過又刪除 要在新增一次該商品
 		} else {
+			
 			for (ProCartListBean alreadyhavebean : alreadyhavebeans) {
 				if (alreadyhavebean.getProductSeqNo().equals(id) && alreadyhavebean.getProductStatus().equals(1)) {
-					alreadyhavebean.setProductCount(alreadyhavebean.getProductCount() + count);
+					int totalcount = alreadyhavebean.getProductCount() + count;
+					if(totalcount <= pcs) {					
+					alreadyhavebean.setProductCount(totalcount);					
 					countupdate = procartlistservice.update(alreadyhavebean);
-
+					}else {
+						map.put("errorMessage", 2);
+						return map;
+					}
 				} else if (alreadyhavebean.getProductSeqNo().equals(id) && alreadyhavebean.getProductStatus() == 2) {
 					// 如果第一個購買該商品 又重購物車移除 商品狀態會變成2
 					// 第二次在購買該商品 因為商品編號相同 而且狀態為2
