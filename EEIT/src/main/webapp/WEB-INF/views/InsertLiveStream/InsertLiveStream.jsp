@@ -338,12 +338,12 @@ font-family: 'Poiret One', cursive;
 <script src="<c:url value='/InsertLiveStream/js/InsertLiveStream.js'/>"></script>
 <script src="<c:url value='/InsertLiveStream/js/bootstrap-datetimepicker.js'/>"></script>
 
-	<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2018</p>
-	</div>
-	</footer>
+<!-- 	<footer class="py-5 bg-dark"> -->
+<!-- 	<div class="container"> -->
+<!-- 		<p class="m-0 text-center text-white">Copyright &copy; Your -->
+<!-- 			Website 2018</p> -->
+<!-- 	</div> -->
+<!-- 	</footer> -->
 </body>
 
 </html>
