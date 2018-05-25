@@ -91,8 +91,7 @@ public class GoogleAccountController {
         	MemberBean mb = new MemberBean();
         	mb.setAccount(account);
         	
-        	mb.setPassword(resJSON.getString("kid"));
-        	System.out.println(resJSON.getString("kid"));
+        	mb.setPassword(ID_Token);
         	
         	String photoPath = resJSON.getString("picture");
         	System.out.println(photoPath);

@@ -64,7 +64,7 @@
 					</div>
 					<div class="form-group col-md-12">
 						<div class="controls">
-							<small><label>暱稱<span style="color: red">*</span></label></small>
+							<small><label>暱稱</label></small>
 							<form:input type="text" class="form-control" id="nickname"
 								path="nickname" value="${LoginOK.nickname}" />
 						</div>
@@ -72,7 +72,7 @@
 
 					<div class="form-group col-md-6">
 						<div class="controls">
-							<small><label>姓氏<span style="color: red">*</span></label></small>
+							<small><label>姓氏</label></small>
 							<form:input type="text" class="form-control" id="firstname"
 								path="firstname" value="${LoginOK.firstname}" />
 						</div>
@@ -80,7 +80,7 @@
 
 					<div class="form-group col-md-6">
 						<div class="controls">
-							<small><label>名字<span style="color: red">*</span></label></small>
+							<small><label>名字</label></small>
 							<form:input type="text" class="form-control" id="lastname"
 								path="lastname" value="${LoginOK.lastname}" />
 						</div>
@@ -96,7 +96,7 @@
 
 					<div class="form-group col-md-6">
 						<div class="controls">
-							<small><label>地址<span style="color: red">*</span></label></small>
+							<small><label>地址</label></small>
 							<form:input type="text" class="form-control" id="address"
 								path="address" value="${LoginOK.address}" />
 						</div>
@@ -104,7 +104,7 @@
 
 					<div class="form-group col-md-6">
 						<div class="controls">
-							<small><label>電話<span style="color: red">*</span></label></small>
+							<small><label>電話</label></small>
 							<form:input type="text" class="form-control" id="phone"
 								path="phone" value="${LoginOK.phone}" />
 						</div>
