@@ -24,9 +24,9 @@ $(document)
 					                url: "/EEIT/backstageroll",
 					                dataType: "json",
 					                timeout: 600000,
-					  
+//					                data: AAA,
 					                success: function (data) {
-					                	var aa = data.AAA;
+					                	var aa = data;
 					             alert(aa);
 							
 							
