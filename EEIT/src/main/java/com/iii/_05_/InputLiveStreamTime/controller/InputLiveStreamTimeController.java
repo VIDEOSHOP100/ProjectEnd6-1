@@ -304,11 +304,13 @@ public class InputLiveStreamTimeController {
 		InputLiveStreamTimeService.saveLiveStreams(sb, extPhoto, photo);
 		//給INSERTROOM REPORT
 		liveStreamReportBean liveStreamReportBean = new liveStreamReportBean();
-		
+		//增加一個CustomizedBean
+				CustomizedBean CustomizedBean = new CustomizedBean();
+				map.put("CustomizedBean", CustomizedBean);
 		map.put("liveStreamReportBean", liveStreamReportBean);
 		return "LiveStreamRoom/LiveStreamRoom";
 		}else {
-			return "InsertLiveStream/InsertLiveStream";
+			return "LiveStreamRoom/LiveStreamRoom";
 		}
 			
 	
