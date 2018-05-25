@@ -35,7 +35,7 @@
 
 		<!-- Image Header -->
 		<div class="col-lg-8 mb-4 offset-2">
-		<img class="img-fluid rounded mb-4" src="${pageContext.request.contextPath}/getImageTest/product06"
+		<img class="img-fluid rounded mb-4" src="${pageContext.request.contextPath}/getImage/ProductHot/7"
 			alt="">
 		</div>
 		<!-- Contact Form -->
