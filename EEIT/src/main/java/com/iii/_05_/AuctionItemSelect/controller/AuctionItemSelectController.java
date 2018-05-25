@@ -223,6 +223,6 @@ public class AuctionItemSelectController {
 			Oneproduct.setAuctionSeqNo(ab.getAuctionSeqNo());
 			productSaleService.insert(Oneproduct);
 
-		return "redirect:" + target;
+		return "redirect:"+target;
 	}
 }

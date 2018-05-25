@@ -174,7 +174,14 @@ public class InputLiveStreamTimeController {
 		System.out.println(map);
 		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
 //		map.put("AllLiveStream", AllLiveStreamList);
-		
+//		JSONObject JSONObject = new JSONObject();
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		JSONObject.put("AAA", myString);
+//		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
+//		System.out.println(JSONObject);
+//		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
+//		
+//		return JSONObject;
 		return map;
 	}
 //新增直播
@@ -307,6 +314,17 @@ public class InputLiveStreamTimeController {
 		//增加一個CustomizedBean
 				CustomizedBean CustomizedBean = new CustomizedBean();
 				map.put("CustomizedBean", CustomizedBean);
+				
+				//新增拍賣產品選擇器(未拍賣)
+				List<ProductSaleBean> AllProductListNoonsale = productSaleService.getAllProByStatus(account, 0);
+				
+				Map<Integer,String> productNameMapnoonsale = new HashMap<Integer,String>(); 
+				for(ProductSaleBean pb : AllProductListNoonsale) {
+					productNameMapnoonsale.put(pb.getProductSeqNo(),pb.getProName());
+				}
+				//未拍賣物品
+				map.put("productNameMapnoonsale", productNameMapnoonsale);
+				
 		map.put("liveStreamReportBean", liveStreamReportBean);
 		return "LiveStreamRoom/LiveStreamRoom";
 		}else {
