@@ -112,7 +112,7 @@ function checkAccPwd(){
 		
 		var logAcc = $('#logAcc').val();
 		var logPwd = $('#logPwd').val();
-		var botCheckResp = $('#g-recaptcha-response-1').val();
+		var botCheckResp = $('#g-recaptcha-response').val();
 
 		$.ajax({
 			
