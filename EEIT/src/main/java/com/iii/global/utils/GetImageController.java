@@ -29,6 +29,8 @@ import com.iii._05_.customized.model.CustomizedBean;
 import com.iii._05_.customized.model.CustomizedService;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 import com.iii._16_.PersonShop.service.PersonShopService;
+import com.iii._16_.ProductHot.model.ProductHotBean;
+import com.iii._16_.ProductHot.model.ProductHotService;
 import com.iii._16_.ProductSale.ProductPicture.model.ProPicBean;
 import com.iii._16_.ProductSale.ProductPicture.model.ProPicService;
 import com.iii._19_.messageFile.model.MessageFileBean;
@@ -72,9 +74,12 @@ public class GetImageController {
 	
 	@Autowired
 	CustomizedService CustomizedService;
+
+	@Autowired
+	private ProductHotService hotProService;
 	@RequestMapping(value = "/getImage/{dataType}/{pk}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse response, @PathVariable("dataType") String dataType,
-			@PathVariable("pk") String pk) {
+			@PathVariable("pk") String pk) throws Exception, SQLException {
 		String path = null;
 		if (dataType.equals("video")) {
 			VideoBean vb = videoManageDAO.getVideo(Integer.parseInt(pk));
@@ -113,6 +118,10 @@ public class GetImageController {
 		}else if(dataType.equals("customizedPic")) { 
 			CustomizedBean CustomizedBean = CustomizedService.getCustomizedBySeqNo(Integer.parseInt(pk));
 			path = CustomizedBean.getCustomizedPic();
+		}else if(dataType.equals("ProductHot")) {
+			ProductHotBean hotBean =  hotProService.selectone(Integer.parseInt(pk));
+			path = hotBean.getProductHotFilePath();
+			
 		}
 		
 		HttpHeaders headers = new HttpHeaders();

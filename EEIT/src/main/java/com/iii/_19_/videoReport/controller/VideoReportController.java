@@ -70,7 +70,7 @@ public class VideoReportController {
 		}else if(memberBean == null) {
 			account = "visitor";
 		}
-		
+		videoReportBean.setVideoTitle(videoManageService.getVideo(videoReportBean.getVideoSeqNo()).getVideoTitle());
 		videoReportBean.setAccount(account);
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		videoReportBean.setVideoReportDate(now);

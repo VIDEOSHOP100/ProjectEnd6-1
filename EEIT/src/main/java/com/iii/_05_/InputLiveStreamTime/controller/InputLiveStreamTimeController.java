@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectBean;
 import com.iii._05_.Bid.model.BidBean;
@@ -160,33 +161,21 @@ public class InputLiveStreamTimeController {
 	
 	
 //後台圖表
-	@RequestMapping(value="/backstageroll",method=RequestMethod.GET)
-	public @ResponseBody JSONObject getAllLiveStreamListbk() {
-		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
-//		JSONArray myString = 
-		Map<String, String> map = new HashMap<String, String>();
-		JSONArray jArray = new JSONArray(AllLiveStreamList);
-//		JSONObject Obj = new JSONObject();
-		JSONObject jb = new JSONObject();
-		  for (int i = 0; i < jArray.length(); i++) {
-			  	jb = jArray.getJSONObject(i);
-			 	String account = jb.getString("account");
-			 	String streamName = jb.getString("streamName");
-//			 	map.put(account, streamName);
-			 	jb.put("account", account);
-			 	jb.put("streamName", streamName);
-		     }
-//		         .put("JSON", AllLiveStreamList).toString();
 	
-//		map.put("AAA", myString);
-				
-//		obj.put("business_images", new JSONArray(Arrays.toString(business_images)));	
+	@RequestMapping(value="/backstageroll",method=RequestMethod.GET)
+	public @ResponseBody Map<String,Object> getAllLiveStreamListbk() {
+		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreamss();
+		JSONArray myString = new JSONArray(AllLiveStreamList);
+//		String aa = JSONArray.
+//		         .put("JSON", AllLiveStreamList).toString();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("AAA", myString);
 		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
-		System.out.println(jb);
+		System.out.println(map);
 		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
 //		map.put("AllLiveStream", AllLiveStreamList);
 		
-		return jb;
+		return map;
 	}
 //新增直播
 	@RequestMapping(value="/InsertLiveStream",method=RequestMethod.GET)

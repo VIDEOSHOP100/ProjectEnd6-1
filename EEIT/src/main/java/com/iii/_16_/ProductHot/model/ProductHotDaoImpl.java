@@ -1,4 +1,4 @@
-package com.iii._16_.ProductHot.dao;
+package com.iii._16_.ProductHot.model;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,15 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iii._16_.FAQ.bean.MemberFAQBean;
-import com.iii._16_.ProductHot.bean.ProductHotBean;
 @Repository
 public class ProductHotDaoImpl implements ProductHotDao{
 	@Autowired	
 	SessionFactory factory;
 	@Override
 	public ProductHotBean insert(ProductHotBean hotbean) throws SQLException {
-		
-		return null;
+		Session session = factory.getCurrentSession();
+		session.save(hotbean);
+		return hotbean;
 	}
 
 	@Override
@@ -34,9 +34,9 @@ public class ProductHotDaoImpl implements ProductHotDao{
 	}
 
 	@Override
-	public ProductHotBean findbyPrimaryKey(ProductHotBean hotbean) throws SQLException {
+	public ProductHotBean findbyPrimaryKey(int seqno) throws SQLException {
 		Session session = factory.getCurrentSession();
-		return session.get(ProductHotBean.class,  hotbean.getProductHotSeqNo());
+		return session.get(ProductHotBean.class,  seqno);
 	
 	}
 

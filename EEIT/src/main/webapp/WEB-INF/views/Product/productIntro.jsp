@@ -102,12 +102,7 @@
 	<!-- /.container -->
 
 	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2018</p>
-	</div>
-	</footer>
+	
 	<!-- /.container -->
 	<script src="<c:url value='/Product/js/js.js'/>"></script>
 	<script type="text/javascript">

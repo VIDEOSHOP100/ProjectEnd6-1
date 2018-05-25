@@ -3,6 +3,9 @@
  */
 
 $(document).ready(function() {	
+	//靜音
+//	var myVideo=$('#myVideo'); 
+//	myVideo.mute();
 	//隱藏左下訊息
 	$('.hahaha').hide();
 	//進入畫面隱藏控制單

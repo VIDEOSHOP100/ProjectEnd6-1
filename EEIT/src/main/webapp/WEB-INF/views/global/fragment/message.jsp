@@ -139,6 +139,5 @@
 	<script src="http://malsup.github.com/jquery.form.js"></script> 
 	<script src="<c:url value='/global/js/message.js'/> "></script>
 	<script src="<c:url value='/global/js/videoChat.js'/> "></script>
-	
 </body>
 </html>
