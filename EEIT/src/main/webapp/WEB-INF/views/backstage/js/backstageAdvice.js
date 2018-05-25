@@ -2,7 +2,6 @@ $(document).ready(function () {
 
     $('.list-group-item').click(selectCategory);
     		
-    		
     	function selectCategory() {
 
         $('.list-group-item').removeClass('bg-primary').removeClass('text-white').addClass('text-primary');
@@ -46,14 +45,10 @@ $(document).ready(function () {
                 },
 
                 error: function (xhr, ajaxOptions, thrownError) {
-                        alert(thrownError);
+//                        alert(thrownError);
                 },
             })
-
         }
-        
-        
-        
     }
     
 //   ---------------------------------以上功能列選擇------------------------------------- 
@@ -104,7 +99,7 @@ $(document).ready(function () {
     		},
     		error: function (xhr, ajaxOptions, thrownError) {
         
-                alert(thrownError);
+//                alert(thrownError);
             
         },
    
@@ -113,15 +108,8 @@ $(document).ready(function () {
   	
     })
     
-    
-    
-    
-    
     $(document).on("click",'#replyAdviceReportButton',function(){
-    	
-    	
     	var reply = $('#replyARContent').val();
-    	
     	$.ajax({
     		
     		type:"POST",
@@ -136,34 +124,8 @@ $(document).ready(function () {
     		},
     		
     		error:function(e){
-    			alert(e);
+//    			alert(e);
     		}
-    		
-    		
-    		
-    		
-    		
-    		
     	})
-    	
-    	
     })
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 })
