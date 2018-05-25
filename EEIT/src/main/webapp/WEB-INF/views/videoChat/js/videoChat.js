@@ -176,7 +176,8 @@ navigator.getMedia( {
 	});
 
 }, function(error) {
-	alert("获取不到媒体流，请确认视频设备");
+//	alert("获取不到媒体流，请确认视频设备");
+	console.log("获取不到媒体流，请确认视频设备")
 	$("#tips-content").html("获取不到媒体流，请确认视频设备");
 	//处理媒体流创建失败错误
 	console.log('getUserMedia error: ' + error);

@@ -68,7 +68,7 @@
 			<form:form id="insertMessageImageForm" ENCTYPE="multipart/form-data" modelAttribute="messageImageBean" method="POST">
 				<fieldset>
 					<input type="hidden" id="imageReceiverAccount">
-					<form:input path="messageImage" type="file" name="messageImage" id="messageImage" class="text ui-widget-content ui-corner-all"/>
+					<form:input path="messageImage" type="file" name="messageImage" id="messageImage" class="text ui-widget-content ui-corner-all"  accept="image/*"  />
 					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
 				</fieldset>
 			</form:form>
@@ -86,7 +86,7 @@
 			<form:form id="insertMessageVideoForm" ENCTYPE="multipart/form-data" modelAttribute="messageVideoBean" method="POST">
 				<fieldset>
 					<input type="hidden" id="videoReceiverAccount">
-					<form:input path="messageVideo" type="file" name="messageVideo" id="messageVideo" class="text ui-widget-content ui-corner-all"/>
+					<form:input path="messageVideo" type="file" name="messageVideo" id="messageVideo" class="text ui-widget-content ui-corner-all"  accept="video/*"/>
 					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
 				</fieldset>
 			</form:form>
@@ -139,6 +139,5 @@
 	<script src="http://malsup.github.com/jquery.form.js"></script> 
 	<script src="<c:url value='/global/js/message.js'/> "></script>
 	<script src="<c:url value='/global/js/videoChat.js'/> "></script>
-
 </body>
 </html>
