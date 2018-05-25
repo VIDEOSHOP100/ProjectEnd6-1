@@ -74,9 +74,11 @@
 		
 		<div class="carousel-inner" role="listbox">
 		<c:forEach var="videoWall" items=${videoWallList}>
-		<div class="carousel-item active indexVideoBackGround" style="background-image: url('global/images/indexBackground.jpg')">
-			<video controlsList="nodownload" muted controls="controls" class="indexVideo" autoplay width="1340" height="700" src="${pageContext.request.contextPath}/getVideo/video/${videoWall.videoSeqNo}" ></video>
-		
+			<div class="carousel-item active indexVideoBackGround" style="background-image: url('global/images/indexBackground.jpg')">
+				<video controlsList="nodownload" muted controls="controls" class="indexVideo" autoplay width="1340" height="700" src="${pageContext.request.contextPath}/getVideo/video/${videoWall.videoSeqNo}" ></video>
+				<div class="carousel-caption d-none d-md-block">
+					<h3>${videoWall.videoTitle}</h3>
+				</div>
 		
 		
 		
@@ -86,10 +88,7 @@
 		
 			<div class="carousel-item active indexVideoBackGround" style="background-image: url('global/images/indexBackground.jpg')">
 				<video controlsList="nodownload" muted controls="controls" class="indexVideo" autoplay width="1340" height="700" src="${pageContext.request.contextPath}/getVideo/video/1" ></video>
-				<div class="carousel-caption d-none d-md-block">
-					<h3>First Slide</h3>
-					<p>This is a description for the first slide.</p>
-				</div>
+
 			</div>
 			<div class="carousel-item indexVideoBackGround" style="background-image: url('global/images/indexBackground.jpg')">
 				<video controlsList="nodownload" muted controls="controls" class="indexVideo" autoplay width="1400" height="700" src="${pageContext.request.contextPath}/getVideo/video/2" ></video>
