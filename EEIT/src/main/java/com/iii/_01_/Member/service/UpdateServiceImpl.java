@@ -1,6 +1,8 @@
 package com.iii._01_.Member.service;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
@@ -56,7 +58,13 @@ public class UpdateServiceImpl implements UpdateService {
 		}
 		File photofile = new File(photoFilePath);
 		try {
-			photo.transferTo(photofile);
+			InputStream is;
+			is = photo.getInputStream();
+			int cursor;
+			FileOutputStream out = new FileOutputStream(photoFilePath);
+			while ((cursor = is.read()) != -1) {
+				out.write(cursor);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("檔案上傳發生意外");
