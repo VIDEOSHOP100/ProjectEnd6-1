@@ -36,11 +36,11 @@ $(document).ready(function() {
 				success: function (data) {
 //					selectedDivOutside.remove();
 //					dialogdelete.dialog( "close" );
-					alert("SUCCESS!!!")
+//					alert("SUCCESS!!!")
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
-					alert(e);
+//					alert(e);
 					dialog.dialog( "close" );
 				}
 			});
@@ -338,7 +338,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}else if(subscriptionStatus == "nonSubscription"){
@@ -356,7 +356,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}
@@ -537,7 +537,7 @@ $(document).ready(function() {
 						},
 						error: function (xhr, status, error) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}
@@ -647,7 +647,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 			 	}
@@ -698,7 +698,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 					
@@ -717,7 +717,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}else if(!likeUnlikeStatus){
@@ -734,7 +734,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}
@@ -791,7 +791,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 					
@@ -810,7 +810,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}else if(!likeUnlikeStatus){
@@ -827,7 +827,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}
@@ -858,7 +858,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 					
@@ -877,7 +877,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}else if(!likeUnlikeVideoCommentStatus){
@@ -895,7 +895,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}
@@ -925,7 +925,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 					
@@ -944,7 +944,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}else if(!likeUnlikeVideoCommentStatus){
@@ -961,7 +961,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}
@@ -993,7 +993,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 					
@@ -1012,7 +1012,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}else if(!likeUnlikeVideoReplyCommentStatus){
@@ -1030,7 +1030,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}
@@ -1058,7 +1058,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 					
@@ -1077,7 +1077,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}else if(!likeUnlikeVideoReplyCommentStatus){
@@ -1094,7 +1094,7 @@ $(document).ready(function() {
 						},
 						error: function (e) {
 							console.log("ERROR : ", e);
-							alert(e);
+//							alert(e);
 						}
 					});
 				}
@@ -1113,7 +1113,7 @@ $(document).ready(function() {
 		        contentType: false,
 		        processData: false,
 				success: function (data) {
-					alert("OK")
+//					alert("OK")
 					$( "#reportSuccess" ).dialog({
 				      modal: true,
 				      buttons: {
@@ -1126,7 +1126,7 @@ $(document).ready(function() {
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
-					alert(e);
+//					alert(e);
 				}
 			});
 		}

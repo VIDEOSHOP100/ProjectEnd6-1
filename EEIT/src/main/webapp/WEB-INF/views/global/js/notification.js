@@ -13,7 +13,7 @@ $(document).ready(function() {
 		},
 		error: function (e) {
 			console.log("ERROR : ", e);
-			alert(e);
+//			alert(e);
 		}
 	});
 	
@@ -25,7 +25,7 @@ $(document).ready(function() {
     	$.each(uploaderAccountList, function (idx,data) {
 		    stompClient.subscribe('/notification/subscription/' + uploaderAccountList.account , function(notificationreturn){
 	//	        addMessage(JSON.parse(notificationreturn.body).account,JSON.parse(notificationreturn.body).receiverAccount,JSON.parse(notificationreturn.body).messageArticle)
-		    	alert('OK')
+//		    	alert('OK')
 		    });
     	})
     });
