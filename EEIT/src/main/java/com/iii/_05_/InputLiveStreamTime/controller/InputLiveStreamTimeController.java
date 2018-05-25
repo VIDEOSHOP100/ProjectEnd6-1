@@ -163,13 +163,13 @@ public class InputLiveStreamTimeController {
 //後台圖表
 	
 	@RequestMapping(value="/backstageroll",method=RequestMethod.GET)
-	public @ResponseBody Map<String,Object> getAllLiveStreamListbk() {
-		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreamss();
-		JSONArray myString = new JSONArray(AllLiveStreamList);
+	public @ResponseBody Map<String, Object> getAllLiveStreamListbk() {
+		List<InputLiveStreamTimeBean>  AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreamss();
+		JSONArray myString = new JSONArray();
 //		String aa = JSONArray.
 //		         .put("JSON", AllLiveStreamList).toString();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("AAA", myString);
+		map.put("AAA", AllLiveStreamList);
 		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
 		System.out.println(map);
 		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");

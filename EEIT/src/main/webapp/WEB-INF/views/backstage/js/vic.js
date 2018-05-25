@@ -79,38 +79,86 @@ $(document).ready(function () {
  
     
 
-    	var mrSN;
+//    	var mrSN;
     
     $(document).on("click",'.questionListSeqNo',function(){
     	mrSN = $(this).text();
-    	    	
+    	
+    	var dialog, form;
+    	
+    	dialog = $('#insert-dialog-form').dialog({
+    		autoOpen : false,
+    		height : 600,
+    		width : 400,
+    		modal : true,
+    		buttons : {
+    			"確定新增圖片" : inserthotproduct,
+    			Cancel : function() {
+    				dialog.dialog("close");
+    			}
+    		},
+    		close : function() {
+    			form[0].reset();
+//    			allFields.removeClass("ui-state-error");
+    		}
+    	});
+    	form = dialog.find("form").on("submit",function(event) {
+    		event.preventDefault();
+    		
+    	});
+    	
+    	
+    	
+//    	-----
     	$('#content').empty();
     	    	
     	$.ajax({
     		
     		type:"GET",
-    		url:"/EEIT/QuestionList/" + mrSN,
+    		url:"/EEIT/QuestionList/updateQuestionList/" + mrSN,
     		
     		success:function(data){
-    			var ret = new Date(data.reportTime);
+    			var ret = new Date(data.questionListUploadDate);
     			var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
     			var format = $('<container></container>').html(
+    					
+//    					<form:form modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post">
+//    							修改問題標題:<form:input type="text" path="questionListTitle" />
+//    							修改問題內容:<form:input type="text" path="questionListArticle"/>
+//    							修改管理員:<form:input type="text" path="managerId"/>
+//    							問題類型:<form:input type="text" path="questionListType"/>
+//    					      	<form:select  id="topic" path="questionListStatus">
+//    								<form:option value="1">顯示</form:option>
+//    								<form:option value="0">不顯示</form:option>		
+//    							</form:select>
+//    					      <input type="submit" value="Update"/>
+//    						</form:form>
     					'<row>' +
     						'<div class="col-lg-8">' +
-    							'<h2 class="mt-4">' + data.reportTitle + '</h2>' +
-    							'<p class="lead"> 檢舉人 : ' +  
-    								'<a  target="_blank" href="/EEIT/profile/' +data.accountFrom + '">' + data.accountFrom + '</a>' + 
-    								'  被檢舉人 : ' + 
-    								'<a  target="_blank" href="/EEIT/profile/' +data.accountTo + '">' + data.accountTo + '</a>' +
-    							'</p>' +
-    							'<p>Posted on' + formated + '</p><hr>' +
-    							'<p>' + data.reportContent +'</p><hr>' +
-    							'<div class="card my-4"><h5 class="card-header">回覆檢舉</h5><div class="card-body">' +
-    							'<form:form method="POST" action="/replyMemberReport" modelAttribute="MemberReportBean" class = "form-horizontal">' + 
-    							'<textarea id="replyMRContent" path="replyContent" class="form-control" rows="3"></textarea>' + 
-    							'<button class = "btn btn-primary" id = "replyMemberReportButton">回覆檢舉</button>' +
-    							'</form>' +
-    							'</div>'+
+    							'<form modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post">'  +
+    							'<input type="hidden" path="'+ data.questionListSeqNo+'"/>'+ 
+    							'修改問題標題:<input type="text" path="' +  data.questionListTitle +'" />'+
+    							'修改問題內容:<input type="text" path="' +  data.questionListArticle +'" />'+
+    							'修改管理員:<input type="text" path="' +  data.managerId +'" />'+
+    							'問題類型:<input type="text" path="' +  data.questionListType +'" />'+
+    							'<select  id="topic" path="'+ data.questionListStatus +'">' +
+    							'<option value="1">顯示</option><option value="0">不顯示</option></select>'+
+    							'</select><input type="submit" value="修改"/></form>'+
+    								
+    							
+    							
+//    							'<a  target="_blank" href="/EEIT/profile/' +data.managerId + '">' + data.accountFrom + '</a>' + 
+//    								'  標題 : ' + 
+//    								'<a  target="_blank" href="/EEIT/profile/' +data.accountTo + '">' + data.accountTo + '</a>' +
+//    							'</p>' +
+//    							'<p>Posted on' + formated + '</p><hr>' +
+//    							'<p>' + data.reportContent +'</p><hr>' +
+//    							'<div class="card my-4"><h5 class="card-header">回覆檢舉</h5><div class="card-body">' +
+//    							'<form:form method="POST" action="/replyMemberReport" modelAttribute="MemberReportBean" class = "form-horizontal">' + 
+//    							'<textarea id="replyMRContent" path="replyContent" class="form-control" rows="3"></textarea>' + 
+//    							'<button class = "btn btn-primary" id = "replyMemberReportButton">回覆檢舉</button>' +
+//    							'</form>' +
+//    							'</div>'+
     							'</div>'+
     							'</div>'+
     					'</row>'
