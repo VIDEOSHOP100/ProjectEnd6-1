@@ -23,7 +23,7 @@ public class MessageImageDAOImpl implements MessageImageDAO{
 	@Override
 	public MessageImageBean selectMessageImageBySeqNo(Integer messageImageSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM MessageImageBean WHERE messageImageSeqNo = :messageImageSeqNo",MessageImageBean.class).setParameter("messageImageSeqNo", messageImageSeqNo).uniqueResult();
+		return session.createQuery("FROM MessageImageBean WHERE messageImageSeqNo = :messageImageSeqNo and messageImageStatus = '1'",MessageImageBean.class).setParameter("messageImageSeqNo", messageImageSeqNo).uniqueResult();
 	}
 
 	@Override

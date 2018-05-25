@@ -9,6 +9,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONStringer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectBean;
 import com.iii._05_.Bid.model.BidBean;
@@ -153,6 +157,25 @@ public class InputLiveStreamTimeController {
 		map.put("AllLiveStream", AllLiveStreamList);
 		
 		return "LiveStreamHall/LiveStreamHall";
+	}
+	
+	
+//後台圖表
+	
+	@RequestMapping(value="/backstageroll",method=RequestMethod.GET)
+	public @ResponseBody Map<String,Object> getAllLiveStreamListbk() {
+		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreamss();
+		JSONArray myString = new JSONArray(AllLiveStreamList);
+//		String aa = JSONArray.
+//		         .put("JSON", AllLiveStreamList).toString();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("AAA", myString);
+		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
+		System.out.println(map);
+		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
+//		map.put("AllLiveStream", AllLiveStreamList);
+		
+		return map;
 	}
 //新增直播
 	@RequestMapping(value="/InsertLiveStream",method=RequestMethod.GET)

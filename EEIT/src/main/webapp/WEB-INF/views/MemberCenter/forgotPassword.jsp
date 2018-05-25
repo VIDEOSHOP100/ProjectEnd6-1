@@ -33,8 +33,8 @@
 
 					<div class="control-group form-group">
 						<div class="controls">
-							<label>email<span style="color: red">*</span></label>
-							<input type="email" class="form-control" name="email" id="email" placeholder="請輸入在本網站使用的電子信箱"/>
+							<label>email<span style="color: red">*</span></label><button type="button" id="emailButton" class="btn btn-success">一鍵填入</button>
+							<input type="email" class="form-control" name="email" id="forgotemail" placeholder="請輸入在本網站使用的電子信箱"/>
 						</div>
 					</div>
 
@@ -49,5 +49,15 @@
 	<!-- /.container -->
 	<!-- Footer -->
 		<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
+<script type="text/javascript">
+	
+	$('#emailButton').click(function(){
+		
+		$('#forgotemail').val('strike5931@gmail.com');
+		
+	})
+	
+</script>		
+		
 </body>
 </html>

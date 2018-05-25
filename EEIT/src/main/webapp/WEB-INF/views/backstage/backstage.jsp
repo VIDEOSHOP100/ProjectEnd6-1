@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -56,11 +58,34 @@
       </div>
 
     </div>
+<!--  商城管理表單 ------------------------------------------------------------------------------>
+ <div id="insert-dialog-form" title="新增商城首頁輪播牆圖片" class="hideForm" style="overflow:hidden">
+<!-- 						<p class="validateTips">確認刪除此資料?</p> -->
+									<form:form id="hotForm"  modelAttribute="ProductHotBean" enctype="multipart/form-data" method="POST">
+										<fieldset>
+<!-- 											<input type="hidden" value="DELETE" name="_method"/> -->
+											<label for="productName">圖片標題: </label>
+					<form:input type="text" path="productName"  id="productName" value="" class="text ui-widget-content ui-corner-all"/>
+											<label for="hotFile">圖片檔案: </label>
+					<form:input path="hotFile" type="file" id="hotFile" class="text ui-widget-content ui-corner-all"/>
+											
+											<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+									</fieldset>
+						</form:form>
+					</div>
+<!-- 					end ----------------------------------------------------------------------------->
 		<script src="<c:url value='/backstage/js/backstage.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageLive.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageAdvice.js'/> "></script>
 		<script src="<c:url value='/backstage/js/vic.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageVideo.js'/> "></script>
+		<script src="<c:url value='/backstage/js/highcharts.js'/> "></script>
+		<script src="<c:url value='/backstage/js/market.js'/> "></script>
+		 <script src="http://code.highcharts.com/highcharts.js"></script>
+		 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+		 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+		 <script src="https://code.highcharts.com/modules/export-data.js"></script>
+ 
  
   </body>
 </html>

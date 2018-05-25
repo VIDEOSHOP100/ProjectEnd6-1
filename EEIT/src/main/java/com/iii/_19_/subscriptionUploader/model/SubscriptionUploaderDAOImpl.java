@@ -21,7 +21,7 @@ public class SubscriptionUploaderDAOImpl implements SubscriptionUploaderDAO {
 	public SubscriptionUploaderBean getSubscriptionUploader(String account, String uploaderAccount) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery(
-				"FROM SubscriptionUploaderBean WHERE account = :account and uploaderAccount = :uploaderAccount",
+				"FROM SubscriptionUploaderBean WHERE account = :account and uploaderAccount = :uploaderAccount and subscriptionUploaderStatus = 'subscription'",
 				SubscriptionUploaderBean.class).setParameter("account", account)
 				.setParameter("uploaderAccount", uploaderAccount).uniqueResult();
 	}

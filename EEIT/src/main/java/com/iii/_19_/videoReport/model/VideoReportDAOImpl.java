@@ -25,7 +25,7 @@ public class VideoReportDAOImpl implements VideoReportDAO {
 	@Override
 	public List<VideoReportBean> getVideoReportByAccountAndVideoSeqNo(String account, Integer videoSeqNo) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM VideoReportBean WHERE account = :account and videoSeqNo",VideoReportBean.class).setParameter("account", account).setParameter("videoSeqNo",videoSeqNo).list();
+		return session.createQuery("FROM VideoReportBean WHERE account = :account and videoSeqNo = :videoSeqNo",VideoReportBean.class).setParameter("account", account).setParameter("videoSeqNo",videoSeqNo).list();
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class VideoReportDAOImpl implements VideoReportDAO {
 	@Override
 	public List<VideoReportBean> getAllVideoReport(String account) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("FROM VideoReportBean WHERE account = :account",VideoReportBean.class).setParameter("account", account).list();
+		return session.createQuery("FROM VideoReportBean WHERE account = :account and videoStatus = '1'",VideoReportBean.class).setParameter("account", account).list();
 	}
 
 	@Override

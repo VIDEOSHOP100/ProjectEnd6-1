@@ -1,13 +1,17 @@
-package com.iii._16_.ProductHot.bean;
+package com.iii._16_.ProductHot.model;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@Table(name="ProductHotTest")
+@Table(name="ProductHot")
 public class ProductHotBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +19,8 @@ public class ProductHotBean {
 	private String productHotFileName;
 	private String productHotFilePath;
 	private String productName;
-	private String ProductCategory;
+	@Transient
+	private MultipartFile hotFile;
 	public Integer getProductHotSeqNo() {
 		return productHotSeqNo;
 	}
@@ -40,29 +45,29 @@ public class ProductHotBean {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public String getProductCategory() {
-		return ProductCategory;
+	public MultipartFile getHotFile() {
+		return hotFile;
 	}
-	public void setProductCategory(String productCategory) {
-		ProductCategory = productCategory;
+	public void setHotFile(MultipartFile hotFile) {
+		this.hotFile = hotFile;
+	}
+	@Override
+	public String toString() {
+		return "ProductHotBean [productHotSeqNo=" + productHotSeqNo + ", productHotFileName=" + productHotFileName
+				+ ", productHotFilePath=" + productHotFilePath + ", productName=" + productName + ", hotFile=" + hotFile
+				+ "]";
+	}
+	public ProductHotBean() {
+		super();
 	}
 	public ProductHotBean(Integer productHotSeqNo, String productHotFileName, String productHotFilePath,
-			String productName, String productCategory) {
+			String productName) {
 		super();
 		this.productHotSeqNo = productHotSeqNo;
 		this.productHotFileName = productHotFileName;
 		this.productHotFilePath = productHotFilePath;
 		this.productName = productName;
-		ProductCategory = productCategory;
 	}
-	public ProductHotBean() {
-		super();
-	}
-	@Override
-	public String toString() {
-		return "ProductHotBean [productHotSeqNo=" + productHotSeqNo + ", productHotFileName=" + productHotFileName
-				+ ", productHotFilePath=" + productHotFilePath + ", productName=" + productName + ", ProductCategory="
-				+ ProductCategory + "]";
-	}
+	
 	
 }

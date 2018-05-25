@@ -2,6 +2,54 @@
  * 
  */
 $(document).ready(function() {	
+		//檢舉影片
+		var videoSeqNo = $('input[name="videoSeqNo]').val();
+	
+		dialogdelete = $("#delete-dialog-form").dialog({
+			autoOpen: false,
+			height: 250,
+			width: 600,
+			modal: true,
+			buttons: {
+				"確認封鎖": deletevideo,
+				"取消": function() {
+					dialogdelete.dialog( "close" );
+				}
+			},
+			close: function() {
+				form[0].reset();
+			}
+		});
+		$(document).on("click",".delete-video",function(){
+			dialogdelete.dialog("open");
+		});
+		function deletevideo() {
+			var form = $('#deleteForm')[0];
+			$.ajax({
+				type: "GET",
+				enctype: 'multipart/form-data',
+				url: "/EEIT/VideoReport/ban/" + videoSeqNo ,
+				timeout: 600000,
+				cache: false,
+		        contentType: false,
+		        processData: false,
+				success: function (data) {
+//					selectedDivOutside.remove();
+//					dialogdelete.dialog( "close" );
+					alert("SUCCESS!!!")
+				},
+				error: function (e) {
+					console.log("ERROR : ", e);
+					alert(e);
+					dialog.dialog( "close" );
+				}
+			});
+		}
+		form = dialogdelete.find( "form" ).on( "submit", function( event ) {
+			event.preventDefault();
+		});
+	
+		//
 		$( ".sidebarUserButtonFriend" ).each(function() {
 			$(this).attr('name',$(this).attr('name').toUpperCase())
 		})

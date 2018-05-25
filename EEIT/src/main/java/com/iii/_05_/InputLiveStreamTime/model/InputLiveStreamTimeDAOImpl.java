@@ -58,7 +58,11 @@ public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("FROM InputLiveStreamTimeBean WHERE LiveStatus = '1' AND LiveEnd is NULL",InputLiveStreamTimeBean.class).list();
 	}
-
+	@Override
+	public List<InputLiveStreamTimeBean> getAllLiveStreamss() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("FROM InputLiveStreamTimeBean",InputLiveStreamTimeBean.class).list();
+	}
 	@Override
 	public List<InputLiveStreamTimeBean> getLiveStreamByAccount(String account) {
 		Session session = sessionFactory.getCurrentSession();

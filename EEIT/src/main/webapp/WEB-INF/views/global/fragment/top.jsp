@@ -10,7 +10,7 @@
 <meta http-equiv="Pragma" content="no-cache"> 
 <meta http-equiv="Cache-Control" content="no-cache"> 
 <meta http-equiv="Expires" content="0"> 
-
+<link href="https://fonts.googleapis.com/css?family=Tangerine:700" rel="stylesheet">
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="63977180850-ljlinbc7jsd1epeuo3ec34lhmr94at5h.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -32,6 +32,10 @@
 <!-- Custom styles for this template -->
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/fragment/css/top.css'/>" rel="stylesheet">
+<style>
+
+</style>
+
 <link href="<c:url value='/global/fragment/css/grumble.min.css'/>" rel="stylesheet">
 </head>
 <body>
@@ -40,7 +44,7 @@
 	<!-- Navigation -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color:#4b367c">
 		<div class="container">
-			<a class="navbar-brand" href="<c:url value='/' />">Live Market</a>
+			<a class="navbar-brand textfamily"  href="<c:url value='/' />"><img style="margin:-10px 0" src="https://i.imgur.com/Zq7r3H3.jpg"></a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 					data-toggle="collapse" data-target="#navbarResponsive"
 					aria-controls="navbarResponsive" aria-expanded="false"
@@ -144,8 +148,8 @@
 				<c:if test="${! empty ManagerLoginOK}">
 					<li class="nav-item">
 						<a href="<c:url value='/managerLogout'/>">
-            <button id="" class="btn btn-danger float-right">管理員登出</button>
-          </a>
+           					 <button id="" class="btn btn-danger float-right">管理員登出</button>
+         				 </a>
 					</li>
 				</c:if>
 				
@@ -345,7 +349,13 @@
 	</div>
 </c:if>
 	<!--	登入彈窗結束 	--> 
-
+<c:if test="${!empty banMessage}">
+<div id="ban-message" title="封鎖訊息">
+	<p id="banMessageFrom">來信者:管理員</p>
+	<hr>
+	<p id="banMessageContent">${banMessage}</p>	
+</div>
+</c:if>
 	<!-- Bootstrap core JavaScript -->
 	<script src="<c:url value='/global/js/config.js'/> "></script>
 	<script src="<c:url value='/global/vendor/jquery/jquery.min.js'/> "></script>
@@ -361,6 +371,11 @@
 
 	<script>
 
+	
+	
+	
+	
+	
 		$("#loginButton").click(function(){
 			setTimeout(function(){
 			$('#logAcc').focus();
@@ -454,6 +469,7 @@
 	     }
 
 	</script>
+	
 </body>
 
 </html>

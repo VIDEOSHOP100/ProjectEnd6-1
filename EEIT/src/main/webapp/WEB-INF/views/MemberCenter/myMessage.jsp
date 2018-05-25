@@ -81,6 +81,9 @@ $('#dialog-message').dialog({
       }
 });
 
+
+
+
 $(document).on("click", ".myMessageSeqNo", function() {
 	var currentMessage =  $(this);
 	var myMessageSeqNo = currentMessage.attr('value');
@@ -126,8 +129,8 @@ $(document).on("click", ".myMessageSeqNo", function() {
 
 });
 
-<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </script>
+<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>

@@ -13,6 +13,8 @@ $(document).ready(function() {
 	var chatRoomName = [];
 	var senderAccount = $('.accountForMessage').val()
 	var count;
+	$( ".disconnectUser" ).hide();
+	
     setTimeout(function() {
         $("#insert-messageImage-form").removeClass('hideForm')
         $("#insert-messageFile-form").removeClass('hideForm')
@@ -352,8 +354,8 @@ $(document).ready(function() {
 					$( "#dialog" ).dialog( "open" );
 					$('.whoCall').val(account)
 					$('.whoCallDisplay').text(messageArticle)
-					$( ".callUser" ).show();
-					$( ".disconnectUser" ).hide();
+//					$( ".callUser" ).show();
+					
 				}
 				if(messageType != 'call'){
 					if($('#' + account +'1').is('.box-close')){
@@ -365,8 +367,8 @@ $(document).ready(function() {
 					$( "#dialog" ).dialog( "open" );
 					$('.whoCall').val(account)
 					$('.whoCallDisplay').text(messageArticle)
-					$( ".callUser" ).show();
-					$( ".disconnectUser" ).hide();
+//					$( ".callUser" ).show();
+//					$( ".disconnectUser" ).hide();
 				}
 				if(messageType != 'call'){
 					$('#' + account).addClass('sidebarUserButtonAlert')

@@ -19,22 +19,24 @@ $(document).ready(function () {
                 url: "/EEIT/getAllVideoReport",
                 dataType: "json",
                 timeout: 600000,
-  
+   
                 success: function (data) {
-                    var tab = $('<table></table>').addClass('table table-striped').html('<thead><tr><th class="text-center">投訴編號</th><th>投訴人</th><th>影片編號</th><th>種類</th><th>投訴時間</th><th>投訴狀態</th></tr></thead><tbody></tbody>');
+                    var tab = $('<table></table>').addClass('table table-striped').html('<thead><tr><th class="text-center">投訴編號</th><th>投訴人</th><th>影片標題 </th><th>種類</th><th>投訴時間</th><th>投訴狀態</th></tr></thead><tbody></tbody>');
                     $('#content>h2').after(tab);
                         var docFrag = $(document.createDocumentFragment());
+                        var video = data.VideoList;
+                        
                         $.each(data.VideoReportList, function (idx,VideoReport) {
-
+  
                             var cell1 = $('<td></td>').text(VideoReport.videoReportSeqNo).addClass('pointer text-primary text-center VideoReportSeqNo');
                             var cell2 = $('<td></td>').text(VideoReport.account);
-                            var cell3 = $('<td></td>').text(VideoReport.videoSeqNo);
+                            var cell3 = $('<td></td>').text(VideoReport.videoTitle);
                             var cell4 = $('<td></td>').text(VideoReport.videoReportType);
                             var ret = new Date(VideoReport.videoReportDate);
                             var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
                             var cell5 = $('<td></td>').text(formated);
                             var cell6 = $('<td></td>').text(VideoReport.videoReportStatus);
-
+ 
                             var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4, cell5, cell6]);
 
                             docFrag.append(row);

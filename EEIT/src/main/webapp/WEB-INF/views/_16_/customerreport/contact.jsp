@@ -67,13 +67,13 @@
 							<p class="help-block">${errors.errorIDEmpty}</p>
 						</div>
 					</div>
-					<div class="control-group form-group">
-						<div class="controls">
-							<label>Name/姓名與職稱<span style="color: red">*</span></label> 
-							<input	type="text" class="form-control" id="nickname" 
- 								value="${LoginOK.nickname}" required="required"/>  
-					</div>
-					</div>
+<!-- 					<div class="control-group form-group"> -->
+<!-- 						<div class="controls"> -->
+<!-- 							<label>Name/姓名與職稱<span style="color: red">*</span></label>  -->
+<%-- 							<form:input	type="text" class="form-control" id="nickname"  --%>
+<%--  								value="${LoginOK.nickname}" required="required"/>   --%>
+<!-- 					</div> -->
+<!-- 					</div> -->
 
 <!-- 					<div class="control-group form-group"> -->
 <!-- 						<div class="controls"> -->

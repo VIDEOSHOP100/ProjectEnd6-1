@@ -17,6 +17,8 @@ public interface InputLiveStreamTimeService {
 	
 	public InputLiveStreamTimeBean getLiveStreamsBySeqNo(int LiveStreamSeqNo);
 	
+	public List<InputLiveStreamTimeBean> getAllLiveStreamss();
+	
 	public List<InputLiveStreamTimeBean> getAllLiveStreams();
 	
 	public List<InputLiveStreamTimeBean> getLiveStreamByAccount(String account);

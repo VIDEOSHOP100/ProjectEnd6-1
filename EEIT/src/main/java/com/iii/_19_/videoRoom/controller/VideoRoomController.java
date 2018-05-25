@@ -88,6 +88,9 @@ public class VideoRoomController {
 			WatchHistoryBean watchHistoryBean = new WatchHistoryBean(0, account, videoSeqNo, now, 0, "1");
 			watchHistoryService.saveWatchHistory(watchHistoryBean);
 			VideoBean videoBean = videoManageService.getVideo(videoSeqNo);
+			if(videoBean == null) {
+				return "redirect:/";
+			}
 			videoBean.setVideoViews(videoBean.getVideoViews() + 1);
 			videoManageService.updateVideo(videoBean);
 
