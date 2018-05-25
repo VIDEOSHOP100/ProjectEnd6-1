@@ -26,7 +26,7 @@ $(document).ready(function() {
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
-				alert(e);
+//				alert(e);
 			}
 		});
 	})
@@ -140,7 +140,7 @@ $(document).ready(function() {
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
-					alert(e);
+//					alert(e);
 				}
 			});
 		})

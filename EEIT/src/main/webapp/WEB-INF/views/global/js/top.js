@@ -36,7 +36,7 @@ $(document).ready(function() {
 				},
 				error : function(e) {
 					console.log("ERROR : ", e);
-					alert(e);
+//					alert(e);
 				}
 				})
 			};
@@ -50,7 +50,7 @@ $(document).ready(function() {
 			var login = $('#navbarDropdownBlog').text();
 
 			if (login == "") {
-				alert('請登入');
+//				alert('請登入');
 				$(this).attr("href", "")
 				$('#loginButton').trigger("click");
 				return false;
@@ -106,7 +106,7 @@ function checkAccPwd(){
 			},
 			error : function(e) {
 				console.log("ERROR : ", e);
-				alert(e);
+//				alert(e);
 			}
 			
 		})

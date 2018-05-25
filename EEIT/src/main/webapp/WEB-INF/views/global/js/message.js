@@ -40,7 +40,7 @@ $(document).ready(function() {
         			url: "/EEIT/Sticker",
         			timeout: 600000,
         			success: function (datareturn) {
-        				alert("aaaa")
+//        				alert("aaaa")
         				var docFrag = $(document.createDocumentFragment());
         				$.each(datareturn.stickerBeanList, function (idx,data) {
         					var cell1 = $('<img class="stickerSend" height="75px" width="75px" src=/EEIT/getImage/sticker/'+ data.stickerSeqNo +' name="'+ data.stickerSeqNo +'"> ')
@@ -51,7 +51,7 @@ $(document).ready(function() {
         			},
         			error: function (e) {
         				console.log("ERROR : ", e);
-        				alert(e);
+//        				alert(e);
         			}
         		})
             } else {
@@ -75,7 +75,7 @@ $(document).ready(function() {
         			},
         			error: function (e) {
         				console.log("ERROR : ", e);
-        				alert(e);
+//        				alert(e);
         			}
         		})
             }
@@ -198,7 +198,7 @@ $(document).ready(function() {
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
-				alert(e);
+//				alert(e);
 			}
 		});
 	}
@@ -271,7 +271,7 @@ $(document).ready(function() {
     		},
     		error: function (e) {
     			console.log("ERROR : ", e);
-    			alert(e);
+//    			alert(e);
     		}
     	});
     });
@@ -496,11 +496,11 @@ $(document).ready(function() {
 	    		},
 	    		error: function (e) {
 	    			console.log("ERROR : ", e);
-	    			alert(e);
+//	    			alert(e);
 	    		}
 	    	});
 		}else{
-			alert('請選取圖片')
+//			alert('請選取圖片')
 		}
 	}
 	
@@ -558,11 +558,11 @@ $(document).ready(function() {
 	    		},
 	    		error: function (e) {
 	    			console.log("ERROR : ", e);
-	    			alert(e);
+//	    			alert(e);
 	    		}
 	    	});
 		}else{
-			alert('請選取檔案')
+//			alert('請選取檔案')
 		}
 	}
 	
@@ -619,11 +619,11 @@ $(document).ready(function() {
 	    		},
 	    		error: function (e) {
 	    			console.log("ERROR : ", e);
-	    			alert(e);
+//	    			alert(e);
 	    		}
 	    	});
 		}else{
-			alert('請選取影片')
+//			alert('請選取影片')
 		}
 	}
 	

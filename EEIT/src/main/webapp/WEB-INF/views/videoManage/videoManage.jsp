@@ -139,7 +139,7 @@
 	                <form:option value="" label="--請選擇"/>
 	                <form:options items="${videoTypeMap}" />
             	</form:select>
-				<form:input path="videoImage" type="file" name="videoImage" id="videoImage" class="text ui-widget-content ui-corner-all" />
+				<form:input path="videoImage" type="file" name="videoImage" id="videoImage" class="text ui-widget-content ui-corner-all"  accept="image/*" />
 				<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 			</fieldset>
 			</form:form>
@@ -161,7 +161,7 @@
 	            		</form:select>
 					</p>
 					<label for="videofileInsert">影片檔案</label>
-					<form:input path="videoFile" type="file" name="videoFileInsert" id="videoFileInsert" class="text ui-widget-content ui-corner-all"/>
+					<form:input path="videoFile" type="file" name="videoFileInsert" id="videoFileInsert" class="text ui-widget-content ui-corner-all" accept="video/*"  />
 					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
 					<p>請選擇影片封面截圖:</p>
 					<video  height="300px" width="500px" src="" id="videoPreview" controls="controls" controlsList="nodownload nofullscreen"></video>
