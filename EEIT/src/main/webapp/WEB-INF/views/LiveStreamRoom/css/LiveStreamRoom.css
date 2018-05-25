@@ -4,7 +4,10 @@
 /* 	position:absolute; */
 /* 	 z-index : 999; */
 /* } */
-
+.bidshowprice{
+	 white-space:nowrap;
+	 font-size:red;
+}
 .TitleName{
 	margin-top: 6px;
 	font-weight: 100;

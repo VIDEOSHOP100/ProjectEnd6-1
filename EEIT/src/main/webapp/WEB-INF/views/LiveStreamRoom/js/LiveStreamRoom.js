@@ -24,7 +24,7 @@ $(document).ready(function() {
 //	});
 	
 	var account = $('#catch-account').val();
-	var bidPrice = $('.bidPrice').val();
+//	var bidPrice = $('.bidPrice').val();
 	var productSeqNo = $('#productSeqNo').val();
 	var liveStreamSeqNo = $('.seqNo').val();
 	$('.deleteBlock').click(function(){
@@ -40,7 +40,8 @@ $(document).ready(function() {
 //				parentElement.find('.col-md-7').remove();
 //				parentElement.find('.col-md-5').remove();
 				alert("直播已關閉 跳轉回首頁");
-				window.location.href="http://localhost:8080/EEIT/";
+				var href = $(".textfamily").attr("href");
+				window.location.href=href;
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
@@ -221,8 +222,15 @@ $('.hahaha').show();
  //增加會員購買商品到聊天室窗----------------------------------------------------
 //var productSeqNo = $('.productSeqNo').val();
 function addBid(account, productSeqNo,bidPrice,auctionSeqNo){
+	if(bidPrice!=0){
+	$('.bidshowprice').remove();
 	responsiveVoice.speak("會員"+account+"叫價"+bidPrice+"元","Chinese Female");
 	$('.card-bodycontroller').append('<div class="chatBlock"><p class="bidrow">'+"會員"+ account + "叫價: "+ bidPrice +'元</p></div>')
+	$('.card-header').append("&nbsp;&nbsp;"+'<p class="bidshowprice">'+"目前最高價"+bidPrice+"元"+'</p>');
+	}else{
+		responsiveVoice.speak(account,"Chinese Female");
+		$('.card-bodycontroller').append('<div class="chatBlock"><p class="bidrow">'+ account +'</p></div>')
+	}
 }
 
 var flag = 0;
@@ -372,7 +380,7 @@ stompClient.connect({}, function(frame) {
     stompClient.subscribe('/target/Bid/subscription/' + productSeqNo , function(bidreturn){
     	
         	addBid(JSON.parse(bidreturn.body).account,JSON.parse(bidreturn.body).productSeqNo,JSON.parse(bidreturn.body).bidPrice)
-
+        	updateScroll()
        });      
 //取商品結束--------------------------------------- 
 });

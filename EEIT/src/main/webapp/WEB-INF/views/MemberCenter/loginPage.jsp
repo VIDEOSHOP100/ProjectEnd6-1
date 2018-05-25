@@ -43,10 +43,6 @@
 						<form:input class="form-control input-sm" id="logPPwd"
 							type="password" path="password" placeholder="password" />
 						<br>
-						<div class="form-group col-md-12">
-							<div class="g-recaptcha col=md-6"
-								data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div>
-						</div>
 						<a
 							href="${pageContext.request.contextPath}/MemberCenter/forgotPassword">
 							<button type="button" class="btn btn-primary">忘記密碼?</button>

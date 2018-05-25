@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	
+	var accChk;
 	$('#regAcc').blur(
 		function() {
 			var inputAccount = $('#regAcc').val();
@@ -10,7 +10,7 @@ $(document).ready(function() {
 				type : "POST",
 				data : {account : inputAccount},
 				success : function(result) {
-					
+					accChk = result.result;
 					if (result.result == true) {
 						$('#regAcc').grumble(
 							{
@@ -42,6 +42,37 @@ $(document).ready(function() {
 			};
 		})
 
+		
+	 	$(document).on('click','#regBtn',function(){
+	 		var pho = $('#photo').get(0).files.length;
+	 		if(accChk==true){
+	 			$('#regBtn').grumble(
+					{
+						text:'帳號重複',
+						angle :90,
+						distance:100,
+						hideAfter: 1000,
+					}
+				)
+	 		}else if(accChk==false && pho==0){
+	 			$('#regBtn').grumble(
+					{
+						text:'照片為空',
+						angle :90,
+						distance:100,
+						hideAfter: 1000,
+					}
+				)
+	 		}else if (accChk==false && pho!=0){
+	 			$('#register').submit();
+	 		}
+	 		
+	 		
+	 	})
+	 
+		
+		
+		
 		
 		$('.loginCheck').click(loginCheck);
 		
@@ -159,7 +190,6 @@ function checkAccPwd(){
 			},
 			error : function(e) {
 				console.log("ERROR : ", e);
-				alert(e);
 			}
 		
 			
@@ -178,5 +208,8 @@ function checkAccPwd(){
 		
 	}
 
+	 
+	 
+	 
 	
 })

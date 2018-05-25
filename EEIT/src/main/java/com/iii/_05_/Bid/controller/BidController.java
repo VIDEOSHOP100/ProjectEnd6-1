@@ -49,13 +49,29 @@ public class BidController {
 //			@DestinationVariable("account") String account
 			) throws SQLException {
 		ProductSaleBean pb = ProductSaleService.getBySeqNo(productSeqNo);
+		//拿到此拍最高價
+		ProductSaleBean pbmax = ProductSaleService.getOneProBySeqNos1(productSeqNo);
+		BidBean	maxb = bidService.getBidByAuctionSeqNoBidprice(pbmax.getAuctionSeqNo());
+			//目前喊價				當前出價
+		if(maxb==null) {
+			Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+			bb.setBidTime(now);
+			//寫死 要改
+			bb.setAuctionSeqNo(pb.getAuctionSeqNo());
+			bidService.saveBid(bb);
+
+		}else if((maxb.getBidPrice()<bb.getBidPrice())) {
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		bb.setBidTime(now);
 		//寫死 要改
 		bb.setAuctionSeqNo(pb.getAuctionSeqNo());
 		bidService.saveBid(bb);
-		
-		
+
+		}else {
+		bb.setBidPrice(0);
+		bb.setAccount("叫價請超過當前拍賣金額");
+
+		}
 		return bb;
 	}
 	
