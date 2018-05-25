@@ -175,7 +175,7 @@ $(document).ready(function() {
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
-					alert(e);
+//					alert(e);
 				} 
 			});
 		}else if(friendStatus == 0){
@@ -189,7 +189,7 @@ $(document).ready(function() {
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
-					alert(e);
+//					alert(e);
 				}
 			});
 		}
@@ -213,7 +213,7 @@ $(document).ready(function() {
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
-				alert(e);
+//				alert(e);
 			}
 		})
 		
@@ -230,12 +230,12 @@ $(document).ready(function() {
 			type:"POST",
 			data:{ myMessageTo:othersideaccount,myMessageTitle:myMessageTitle,myMessageContent:myMessageContent},
 			success:function(){
-				alert('訊息已傳送!');
+//				alert('訊息已傳送!');
 				$('#cancel2').trigger("click");
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
-				alert(e);
+//				alert(e);
 			}
 		})
 		
@@ -257,7 +257,7 @@ $(document).ready(function() {
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
-					alert(e);
+//					alert(e);
 				} 
 			}); 
 		}else if(banStatus == 0){
@@ -271,7 +271,7 @@ $(document).ready(function() {
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
-					alert(e);
+//					alert(e);
 				} 
 			});
 		}

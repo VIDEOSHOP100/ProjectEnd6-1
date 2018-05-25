@@ -29,10 +29,10 @@ $(document).ready(function() {
 	    	var roomNumber = $('.roomNumber').val();
 	    	var name = $(this).parents('div').find('.message').val();
 	        console.log('Connected: ' + frame);
-	        alert(roomNumber)
+//	        alert(roomNumber)
 	        stompClient.subscribe('/message/subscription/' + roomNumber , function(messagereturn){
 	            console.log(messagereturn);
-	            alert('return')
+//	            alert('return')
 	            addMessage(JSON.parse(messagereturn.body).messageArticle);
 	        });
 	    });

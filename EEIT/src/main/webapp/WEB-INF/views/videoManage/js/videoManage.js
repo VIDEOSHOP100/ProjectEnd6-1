@@ -184,7 +184,7 @@ $( function() {
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
-				alert(e);
+//				alert(e);
 				dialog.dialog( "close" );
 			}
 		});
@@ -322,7 +322,7 @@ $( function() {
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
-				alert(e);
+//				alert(e);
 				dialog.dialog( "close" );
 			}
 		});
@@ -418,7 +418,7 @@ $( function() {
 			},
 			error: function (e) {
 				console.log("ERROR : ", e);
-				alert(e);
+//				alert(e);
 				dialog.dialog( "close" );
 			}
 		});
