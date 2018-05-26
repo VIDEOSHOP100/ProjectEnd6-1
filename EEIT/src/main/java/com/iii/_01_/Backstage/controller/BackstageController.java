@@ -16,10 +16,15 @@ import com.iii._16_.ProductHot.model.ProductHotBean;
 @Controller
 @RequestMapping("/backstage")
 public class BackstageController {
-	@ModelAttribute//商城管理使用的bean
+	@ModelAttribute//商城管理使用的bean;
 	public void getHotBean(Map<String, Object> map) {
 		ProductHotBean hotbean = new ProductHotBean();
 		map.put("ProductHotBean", hotbean);
+	}
+	@ModelAttribute//商城管理使用的bean for del;
+	public void delHotBean(Map<String, Object> map) {
+		ProductHotBean hotbean = new ProductHotBean();
+		map.put("DelHotBean", hotbean);
 	}
 	@RequestMapping("")
 	public String backstage(HttpSession session, Model model) {

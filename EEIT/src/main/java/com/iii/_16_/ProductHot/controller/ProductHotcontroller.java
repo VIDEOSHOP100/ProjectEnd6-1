@@ -29,10 +29,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iii._16_.FAQ.bean.MemberFAQBean;
 import com.iii._16_.ProductHot.model.ProductHotBean;
 import com.iii._16_.ProductHot.model.ProductHotService;
+import com.iii._19_.notificationSystem.model.NotificationSystemBean;
 
 
 @Controller
-
 public class ProductHotcontroller {
 	
 	@Autowired
@@ -62,11 +62,19 @@ public class ProductHotcontroller {
 				System.out.println(hotbean);
 		return map ;
 	}
-//	@ModelAttribute
-//	public void getHotBean(Map<String, Object> map) {
-//		ProductHotBean hotbean = new ProductHotBean();
-//		map.put("ProductHotBean", hotbean);
-//	}
-	
-	
+	@RequestMapping(value="/findAllHot",method = RequestMethod.GET)
+	public @ResponseBody Map<String,Object> findAllHot() throws SQLException{
+		Map<String,Object> map= new HashMap<String,Object>();
+		List<ProductHotBean> AllHot = hotproservice.getAllByStatus(1);
+		map.put("HotProduct", AllHot);
+		return map;
+	}
+	@RequestMapping(value = "/deleteHot",method=RequestMethod.POST)
+	public String updateproductHot(@ModelAttribute("DelHotBean") ProductHotBean HotBean) throws SQLException {
+		int SeqNo = HotBean.getProductHotSeqNo();
+		ProductHotBean realBean = hotproservice.selectone(SeqNo);
+		realBean.setProductStatus(2);
+		hotproservice.deleteProductFromCart(realBean);
+		return "OK";
+	}
 }
