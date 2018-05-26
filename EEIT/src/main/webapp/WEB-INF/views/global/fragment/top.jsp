@@ -150,6 +150,7 @@
            					 <button id="" class="btn btn-primary">後台頁面</button>
          				 </a>
 					</li>
+					<li>&nbsp;</li>
 					<li class="nav-item">
 						<a href="<c:url value='/managerLogout'/>">
            					 <button id="" class="btn btn-danger float-right">管理員登出</button>

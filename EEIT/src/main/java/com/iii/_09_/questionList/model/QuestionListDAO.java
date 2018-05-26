@@ -20,5 +20,7 @@ public interface QuestionListDAO {
 	//顯示Type編號
 	public List<QuestionListBean> selectQuestionListByType(Integer questionListType);
 
+	public QuestionListBean getquestionListBeanByquestionListSeqNo(Integer questionListSeqNo);
+
 
 }

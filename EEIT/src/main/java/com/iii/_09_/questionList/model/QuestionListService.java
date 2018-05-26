@@ -2,6 +2,8 @@ package com.iii._09_.questionList.model;
 
 import java.util.List;
 
+
+
 public interface QuestionListService {
 
 	public Integer saveQuestionList(QuestionListBean questionListBean);
@@ -18,4 +20,7 @@ public interface QuestionListService {
 
 	//顯示Type編號
 	public List<QuestionListBean> selectQuestionListByType(Integer questionListType);
+
+	public QuestionListBean getquestionListBeanByquestionListSeqNo(Integer questionListSeqNo); 
+
 }

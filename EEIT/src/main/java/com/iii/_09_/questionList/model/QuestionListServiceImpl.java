@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iii._01_.MemberReport.bean.MemberReportBean;
+
 
 @Service
 public class QuestionListServiceImpl implements QuestionListService{
@@ -48,6 +50,11 @@ public class QuestionListServiceImpl implements QuestionListService{
 	public List<QuestionListBean> selectQuestionListByType(Integer questionListType) {
 		return questionListDAO.selectQuestionListByType(questionListType);
 	}
+	
+	@Override
+	public QuestionListBean getquestionListBeanByquestionListSeqNo(Integer questionListSeqNo) {
 
+		return questionListDAO.getquestionListBeanByquestionListSeqNo(questionListSeqNo);
+	}
 
 }

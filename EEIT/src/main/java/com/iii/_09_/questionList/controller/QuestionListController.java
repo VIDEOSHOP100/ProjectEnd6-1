@@ -1,5 +1,6 @@
 package com.iii._09_.questionList.controller;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
@@ -9,15 +10,19 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iii._01_.MemberReport.bean.MemberReportBean;
 import com.iii._09_.questionList.model.QuestionListBean;
 import com.iii._09_.questionList.model.QuestionListService;
+import com.iii._16_.ProductHot.model.ProductHotBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 
 
@@ -91,7 +96,6 @@ public class QuestionListController {
 	//顯示在TOP.jsp的常見問題
 	@RequestMapping(value="/Main",method = RequestMethod.GET)
 	public String QuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean,Map<String, Object> map) {
-//		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
 		questionListService.saveQuestionList(questionListBean);
 		map.put("allQuestionList", questionListService.selectQuestionList());
 		return "questionList/questionList";
@@ -124,22 +128,42 @@ public class QuestionListController {
 	@RequestMapping(value = "/updateQuestionList" ,method = RequestMethod.GET)
 	public String updateQuesListBean(Map<String,Object> map,HttpSession session) {	
 		System.out.println("UPDATE");
-		QuestionListBean questionListBean = new QuestionListBean();
-		
-		
-		
+		QuestionListBean questionListBean = new QuestionListBean();	
 		map.put("questionListBean", questionListBean);
 		return "questionList/updateQuestionList";
 	}
-
 	
-	//刪除標單連結
-	@RequestMapping("/deleteQusetionList")
-	public String deleteQusetionList() {
-		System.out.println("deleteQusetionList");
-		return "questionList/deleteQusetionList";
+	@RequestMapping(value = "/updateQuestionList/{questionListSeqNo}", method = RequestMethod.GET)
+	public @ResponseBody QuestionListBean getQuestionList(
+			@PathVariable("questionListSeqNo") Integer questionListSeqNo) {
+		return questionListService.getquestionListBeanByquestionListSeqNo(questionListSeqNo);
 	}
+		
 	
+	//新刪修
+	@RequestMapping(value="/questBean.do",method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> insertHotProduct(
+			@ModelAttribute("questionListBean") QuestionListBean QusetBean,BindingResult result,
+			HttpSession session) throws SQLException {
+		 Map<String,Object> map= new HashMap<String,Object>();
+		 String[] suppressedFields = result.getSuppressedFields();
+		 if (suppressedFields.length > 0) {
+		 System.out.println("嘗試輸入不允許的欄位");
+		 throw new RuntimeException("嘗試輸入不允許的欄位: " +
+		 StringUtils.arrayToCommaDelimitedString(suppressedFields));
+		 }
+		 
+		return map ;
+	}
+
+//	
+//	//刪除標單連結
+//	@RequestMapping("/deleteQusetionList")
+//	public String deleteQusetionList() {
+//		System.out.println("deleteQusetionList");
+//		return "questionList/deleteQusetionList";
+//	}
+//	
 //	@RequestMapping("/addQuestionList")
 //	public String addQusetionList() {
 //		System.out.println("addQuestionList");

@@ -21,6 +21,17 @@ $(document).ready(function () {
                 timeout: 600000,
   
                 success: function (data) {
+                	var list = data.VideoBeanList;
+                	var row = $('<row></row');
+                	var docFrag = $(document.createDocumentFragment());
+                	$.each(list,function(idx,videoBean){
+                		var cell = $('<img class="col-md-3 choose">').attr('src','/EEIT/getImage/video/'+videoBean.videoSeqNo).attr('title',videoBean.videoTitle).attr('VideoSeqNo',videoBean.videoSeqNo);
+                		
+                		row.append(cell);
+                		docFrag.append(row);
+                	})
+                	docFrag.append('<hr><button type="button" class="btn btn-primary btn-block" id="setVideoWallButton">確定</button>')
+                	$('#content').html(docFrag).prepend('<h2>首頁管理<small style="color: #bdbdbd;font-size: 16px;">選擇想放在首頁輪播牆上的影片</small></h2>');
                 	
                 },
 
@@ -34,86 +45,62 @@ $(document).ready(function () {
         
     }
     
-//   ---------------------------------以上功能列選擇------------------------------------- 
+    	
+//    -----------------------------------以上影片圖片選擇------------------------------------------
+    	
+    	$(document).on('mouseenter','.choose',function(){
+    		$(this).animate({'opacity':'0.5'},200);
+    		
+    	})
 
-    
-//    	var mrSN;
-//    
-//    $(document).on("click",'.memberReportSeqNo',function(){
-//    	mrSN = $(this).text();
-//    	    	
-//    	$('#content').empty();
-//    	    	
-//    	$.ajax({
-//    		
-//    		type:"GET",
-//    		url:"/EEIT/memberReport/" + mrSN,
-//    		
-//    		success:function(data){
-//    			var ret = new Date(data.reportTime);
-//    			var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
-//    			var format = $('<container></container>').html(
-//    					'<row>' +
-//    						'<div class="col-lg-8">' +
-//    							'<h2 class="mt-4">' + data.reportTitle + '</h2>' +
-//    							'<p class="lead"> 檢舉人 : ' +  
-//    								'<a  target="_blank" href="/EEIT/profile/' +data.accountFrom + '">' + data.accountFrom + '</a>' + 
-//    								'  被檢舉人 : ' + 
-//    								'<a  target="_blank" href="/EEIT/profile/' +data.accountTo + '">' + data.accountTo + '</a>' +
-//    							'</p>' +
-//    							'<p>Posted on' + formated + '</p><hr>' +
-//    							'<p>' + data.reportContent +'</p><hr>' +
-//    							'<div class="card my-4"><h5 class="card-header">回覆檢舉</h5><div class="card-body">' +
-//    							'<form:form method="POST" action="/replyMemberReport" modelAttribute="MemberReportBean" class = "form-horizontal">' + 
-//    							'<textarea id="replyMRContent" path="replyContent" class="form-control" rows="3"></textarea>' + 
-//    							'<button class = "btn btn-primary" id = "replyMemberReportButton">回覆檢舉</button>' +
-//    							'</form>' +
-//    							'</div>'+
-//    							'</div>'+
-//    							'</div>'+
-//    					'</row>'
-//    			
-//    				) 
-//    					
-//    				$('#content').append(format);
-//      				
-//    		},
-//    		error: function (xhr, ajaxOptions, thrownError) {
-//        
-//                alert(thrownError);
-//            
-//        },
-//   
-//    		
-//    	})
-//  	
-//    })
-//    
-//    
-//    $(document).on("click",'#replyMemberReportButton',function(){
-//    	
-//    	
-//    	var reply = $('#replyMRContent').val();
-//    	
-//    	$.ajax({
-//    		
-//    		type:"POST",
-//    		url:"/EEIT/memberReport",
-//    		data:{ _method : "PUT" ,memberReportSeqNo:mrSN ,replyContent:reply},
-//    		
-//    		success:function(){
-//    		
-//    			alert('回覆投訴完成!');
-//    			$('.bg-primary').trigger("click");
-//    		
-//    		},
-//    		
-//    		error:function(e){
-//    			alert(e);
-//    		}
-//    		
-//    	})
-//    	
-//    })
+    	$(document).on('click','.choose',function(){
+    		$(this).css(
+    			
+    			'border','5px #7700FF solid'
+    		
+    		).addClass('choosed').removeClass('unchoose');
+    	})
+    	
+    	$(document).on('dblclick','.choose',function(){
+    		
+    		$(this).css(
+    			
+    			'border','none'
+    		
+    		).addClass('unchoose').removeClass('choosed');
+    	})
+    	
+    	
+    	$(document).on('mouseleave','.choose',function(){
+    		$(this).animate({'opacity':'1'},200);
+    	})
+    	
+    	
+    	$(document).on('click','#setVideoWallButton',function(){
+    		var SeqNoList = [];
+    		for(i=0;i<$('.choosed').length;i++){
+    			alert($('.choosed:eq('+i+')').attr('VideoSeqNo'));
+    			SeqNoList.push($('.choosed:eq('+i+')').attr('VideoSeqNo'));
+    		}
+    		$.ajax({
+    			
+    			type:'POST',
+    			url:'/EEIT/setVideoWall',
+    			data:SeqNoList,
+    			
+    			success:function(){
+    				
+    				alert('更新完成');
+    				$('.list-group a:first-child').trigger('click');
+    			},error:function(){
+    				
+    			}
+    			
+    		})
+    		
+    		
+    	})
+    	
+    	
     
 })
