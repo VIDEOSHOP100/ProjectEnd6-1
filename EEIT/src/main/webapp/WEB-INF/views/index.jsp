@@ -55,6 +55,11 @@
 	background-color: #1c0033;
 }
 
+.productbox img {
+		width: 235px; 
+ 		height: 240px; 
+		border: none;
+	}
 </style>
 </head>
 <body>
@@ -175,6 +180,47 @@
 									</button>
 								</div>
 							</c:if>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+
+		</div>
+		<h1 style="margin-top:20px;margin-bottom:10px">
+		<a class="indexTitle"  href="<c:url value='/hotVideo' />">
+			熱門商品
+		</a>
+		<small class="suptitle">點擊商品進入購買</small>
+		</h1>
+		<div class="row">
+			<c:forEach var="aProductBean" items="${hotProducts}">
+				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
+					<div class="card h-100 productbox"  style="border:none">
+						
+						<a href="<c:url value='/searchProductIntro/${aProductBean.productSeqNo}' />">
+							<img  width="235px" src='${pageContext.request.contextPath}/getImage/Product/${aProductBean.productSeqNo}'>
+						</a>
+						<div class="card-body">
+							<h6 class="card-title videoTitle">
+								<a href="<c:url value='/searchProductIntro/${aProductBean.productSeqNo}' />" title="${aProductBean.productBean.proName}"><b>${aProductBean.productBean.proName}</b></a>
+								
+							</h6>
+							
+<%-- 							<a class="uploaderLink"	href="<c:url value='/profile/${aProductBean.account}' />"> --%>
+<%-- 								<p class="videoSmallWords">${aVideoBean.account}</p> --%>
+<!-- 							</a> -->
+<%-- 							<c:set var="string1" value="${aVideoBean.videoUploadDate}"/> --%>
+<%-- 							<c:set var="string2" value="${fn:substring(string1, 0, 19)}" /> --%>
+<%-- 							<p class="card-text videoSmallWords">${string2}</p> --%>
+							<p class="videoSmallWords">銷售量:${aProductBean.productCount}</p>
+<%-- 							<c:if test="${!empty LoginOK}"> --%>
+<!-- 								<div class="watchLater"> -->
+<%-- 									<input type="hidden" value="${aVideoBean.videoSeqNo}" /> --%>
+<!-- 									<button type="button" class="btn"> -->
+<!-- 										<i class="fas fa-tags"></i> -->
+<!-- 									</button> -->
+<!-- 								</div> -->
+<%-- 							</c:if> --%>
 						</div>
 					</div>
 				</div>
