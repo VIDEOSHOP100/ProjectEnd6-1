@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iii._16_.FAQ.bean.MemberFAQBean;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 @Repository
 public class ProductHotDaoImpl implements ProductHotDao{
 	@Autowired	
@@ -23,8 +24,9 @@ public class ProductHotDaoImpl implements ProductHotDao{
 
 	@Override
 	public ProductHotBean update(ProductHotBean hotbean) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(hotbean);
+		return hotbean;
 	}
 
 	@Override
@@ -45,6 +47,13 @@ public class ProductHotDaoImpl implements ProductHotDao{
 		Session session = factory.getCurrentSession();
 		Query query = session.createQuery("from ProductHotBean ");
 		return (List<ProductHotBean>) query.list();
+	}
+	
+
+	@Override
+	public List<ProductHotBean> getAllByStatus(Integer status) {
+		Session session = factory.getCurrentSession();
+		return session.createQuery("FROM ProductHotBean WHERE productStatus = :productStatus",ProductHotBean.class).setParameter("productStatus", status).list();
 	}
 	
 }

@@ -19,8 +19,16 @@ public class ProductHotBean {
 	private String productHotFileName;
 	private String productHotFilePath;
 	private String productName;
+	private Integer productStatus;
 	@Transient
 	private MultipartFile hotFile;
+	
+	public Integer getProductStatus() {
+		return productStatus;
+	}
+	public void setProductStatus(Integer productStatus) {
+		this.productStatus = productStatus;
+	}
 	public Integer getProductHotSeqNo() {
 		return productHotSeqNo;
 	}

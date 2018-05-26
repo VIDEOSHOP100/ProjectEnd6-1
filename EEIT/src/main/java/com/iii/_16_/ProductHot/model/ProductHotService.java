@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iii._01_.Member.bean.MemberBean;
+import com.iii._16_.BuyCart.ProCartList.model.ProCartListBean;
 import com.iii._16_.FAQ.bean.MemberFAQBean;
 import com.iii._16_.PersonShop.bean.PersonShopBean;
 import com.iii._16_.PersonShop.dao.PersonShopDaoImpl;
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 
 @Service
 public class ProductHotService {
@@ -42,6 +45,21 @@ public class ProductHotService {
 		}
 		return null;
 	}
+	// 刪除輪播牆更改狀態 ，
+	@Transactional
+	public int deleteProductFromCart(ProductHotBean hotBean) throws SQLException {
+		dao.update(hotBean);
+		return 1;
+	}
+
+	//用status搜尋所有商品
+	@Transactional
+	public List<ProductHotBean> getAllByStatus(Integer status) throws SQLException{
+		List<ProductHotBean> list = dao.getAllByStatus(status);
+		return list;
+		}
+	
+	
 	
 	public ProductHotBean saveImage(ProductHotBean hb, String extImage, MultipartFile File) {
 		// 影片封面圖片資料夾路徑

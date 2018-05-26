@@ -16,7 +16,7 @@
 	<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 	<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 	<link href="<c:url value='/backstage/css/backstage.css'/>" rel="stylesheet">
- 
+ <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
   
   </head>
   <body>
@@ -95,6 +95,16 @@
 <%-- 	   	</form:form> --%>
 <!-- 	</div> -->
 <!-- 					end ----------------------------------------------------------------------------->
+<!-- 	刪除商品表格	-------------------------- -->
+					<div id="delete-dialog-form" title="刪除資料" class="hideForm" style="overflow:hidden">
+						<p class="validateTips">確認刪除此資料?</p>
+									<form:form id="deleteHotForm" modelAttribute="DelHotBean" enctype="multipart/form-data" method="POST">
+										<fieldset>
+											<form:input path="productHotSeqNo" type="hidden" name="seqNoDelete" id="seqNoDelete"/>
+											<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+									</fieldset>
+						</form:form>
+					</div>
 		<script src="<c:url value='/backstage/js/backstage.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageLive.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageAdvice.js'/> "></script>
