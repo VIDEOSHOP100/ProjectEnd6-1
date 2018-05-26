@@ -53,6 +53,10 @@ $(document).ready(function () {
     		
     	})
 
+    	$(document).on('mouseleave','.choose',function(){
+    		$(this).animate({'opacity':'1'},200);
+    	})
+
     	$(document).on('click','.choose',function(){
     		$(this).css(
     			
@@ -71,9 +75,6 @@ $(document).ready(function () {
     	})
     	
     	
-    	$(document).on('mouseleave','.choose',function(){
-    		$(this).animate({'opacity':'1'},200);
-    	})
     	
     	
     	$(document).on('click','#setVideoWallButton',function(){
@@ -86,7 +87,7 @@ $(document).ready(function () {
     			
     			type:'POST',
     			url:'/EEIT/setVideoWall',
-    			data:SeqNoList,
+    			data:{SeqNoList:JSON.stringify(SeqNoList)},
     			
     			success:function(){
     				
