@@ -20,9 +20,12 @@ public class VideoWallDAOImpl implements VideoWallDAO {
 	@Override
 	public void saveAllVideoWall(List<VideoWallBean> list) {
 		Session session = sessionFactory.getCurrentSession();
-//		session
+
+		int len = list.size();
 		
-		
+		for(int i = 0 ; i < len ;i++) {
+			session.save(list.get(i));
+		}
 		
 	}
 

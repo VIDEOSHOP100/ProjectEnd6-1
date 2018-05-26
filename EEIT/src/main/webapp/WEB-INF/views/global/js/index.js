@@ -54,4 +54,10 @@ $(document).ready(function() {
 			});
 		}
 	})
+	
+	$('#carouselExampleIndicators').addClass('actice');
+	$('.indexVideoBackGround:first').addClass('active');
+	
+	
+	
 })

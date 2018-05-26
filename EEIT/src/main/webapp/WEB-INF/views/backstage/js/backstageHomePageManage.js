@@ -22,7 +22,7 @@ $(document).ready(function () {
   
                 success: function (data) {
                 	var list = data.VideoBeanList;
-                	var row = $('<row></row');
+                	var row = $('<row></row>');
                 	var docFrag = $(document.createDocumentFragment());
                 	$.each(list,function(idx,videoBean){
                 		var cell = $('<img class="col-md-3 choose">').attr('src','/EEIT/getImage/video/'+videoBean.videoSeqNo).attr('title',videoBean.videoTitle).attr('VideoSeqNo',videoBean.videoSeqNo);
@@ -53,6 +53,10 @@ $(document).ready(function () {
     		
     	})
 
+    	$(document).on('mouseleave','.choose',function(){
+    		$(this).animate({'opacity':'1'},200);
+    	})
+
     	$(document).on('click','.choose',function(){
     		$(this).css(
     			
@@ -71,9 +75,6 @@ $(document).ready(function () {
     	})
     	
     	
-    	$(document).on('mouseleave','.choose',function(){
-    		$(this).animate({'opacity':'1'},200);
-    	})
     	
     	
     	$(document).on('click','#setVideoWallButton',function(){
@@ -86,7 +87,7 @@ $(document).ready(function () {
     			
     			type:'POST',
     			url:'/EEIT/setVideoWall',
-    			data:SeqNoList,
+    			data:{SeqNoList:JSON.stringify(SeqNoList)},
     			
     			success:function(){
     				

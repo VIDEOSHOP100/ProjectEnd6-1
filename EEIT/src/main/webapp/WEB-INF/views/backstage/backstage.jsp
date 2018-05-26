@@ -75,7 +75,7 @@
 					</div>
 <!-- 客服問題集修改	----------------------------------------------------------------------------->
 <!-- 	 <div id="FAQ-dialog-form" title="客服問題修改" class="hideForm" style="overflow:hidden"> -->
-<!-- 	<!-- 						<p class="validateTips">確認刪除此資料?</p> --> -->
+<!-- 	<!-- 						<p class="validateTips">確認刪除此資料?</p> --> 
 <%-- 		<form:form modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post"> --%>
 <!-- 			<fieldset> -->
 <!-- 	  		<label for="productName">修改問題標題:</label> -->
