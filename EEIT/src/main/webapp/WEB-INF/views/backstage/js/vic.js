@@ -30,8 +30,10 @@ $(document).ready(function () {
                         	numb =  QuestList.questionListSeqNo;
                         	console.log(numb);
                             var cell1 = $('<td data-toggle="modal" data-target="#exampleModal"></td>').text(QuestList.questionListSeqNo).addClass('pointer text-primary text-center questionListSeqNo');
+                            $('#updateQList > #QSeqNum').val(QuestList.questionListSeqNo);
+//                            alert('#updateQList > #QSeqNum')
                             var cell2 = $('<td></td>').text(QuestList.managerId);
-                            
+                           
                             if(QuestList.questionListType == 1){
                             	var cell3 = $('<td></td>').text("帳號問題");
                             }else if(QuestList.questionListType == 2){
@@ -78,8 +80,8 @@ $(document).ready(function () {
     }
     
 //   ---------------------------------以上功能列選擇------------------------------------- 
-   $(document).on("click",'.questionListSeqNo',function(){
-    	alert("1");
+   $(document).on("click",'.btn btn-primary',function(){
+	
     });
     	
     
@@ -118,8 +120,7 @@ $(document).ready(function () {
 //    	-----------------------------------
     	var mrSN;
 
-
-    	$('#content').empty();
+    	$('#QSeqNum').val(mrSN);
     	    	
     	$.ajax({
     		

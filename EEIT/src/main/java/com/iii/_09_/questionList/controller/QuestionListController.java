@@ -62,25 +62,26 @@ public class QuestionListController {
 	
 	
 	@RequestMapping(value = "update" ,method = RequestMethod.POST)
-	public String updateQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean) {
+	public void updateQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean) {
 		questionListService.updateQuestionList(questionListBean);
+		System.out.println(questionListBean);
+//		return ;
+	}
+
+	@RequestMapping(value = "{questionListSeqNo}",method = RequestMethod.DELETE)
+	public String deleteQuestionList(@PathVariable("questionListSeqNo") Integer questionListSeqNo) {
+		QuestionListBean questionListBean = questionListService.selectQuestionListBySeqNo(questionListSeqNo);
+		questionListService.deleteQuestionList(questionListBean);
 		return "OK";
 	}
 
-//	@RequestMapping(value = "{questionListSeqNo}",method = RequestMethod.DELETE)
-//	public String deleteQuestionList(@PathVariable("questionListSeqNo") Integer questionListSeqNo) {
-//		QuestionListBean questionListBean = questionListService.selectQuestionListBySeqNo(questionListSeqNo);
-//		questionListService.deleteQuestionList(questionListBean);
-//		return "OK";
-//	}
+	@RequestMapping(value = "{questionListSeqNo}",method = RequestMethod.GET)
+	public String selectQuestionListBySeqNo(@PathVariable("questionListSeqNo") Integer questionListSeqNo) {
+		QuestionListBean questionListBean = questionListService.selectQuestionListBySeqNo(questionListSeqNo);
+		
+		return "OK";
+	}
 
-//	@RequestMapping(value = "{questionListSeqNo}",method = RequestMethod.GET)
-//	public String selectQuestionListBySeqNo(@PathVariable("questionListSeqNo") Integer questionListSeqNo) {
-//		QuestionListBean questionListBean = questionListService.selectQuestionListBySeqNo(questionListSeqNo);
-//		
-//		return "OK";
-//	}
-//	
 	
 	//依questionListType尋找問題
 	@RequestMapping(value = "{questionListType}",method = RequestMethod.GET)
@@ -92,21 +93,21 @@ public class QuestionListController {
 		return "questionList/questionList";
 	}
 	
-	//新增問題路徑
-//	@RequestMapping(method = RequestMethod.GET)
+//	//新增問題路徑
+//	@RequestMapping(value = "123",method = RequestMethod.GET)
 //	public String selectQuestionList(Map<String, Object> map) {
 //		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
 //		map.put("questionListBean", new QuestionListBean());
 //		return "questionList/addQuestionList";
 //	}
 	
-	//抓全部問題(目前棄用)
-//	@RequestMapping(method = RequestMethod.GET)
-//	public String selectQuestionList(Map<String, Object> map) {
-//		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
-//		map.put("questionListBean", questionListBeanList);
-//		return "questionList/questionMain";
-//	} 
+//	//抓全部問題(目前棄用)
+	@RequestMapping(method = RequestMethod.GET)
+	public String selectQuestionList(Map<String, Object> map) {
+		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
+		map.put("questionListBean", questionListBeanList);
+		return "questionList/questionMain";
+	} 
 //	
 	//顯示在TOP.jsp的常見問題
 	@RequestMapping(value="/Main",method = RequestMethod.GET)
@@ -157,19 +158,19 @@ public class QuestionListController {
 	
 	
 
-//	
-//	//刪除標單連結
-//	@RequestMapping("/deleteQusetionList")
-//	public String deleteQusetionList() {
-//		System.out.println("deleteQusetionList");
-//		return "questionList/deleteQusetionList";
-//	}
-//	
-//	@RequestMapping("/addQuestionList")
-//	public String addQusetionList() {
-//		System.out.println("addQuestionList");
-//		return "questionList/addQuestionList";
-//	}
+	
+	//刪除標單連結
+	@RequestMapping("/deleteQusetionList")
+	public String deleteQusetionList() {
+		System.out.println("deleteQusetionList");
+		return "questionList/deleteQusetionList";
+	}
+	
+	@RequestMapping("/addQuestionList")
+	public String addQusetionList() {
+		System.out.println("addQuestionList");
+		return "questionList/addQuestionList";
+	}
 	
 
 }
