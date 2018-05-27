@@ -40,6 +40,8 @@ $(document)
 													var views = data.viewsArray;
 													var arrayaccount = account.split(',');
 													var arrayviews = views.split(',');
+													arrayviews.replace (/"/g,''); 
+													
 													 console.log(arrayaccount);
 													 console.log(arrayviews);
 //													 console.log(['bob','micky','snoopy']);
