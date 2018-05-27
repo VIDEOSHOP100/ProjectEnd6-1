@@ -46,14 +46,10 @@ public class OrderProductService {
 	public List<OrderHotBean> getHotProducts() throws SQLException {
 		 List<OrderHotBean> orpb = dao.getHotProducts();
 		 List<OrderHotBean> fullbean = new ArrayList<>();
-		
 		 for(OrderHotBean onebean : orpb) {
 			 int SeqNo = onebean.getProductSeqNo();
 			 ProductSaleBean product = productdao.findbyPrimaryKey(SeqNo);
-			 
 			 onebean.setProductBean(product); 
-			
-			 
 			 fullbean.add(onebean);
 		 }
 		 return fullbean;

@@ -156,9 +156,9 @@ ul li {
 			</ul>
 
 			<ul class="list-group">
-				<button type="button"
-					class="list-group-item list-group-item-action active" disabled>
-					全站商品&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+				<a href="${pageContext.request.contextPath}/goMarketHomePage"><button type="button"
+					class="list-group-item list-group-item-action active" >
+					全站商品&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button></a>
 				<button type="button" class="list-group-item list-group-item-action"
 					value="1">
 					&nbsp&nbsp&nbsp&nbsp&nbsp<b>3C</b>

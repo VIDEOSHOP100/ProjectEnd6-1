@@ -128,6 +128,8 @@ public class ProductIntroController {
 		System.out.println("已經在購物車的商品更新次數   =  " + countupdate);
 		System.out.println("第二次購買新增次數  =    " + countcreate);
 		map.put("successMessage", 1);
+		map.put("productBean", id );
+		
 		return map;
 		}else {
 			map.put("errorMessage", 2);

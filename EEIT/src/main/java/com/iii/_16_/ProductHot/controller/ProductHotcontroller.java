@@ -58,6 +58,7 @@ public class ProductHotcontroller {
 				// 取出影片封面圖片副檔名
 				String extImage = originalFilename.substring(originalFilename.lastIndexOf("."));
 				hotproservice.saveImage(hotbean, extImage, hotProImage);
+				hotbean.setProductStatus(1);
 				ProductHotBean ddd = hotproservice.insert(hotbean);
 				System.out.println(hotbean);
 		return map ;

@@ -34,6 +34,7 @@
 			    });
 			var product = $("#productSeqNo").val();
 			var account = $("#account").val();
+			
 			$('.buy').click(function() {
 				var count = $("#productCount").val();				
 				if(count==0)					
@@ -50,9 +51,13 @@
 					},
 					timeout : 600000,
 					success : function(data,result) {
+						var Img2= '<img id="IMG_2"class="img-fluid" width="750px" height="500px"'+
+								  'src="/EEIT/getImage/Product/'+data.productBean+'>"'
+					  $('.buyImg').html(Img2);
+					
 						
 						if (data.successMessage == 1){
-						
+							
 						$('.cartbar').remove;
 						//.ajax
 						$.ajax({
@@ -61,9 +66,17 @@
 							dataType : 'json',
 							success : 
 							function(data,result) {
+												//增加一張圖片  可以移動的
+												//放入購物車的字上面
+												
 												var product;
 												var docFrag = $(document.createDocumentFragment());
 													$.each(data.cartDetailList,function(key, oneproductBean){
+														
+														
+														
+														
+														
 														product = '<div class="sidebar-name cart"><a href="/EEIT/searchProductIntro/'+oneproductBean.productSeqNo+'">'+
 														'<button type="button" class="sidebarUserButton sidebarUserButtonNone">'+
 														'<img width="40" height="40" src="/EEIT/getImage/Product/'+oneproductBean.productSeqNo+'">'+

@@ -49,9 +49,9 @@ public class ProductSaleDaoImpl implements ProductSaleDao {
 	}
 
 	@Override
-	public List<ProductSaleBean> getALL() throws SQLException {
+	public List<ProductSaleBean> getAllByStatusOne() throws SQLException {
 		Session session = factory.getCurrentSession();
-		return session.createQuery("FROM ProductSaleBean WHERE proStatus = '1'",ProductSaleBean.class).list();
+		return session.createQuery("FROM ProductSaleBean WHERE proStatus = '1'",ProductSaleBean.class).setMaxResults(24).list();
 	}
 	@Override
 	public List<ProductSaleBean> findbyAccount(String account) throws SQLException {

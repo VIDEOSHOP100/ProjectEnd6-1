@@ -53,7 +53,7 @@ public class ProductSaleService {
 	//搜尋所有產品
 	@Transactional
 	public List<ProductSaleBean> selectAllProduct() throws SQLException{
-		return dao.getALL();
+		return dao.getAllByStatusOne();
 	}
 	
 	//搜尋所有auctionStatus=0的商品
