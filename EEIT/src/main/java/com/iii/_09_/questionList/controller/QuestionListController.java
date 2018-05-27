@@ -45,27 +45,47 @@ public class QuestionListController {
 	}
 
 	
+	//新刪修
+		@RequestMapping(value="/questBean.do",method = RequestMethod.POST)
+		public @ResponseBody Map<String,Object> insertHotProduct(
+				@ModelAttribute("questionListBean") QuestionListBean QusetBean,BindingResult result,HttpSession session) throws SQLException {
+			 Map<String,Object> map= new HashMap<String,Object>();
+			 String[] suppressedFields = result.getSuppressedFields();
+			 if (suppressedFields.length > 0) {
+			 System.out.println("嘗試輸入不允許的欄位");
+			 throw new RuntimeException("嘗試輸入不允許的欄位: " +
+			 StringUtils.arrayToCommaDelimitedString(suppressedFields));
+			 }
+			 
+			return map ;
+		}
+	
 	
 	@RequestMapping(value = "update" ,method = RequestMethod.POST)
-	public String updateQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean) {
+	public @ResponseBody Map<String,String> updateQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean) {
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		questionListBean.setQuestionListUploadDate(now);
 		questionListService.updateQuestionList(questionListBean);
+		System.out.println(questionListBean);
+		Map<String,String> map= new HashMap<String,String>();
+		map.put("Status", "OK");
+		return map;
+	}
+
+	@RequestMapping(value = "{questionListSeqNo}",method = RequestMethod.DELETE)
+	public String deleteQuestionList(@PathVariable("questionListSeqNo") Integer questionListSeqNo) {
+		QuestionListBean questionListBean = questionListService.selectQuestionListBySeqNo(questionListSeqNo);
+		questionListService.deleteQuestionList(questionListBean);
 		return "OK";
 	}
 
-//	@RequestMapping(value = "{questionListSeqNo}",method = RequestMethod.DELETE)
-//	public String deleteQuestionList(@PathVariable("questionListSeqNo") Integer questionListSeqNo) {
-//		QuestionListBean questionListBean = questionListService.selectQuestionListBySeqNo(questionListSeqNo);
-//		questionListService.deleteQuestionList(questionListBean);
-//		return "OK";
-//	}
+	@RequestMapping(value = "{questionListSeqNo}",method = RequestMethod.GET)
+	public String selectQuestionListBySeqNo(@PathVariable("questionListSeqNo") Integer questionListSeqNo) {
+		QuestionListBean questionListBean = questionListService.selectQuestionListBySeqNo(questionListSeqNo);
+		
+		return "OK";
+	}
 
-//	@RequestMapping(value = "{questionListSeqNo}",method = RequestMethod.GET)
-//	public String selectQuestionListBySeqNo(@PathVariable("questionListSeqNo") Integer questionListSeqNo) {
-//		QuestionListBean questionListBean = questionListService.selectQuestionListBySeqNo(questionListSeqNo);
-//		
-//		return "OK";
-//	}
-//	
 	
 	//依questionListType尋找問題
 	@RequestMapping(value = "{questionListType}",method = RequestMethod.GET)
@@ -77,21 +97,21 @@ public class QuestionListController {
 		return "questionList/questionList";
 	}
 	
-	//新增問題路徑
-//	@RequestMapping(method = RequestMethod.GET)
+//	//新增問題路徑
+//	@RequestMapping(value = "123",method = RequestMethod.GET)
 //	public String selectQuestionList(Map<String, Object> map) {
 //		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
 //		map.put("questionListBean", new QuestionListBean());
 //		return "questionList/addQuestionList";
 //	}
 	
-	//抓全部問題(目前棄用)
-//	@RequestMapping(method = RequestMethod.GET)
-//	public String selectQuestionList(Map<String, Object> map) {
-//		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
-//		map.put("questionListBean", questionListBeanList);
-//		return "questionList/questionMain";
-//	} 
+//	//抓全部問題(目前棄用)
+	@RequestMapping(method = RequestMethod.GET)
+	public String selectQuestionList(Map<String, Object> map) {
+		List<QuestionListBean> questionListBeanList = questionListService.selectQuestionList();
+		map.put("questionListBean", questionListBeanList);
+		return "questionList/questionMain";
+	} 
 //	
 	//顯示在TOP.jsp的常見問題
 	@RequestMapping(value="/Main",method = RequestMethod.GET)
@@ -140,35 +160,21 @@ public class QuestionListController {
 	}
 		
 	
-	//新刪修
-	@RequestMapping(value="/questBean.do",method = RequestMethod.POST)
-	public @ResponseBody Map<String,Object> insertHotProduct(
-			@ModelAttribute("questionListBean") QuestionListBean QusetBean,BindingResult result,
-			HttpSession session) throws SQLException {
-		 Map<String,Object> map= new HashMap<String,Object>();
-		 String[] suppressedFields = result.getSuppressedFields();
-		 if (suppressedFields.length > 0) {
-		 System.out.println("嘗試輸入不允許的欄位");
-		 throw new RuntimeException("嘗試輸入不允許的欄位: " +
-		 StringUtils.arrayToCommaDelimitedString(suppressedFields));
-		 }
-		 
-		return map ;
-	}
+	
 
-//	
-//	//刪除標單連結
-//	@RequestMapping("/deleteQusetionList")
-//	public String deleteQusetionList() {
-//		System.out.println("deleteQusetionList");
-//		return "questionList/deleteQusetionList";
-//	}
-//	
-//	@RequestMapping("/addQuestionList")
-//	public String addQusetionList() {
-//		System.out.println("addQuestionList");
-//		return "questionList/addQuestionList";
-//	}
+	
+	//刪除標單連結
+	@RequestMapping("/deleteQusetionList")
+	public String deleteQusetionList() {
+		System.out.println("deleteQusetionList");
+		return "questionList/deleteQusetionList";
+	}
+	
+	@RequestMapping("/addQuestionList")
+	public String addQusetionList() {
+		System.out.println("addQuestionList");
+		return "questionList/addQuestionList";
+	}
 	
 
 }
