@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+	$('.list-group a:first-child').trigger('click');
+	
+	
     $('.list-group-item').click(selectCategory);
     		
     		
@@ -35,8 +38,12 @@ $(document).ready(function () {
                             var ret = new Date(VideoReport.videoReportDate);
                             var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
                             var cell5 = $('<td></td>').text(formated);
-                            var cell6 = $('<td></td>').text(VideoReport.videoReportStatus);
- 
+                            if(VideoReport.videoReportStatus == 'pending'){
+                            	var cell6 = $('<td></td>').text('處理中');
+                            }else{
+                            	var cell6 = $('<td></td>').text('已處理');
+                            }
+
                             var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4, cell5, cell6]);
 
                             docFrag.append(row);

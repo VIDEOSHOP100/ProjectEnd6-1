@@ -16,7 +16,7 @@
 	<link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 	<link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 	<link href="<c:url value='/backstage/css/backstage.css'/>" rel="stylesheet">
- 
+ <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
   
   </head>
   <body>
@@ -64,7 +64,7 @@
 									<form:form id="hotForm"  modelAttribute="ProductHotBean" enctype="multipart/form-data" method="POST">
 										<fieldset>
 <!-- 											<input type="hidden" value="DELETE" name="_method"/> -->
-											<label for="productName">圖片標題: </label>
+						<label for="productName">圖片標題: </label>
 					<form:input type="text" path="productName"  id="productName" value="" class="text ui-widget-content ui-corner-all"/>
 											<label for="hotFile">圖片檔案: </label>
 					<form:input path="hotFile" type="file" id="hotFile" class="text ui-widget-content ui-corner-all"/>
@@ -73,7 +73,38 @@
 									</fieldset>
 						</form:form>
 					</div>
+<!-- 客服問題集修改	----------------------------------------------------------------------------->
+<!-- 	 <div id="FAQ-dialog-form" title="客服問題修改" class="hideForm" style="overflow:hidden"> -->
+<!-- 	<!-- 						<p class="validateTips">確認刪除此資料?</p> --> 
+<%-- 		<form:form modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post"> --%>
+<!-- 			<fieldset> -->
+<!-- 	  		<label for="productName">修改問題標題:</label> -->
+<%-- 	  		<form:input type="text" path="questionListTitle" /> --%>
+<!-- 	  		<label for="productName">修改問題內容:</label> -->
+<%-- 	  		<form:input type="text" path="questionListArticle"/> --%>
+<!-- 	  		<label for="productName">修改管理員:</label> -->
+<%-- 	   		<form:input type="text" path="managerId"/> --%>
+<!-- 	   		<label for="productName">問題類型:</label> -->
+<%-- 	   		<form:input type="text" path="questionListType"/> --%>
+<%-- 	   		<form:select  id="topic" path="questionListStatus"> --%>
+<%-- 	   			<form:option value="1">顯示</form:option> --%>
+<%-- 	    		<form:option value="0">不顯示</form:option>		 --%>
+<%-- 	    	</form:select> --%>
+<!-- 	   			<input type="submit" value="Update"/> -->
+<!-- 	   		</fieldset> -->
+<%-- 	   	</form:form> --%>
+<!-- 	</div> -->
 <!-- 					end ----------------------------------------------------------------------------->
+<!-- 	刪除商品表格	-------------------------- -->
+					<div id="delete-dialog-form" title="刪除資料" class="hideForm" style="overflow:hidden">
+						<p class="validateTips">確認刪除此資料?</p>
+									<form:form id="deleteHotForm" modelAttribute="DelHotBean" enctype="multipart/form-data" method="POST">
+										<fieldset>
+											<form:input path="productHotSeqNo" type="hidden" name="seqNoDelete" id="seqNoDelete"/>
+											<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+									</fieldset>
+						</form:form>
+					</div>
 		<script src="<c:url value='/backstage/js/backstage.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageLive.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageAdvice.js'/> "></script>
@@ -81,6 +112,7 @@
 		<script src="<c:url value='/backstage/js/backstageVideo.js'/> "></script>
 		<script src="<c:url value='/backstage/js/highcharts.js'/> "></script>
 		<script src="<c:url value='/backstage/js/market.js'/> "></script>
+		<script src="<c:url value='/backstage/js/backstageHomePageManage.js'/> "></script>
 		 <script src="http://code.highcharts.com/highcharts.js"></script>
 		 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 		 <script src="https://code.highcharts.com/modules/exporting.js"></script>

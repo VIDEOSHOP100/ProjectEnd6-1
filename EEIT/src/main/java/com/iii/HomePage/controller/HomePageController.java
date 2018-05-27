@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.iii.HomePage.model.HomePageService;
+import com.iii._01_.VideoWall.service.VideoWallService;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._19_.videoType.model.VideoTypeService;
 
@@ -23,12 +24,16 @@ public class HomePageController {
 	@Autowired
 	InputLiveStreamTimeService inputLiveStreamTimeService;
 	
+	@Autowired
+	VideoWallService videoWallService; 
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Map<String, Object> map) {
 		map.put("hotVideos", homePageService.getHotVideos());
 		map.put("newVideos", homePageService.getNewVideos());
 //		map.put("sortedVideos", videoTypeService.getAllVideoType());
 		map.put("liveStream", inputLiveStreamTimeService.getAllLiveStreams());
+		map.put("videoWallList",videoWallService.getAllVideoWall());
 		
 		return "index";
 	}

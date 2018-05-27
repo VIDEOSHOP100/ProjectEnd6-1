@@ -49,11 +49,11 @@ public class MarketController {
 		List<ProductSaleBean> productlist = productservice.selectAllProduct();
 		MemberBean memberbean = (MemberBean) session.getAttribute("LoginOK");
 		List<InputLiveStreamTimeBean> AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreams();
-		List<ProductHotBean> hotbeanlist = hotproservice.getALL();
+		List<ProductHotBean> AllHot = hotproservice.getAllByStatus(1);
 		map.put("AllLiveStream", AllLiveStreamList);
 		map.put("isMember",memberbean);
 		map.put("productbeans", productlist);
-		map.put("ProductHotBeans", hotbeanlist);
+		map.put("ProductHotBeans", AllHot);
 		return "marketIndex/Mindex";
 	}
 	@RequestMapping(value="recept")

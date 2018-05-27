@@ -23,6 +23,18 @@ public class QuestionListDAOImpl implements QuestionListDAO{
 		Session session = sessionFactory.getCurrentSession();
 		return (Integer)session.save(questionListBean);
 	}
+	
+	@Override
+	public QuestionListBean getquestionListBeanByquestionListSeqNo(Integer questionListSeqNo) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(QuestionListBean.class , questionListSeqNo);
+	}
+	
+//	@Override
+//	public MemberReportBean getMemberReportBeanByMemberReportSeqNo(Integer MemberReportSeqNo) {
+//		Session session = sessionFactory.getCurrentSession();
+//		return session.get(MemberReportBean.class , MemberReportSeqNo);
+//	}
 
 	@Override
 	public void updateQuestionList(QuestionListBean questionListBean) {

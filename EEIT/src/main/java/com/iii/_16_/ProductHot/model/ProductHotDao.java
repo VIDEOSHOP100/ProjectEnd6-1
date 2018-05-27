@@ -3,6 +3,8 @@ package com.iii._16_.ProductHot.model;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+
 
 
 public interface ProductHotDao {
@@ -15,4 +17,6 @@ public interface ProductHotDao {
 	ProductHotBean findbyPrimaryKey(int seqno) throws SQLException;
 
 	List<ProductHotBean> getALL() throws SQLException;
+	
+	List<ProductHotBean> getAllByStatus(Integer ProductSeqNo);
 }

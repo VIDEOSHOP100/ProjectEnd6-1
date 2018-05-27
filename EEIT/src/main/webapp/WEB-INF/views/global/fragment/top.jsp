@@ -124,11 +124,7 @@
 					</div>
 				</li>
 				<li class="nav-item">
-
-<!-- 				<li class="nav-item"> -->
-<%-- 	            <a class="nav-link" href="${pageContext.request.contextPath}/Contact.do">會員中心</a> --%>
-<!-- 	          </li> -->
-					
+			
 			<!-- 	登入前的導覽列 -->
 			<c:if test="${empty ManagerLoginOK}">
 				<c:if test="${empty LoginOK}">
@@ -140,6 +136,9 @@
 					<li class="nav-item">
 						<button id="loginButton" class="btn btn-outline" type="button" data-toggle="modal" data-target="#poplogin" style="background-color:#6441a4; color: white">登入</button>
 					</li>
+					<li class="nav-item">
+						<a href="${pageContext.request.contextPath}/loginPage">　</a>
+					</li>
 				</c:if>
 				
 				
@@ -147,10 +146,17 @@
 				
 				<c:if test="${! empty ManagerLoginOK}">
 					<li class="nav-item">
+						<a href="<c:url value='/backstage'/>">
+           					 <button id="" class="btn btn-primary">後台頁面</button>
+         				 </a>
+					</li>
+					<li>&nbsp;</li>
+					<li class="nav-item">
 						<a href="<c:url value='/managerLogout'/>">
            					 <button id="" class="btn btn-danger float-right">管理員登出</button>
          				 </a>
 					</li>
+					
 				</c:if>
 				
 			<!-- 	登入後的導覽列 -->
@@ -286,15 +292,11 @@
 					<small><label for="photo">照片</label><span style="color: red">*</span></small>
 					<form:input path="photo" id="photo" type="file"  accept="image/*"/>
 					</div>
-				<div class="form-group">
-				<div id="rec1"></div>
-<!-- 					<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div> -->
-				</div>
 				</div>
 				<div class="modal-footer">
 				<p>${registerErrorMap.Duplicate} ${registerErrorMap.SQL}</p>
 					<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
-					<input type="submit" class="btn btn-primary" value="註冊"/>
+					<button type="button" id="regBtn" class="btn btn-primary">註冊</button>
 				</div>
 					</form:form>
 			</div>
@@ -330,7 +332,6 @@
 					</div>			
 					<div class="form-group col-md-12" >	
 						<div id="rec2"></div> 
-<!-- 						<div class="g-recaptcha" data-sitekey="6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF"></div> -->
 					</div>
 					<div class="form-group col-md-6" >
 						<a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword"><button  type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button></a>
@@ -394,14 +395,10 @@
 	
 		function onloadCallback(){
 	      
-      	if(($('#rec1').val()!= null) || $('#manaLogout').text()!=null ){
+      	if(($('#rec2').val()!= null) || $('#manaLogout').text()!=null ){
         // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
         // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
-        widgetId1 = grecaptcha.render(document.getElementById('rec1'), {
-          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
 
-        	  
-        });
         widgetId2 = grecaptcha.render(document.getElementById('rec2'), {
           'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
         });
