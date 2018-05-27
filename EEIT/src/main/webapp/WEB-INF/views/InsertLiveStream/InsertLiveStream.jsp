@@ -33,12 +33,20 @@ font-family: 'Noto Sans', sans-serif;
 <%--         <c:forEach var="AllProductListBean" items="${AllProductList}"> --%>
 <%--        ${AllProductListBean.proBrand} --%>
 <%--        </c:forEach>  --%>
+<c:if test="${!empty accountStream.account}">
       <h1 class="mt-4 mb-3 testclass">｜歡迎回來 直播主｜${accountStream.account}｜
         <small class="testclass">
        			   
         </small>
       </h1>
-
+</c:if>
+<c:if test="${empty accountStream.account}">
+<h1 class="mt-4 mb-3 testclass">｜目前還沒開播｜請點選右方新增直播按鈕新增直播｜
+        <small class="testclass">
+       			   
+        </small>
+      </h1>
+</c:if>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
         
