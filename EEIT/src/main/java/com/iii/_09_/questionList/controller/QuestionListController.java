@@ -62,10 +62,14 @@ public class QuestionListController {
 	
 	
 	@RequestMapping(value = "update" ,method = RequestMethod.POST)
-	public void updateQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean) {
+	public @ResponseBody Map<String,String> updateQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean) {
+		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+		questionListBean.setQuestionListUploadDate(now);
 		questionListService.updateQuestionList(questionListBean);
 		System.out.println(questionListBean);
-//		return ;
+		Map<String,String> map= new HashMap<String,String>();
+		map.put("Status", "OK");
+		return map;
 	}
 
 	@RequestMapping(value = "{questionListSeqNo}",method = RequestMethod.DELETE)

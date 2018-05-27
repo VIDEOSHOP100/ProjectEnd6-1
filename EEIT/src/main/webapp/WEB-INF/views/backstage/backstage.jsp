@@ -87,22 +87,25 @@
 		<form:form id="updateQList" modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post">
 		<form:input type="hidden" id="QSeqNum" value="" path="questionListSeqNo" />
 
-<%-- 		修改:<form:input type="text" path="questionListSeqNo" /> --%>
 		修改問題標題:<form:input type="text" path="questionListTitle" />
+		<br>
 		修改問題內容:<form:input type="text" path="questionListArticle"/>
+		<br>
 		修改管理員:<form:input type="text" path="managerId"/>
+		<br>
 		問題類型:<form:input type="text" path="questionListType"/>
+		<br>
       	<form:select  id="topic" path="questionListStatus">
 			<form:option value="1">顯示</form:option>
 			<form:option value="0">不顯示</form:option>		
 		</form:select>
-       	 <input type="submit" value="Update"/>
+<!--        	 <input type="submit" value="Update"/> -->
 		</form:form>
       </div>
-<!--       <div class="modal-footer"> -->
-<!--         <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button> -->
-<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
-<!--       </div> -->
+      <div class="modal-footer">
+        <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+        <button type="button" id="updateQuestListButton" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
   </div>
 </div>
