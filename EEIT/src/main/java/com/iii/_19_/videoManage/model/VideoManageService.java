@@ -6,6 +6,9 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface VideoManageService {
+	
+	public List<VideoBean> getAllVideoToWall();
+	
 	public List<VideoBean> getAllVideo();
 	
 	public List<VideoBean> getAllVideoByAccount(String account);
