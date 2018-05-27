@@ -73,9 +73,12 @@ public class OrderProductDaoImpl implements OrderProductDao {
 	}
 	
 
-	public List<OrderProductBean> getHotProducts() {
+	public List<OrderHotBean> getHotProducts() {
 		Session session = factory.getCurrentSession();
-		return session.createQuery("FROM OrderProductBean order by productCount desc", OrderProductBean.class).setMaxResults(12)
+		return session.createNativeQuery("select productSeqNo ,sum(productCount) as saleTotal"
+				+ " from OrderProduct "
+				+ "group by productSeqNo "
+				+ "order by saleTotal desc").addEntity(OrderHotBean.class).setMaxResults(12)
 				.list();
 	}
 

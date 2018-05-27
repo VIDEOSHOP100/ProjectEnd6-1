@@ -190,7 +190,7 @@
 <%-- 							<c:set var="string1" value="${aVideoBean.videoUploadDate}"/> --%>
 <%-- 							<c:set var="string2" value="${fn:substring(string1, 0, 19)}" /> --%>
 <%-- 							<p class="card-text videoSmallWords">${string2}</p> --%>
-							<p class="videoSmallWords">銷售量:${aProductBean.productCount}</p>
+							<p class="videoSmallWords">銷售量:${aProductBean.saleTotal}</p>
 <%-- 							<c:if test="${!empty LoginOK}"> --%>
 <!-- 								<div class="watchLater"> -->
 <%-- 									<input type="hidden" value="${aVideoBean.videoSeqNo}" /> --%>
