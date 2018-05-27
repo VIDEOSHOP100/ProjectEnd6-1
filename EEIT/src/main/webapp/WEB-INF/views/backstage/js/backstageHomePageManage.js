@@ -25,7 +25,7 @@ $(document).ready(function () {
                 	var row = $('<row></row>');
                 	var docFrag = $(document.createDocumentFragment());
                 	$.each(list,function(idx,videoBean){
-                		var cell = $('<img class="col-md-3 choose">').attr('src','/EEIT/getImage/video/'+videoBean.videoSeqNo).attr('title',videoBean.videoTitle).attr('VideoSeqNo',videoBean.videoSeqNo);
+                		var cell = $('<img class="col-md-3 mt-2 choose">').attr('src','/EEIT/getImage/video/'+videoBean.videoSeqNo).attr('title',videoBean.videoTitle).attr('VideoSeqNo',videoBean.videoSeqNo);
                 		
                 		row.append(cell);
                 		docFrag.append(row);
@@ -80,7 +80,6 @@ $(document).ready(function () {
     	$(document).on('click','#setVideoWallButton',function(){
     		var SeqNoList = [];
     		for(i=0;i<$('.choosed').length;i++){
-    			alert($('.choosed:eq('+i+')').attr('VideoSeqNo'));
     			SeqNoList.push($('.choosed:eq('+i+')').attr('VideoSeqNo'));
     		}
     		$.ajax({
@@ -91,7 +90,7 @@ $(document).ready(function () {
     			
     			success:function(){
     				
-    				alert('更新完成');
+    				
     				$('.list-group a:first-child').trigger('click');
     			},error:function(){
     				
