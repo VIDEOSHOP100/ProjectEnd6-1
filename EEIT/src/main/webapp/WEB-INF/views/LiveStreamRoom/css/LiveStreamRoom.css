@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+
+.suptitle{
+ color:  #bdbdbd;
+ font-size: 16px;
+}
 /* .movespan{ */
 /* 	position:absolute; */
 /* 	 z-index : 999; */
