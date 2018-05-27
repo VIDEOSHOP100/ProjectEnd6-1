@@ -127,8 +127,8 @@
 			<div class="chat-sidebar-inside chat-sidebar-inside-subscribe chat-sidebar-insideHide">
 				<c:forEach var="productSaleBean" items="${productSaleBeanList }" >
 					<div class="hotProductSideDiv liveStreamDiv">
-						<a href="${pageContext.request.contextPath}/searchProductIntro/${productSaleBean.productSeqNo}">
-							<img width="100" height="100" src="${pageContext.request.contextPath}/getImage/Product/${productSaleBean.productSeqNo}"> <p>${productSaleBean.proName}</p><p><small class="subtitle">${productSaleBean.proDescription}</small></p>
+						<a href="${pageContext.request.contextPath}/searchProductIntro/${productSaleBean.productBean.productSeqNo}">
+							<img width="100" height="100" src="${pageContext.request.contextPath}/getImage/Product/${productSaleBean.productBean.productSeqNo}"> <p>${productSaleBean.productBean.proName}</p><p><small class="subtitle">${productSaleBean.productBean.proDescription}</small></p><p><small class="subtitle">銷售量: ${productSaleBean.saleTotal}</small></p>
 						</a>
 					</div>
 				</c:forEach>

@@ -16,6 +16,9 @@ import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._16_.BuyCart.ProCartList.model.ProCartListBean;
 import com.iii._16_.BuyCart.ProCartList.model.ProCartListService;
+import com.iii._16_.OrderSystem.OrderProduct.model.OrderHotBean;
+import com.iii._16_.OrderSystem.OrderProduct.model.OrderProductService;
+import com.iii._16_.PDF.model.orderPdfService;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
 import com.iii._19_.messageFile.model.MessageFileBean;
@@ -34,6 +37,8 @@ public class GlobalController {
 	private ProductSaleService productsaleservice;
 	@Autowired
 	private InputLiveStreamTimeService inputLiveStreamTimeService;
+	@Autowired
+	private OrderProductService orderProductService;
 	
 	@Autowired
 	HomePageService homePageService;
@@ -63,7 +68,7 @@ public class GlobalController {
 			List<InputLiveStreamTimeBean> inputLiveStreamTimeBeanList = inputLiveStreamTimeService.getAllTopFiveLiveStreams();
 			map.put("inputLiveStreamTimeBeanList", inputLiveStreamTimeBeanList);
 			
-			List<ProductSaleBean> productSaleBeanList = productsaleservice.selectAllProduct();
+			List<OrderHotBean> productSaleBeanList = orderProductService.getHotProducts();
 			map.put("productSaleBeanList", productSaleBeanList);
 			
 			List<VideoBean> videoBeanList = homePageService.getHotVideos();
