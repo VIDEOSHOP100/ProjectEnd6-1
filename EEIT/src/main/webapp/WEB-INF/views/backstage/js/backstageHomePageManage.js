@@ -22,7 +22,7 @@ $(document).ready(function () {
   
                 success: function (data) {
                 	var list = data.VideoBeanList;
-                	var row = $('<row></row>');
+                	var row = $('<div></div>').css({'height':'620px','overflow-x':'scroll'});
                 	var docFrag = $(document.createDocumentFragment());
                 	$.each(list,function(idx,videoBean){
                 		var cell = $('<img class="col-md-3 mt-2 choose">').attr('src','/EEIT/getImage/video/'+videoBean.videoSeqNo).attr('title',videoBean.videoTitle).attr('VideoSeqNo',videoBean.videoSeqNo);
