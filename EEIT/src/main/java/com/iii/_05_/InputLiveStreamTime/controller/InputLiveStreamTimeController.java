@@ -356,6 +356,18 @@ public class InputLiveStreamTimeController {
 				//未拍賣物品
 				map.put("productNameMapnoonsale", productNameMapnoonsale);
 				
+				//賣家其他熱門商品
+				List<ProductSaleBean> AllProduct = productSaleService.getAllProByStatus(account, 1);
+				for(ProductSaleBean pb :AllProduct ) {
+					pb.getPicSeqNo();
+				}
+				List<ProductSaleBean> AllProduct0 = productSaleService.getAllProByStatus(account, 0);
+				for(ProductSaleBean pb :AllProduct ) {
+					pb.getPicSeqNo();
+				}
+				
+				map.put("AllProduct0", AllProduct0);
+				
 		map.put("liveStreamReportBean", liveStreamReportBean);
 		return "LiveStreamRoom/LiveStreamRoom";
 		}else {

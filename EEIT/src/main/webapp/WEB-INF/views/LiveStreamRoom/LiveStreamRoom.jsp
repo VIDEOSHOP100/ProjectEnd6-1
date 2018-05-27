@@ -15,9 +15,14 @@
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 <link href="<c:url value='/LiveStreamRoom/css/LiveStreamRoom.css'/>" rel="stylesheet">
 
 <style>
+.testclass{
+font-family: 'Noto Sans', sans-serif;
+}
+
 
 .sellproduct{
 	font-family: 'Josefin Sans', sans-serif;
@@ -68,7 +73,7 @@ justify-content: center;
 
       <!-- Page Heading/Breadcrumbs -->
        
-      <h1 class="mt-4 mb-3">
+      <h1 class="mt-4 mb-3 testclass">
       ${sb.account}
         <small>的直播間</small>
         <c:set var="string1" value="${sb.liveStart}"/>
@@ -244,7 +249,7 @@ justify-content: center;
 		<div class="col-lg-12 "> 
 		 <div class="col-lg-12 text-center">
 		 <c:if test="${!empty AllProduct}">
-        <h2 class="sellproduct">賣家現正拍賣商品</h2>
+        <h2 class="sellproduct testclass">賣家現正拍賣商品</h2>
         </c:if>
         </div>
 <c:forEach var="AllProducta" items="${AllProduct}"> 
@@ -259,7 +264,7 @@ justify-content: center;
               <p class="card-text">價錢：${AllProducta.proPrice}</p>
             </div>
             <div class="card-footer">
-              <a href="#">name@example.com</a>
+<!--               <a href="#">name@example.com</a> -->
             </div>
           </div>
         </div>
@@ -274,7 +279,7 @@ justify-content: center;
     
       <div class="row onsaleitems">
       <div class="col-lg-12 text-center">
-        <h2 class="sellproduct">賣家其他熱門商品</h2>
+        <h2 class="sellproduct testclass">賣家其他熱門商品</h2>
         </div>
 <%--         <c:forEach var="AllProduct0" items="${AllProduct0}">  --%>
 <!--         <div class="col-lg-2 col-sm-4 mb-4"> -->
@@ -321,7 +326,7 @@ justify-content: center;
      <!-- 網格測試 -->  
          <div class="row onsaleitems">
       <div class="col-lg-12 text-center">
-        <h2 class="sellproduct">賣家介紹</h2>
+        <h2 class="sellproduct testclass">賣家介紹</h2>
         </div>
 <%--         <c:forEach var="AllProduct0" items="${AllProduct0}">  --%>
 <!--         <div class="col-lg-2 col-sm-4 mb-4"> -->
@@ -359,7 +364,7 @@ justify-content: center;
       
    
     <!-- /.container -->
-
+</div>
 
       <!-- /.container -->
 
@@ -465,7 +470,7 @@ justify-content: center;
 				</div>
 				<div class="modal-footer">
 
-					<button type="button" class="btn btn-outline-info" id="cancel"
+					<button type="button" class="btn btn-outline-info" id="cancelreport"
 						data-dismiss="modal">取消</button>
 					<button id="reportSubmit" type="button" class="btn btn-outline-info">確認檢舉</button>
 
