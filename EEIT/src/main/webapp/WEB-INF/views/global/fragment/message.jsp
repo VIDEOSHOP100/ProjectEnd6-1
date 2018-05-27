@@ -125,10 +125,24 @@
 			<p class="chat-sidebar-title">熱門商品</p>
 			<hr class="chat-sidebar-line">
 			<div class="chat-sidebar-inside chat-sidebar-inside-subscribe chat-sidebar-insideHide">
+				<c:forEach var="productSaleBean" items="${productSaleBeanList }" >
+					<div class="hotProductSideDiv liveStreamDiv">
+						<a href="${pageContext.request.contextPath}/searchProductIntro/${productSaleBean.productSeqNo}">
+							<img width="100" height="100" src="${pageContext.request.contextPath}/getImage/Product/${productSaleBean.productSeqNo}"> <p>${productSaleBean.proName}</p><p><small class="subtitle">${productSaleBean.proDescription}</small></p>
+						</a>
+					</div>
+				</c:forEach>
 			</div>
 			<p class="chat-sidebar-title">熱門影片</p>
 			<hr class="chat-sidebar-line">
-			<div class="chat-sidebar-inside chat-sidebar-inside-cart chat-sidebar-insideHide">
+			<div class="chat-sidebar-inside chat-sidebar-inside-cart chat-sidebar-insideHide hotVideo-sidebar-insideHide">
+				<c:forEach var="hotVideoBean" items="${hotVideoBeanListSide }" >
+					<div class="hotVideoSideDiv liveStreamDiv">
+						<a href="${pageContext.request.contextPath}/videoRoom/${hotVideoBean.videoSeqNo}">
+							<img width="100" height="100" src="${pageContext.request.contextPath}/getImage/video/${hotVideoBean.videoSeqNo}"> <p>${hotVideoBean.videoTitle}</p><p><small class="subtitle">${hotVideoBean.videoDescription}</small></p>
+						</a>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</c:if>

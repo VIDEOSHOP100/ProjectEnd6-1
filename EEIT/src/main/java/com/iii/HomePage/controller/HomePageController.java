@@ -17,8 +17,8 @@ public class HomePageController {
 	@Autowired
 	HomePageService homePageService;
 	
-	@Autowired
-	VideoTypeService videoTypeService;
+//	@Autowired
+//	VideoTypeService videoTypeService;
 	
 	@Autowired
 	InputLiveStreamTimeService inputLiveStreamTimeService;
@@ -27,7 +27,7 @@ public class HomePageController {
 	public String index(Map<String, Object> map) {
 		map.put("hotVideos", homePageService.getHotVideos());
 		map.put("newVideos", homePageService.getNewVideos());
-		map.put("sortedVideos", videoTypeService.getAllVideoType());
+//		map.put("sortedVideos", videoTypeService.getAllVideoType());
 		map.put("liveStream", inputLiveStreamTimeService.getAllLiveStreams());
 		
 		return "index";

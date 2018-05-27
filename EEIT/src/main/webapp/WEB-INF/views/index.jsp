@@ -116,7 +116,7 @@
 			<i class="fas fa-wifi"></i>
 			正在直播
 		</a>
-		<small class="suptitle">點擊觀看及時串流直播</small>
+		<small class="suptitle">點擊觀看即時串流直播</small>
 		</h1>
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${liveStream}">
@@ -145,7 +145,7 @@
 		<a class="indexTitle"  href="<c:url value='/hotVideo' />">
 			熱門影片
 		</a>
-		<small class="suptitle">點擊觀看及時串流直播</small>
+		<small class="suptitle">點擊觀看熱門影片</small>
 		</h1>
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${hotVideos}">
@@ -185,7 +185,7 @@
 		<a class="indexTitle"  href="<c:url value='/newVideo' />">
 			最新影片
 		</a>
-		<small class="suptitle">點擊觀看及時串流直播</small>
+		<small class="suptitle">點擊觀看最新影片</small>
 		</h1>
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${newVideos}">
@@ -219,45 +219,45 @@
 				</div>
 			</c:forEach>
 		</div>
-		<c:forEach var="videoTypes" items="${sortedVideos}">
-			<h1 style="margin-top:20px;margin-bottom:10px">
-				<a  class="indexTitle"  href="<c:url value='/videoType/${videoTypes[0].videoType}' />">
-					<c:out value="${videoTypes[0].videoType}" />
-				</a>
-			</h1>
-			<div class="row">
-				<c:forEach var="aVideoBean" items="${videoTypes}">
-					<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
-						<div class="card h-100 videoBlockInner" style="border:none">
-							<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
-								<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
-							</a>
-							<div class="card-body">
-								<h6 class="card-title videoTitle">
-									<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"  title="${aVideoBean.videoTitle}"><b>${aVideoBean.videoTitle}</b></a>
-								</h6>
-								<a class="uploaderLink"
-									href="<c:url value='/profile/${aVideoBean.account}' />">
-									<p class="videoSmallWords">${aVideoBean.account}</p>
-								</a>
-								<c:set var="string1" value="${aVideoBean.videoUploadDate}"/>
-								<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
-								<p class="card-text videoSmallWords">${string2}</p>
-								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p>
-							<c:if test="${!empty LoginOK}">
-								<div class="watchLater">
-									<input type="hidden" value="${aVideoBean.videoSeqNo}" />
-									<button type="button" class="btn">
-										<i class="fas fa-tags"></i>
-									</button>
-								</div>
-							</c:if>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
-		</c:forEach>
+<%-- 		<c:forEach var="videoTypes" items="${sortedVideos}"> --%>
+<!-- 			<h1 style="margin-top:20px;margin-bottom:10px"> -->
+<%-- 				<a  class="indexTitle"  href="<c:url value='/videoType/${videoTypes[0].videoType}' />"> --%>
+<%-- 					<c:out value="${videoTypes[0].videoType}" /> --%>
+<!-- 				</a> -->
+<!-- 			</h1> -->
+<!-- 			<div class="row"> -->
+<%-- 				<c:forEach var="aVideoBean" items="${videoTypes}"> --%>
+<!-- 					<div class="col-lg-2 col-sm-6 portfolio-item videoBlock"> -->
+<!-- 						<div class="card h-100 videoBlockInner" style="border:none"> -->
+<%-- 							<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"> --%>
+<%-- 								<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'> --%>
+<!-- 							</a> -->
+<!-- 							<div class="card-body"> -->
+<!-- 								<h6 class="card-title videoTitle"> -->
+<%-- 									<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />"  title="${aVideoBean.videoTitle}"><b>${aVideoBean.videoTitle}</b></a> --%>
+<!-- 								</h6> -->
+<!-- 								<a class="uploaderLink" -->
+<%-- 									href="<c:url value='/profile/${aVideoBean.account}' />"> --%>
+<%-- 									<p class="videoSmallWords">${aVideoBean.account}</p> --%>
+<!-- 								</a> -->
+<%-- 								<c:set var="string1" value="${aVideoBean.videoUploadDate}"/> --%>
+<%-- 								<c:set var="string2" value="${fn:substring(string1, 0, 19)}" /> --%>
+<%-- 								<p class="card-text videoSmallWords">${string2}</p> --%>
+<%-- 								<p class="videoSmallWords">觀看次數:${aVideoBean.videoViews}</p> --%>
+<%-- 							<c:if test="${!empty LoginOK}"> --%>
+<!-- 								<div class="watchLater"> -->
+<%-- 									<input type="hidden" value="${aVideoBean.videoSeqNo}" /> --%>
+<!-- 									<button type="button" class="btn"> -->
+<!-- 										<i class="fas fa-tags"></i> -->
+<!-- 									</button> -->
+<!-- 								</div> -->
+<%-- 							</c:if> --%>
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</c:forEach> --%>
+<!-- 			</div> -->
+<%-- 		</c:forEach> --%>
 	</div>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	<script src="<c:url value='/global/js/index.js'/> "></script>

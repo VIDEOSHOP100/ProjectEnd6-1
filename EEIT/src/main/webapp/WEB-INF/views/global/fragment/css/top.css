@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+
+.notification:hover{
+	color: #d2cdde !important;
+}
+
+
 .searchButtonli {
 	margin-right: 150px;
 	width: 60px;
