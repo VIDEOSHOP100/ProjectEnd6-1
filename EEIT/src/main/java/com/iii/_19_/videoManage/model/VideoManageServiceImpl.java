@@ -130,4 +130,9 @@ public class VideoManageServiceImpl implements VideoManageService {
 		return videoManageDAO.getUserVideoByPageNo(pageNo, account);
 	}
 
+	@Override
+	public List<VideoBean> getAllVideoToWall() {
+		return videoManageDAO.getAllVideoToWall();
+	}
+
 }

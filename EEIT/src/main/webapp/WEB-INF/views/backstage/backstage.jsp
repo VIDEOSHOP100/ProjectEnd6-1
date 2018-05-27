@@ -111,8 +111,8 @@
 		<script src="<c:url value='/backstage/js/vic.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageVideo.js'/> "></script>
 		<script src="<c:url value='/backstage/js/highcharts.js'/> "></script>
-		<script src="<c:url value='/backstage/js/market.js'/> "></script>
 		<script src="<c:url value='/backstage/js/backstageHomePageManage.js'/> "></script>
+		<script src="<c:url value='/backstage/js/market.js'/> "></script>
 		 <script src="http://code.highcharts.com/highcharts.js"></script>
 		 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 		 <script src="https://code.highcharts.com/modules/exporting.js"></script>

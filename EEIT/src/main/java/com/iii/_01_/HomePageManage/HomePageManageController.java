@@ -34,7 +34,7 @@ public class HomePageManageController {
 	public @ResponseBody Map<String,Object> getHomePageManage() {
 		
 		Map<String,Object>map = new HashedMap<String,Object>();
-		List<VideoBean>list = videoManageService.getAllVideo();
+		List<VideoBean>list = videoManageService.getAllVideoToWall();
 		
 		map.put("VideoBeanList", list);
 		

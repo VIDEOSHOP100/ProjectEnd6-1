@@ -16,6 +16,15 @@ public class VideoManageDAOImpl implements VideoManageDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	public List<VideoBean> getAllVideoToWall() {
+		Session session = sessionFactory.getCurrentSession();
+		List<VideoBean> vblist = session.createQuery("FROM VideoBean WHERE videoStatus = '1'").list();
+		return vblist;
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<VideoBean> getAllVideo() {
 		Session session = sessionFactory.getCurrentSession();
 		List<VideoBean> vblist = session.createQuery("FROM VideoBean WHERE videoStatus = '1'").setMaxResults(20).list();
@@ -59,5 +68,6 @@ public class VideoManageDAOImpl implements VideoManageDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("FROM VideoBean WHERE videoStatus = '1' and account = :account order by videoUploadDate desc", VideoBean.class).setParameter("account" , account).setMaxResults(8).setFirstResult(pageNo).list();
 	}
+
 
 }
