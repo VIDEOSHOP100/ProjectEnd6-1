@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
+import com.iii._19_.videoManage.model.VideoBean;
 
 
 @Repository
@@ -69,6 +70,16 @@ public class OrderProductDaoImpl implements OrderProductDao {
 	public OrderProductBean findbyCartId(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+
+	public List<OrderHotBean> getHotProducts() {
+		Session session = factory.getCurrentSession();
+		return session.createNativeQuery("select productSeqNo ,sum(productCount) as saleTotal"
+				+ " from OrderProduct "
+				+ "group by productSeqNo "
+				+ "order by saleTotal desc").addEntity(OrderHotBean.class).setMaxResults(12)
+				.list();
 	}
 
 }
