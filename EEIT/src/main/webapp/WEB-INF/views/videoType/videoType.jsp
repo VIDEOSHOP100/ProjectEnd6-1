@@ -21,7 +21,7 @@
 <body>
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 	<div class="container"  style="margin-left:50px">
-		<h1 class="mt-4 mb-3">分類影片
+		<h1 class="mt-4 mb-3" style="color:#4b367c;font-weight:900">分類影片
 		</h1>
 			
 		<ol class="breadcrumb">
@@ -30,7 +30,7 @@
 		</ol>
 		<c:forEach var="videoTypes" items="${sortedVideos}">
 			<a href="<c:url value='/videoType/${videoTypes[0].videoType}' />" class="videoTypeTitle">
-				<h1 style="margin-left:20px"><c:out value="${videoTypes[0].videoType}" /></h1>
+				<h1 style="margin-left:20px;color:#4b367c;font-weight:900"><c:out value="${videoTypes[0].videoType}" /></h1>
 			</a>
 			<div class="row" style="margin-left:20px">
 				<c:forEach var="aVideoBean" items="${videoTypes}">

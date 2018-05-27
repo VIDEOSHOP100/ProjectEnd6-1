@@ -90,7 +90,7 @@
 	<div class="container" style="margin-left:50px">
 		<h1 style="margin-top:50px;margin-bottom:10px">
 		
-		<a class="indexTitle" href="<c:url value='/LiveStreamHall' />">
+		<a class="indexTitle" href="<c:url value='/LiveStreamHall' />" style="color:#4b367c;font-weight:900">
 			<i class="fas fa-wifi"></i>
 			正在直播
 		</a>
@@ -120,7 +120,7 @@
 			</c:forEach>
 		</div>
 		<h1 style="margin-top:20px;margin-bottom:10px">
-		<a class="indexTitle"  href="<c:url value='/hotVideo' />">
+		<a class="indexTitle"  href="<c:url value='/hotVideo' />" style="color:#4b367c;font-weight:900">
 			熱門影片
 		</a>
 		<small class="suptitle">點擊觀看熱門影片</small>
@@ -160,7 +160,7 @@
 
 		</div>
 		<h1 style="margin-top:20px;margin-bottom:10px">
-		<a class="indexTitle"  href="<c:url value='/newVideo' />">
+		<a class="indexTitle"  href="<c:url value='/newVideo' />" style="color:#4b367c;font-weight:900">
 			最新影片
 		</a>
 		<small class="suptitle">點擊觀看最新影片</small>

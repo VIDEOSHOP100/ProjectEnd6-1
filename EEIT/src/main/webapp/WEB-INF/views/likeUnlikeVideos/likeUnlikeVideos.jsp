@@ -26,7 +26,7 @@
     <div class="container"  style="margin-left:50px">
 
       <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">喜歡的影片
+      <h1 class="mt-4 mb-3" style="color:#4b367c;font-weight:900">喜歡的影片
 <!--         <small>Subheading</small> -->
       </h1>
 		

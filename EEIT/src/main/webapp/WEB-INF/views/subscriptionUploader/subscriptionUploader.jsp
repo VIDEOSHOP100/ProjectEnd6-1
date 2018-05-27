@@ -18,7 +18,7 @@
 <body>
   <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
   <div class="container"  style="margin-left:50px">
-    <h1 class="mt-4 mb-3">訂閱上傳者
+    <h1 class="mt-4 mb-3"  style="color:#4b367c;font-weight:900">訂閱上傳者
 <!--       <small>Subheading</small> -->
     </h1>
     <ol class="breadcrumb">
