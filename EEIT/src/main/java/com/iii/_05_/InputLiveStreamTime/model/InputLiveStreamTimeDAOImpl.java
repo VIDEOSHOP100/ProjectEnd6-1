@@ -1,16 +1,19 @@
 package com.iii._05_.InputLiveStreamTime.model;
 
-import java.security.Timestamp;
+
 import java.util.List;
+
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryBean;
 import com.iii._19_.videoManage.model.VideoBean;
-
+@Transactional
 @Repository
 public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 
@@ -94,6 +97,11 @@ public class InputLiveStreamTimeDAOImpl implements InputLiveStreamTimeDAO {
 		return session.createQuery("FROM InputLiveStreamTimeBean WHERE LiveStatus = '1' AND LiveEnd is NULL",InputLiveStreamTimeBean.class).setMaxResults(5).list();
 	}
 
-
+	@Override
+	public List<AllViewBean> getAllViewsByAccount() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("select account,SUM(allLiveStreamView) as Views from LiveStream group by account").addEntity(AllViewBean.class)
+					.list();
+	}
 	
 }
