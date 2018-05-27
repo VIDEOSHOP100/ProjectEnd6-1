@@ -45,6 +45,21 @@ public class QuestionListController {
 	}
 
 	
+	//新刪修
+		@RequestMapping(value="/questBean.do",method = RequestMethod.POST)
+		public @ResponseBody Map<String,Object> insertHotProduct(
+				@ModelAttribute("questionListBean") QuestionListBean QusetBean,BindingResult result,HttpSession session) throws SQLException {
+			 Map<String,Object> map= new HashMap<String,Object>();
+			 String[] suppressedFields = result.getSuppressedFields();
+			 if (suppressedFields.length > 0) {
+			 System.out.println("嘗試輸入不允許的欄位");
+			 throw new RuntimeException("嘗試輸入不允許的欄位: " +
+			 StringUtils.arrayToCommaDelimitedString(suppressedFields));
+			 }
+			 
+			return map ;
+		}
+	
 	
 	@RequestMapping(value = "update" ,method = RequestMethod.POST)
 	public String updateQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean) {
@@ -140,21 +155,7 @@ public class QuestionListController {
 	}
 		
 	
-	//新刪修
-	@RequestMapping(value="/questBean.do",method = RequestMethod.POST)
-	public @ResponseBody Map<String,Object> insertHotProduct(
-			@ModelAttribute("questionListBean") QuestionListBean QusetBean,BindingResult result,
-			HttpSession session) throws SQLException {
-		 Map<String,Object> map= new HashMap<String,Object>();
-		 String[] suppressedFields = result.getSuppressedFields();
-		 if (suppressedFields.length > 0) {
-		 System.out.println("嘗試輸入不允許的欄位");
-		 throw new RuntimeException("嘗試輸入不允許的欄位: " +
-		 StringUtils.arrayToCommaDelimitedString(suppressedFields));
-		 }
-		 
-		return map ;
-	}
+	
 
 //	
 //	//刪除標單連結
