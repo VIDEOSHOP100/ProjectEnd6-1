@@ -30,4 +30,6 @@ public interface InputLiveStreamTimeDAO {
 	
 	public List<InputLiveStreamTimeBean> getAllTopFiveLiveStreams();
 	
+	public List<AllViewBean> getAllViewsByAccount();
+	
 }

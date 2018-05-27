@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.iii._01_.Manager.bean.ManagerBean;
 import com.iii._01_.Member.bean.MemberBean;
+import com.iii._09_.questionList.model.QuestionListBean;
 import com.iii._16_.ProductHot.model.ProductHotBean;
 
 @Controller
@@ -25,6 +26,11 @@ public class BackstageController {
 	public void delHotBean(Map<String, Object> map) {
 		ProductHotBean hotbean = new ProductHotBean();
 		map.put("DelHotBean", hotbean);
+	}
+	@ModelAttribute//問題表單修改;
+	public void updataQuestionListBean(Map<String, Object> map) {
+		QuestionListBean questionListBean = new QuestionListBean();
+		map.put("questionListBean", questionListBean);
 	}
 	@RequestMapping("")
 	public String backstage(HttpSession session, Model model) {

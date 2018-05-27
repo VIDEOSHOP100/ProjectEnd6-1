@@ -74,26 +74,41 @@
 						</form:form>
 					</div>
 <!-- 客服問題集修改	----------------------------------------------------------------------------->
-<!-- 	 <div id="FAQ-dialog-form" title="客服問題修改" class="hideForm" style="overflow:hidden"> -->
-<!-- 	<!-- 						<p class="validateTips">確認刪除此資料?</p> --> 
-<%-- 		<form:form modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post"> --%>
-<!-- 			<fieldset> -->
-<!-- 	  		<label for="productName">修改問題標題:</label> -->
-<%-- 	  		<form:input type="text" path="questionListTitle" /> --%>
-<!-- 	  		<label for="productName">修改問題內容:</label> -->
-<%-- 	  		<form:input type="text" path="questionListArticle"/> --%>
-<!-- 	  		<label for="productName">修改管理員:</label> -->
-<%-- 	   		<form:input type="text" path="managerId"/> --%>
-<!-- 	   		<label for="productName">問題類型:</label> -->
-<%-- 	   		<form:input type="text" path="questionListType"/> --%>
-<%-- 	   		<form:select  id="topic" path="questionListStatus"> --%>
-<%-- 	   			<form:option value="1">顯示</form:option> --%>
-<%-- 	    		<form:option value="0">不顯示</form:option>		 --%>
-<%-- 	    	</form:select> --%>
-<!-- 	   			<input type="submit" value="Update"/> -->
-<!-- 	   		</fieldset> -->
-<%-- 	   	</form:form> --%>
-<!-- 	</div> -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<form:form id="updateQList" modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post">
+		<form:input type="hidden" id="QSeqNum" value="" path="questionListSeqNo" />
+
+		修改問題標題:<form:input type="text" path="questionListTitle" />
+		<br>
+		修改問題內容:<form:input type="text" path="questionListArticle"/>
+		<br>
+		修改管理員:<form:input type="text" path="managerId"/>
+		<br>
+		問題類型:<form:input type="text" path="questionListType"/>
+		<br>
+      	<form:select  id="topic" path="questionListStatus">
+			<form:option value="1">顯示</form:option>
+			<form:option value="0">不顯示</form:option>		
+		</form:select>
+<!--        	 <input type="submit" value="Update"/> -->
+		</form:form>
+      </div>
+      <div class="modal-footer">
+        <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+        <button type="button" id="updateQuestListButton" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- 					end ----------------------------------------------------------------------------->
 <!-- 	刪除商品表格	-------------------------- -->
 					<div id="delete-dialog-form" title="刪除資料" class="hideForm" style="overflow:hidden">
@@ -117,7 +132,7 @@
 		 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 		 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 		 <script src="https://code.highcharts.com/modules/export-data.js"></script>
- 
+
  
   </body>
 </html>

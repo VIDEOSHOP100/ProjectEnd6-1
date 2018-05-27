@@ -39,7 +39,7 @@ $(document).ready(function() {
 //				var parentElement = thisDeleteButton.parents('.row')
 //				parentElement.find('.col-md-7').remove();
 //				parentElement.find('.col-md-5').remove();
-				alert("直播已關閉 跳轉回首頁");
+				responsiveVoice.speak("直播已關閉 將為您跳轉至首頁","Chinese Female");
 				var href = $(".textfamily").attr("href");
 				window.location.href=href;
 			},
@@ -186,11 +186,11 @@ $(document).on('click','.deleteAuction',function(e){
 });
 //叫價結束END----------------------------------------
 //拍賣結束出現在中間-------------------------------------
-function addAuctionEnd(account, productSeqNo,proName){
+function addAuctionEnd(account, productSeqNo,proName,proPrice){
 	
-	responsiveVoice.speak("拍賣物品"+proName+"已賣給"+account,"Chinese Female");
+	responsiveVoice.speak("拍賣物品"+proName+"已賣給"+account+"得標價錢為"+proPrice+"元","Chinese Female");
 //	append('<div class="relative2"><p class="hahaha">'+"拍賣物品"+ productSeqNo + "已賣給 "+ account +'</p></div>')
-$('.hahaha').html("拍賣物品："+"<br><br><p style='color:red'>["+proName+"]</p>" + "已賣給： <p style='color:red'>"+ account+"</p>");
+$('.hahaha').html("拍賣物品："+"<br><br><p style='color:red'>["+proName+"]</p>" + "已賣給： <p style='color:red'>"+ account+"</p><p style='color:red'>得標價錢為："+proPrice+"元</p>");
 $('.hahaha').show();
 	$('.hahaha').dialog({
 		autoOpen:false,
@@ -350,7 +350,7 @@ stompClient.connect({}, function(frame) {
 //叫價結束訂閱---------------------------
     stompClient.subscribe('/target/endAuction/subscription/' + productSeqNo , function(auctreturn){
 //    	var account = $('#catch-account').val();
-    	addAuctionEnd(JSON.parse(auctreturn.body).account,JSON.parse(auctreturn.body).productSeqNo,JSON.parse(auctreturn.body).proName)
+    	addAuctionEnd(JSON.parse(auctreturn.body).account,JSON.parse(auctreturn.body).productSeqNo,JSON.parse(auctreturn.body).proName,JSON.parse(auctreturn.body).proPrice)
     	
     });
 //叫價結束訂閱----------------------------------------
@@ -440,16 +440,21 @@ $(document).on('click','.chatrow',function(){
         $('#aucEnd').datetimepicker({format: 'yyyy-mm-dd hh:ii:ss'});
     });
 	 
-//動態標題 HOVER
+//動態標題 
+	 $(".container").addClass('animated fadeInDown');
 	 
-	 $(".mt-4").hover(
-			  function () {
-			    $(this).addClass('animated infinite bounce');
-			  }, 
-			  function () {
-			    $(this).removeClass('animated infinite bounce');
-			  }
-			  );
+	setTimeout(function(){$(".container").removeClass('animated fadeInDown');}, 1200);
+		
+	 
+	 
+//	 $(".mt-4").hover(
+//			  function () {
+//			   
+//			  }, 
+//			  function () {
+//			    $(this).removeClass('animated infinite bounce');
+//			  }
+//			  );
 //開關插劍	
 	 $("[name='my-checkbox']").bootstrapSwitch();
 	 
@@ -459,14 +464,15 @@ $(document).on('click','.chatrow',function(){
 		 if(state==true){
 //			 alert(true)
 			 //顯示物品並隱藏控制列
-			 $('.onsaleitems').show();
+			 $('.onsaleitems').show().addClass('animated fadeInLeft');
+			 
 			 $('.editform').hide();
 			 
 			
 		 }else{
 			 //顯示控制列並隱藏物品
 			 $('.onsaleitems').hide();
-			 $('.editform').show();
+			 $('.editform').show().addClass('animated fadeInLeft');
 		 }
 		  console.log(this); // DOM element
 		  console.log(event); // jQuery event

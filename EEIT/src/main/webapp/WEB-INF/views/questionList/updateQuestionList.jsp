@@ -45,12 +45,6 @@
 <body>
 <div class="container" style="margin-left:50px">
 	<form:form modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post">
-<!-- 	  <input type="hidden" name="_method" value="PUT"/> -->
-<!-- 		<p class="reasontitle modal-title">請選擇欲拍賣商品：</p> -->
-<%-- 			 	<form:select id="topic" path="questionListSeqNo"> --%>
-<%-- 					<form:options items="${questionListSeqNo}" /> --%>
-<%-- 				</form:select><br><br> --%>
-<%-- 		修改問題編號:<form:input type="text" path="questionListSeqNo"/> --%>
 		修改問題標題:<form:input type="text" path="questionListTitle" />
 		修改問題內容:<form:input type="text" path="questionListArticle"/>
 		修改管理員:<form:input type="text" path="managerId"/>

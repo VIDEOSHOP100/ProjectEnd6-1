@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+	var numb = null;
+	
     $('.list-group-item').click(selectCategory);
     		
     		
@@ -19,17 +20,20 @@ $(document).ready(function () {
                 url: "/EEIT/QuestionList/getAllQuestionList",
                 dataType: "json",
                 timeout: 600000,
-  
+   
                 success: function (data) {
                     var tab = $('<table></table>').addClass('table table-striped').html('<thead><tr><th class="text-center">問題編號</th><th>編輯人員</th><th>問題類型</th><th>標題</th><th>上傳時間</th><th>是否顯示</th></tr></thead><tbody></tbody>');
-                    $('#content>h2').after(tab);
+                    $('#content>h2').after(tab).after('<a href =" /EEIT/QuestionList/addQuestionList">新增問題</a>');
                         var docFrag = $(document.createDocumentFragment());
                         console.log(data);
                         $.each(data, function (idx,QuestList) {
-
-                            var cell1 = $('<td></td>').text(QuestList.questionListSeqNo).addClass('pointer text-primary text-center questionListSeqNo');
+                        	numb =  QuestList.questionListSeqNo;
+                        	console.log(numb);
+                            var cell1 = $('<td data-toggle="modal" data-target="#exampleModal"></td>').text(QuestList.questionListSeqNo).addClass('pointer text-primary text-center questionListSeqNo');
+                            $('#updateQList > #QSeqNum').val(QuestList.questionListSeqNo);
+//                            alert('#updateQList > #QSeqNum')
                             var cell2 = $('<td></td>').text(QuestList.managerId);
-                            
+                           
                             if(QuestList.questionListType == 1){
                             	var cell3 = $('<td></td>').text("帳號問題");
                             }else if(QuestList.questionListType == 2){
@@ -76,23 +80,39 @@ $(document).ready(function () {
     }
     
 //   ---------------------------------以上功能列選擇------------------------------------- 
- 
+   $(document).on("click",'.btn btn-primary',function(){
+	
+    });
+    	
+    
     
 
-//    	var mrSN;
+
+   var dialog, form;
     
     $(document).on("click",'.questionListSeqNo',function(){
     	mrSN = $(this).text();
+//    	alert($(this).parent('tr').children('td:eq(0)').text());
+//    	alert($(this).parent('tr').children('td:eq(1)').text());
+//    	alert($(this).parent('tr').children('td:eq(2)').text());
+//    	alert($(this).parent('tr').children('td:eq(3)').text());
+//    	alert($(this).parent('tr').children('td:eq(4)').text());
+//    	alert($(this).parent('tr').children('td:eq(5)').text());
     	
-    	var dialog, form;
+    	$('input[name="managerId"]').val($(this).parent('tr').children('td:eq(1)').text());
+    	$('input[name="questionListTitle"]').val($(this).parent('tr').children('td:eq(3)').text());
+//    	$('input[name="questionListArticle"]').val($(this).parent('tr').children('td:eq(3)').text());
+    	$('input[name="questionListType"]').val($(this).parent('tr').children('td:eq(2)').text());
+    	$('input[name="questionListStatus"]').val($(this).parent('tr').children('td:eq(5)').text());
     	
+    	alert();
     	dialog = $('#insert-dialog-form').dialog({
     		autoOpen : false,
     		height : 600,
     		width : 400,
     		modal : true,
     		buttons : {
-    			"確定新增圖片" : inserthotproduct,
+//    			"確定新增圖片" : inserthotproduct,
     			Cancel : function() {
     				dialog.dialog("close");
     			}
@@ -104,64 +124,36 @@ $(document).ready(function () {
     	});
     	form = dialog.find("form").on("submit",function(event) {
     		event.preventDefault();
-    		
+    		alert('aaaaa');
+    		$.ajax({
+        		type:"POST",
+        		url:"/EEIT/QuestionList",
+        		success:function(data){
+        			alert('OK')
+        		},
+        		error: function (xhr, ajaxOptions, thrownError) {
+        		},
+        	})
     	});
     	
     	
     	
-//    	-----
-    	$('#content').empty();
+//    	-----------------------------------
+    	var mrSN;
+
+    	$('#QSeqNum').val(mrSN);
     	    	
     	$.ajax({
     		
     		type:"GET",
     		url:"/EEIT/QuestionList/updateQuestionList/" + mrSN,
     		
+    		
     		success:function(data){
     			var ret = new Date(data.questionListUploadDate);
     			var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
     			var format = $('<container></container>').html(
     					
-//    					<form:form modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post">
-//    							修改問題標題:<form:input type="text" path="questionListTitle" />
-//    							修改問題內容:<form:input type="text" path="questionListArticle"/>
-//    							修改管理員:<form:input type="text" path="managerId"/>
-//    							問題類型:<form:input type="text" path="questionListType"/>
-//    					      	<form:select  id="topic" path="questionListStatus">
-//    								<form:option value="1">顯示</form:option>
-//    								<form:option value="0">不顯示</form:option>		
-//    							</form:select>
-//    					      <input type="submit" value="Update"/>
-//    						</form:form>
-    					'<row>' +
-    						'<div class="col-lg-8">' +
-    							'<form modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post">'  +
-    							'<input type="hidden" path="'+ data.questionListSeqNo+'"/>'+ 
-    							'修改問題標題:<input type="text" path="' +  data.questionListTitle +'" />'+
-    							'修改問題內容:<input type="text" path="' +  data.questionListArticle +'" />'+
-    							'修改管理員:<input type="text" path="' +  data.managerId +'" />'+
-    							'問題類型:<input type="text" path="' +  data.questionListType +'" />'+
-    							'<select  id="topic" path="'+ data.questionListStatus +'">' +
-    							'<option value="1">顯示</option><option value="0">不顯示</option></select>'+
-    							'</select><input type="submit" value="修改"/></form>'+
-    								
-    							
-    							
-//    							'<a  target="_blank" href="/EEIT/profile/' +data.managerId + '">' + data.accountFrom + '</a>' + 
-//    								'  標題 : ' + 
-//    								'<a  target="_blank" href="/EEIT/profile/' +data.accountTo + '">' + data.accountTo + '</a>' +
-//    							'</p>' +
-//    							'<p>Posted on' + formated + '</p><hr>' +
-//    							'<p>' + data.reportContent +'</p><hr>' +
-//    							'<div class="card my-4"><h5 class="card-header">回覆檢舉</h5><div class="card-body">' +
-//    							'<form:form method="POST" action="/replyMemberReport" modelAttribute="MemberReportBean" class = "form-horizontal">' + 
-//    							'<textarea id="replyMRContent" path="replyContent" class="form-control" rows="3"></textarea>' + 
-//    							'<button class = "btn btn-primary" id = "replyMemberReportButton">回覆檢舉</button>' +
-//    							'</form>' +
-//    							'</div>'+
-    							'</div>'+
-    							'</div>'+
-    					'</row>'
     			
     				) 
     					
@@ -172,7 +164,7 @@ $(document).ready(function () {
         
                 alert(thrownError);
             
-        },
+    		},
    
     		
     	})
@@ -180,22 +172,37 @@ $(document).ready(function () {
     })
     
     
-    $(document).on("click",'#replyMemberReportButton',function(){
+    $(document).on("click",'#updateQuestListButton',function(){
     	
-    	
-    	var reply = $('#replyMRContent').val();
-    	
+    	alert('aaaa')
+//    	var questionListSeqNo = $('input[name="questionListSeqNo"]').val();
+//    	var questionListTitle = $('input[name="managerId"]').val();
+//    	var questionListStatus = $('input[name="questionListTitle"]').val();
+//    	var questionListUploadDate = $('input[name="questionListArticle"]').val();
+//    	var managerId = $('input[name="questionListType"]').val();
+//    	var questionListType = $('input[name="questionListStatus"]').val();
+    	var form = $('#updateQList')[0];
+		var data = new FormData(form);
+		console.log(data)
+		console.log(form)
+		
+    	alert('bbbb')
     	$.ajax({
     		
     		type:"POST",
-    		url:"/EEIT/memberReport",
-    		data:{ _method : "PUT" ,memberReportSeqNo:mrSN ,replyContent:reply},
-    		
+    		url:"/EEIT/QuestionList/update",
+			cache: false,
+	        contentType: false,
+	        processData: false,
+	        timeout: 600000,
+	        enctype: 'multipart/form-data',
+    		data:data,
     		success:function(){
     		
     			alert('回覆投訴完成!');
     			$('.bg-primary').trigger("click");
-    		
+    			$('.modal').removeClass('show')
+    			$('#cancel').trigger("click");
     		},
     		
     		error:function(e){
