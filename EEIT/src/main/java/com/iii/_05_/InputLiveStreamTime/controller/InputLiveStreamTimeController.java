@@ -30,13 +30,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectBean;
 import com.iii._05_.Bid.model.BidBean;
+import com.iii._05_.InputLiveStreamTime.model.AllViewBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeDAO;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._05_.customized.model.CustomizedBean;
 import com.iii._05_.customized.model.CustomizedService;
 import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryBean;
 import com.iii._05_.liveStreamHistory.model.LiveStreamHistoryService;
 import com.iii._05_.liveStreamReport.model.liveStreamReportBean;
+import com.iii._05_.liveStreamReport.model.liveStreamReportDAO;
 import com.iii._05_.liveStreamReport.model.liveStreamReportService;
 import com.iii._16_.ProductSale.Product.model.ProductSaleBean;
 import com.iii._16_.ProductSale.Product.model.ProductSaleService;
@@ -56,6 +59,8 @@ public class InputLiveStreamTimeController {
 	liveStreamReportService liveStreamReportService;
 	@Autowired
 	CustomizedService CustomizedService;
+	@Autowired
+	InputLiveStreamTimeDAO  InputLiveStreamTimeDAO;
 //	@RequestMapping("/LiveStream")
 //	public String getLiveStreamsBySeqNo(@RequestParam("LiveNo") Integer LiveNo,Model model) {
 //		
@@ -164,14 +169,40 @@ public class InputLiveStreamTimeController {
 	
 	@RequestMapping(value="/backstageroll",method=RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getAllLiveStreamListbk() {
-		List<InputLiveStreamTimeBean>  AllLiveStreamList = InputLiveStreamTimeService.getAllLiveStreamss();
+		//查询数据  
+		List<AllViewBean>  AllLiveStreamList = InputLiveStreamTimeDAO.getAllViewsByAccount();
 		JSONArray myString = new JSONArray();
 //		String aa = JSONArray.
 //		         .put("JSON", AllLiveStreamList).toString();
+		
+		//-----------------------------------------------------------
+		 int i=0;
+		StringBuffer account=new StringBuffer();  
+        StringBuffer views=new StringBuffer();  
+        //格式化数据，格式为[time1,time2,....],[value1,value2,....]  
+//        account.append("[");  
+//        views.append("[");  
+        for (AllViewBean locM : AllLiveStreamList) {  
+        	account.append(locM.getAccount());  
+        	views.append(locM.getViews());   
+            //若为最后一个则不加逗号  
+        	i++;
+            if(i<AllLiveStreamList.size()){  
+            	account.append(",");  
+            	views.append(",");  
+            }  
+        }
+        
+//        account.append("]");  
+//        views.append("]");  
+        //--------------------------------------------------------
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("AAA", AllLiveStreamList);
+		map.put("accountArray", account);
+		map.put("viewsArray", views);
 		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
 		System.out.println(map);
+		System.out.println(account);
+		System.out.println(views);
 		System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
 //		map.put("AllLiveStream", AllLiveStreamList);
 //		JSONObject JSONObject = new JSONObject();

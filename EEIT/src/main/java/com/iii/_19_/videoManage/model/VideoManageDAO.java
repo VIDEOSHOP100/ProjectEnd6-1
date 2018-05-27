@@ -3,6 +3,9 @@ package com.iii._19_.videoManage.model;
 import java.util.List;
 
 public interface VideoManageDAO {
+	
+	public List<VideoBean> getAllVideoToWall();
+	
 	public List<VideoBean> getAllVideo();
 	
 	public List<VideoBean> getAllVideoByAccount(String account);

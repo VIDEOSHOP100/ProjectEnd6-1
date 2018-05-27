@@ -62,8 +62,8 @@
               <h4 class="card-title">
                <a href="<c:url value='/LiveStream/${aLiveStreamBean.liveStreamSeqNo}' />">${aLiveStreamBean.streamName}</a>
               </h4>
-              <p>UP主:<a class="uploaderLink"href="<c:url value='/uploaderHomePage/${aLiveStreamBean.account}' />">${aLiveStreamBean.account}</a></p>
-           <p>觀看次數:${aLiveStreamBean.liveStreamView}</p>
+              <p>UP主:<a class="uploaderLink"href="<c:url value='/profile/${aLiveStreamBean.account}' />">${aLiveStreamBean.account}</a></p>
+           <p>觀看次數:${aLiveStreamBean.allLiveStreamView}</p>
             </div>
           </div>
           

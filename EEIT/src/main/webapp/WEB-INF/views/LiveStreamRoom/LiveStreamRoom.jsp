@@ -73,7 +73,7 @@ justify-content: center;
         <small>的直播間</small>
         <c:set var="string1" value="${sb.liveStart}"/>
 		<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
-        <small>開始時間:${string2}</small>
+        <small class="suptitle">開始時間:${string2}</small>
         
         
         <c:if test="${!empty LoginOK.account}">
@@ -292,12 +292,12 @@ justify-content: center;
 						<div class="card-body ccc">
 							<h4 class="card-title JQellipsisTitle">${product.proName}</h4>
 							<p class="card-text">限時特價  $NT ${product.proPrice }</p>
-							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription}</p>
+<%-- 							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription}</p> --%>
 						</div>
 						<div class="card-footer">
 							<a
 								href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}"
-								class="btn btn-primary">點我購買</a>
+								class="btn btn-primary">點我看更多...</a>
 						</div>
 					</div>
 				</div>
