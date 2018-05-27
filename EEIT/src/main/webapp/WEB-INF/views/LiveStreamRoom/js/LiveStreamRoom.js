@@ -464,7 +464,9 @@ $(document).on('click','.chatrow',function(){
     });
 	 
 //動態標題 
+//	 $(".container").hide();
 	 $(".chat-sidebar").hide();
+//	 $(".container").show();
 	 $(".container").addClass('animated fadeInRight');
 	 
 	 
