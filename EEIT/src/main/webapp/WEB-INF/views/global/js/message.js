@@ -115,10 +115,10 @@ $(document).ready(function() {
 			$(this).find('.unreadNumber').css({'display':'none'})
 			$(this).find('.unreadNumber').text('0');
 			$(this).parent('div').children('.box-head').addClass('box-headNoneChangeColor');
-			updateScroll();
 			$(this).parents('.box').removeClass('box-close').addClass('box-open')
 			$(this).removeClass('box-headAlert box-headChangeColor').addClass('box-headNoneChangeColor');
 		}
+		updateScroll();
     })
     $(document).on('keyup','.box-message>textarea',function(e){
         if(e.keyCode == 13)
@@ -405,7 +405,7 @@ $(document).ready(function() {
 	function updateScroll(){
 		var element = $('.box-body')
 		var scrollHeight = element.prop("scrollHeight");
-		element.scrollTop(scrollHeight,200);
+		element.scrollTop(scrollHeight,230);
 
 	}
 	

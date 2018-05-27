@@ -294,12 +294,12 @@
 		<p>影片名稱:<span id="videoTitleDelete"></span></p>
 		<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 	</div>
-<!-- 	<div id="reportSuccess"> -->
-<!-- 	  <p> -->
-<!-- 	    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span> -->
-<!-- 	   	投訴已經送出 -->
-<!-- 	  </p> -->
-<!-- 	</div> -->
+	<div id="reportSuccess">
+	  <p>
+	    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+	   	投訴已經送出
+	  </p>
+	</div>
 <!-- 	<footer class="py-5 bg-dark"> -->
 <!-- 		<div class="container"> -->
 <!-- 			<p class="m-0 text-center text-white"> -->

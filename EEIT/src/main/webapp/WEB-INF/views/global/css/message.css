@@ -497,6 +497,7 @@
 /* 	width: 200px; */
 	overflow:hidden;
 }
+
 .chat-sidebar-insideShow{
 	overflow:auto;
 }
@@ -570,18 +571,28 @@
 	background-color: gray;
 }
 .chat-sidebar-liveStream{
-	height: 500px;
+	height: 300px;
 	width: 500px;
 }
 .liveStreamDiv{
 	height: 100px;
-	width: 500px;
+	width: 245px;
+}
+.hotProductSideDiv{
+	height: 100px;
+	width: 245px;
+}
+.hotVideoSideDiv{
+	height: 100px;
+	width: 245px;
 }
 .liveStreamDiv img, .liveStreamDiv p{
 	float:left;
 }
 .liveStreamDiv p{
-	width: 400px;
+	width: 145px;
+	height: 20px;
+	overflow: hidden;
 }
 
 .friendPopup {
@@ -639,7 +650,9 @@
     from {opacity: 0;}
     to {opacity:1 ;}
 }
-
+.hotVideo-sidebar-insideHide{
+	height:255px;
+}
 /* .myPopup{ */
 /* 	width:320px; */
 /* } */

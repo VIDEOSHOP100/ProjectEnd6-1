@@ -167,7 +167,7 @@
 						<a class="nav-link dropdown-toggle notificatiolink" href="#" 
 							id="navbarDropdownPortfolio" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
-							<span class="notificationNone notification"  style="background-color:#4b367c">
+							<span class="notificationNone notification"  style="background-color:#4b367c;color:rgba(255,255,255,.5)">
 								<i class="fas fa-exclamation-circle"></i>通知
 							</span>
 						</a>

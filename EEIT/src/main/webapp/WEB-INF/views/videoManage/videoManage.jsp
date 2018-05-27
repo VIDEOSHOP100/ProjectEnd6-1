@@ -27,7 +27,7 @@
 		
 			<div class="row">
 				<div class="col-md-10">
-					<h1 class="mt-4 mb-3">影片管理
+					<h1 class="mt-4 mb-3" style="color:#4b367c;font-weight:900">影片管理
 <!-- 						<small>Subheading</small> -->
 					</h1>
 					
