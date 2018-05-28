@@ -33,7 +33,7 @@ public class QuestionListController {
 	@Autowired
 	QuestionListService questionListService;
 	
-	
+	//新增
 	@RequestMapping(method = RequestMethod.POST)
 	public String saveQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean,Map<String,Object> map) {
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
@@ -41,11 +41,11 @@ public class QuestionListController {
 		questionListBean.setQuestionListStatus("1");
 		questionListService.saveQuestionList(questionListBean);
 		map.put("allQuestionList", questionListService.selectQuestionList());
-		return "questionList/Success";
+		return "backstage/backstage";
 	}
 
 	
-	//新刪修
+	
 		@RequestMapping(value="/questBean.do",method = RequestMethod.POST)
 		public @ResponseBody Map<String,Object> insertHotProduct(
 				@ModelAttribute("questionListBean") QuestionListBean QusetBean,BindingResult result,HttpSession session) throws SQLException {
@@ -60,7 +60,7 @@ public class QuestionListController {
 			return map ;
 		}
 	
-	
+	//新刪修
 	@RequestMapping(value = "update" ,method = RequestMethod.POST)
 	public @ResponseBody Map<String,String> updateQuestionList(@ModelAttribute("questionListBean") QuestionListBean questionListBean) {
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
