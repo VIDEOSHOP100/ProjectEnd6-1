@@ -43,7 +43,7 @@
           <div class="list-group"> 
             <a class="list-group-item pointer text-primary replyMessage" href ="${pageContext.request.contextPath}/QuestionList/1" >帳號問題</a>
             <a class="list-group-item pointer text-primary questionManage" href ="${pageContext.request.contextPath}/QuestionList/2" >密碼與登入</a>
-            <a class="list-group-item pointer text-primary memberReport" href ="${pageContext.request.contextPath}/QuestionList/3" >建立帳號或刪除帳號</a>
+            <a class="list-group-item pointer text-primary memberReport" href ="${pageContext.request.contextPath}/QuestionList/3" >運送與寄送商品</a>
             <a class="list-group-item pointer text-primary productReport" href ="${pageContext.request.contextPath}/QuestionList/4" >商品交易</a>
             <a class="list-group-item pointer text-primary liveStreamReport" href ="${pageContext.request.contextPath}/QuestionList/5" >直播拍賣</a>
             <a class="list-group-item pointer text-primary videoReport" href ="${pageContext.request.contextPath}/QuestionList/6" >影片上傳</a>

@@ -30,6 +30,7 @@
 	<br>
 	<div class="container-fluid">
 		<section class="container">
+		<button class="btn btn-warning Demo">Demo</button>
 		<div class="container-page  offset-2">
 			<form:form class="form-group" id="orderForm" action="confirmOrder"
 				name="orderForm" modelAttribute="orderBean">
@@ -207,8 +208,12 @@
 						</div>
 					</div>
 				</div>
+				<div class="container">
+				
 				<button type="submit" class="btn btn-primary" id="confirmorder">送出訂單</button>
 			</form:form>
+				
+				</div>
 			<br>
 			<br>
 			
