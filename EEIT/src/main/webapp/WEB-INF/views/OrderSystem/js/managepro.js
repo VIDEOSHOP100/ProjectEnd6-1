@@ -1,6 +1,21 @@
  $( function() {
-
+	 			$(document).on( "click",'.allpay', function() {
+	 				var seqno = $(this).parents('.trkill').find('h5').text();
+	 				$.ajax({
+	 		              url: '/EEIT/allpay/checkout/'+seqno,
+	 		              type: 'POST',
+	 		             
+	 		              success: function (response) {
+	 							$('#response').html(response);
+	 		              },
+	 		              error: function (e) {
+	 		                  console.log(e);
+	 		              }
+	 		          }); 
+	 			});
  
+	 			
+	 			
 			    $( "#dialog" ).dialog({
 			        autoOpen: false,
 			        show: {

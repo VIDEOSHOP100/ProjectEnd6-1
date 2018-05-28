@@ -74,8 +74,15 @@
 									<td class="puthere">${xxx.howToPay}</td>
 									<td>NT${xxx.orderTotalPrice}</td>
 									<td>${xxx.orderDateTime}</td>
-									<td>${xxx.transorderStatus}</td>
+									<td>${xxx.transorderStatus}
+									<c:if test="${xxx.orderStatus == 1}">
+									<i class="fab fa-amazon-pay allpay"></i>
+									</c:if>
+								
+									
+									</td>
 									<td><a href="${pageContext.request.contextPath}/getPdfFile/pdf/${xxx.orderSeqNo}"><i class="fas fa-cloud-download-alt"></i></a></td>
+								
 								</tr>
 							</c:forEach>
 						
@@ -94,6 +101,7 @@
 						</tfoot>
 					</table>
 					<br>
+					<div id="response"></div>
 <!-- 					toggler --------------------------------------------------------------->
 		<div id="dialog" title="訂單明細">
 		<table>
