@@ -49,7 +49,6 @@
             <a class="list-group-item pointer text-primary productReport" href ="${pageContext.request.contextPath}/QuestionList/4" >商品交易</a>
             <a class="list-group-item pointer text-primary liveStreamReport" href ="${pageContext.request.contextPath}/QuestionList/5" >直播拍賣</a>
             <a class="list-group-item pointer text-primary videoReport" href ="${pageContext.request.contextPath}/QuestionList/6" >影片上傳</a>
-            <a class="list-group-item pointer text-primary homePageManage" href ="${pageContext.request.contextPath}/QuestionList/7" >與我們聯繫</a>
 
      
     
