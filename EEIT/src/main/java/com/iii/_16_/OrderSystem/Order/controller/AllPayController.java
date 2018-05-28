@@ -81,8 +81,10 @@ public class AllPayController {
 	 		aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
 	 		// 付款成功後轉跳的頁面
 			}
-//			aio.setClientBackURL("http://localhost:8080/EEIT/allpay/getAllPayOrder");
-			aio.setOrderResultURL("http://localhost:8080/EEIT/allpay/getAllPayOrder");
+//		aio.setClientBackURL("http://localhost:8080/EEIT/goMarketHomePage");
+		aio.setClientBackURL("https://eeitdemo10005.southeastasia.cloudapp.azure.com:8443/EEIT/goMarketHomePage");
+//		aio.setOrderResultURL("http://localhost:8080/EEIT/goMarketHomePage");
+//		aio.setOrderResultURL("https://eeitdemo10005.southeastasia.cloudapp.azure.com:8443/EEIT/goMarketHomePage");
 				try {
 					String html = all.aioCheckOut(aio, invoice);
 					System.out.println(html);
