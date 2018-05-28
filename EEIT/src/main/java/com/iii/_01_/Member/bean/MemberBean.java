@@ -44,7 +44,7 @@ public class MemberBean implements Serializable {
 	private Timestamp registerdate; // 會員註冊日期
 	private Timestamp lastlogin; // 最近登入日期
 	private Boolean ban; // 封鎖
-	private Boolean googleMark; //是否是google帳號
+	private Integer googleMark; //是否是google帳號
 
 	@Transient
 	private Integer memberSeqNo; // 流水編號
@@ -61,39 +61,56 @@ public class MemberBean implements Serializable {
 //	public void setFaqbean(Set<MemberBean> faqbean) {
 //		this.faqbean = faqbean;
 //	}
-
-
-
-	
 	
 	public MemberBean() {
 		super();
 	}
 
-	public MemberBean(String account, String password, String nickname, String firstname, String lastname,
-			String gender, String email, String phone, String address, String photoPath, String photoName,
-			Date birthday, Integer subscription, Timestamp registerdate, Timestamp lastlogin, Boolean ban,
-			Boolean googleMark, Integer memberSeqNo) {
-		super();
-		this.account = account;
-		this.password = password;
-		this.nickname = nickname;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.gender = gender;
-		this.email = email;
-		this.phone = phone;
-		this.address = address;
-		this.photoPath = photoPath;
-		this.photoName = photoName;
-		this.birthday = birthday;
-		this.subscription = subscription;
-		this.registerdate = registerdate;
-		this.lastlogin = lastlogin;
-		this.ban = ban;
+	public MemberBean(String account, String password, String nickname, String firstname, String lastname, String gender,
+		String email, String phone, String address, String photoPath, String photoName, Date birthday,
+		Integer subscription, Timestamp registerdate, Timestamp lastlogin, Boolean ban, Integer googleMark,
+		Integer memberSeqNo, MultipartFile photo) {
+	super();
+	this.account = account;
+	this.password = password;
+	this.nickname = nickname;
+	this.firstname = firstname;
+	this.lastname = lastname;
+	this.gender = gender;
+	this.email = email;
+	this.phone = phone;
+	this.address = address;
+	this.photoPath = photoPath;
+	this.photoName = photoName;
+	this.birthday = birthday;
+	this.subscription = subscription;
+	this.registerdate = registerdate;
+	this.lastlogin = lastlogin;
+	this.ban = ban;
+	this.googleMark = googleMark;
+	this.memberSeqNo = memberSeqNo;
+	this.photo = photo;
+}
+
+
+
+	public Integer getGoogleMark() {
+		return googleMark;
+	}
+
+
+
+	public void setGoogleMark(Integer googleMark) {
 		this.googleMark = googleMark;
+	}
+
+
+
+	public void setMemberSeqNo(Integer memberSeqNo) {
 		this.memberSeqNo = memberSeqNo;
 	}
+
+
 
 	public String getAccount() {
 		return account;
@@ -232,13 +249,7 @@ public class MemberBean implements Serializable {
 		this.photoName = photoName;
 	}
 
-	public Boolean getGoogleMark() {
-		return googleMark;
-	}
 
-	public void setGoogleMark(Boolean googleMark) {
-		this.googleMark = googleMark;
-	}
 
 
 }

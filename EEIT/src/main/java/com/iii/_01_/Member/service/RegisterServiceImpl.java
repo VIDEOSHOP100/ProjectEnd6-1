@@ -36,7 +36,7 @@ public class RegisterServiceImpl implements RegisterService {
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		mb.setRegisterdate(now);
 		mb.setLastlogin(now);
-		mb.setGoogleMark(false);
+		mb.setGoogleMark(0);
 		
 		
 		//圖片路徑

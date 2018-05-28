@@ -9,6 +9,17 @@
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="<c:url value='/uploaderHomePage/css/uploaderHomePage.css'/>" rel="stylesheet">
 <title>上傳者首頁</title>
+<style type="text/css">
+.memberPhoto {
+	position: absolute;
+	top: 242px;
+	left: 96px;
+	z-index: 2;
+	border: 3px white solid;
+	outline: 1px gray solid;
+}
+</style>
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
@@ -58,7 +69,10 @@
 		  <li class="breadcrumb-item active">${uploaderAccount }</li>
       </ol>
 
-      <img class="img-fluid rounded mb-6" src="<c:url value='/uploaderHomePage/images/images.jpg' />" alt="" width="1600px"><!--       http://placehold.it/1200x300 -->
+      <img class="rounded mb-6"  src="<c:url value='/uploaderHomePage/images/images.jpg' />" alt="" height="300px" width="1580px"><!--       http://placehold.it/1200x300 -->
+<img height="240px" width="240px" class="memberPhoto"
+		src='${pageContext.request.contextPath}/getImage/member/${otherside.account}'>
+
 <!-- 	  <hr> -->
       <div class="row titleBlock">
 	      <div class="col-md-3" style="padding:0px">

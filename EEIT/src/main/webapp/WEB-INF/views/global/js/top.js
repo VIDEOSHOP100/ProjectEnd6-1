@@ -203,7 +203,7 @@ function checkAccPwd(){
    	  $('#nickname').val('傑瑞');
    	  $('#firstname').val('張');
    	  $('#lastname').val('傑瑞');
-   	  $('#regEmail').val('strike5931@gmail.com');
+   	  $('#regEmail').val('kings86170@gmail.com');
    	  $('#address').val('台北市大安區復興南路一段390號');
    	  $('#phone').val('0954873548');
    	  $('#birthday').val('1994-06-01');
