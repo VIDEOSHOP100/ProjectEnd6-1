@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._05_.AuctionItemSelect.model.AuctionItemSelectService;
 import com.iii._05_.Bid.model.AllBidBean;
+import com.iii._05_.Bid.model.AllBidtimeBean;
 import com.iii._05_.Bid.model.AllOrderCountBean;
 import com.iii._05_.Bid.model.BidBean;
 import com.iii._05_.Bid.model.BidDAO;
@@ -178,6 +179,46 @@ public class BidController {
 //			return JSONObject;
 			return map;
 		}
+	//測試後台圖表
+		
+		@RequestMapping(value="/bidtimebackstageroll",method=RequestMethod.GET)
+		public @ResponseBody Map<String, Object> getAllBidTime() {
+			//查询数据  
+			List<AllBidtimeBean>  AllOrderCountList = BidDAO.getAllBidByYear();
 
+			//-----------------------------------------------------------
+			 int i=0;
+			
+			StringBuffer day=new StringBuffer();  
+	        StringBuffer orderQuantity=new StringBuffer();  
+	        //格式化数据，格式为[time1,time2,....],[value1,value2,....]  
+//	        account.append("[");  
+//	        views.append("[");  
+	        for (AllBidtimeBean locM : AllOrderCountList) {  
+	        	day.append("["+locM.getDate());  
+	        	orderQuantity.append(locM.getMaxPrice());   
+	            //若为最后一个则不加逗号  
+	        	i++;
+	            if(i<AllOrderCountList.size()){  
+//	            	day.insert(0, "[");
+	            	day.append(","+orderQuantity+"]"+",");  
+//	            	orderQuantity.append(",");  
+	            }  
+	        }
+	        
+//	        account.append("]");  
+//	        views.append("]");  
+	        //--------------------------------------------------------
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("BidTimeArray", day);
+//			map.put("orderQuantityArray", orderQuantity);
+			System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
+			System.out.println(map);
+			System.out.println(day);
+//			System.out.println(orderQuantity);
+			System.out.println("安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰安泰");
+
+			return map;
+		}
 
 }

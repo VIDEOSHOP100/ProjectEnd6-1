@@ -97,7 +97,7 @@ justify-content: center;
         <li class="breadcrumb-item">
           <a href="<c:url value='/' />">首頁</a>
         </li>
-        <li class="breadcrumb-item active">${sb.account}</li>
+        <li class="breadcrumb-item active"><a href="<c:url value='/LiveStream/${sb.liveStreamSeqNo}'  />">${sb.account}</a></li>
       </ol>
 
       <!-- Intro Content -->

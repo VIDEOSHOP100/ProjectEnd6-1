@@ -46,7 +46,7 @@
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.html">Home</a>
+          <a href="<c:url value='/' />">首頁</a>
         </li>
         <li class="breadcrumb-item active"><a href="LiveStreamHall">直播大廳</a></li>
       </ol>

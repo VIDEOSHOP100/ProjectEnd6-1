@@ -30,9 +30,9 @@ font-family: 'Noto Sans', sans-serif;
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.html">Home</a>
+          <a href="<c:url value='/' />">首頁</a>
         </li>
-        <li class="breadcrumb-item active">得標管理</li>
+        <li class="breadcrumb-item active"><a href="<c:url value='/AuctionEnd'  />">得標管理</a></li>
       </ol>
  <c:if test="${empty AllAuctionList}">
  <div class="col-lg-12 text-center">
