@@ -24,8 +24,8 @@
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
-				href="${pageContext.request.contextPath}">Home</a></li>
-			<li class="breadcrumb-item active">登入系統</li>
+				href="${pageContext.request.contextPath}">首頁</a></li>
+			<li class="breadcrumb-item active">忘記密碼</li>
 		</ol>
 		<br> <br> <br> <br> <br>
 

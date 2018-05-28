@@ -22,8 +22,12 @@
 
 	<div class="container" style="margin-left:50px">
 
-		<h2 class="mt-4 md-3">我的訊息</h2>
-
+		<h1 class="mt-4 md-3">我的訊息</h1>
+	<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a
+				href="${pageContext.request.contextPath}">首頁</a></li>
+			<li class="breadcrumb-item active">我的訊息</li>
+		</ol>
 		<div class="row">
 		
 				<div class="col-md-8 offset-2">
