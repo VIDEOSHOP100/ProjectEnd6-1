@@ -1100,6 +1100,17 @@ $(document).ready(function() {
 				}
 			}
 		})
+		var reportSuccess = $( "#reportSuccess" ).dialog({
+							  autoOpen: false,
+						      modal: true,
+						      buttons: {
+							        Ok: function() {
+							          $( this ).dialog( "close" );
+							          dialogReport.dialog( "close" );
+							        }
+							      }
+							  });
+		
 		function reportVideo(){
 			var form = $('#videoReport')[0]
 			var data = new FormData(form);
@@ -1113,16 +1124,7 @@ $(document).ready(function() {
 		        contentType: false,
 		        processData: false,
 				success: function (data) {
-//					alert("OK")
-					$( "#reportSuccess" ).dialog({
-				      modal: true,
-				      buttons: {
-				        Ok: function() {
-				          $( this ).dialog( "close" );
-				          dialogReport.dialog( "close" );
-				        }
-				      }
-				    });
+					reportSuccess.dialog( "open" );
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);
