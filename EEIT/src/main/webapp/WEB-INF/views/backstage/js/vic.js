@@ -105,7 +105,7 @@ $(document).ready(function () {
     	$('input[name="questionListType"]').val($(this).parent('tr').children('td:eq(2)').text());
     	$('input[name="questionListStatus"]').val($(this).parent('tr').children('td:eq(5)').text());
     	
-    	alert();
+//    	alert();
     	dialog = $('#insert-dialog-form').dialog({
     		autoOpen : false,
     		height : 600,
@@ -174,7 +174,7 @@ $(document).ready(function () {
     
     $(document).on("click",'#updateQuestListButton',function(){
     	
-    	alert('aaaa')
+//    	alert('aaaa')
 //    	var questionListSeqNo = $('input[name="questionListSeqNo"]').val();
 //    	var questionListTitle = $('input[name="managerId"]').val();
 //    	var questionListStatus = $('input[name="questionListTitle"]').val();
@@ -186,7 +186,7 @@ $(document).ready(function () {
 		console.log(data)
 		console.log(form)
 		
-    	alert('bbbb')
+//    	alert('bbbb')
     	$.ajax({
     		
     		type:"POST",
@@ -199,7 +199,7 @@ $(document).ready(function () {
     		data:data,
     		success:function(){
     		
-    			alert('回覆投訴完成!');
+    			alert('選項修改完成!');
     			$('.bg-primary').trigger("click");
     			$('.modal').removeClass('show')
     			$('#cancel').trigger("click");

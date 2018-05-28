@@ -25,7 +25,10 @@
 	rel="stylesheet">
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-	
+<style>
+
+
+</style>	
 </head>
 <body>
 	<!-- Navigation -->
@@ -47,9 +50,9 @@
 			<div class="card">
 				<div class="card-header">${getMemberBean.account}的購物清單</div>
 				<div class="card-body">
-					<button id="buttonAdd" type="button" class="btn btn-success">
-						<i class="fas fa-cart-plus"></i>
-					</button>
+					
+						<i class="fas fa-cart-plus fa-2x"></i>
+					
 					<!-- 每頁不同的內容從這裡開始 -->
 					<table id="productTable" class="table table-condensed">
 						<thead>

@@ -51,7 +51,7 @@
 	
 	$('#emailButton').click(function(){
 		
-		$('#forgotemail').val('strike5931@gmail.com');
+		$('#forgotemail').val('kings86170@gmail.com');
 		
 	})
 	
