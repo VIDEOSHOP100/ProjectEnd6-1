@@ -87,12 +87,16 @@ public class AllPayController {
 //		aio.setOrderResultURL("https://eeitdemo10005.southeastasia.cloudapp.azure.com:8443/EEIT/goMarketHomePage");
 				try {
 					String html = all.aioCheckOut(aio, invoice);
-					System.out.println(html);
+					
+					order.setOrderStatus(2);
+					orderservice.update(order);
 					return html;
 				} catch (AllPayException e) {
 					throw new Error(e.getNewExceptionMessage());
 				}
+			
 			}
+	
 	@RequestMapping(value="/getAllPayOrder",method=RequestMethod.POST,produces="text/html;charset=UTF-8")
 	public String getAllPayOrder(HttpServletRequest request,Map<String,String> map) {
 

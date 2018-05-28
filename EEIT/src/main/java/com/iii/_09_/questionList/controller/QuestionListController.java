@@ -41,7 +41,7 @@ public class QuestionListController {
 		questionListBean.setQuestionListStatus("1");
 		questionListService.saveQuestionList(questionListBean);
 		map.put("allQuestionList", questionListService.selectQuestionList());
-		return "backstage/backstage";
+		return "questionList/questionList";
 	}
 
 	

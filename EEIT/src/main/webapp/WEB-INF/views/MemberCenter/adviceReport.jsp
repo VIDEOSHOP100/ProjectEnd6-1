@@ -21,12 +21,12 @@
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			意見回饋 <small></small>
+			聯絡我們 <small></small>
 		</h1>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
 				href="${pageContext.request.contextPath}">首頁</a></li>
-			<li class="breadcrumb-item active">意見回饋</li>
+			<li class="breadcrumb-item active">聯絡我們</li>
 		</ol>
 		<!-- Contact Form -->
 		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
