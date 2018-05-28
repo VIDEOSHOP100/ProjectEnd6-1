@@ -27,9 +27,9 @@
 			
 		<ol class="breadcrumb">
 		  <li class="breadcrumb-item">
-		    <a href="index.html">Home</a>
+		    <a href="<c:url value='/' />">首頁</a>
 		  </li>
-		  <li class="breadcrumb-item active">Portfolio 2</li>
+		  <li class="breadcrumb-item active">熱門影片</li>
 		</ol>
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${hotVideos}">

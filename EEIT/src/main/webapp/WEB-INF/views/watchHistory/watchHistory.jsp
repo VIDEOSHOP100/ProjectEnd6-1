@@ -22,8 +22,10 @@
     </h1>
 
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-      </li>
+        <li class="breadcrumb-item">
+		    <a href="<c:url value='/' />">首頁</a>
+		</li>
+		<li class="breadcrumb-item active">瀏覽紀錄</li>
     </ol>
 
     <c:forEach var="aVideoBean" items="${watchHistory}">
