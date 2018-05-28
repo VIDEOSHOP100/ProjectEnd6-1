@@ -33,8 +33,6 @@
 	  <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
       <div class="container" style="margin-left:50px">
        <h1 class="mt-4 mb-3">常見問題</h1>
-<!--   <img class="img-fluid rounded mb-6" src="/EEIT/uploaderHomePage/images/images.jpg" alt="" width="2000px"> -->
-  
      <ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">首頁</a></li>
         <li class="breadcrumb-item active">常見問題</li>
@@ -49,7 +47,6 @@
             <a class="list-group-item pointer text-primary productReport" href ="${pageContext.request.contextPath}/QuestionList/4" >商品交易</a>
             <a class="list-group-item pointer text-primary liveStreamReport" href ="${pageContext.request.contextPath}/QuestionList/5" >直播拍賣</a>
             <a class="list-group-item pointer text-primary videoReport" href ="${pageContext.request.contextPath}/QuestionList/6" >影片上傳</a>
-            <a class="list-group-item pointer text-primary homePageManage" href ="${pageContext.request.contextPath}/QuestionList/7" >與我們聯繫</a>
 
      
     
@@ -75,7 +72,7 @@
    
 
 
-</div>
+	</div>
 
 
 <!--     <footer class="py-5 bg-dark"> -->
