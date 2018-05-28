@@ -1,25 +1,25 @@
 $(document).ready(function(){
-	var upName;
-	var upTel;
-	var upHomeTel
-	var upMail;
-	var upAddr;
+	var upName=$('#upName');
+	var upTel=$('#upTel');
+	var upHomeTel=$('#upHomeTel');
+	var upMail=$('#upMail');
+	var upAddr=$('#upAddr');
 	var cityName;
 	var testVal;
 	var upcity;
 	var upcountry;
 	//表格同上Button
 	$('.down').click(function(){
-		upName=$('#upName').val();
-		upTel=$('#upTel').val();
-		upHomeTel=$('#upHomeTel').val();
-		upMail=$('#upMail').val();
-		upAddr=$('#upAddr').val();
-		$('#downName').val(upName);
-		$('#downTel').val(upTel);
-		$('#downHomeTel').val(upHomeTel);
-		$('#downEmail').val(upMail);
-		$('#downAddr').val(upAddr);
+		upName.val();
+		upTel.val();
+		upHomeTel.val();
+		upMail.val();
+		upAddr.val();
+		$('#downName').val(upName.val());
+		$('#downTel').val(upTel.val());
+		$('#downHomeTel').val(upHomeTel.val());
+		$('#downEmail').val(upMail.val());
+		$('#downAddr').val(upAddr.val());
 	})
 	//事件結束
 	
@@ -61,4 +61,12 @@ $(document).ready(function(){
 	})
 	//地區選擇事件結束
 
+	
+	//一鍵demo
+	$('.Demo').click(function(){
+		upName.val('彭魚雁');
+		upTel.val('0921567432');
+		upHomeTel.val('02-33291938');
+		upMail.val('marketuser@gmail.com');
+	})
 });
