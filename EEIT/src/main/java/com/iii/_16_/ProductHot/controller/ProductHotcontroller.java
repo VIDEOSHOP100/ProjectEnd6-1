@@ -71,11 +71,13 @@ public class ProductHotcontroller {
 		return map;
 	}
 	@RequestMapping(value = "/deleteHot",method=RequestMethod.POST)
-	public String updateproductHot(@ModelAttribute("DelHotBean") ProductHotBean HotBean) throws SQLException {
+	public @ResponseBody String updateproductHot(@ModelAttribute("DelHotBean") ProductHotBean HotBean) throws SQLException {
+		
 		int SeqNo = HotBean.getProductHotSeqNo();
+		String SeqNoForKill = String.valueOf(SeqNo);
 		ProductHotBean realBean = hotproservice.selectone(SeqNo);
 		realBean.setProductStatus(2);
 		hotproservice.deleteProductFromCart(realBean);
-		return "OK";
+		return SeqNoForKill;
 	}
 }

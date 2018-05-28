@@ -57,7 +57,7 @@ $(document).ready(function () {
 			timeout : 600000,
 			success : function(data) {
 				console.log("SUCCESS : ", data);
-				
+				dialog.dialog("close");
 			},
 			error : function(e) {
 				console.log("ERROR : ", e);
@@ -80,9 +80,11 @@ $(document).ready(function () {
 			url : "/EEIT/deleteHot",
 			data : data,
 			timeout : 600000,
-			success : function() {
-				console.log("SUCCESS");
-				
+			success : function(result) {
+				console.log("SUCCESS",result);
+				dialogDel.dialog("close");
+
+				selectedtbodyOutside.remove();
 			},
 			error : function(e) {
 				console.log("ERROR : ", e);
@@ -117,13 +119,11 @@ $(document).ready(function () {
 		
 		$('.checkHot').click(function(){
 			$('.marketcontain').remove();
-			
 			$.ajax({
                 type: "GET",
                 url: "/EEIT/findAllHot",
                 dataType: "json",
                 timeout: 600000,
-  
                 success: function (data) {
                     var tab = $('<table></table>').addClass('table table-striped').html('<thead><tr><th class="text-center">圖片編號</th><th>圖片</th><th></th></thead><tbody></tbody>');
                     $('#content>h2').after(tab);
@@ -143,14 +143,16 @@ $(document).ready(function () {
                         $('#content tbody').html(docFrag);
                        ///垃圾桶程序開始
                         $('.garbage').click(function(){
-                        	
+                        
 								selectedDeletedSeqNo = $(this).parents('tr')
 										.find('.divOne').text();
-								dialogDel.dialog("open");
+								
 								
 								selectedtbodyOutside = $(this).parents('tr');
+						
 								$('#seqNoDelete').empty();
 								$('#seqNoDelete').val(selectedDeletedSeqNo);
+								dialogDel.dialog("open");
 //								$('#seqNoDelete').val(
 //										$.trim($(this).parents('tr').find(
 //												'.divThree').text()))
