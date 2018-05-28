@@ -7,14 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <link href="<c:url value='/InsertLiveStream/css/bootstrap-datetimepicker.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 <link href="<c:url value='/InsertLiveStream/css/InsertLiveStream.css'/> " rel="stylesheet">
 <style>
 .testclass{
-font-family: 'Poiret One', cursive;
+font-family: 'Noto Sans', sans-serif;
 }
 
 </style>
@@ -32,12 +33,20 @@ font-family: 'Poiret One', cursive;
 <%--         <c:forEach var="AllProductListBean" items="${AllProductList}"> --%>
 <%--        ${AllProductListBean.proBrand} --%>
 <%--        </c:forEach>  --%>
-      <h1 class="mt-4 mb-3 testclass">｜WelcomeBack Streamer｜${accountStream.account}｜
+<c:if test="${!empty accountStream.account}">
+      <h1 class="mt-4 mb-3 testclass">｜歡迎回來 直播主｜${accountStream.account}｜
         <small class="testclass">
        			   
         </small>
       </h1>
-
+</c:if>
+<c:if test="${empty accountStream.account}">
+<h1 class="mt-4 mb-3 testclass">｜目前還沒開播｜請點選右方新增直播按鈕新增直播｜
+        <small class="testclass">
+       			   
+        </small>
+      </h1>
+</c:if>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
         
@@ -126,12 +135,7 @@ font-family: 'Poiret One', cursive;
           </div>
 
           <!-- Side Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
-            <div class="card-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-            </div>
-          </div>
+        
 
         </div>
 

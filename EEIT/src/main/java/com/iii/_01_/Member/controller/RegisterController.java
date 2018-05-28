@@ -41,7 +41,7 @@ public class RegisterController {
 		HttpSession session = request.getSession();
 		String target = (String) session.getAttribute("target");
 		target = target.substring(target.lastIndexOf("/EEIT/") + 5);
-
+		
 
 		if (registerService.checkAccountDuplicate(mb.getAccount()) != true) {
 			MultipartFile photo = mb.getPhoto();
@@ -49,6 +49,7 @@ public class RegisterController {
 			mb.setPhotoName(originalPhotoName);
 			String extPhoto = originalPhotoName.substring(originalPhotoName.lastIndexOf("."));
 
+			
 			registerService.saveMember(mb, extPhoto, photo);
 			return "redirect:Register/registerSuccess";
 			// 有異常時
@@ -70,4 +71,13 @@ public class RegisterController {
 		map.put("result", registerService.checkAccountDuplicate(account));
 		return map;
 	}
+	
+	@RequestMapping("/checkEmailDuplicate")
+	public @ResponseBody Map<String, Boolean> checkEmailDuplicate(@RequestParam("email") String email) {
+
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("result", registerService.checkEmailDuplicate(email));
+		return map;
+	}
+	
 }

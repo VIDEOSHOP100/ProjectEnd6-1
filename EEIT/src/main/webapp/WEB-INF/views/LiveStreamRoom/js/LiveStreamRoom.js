@@ -403,9 +403,32 @@ $('#reportSubmit').click(function(){
 		data:{accountTo:accountTo , reportTitle:reportTitle , reportContent:reportContent,reportType:reportType},
 		timeout: 600000,
 		success:function(){
-//			$('#memberReportButton').attr("disabled","disabled").text("已檢舉");
-			$('#cancel').trigger("click");
-			alert("檢舉直播主:"+accountTo+"成功")
+			$('#memberReportButton').attr("disabled","disabled").text("已檢舉");
+			$('#cancelreport').trigger("click");
+//			alert("檢舉直播主:"+accountTo+"成功")
+			 $('.hahaha').html("檢舉直播主:"+"<br><br><p style='color:red'>["+accountTo+"]</p>成功");
+	        $('.hahaha').show();
+	        	$('.hahaha').dialog({
+	        		autoOpen:false,
+	        		show:{
+	        			effect: "fold",
+	        			duration:500
+	        		},
+	        		hide:{
+	        			effect:"fold",
+	        			duration:500
+	        		},height:500,
+	        		width:400,
+	        		modal:true,
+	        		title: account,
+	        		buttons:{
+	        			Ok:function(){
+	        				$(this).dialog("close");
+	        			}
+	        	}})
+	        
+	        	$('.hahaha').dialog("open");
+			
 		},
 		error: function (e) {
 			console.log("ERROR : ", e);
@@ -422,7 +445,7 @@ $(document).on('click','.chatrow',function(){
 //    	alert($(this).text()) 
 //	alert($(this).text().split(":",2)[1])
         responsiveVoice.speak($(this).text().split(":",2)[1],"Chinese Female")
-
+       
     });
 //$(document).on('click','.ccc',function(){
 //
@@ -441,11 +464,15 @@ $(document).on('click','.chatrow',function(){
     });
 	 
 //動態標題 
-	 $(".container").addClass('animated fadeInDown');
+//	 $(".container").hide();
+	 $(".chat-sidebar").hide();
+//	 $(".container").show();
+	 $(".container").addClass('animated fadeInRight');
 	 
-	setTimeout(function(){$(".container").removeClass('animated fadeInDown');}, 1200);
-		
 	 
+	setTimeout(function(){$(".container").removeClass('animated fadeInRight');}, 1500);
+	
+	setTimeout(function(){$(".chat-sidebar").show().addClass('animated fadeInRight');}, 1500);
 	 
 //	 $(".mt-4").hover(
 //			  function () {

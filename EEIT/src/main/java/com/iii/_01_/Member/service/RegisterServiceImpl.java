@@ -36,6 +36,8 @@ public class RegisterServiceImpl implements RegisterService {
 		Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 		mb.setRegisterdate(now);
 		mb.setLastlogin(now);
+		mb.setGoogleMark(false);
+		
 		
 		//圖片路徑
 		String photoFilePath = "C:/resources/images/members/"+ mb.getAccount() + "/photo/" + mb.getAccount() + extPhoto;
@@ -64,8 +66,17 @@ public class RegisterServiceImpl implements RegisterService {
 	}
 
 	@Override
-	public void saveMember(MemberBean mb) throws SQLException {
+	public void saveMemberForGoogle(MemberBean mb) throws SQLException {
 		dao.saveMember(mb);
+	}
+
+	@Override
+	public Boolean checkEmailDuplicate(String email) {
+		Boolean result = true;
+		if (dao.getMemberByEmail(email) == null) {
+			result = false;
+		}
+		return result;
 	}
 
 }

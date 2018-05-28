@@ -22,14 +22,14 @@
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 	<div class="container"  style="margin-left:50px">
 		<h1 class="mt-4 mb-3">最新影片
-		       <small>Subheading</small>
+<!-- 		       <small>Subheading</small> -->
 		</h1>
 			
 		<ol class="breadcrumb">
-		  <li class="breadcrumb-item">
-		    <a href="index.html">Home</a>
+  		  <li class="breadcrumb-item">
+		    <a href="<c:url value='/' />">首頁</a>
 		  </li>
-		  <li class="breadcrumb-item active">Portfolio 2</li>
+		  <li class="breadcrumb-item active">喜歡的影片</li>
 		</ol>
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${newVideos}">

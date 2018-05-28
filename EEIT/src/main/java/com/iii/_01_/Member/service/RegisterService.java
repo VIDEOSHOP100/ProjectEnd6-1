@@ -11,9 +11,11 @@ public interface RegisterService {
 
 	Boolean checkAccountDuplicate(String account);
 
+	Boolean checkEmailDuplicate(String email);
+
 	void saveMember(MemberBean mb, String extPhoto, MultipartFile Photo) throws SQLException;
 
-	void saveMember(MemberBean mb)throws SQLException;
+	void saveMemberForGoogle(MemberBean mb)throws SQLException;
 	
 	void savePhotoToFile(String photoFileFolderPath, String photoFilePath, MultipartFile photo);
 	

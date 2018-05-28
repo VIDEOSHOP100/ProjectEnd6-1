@@ -23,9 +23,9 @@
     </h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-<!--         <a href="index.html">Home</a> -->
-      </li>
-<!--       <li class="breadcrumb-item active">Portfolio Item</li> -->
+	    <a href="<c:url value='/' />">首頁</a>
+	  </li>
+	  <li class="breadcrumb-item active">訂閱上傳者</li>
     </ol>
     <div class="row">
 

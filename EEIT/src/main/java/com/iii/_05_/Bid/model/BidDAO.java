@@ -19,4 +19,8 @@ public interface BidDAO {
 	public void updateBid(BidBean BidBean);
 
 	public void deleteBid(BidBean BidBean);
+	
+	public List<AllBidBean> getAllBidByDay();
+	
+	public List<AllOrderCountBean> getAllorderQuantity();
 }

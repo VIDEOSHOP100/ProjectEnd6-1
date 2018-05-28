@@ -208,7 +208,10 @@ public class AuctionItemSelectController {
 		
 		ab.setAuctionStatus(1);
 		ab.setAccount(account);
-	
+	//拿SEQNO
+InputLiveStreamTimeBean InputLiveStreamTimeBean= InputLiveStreamTimeService.getLiveStreamsByAccount(account);
+		
+		Integer Seq = InputLiveStreamTimeBean.getLiveStreamSeqNo();
 //		ab.setLiveStreamSeqNo(Integer.parseInt(target2));
 		auctionItemSelectService.saveAuction(ab);
 		
@@ -223,6 +226,6 @@ public class AuctionItemSelectController {
 			Oneproduct.setAuctionSeqNo(ab.getAuctionSeqNo());
 			productSaleService.insert(Oneproduct);
 
-		return "redirect:"+target;
+		return "redirect:"+"/LiveStream/"+Seq;
 	}
 }

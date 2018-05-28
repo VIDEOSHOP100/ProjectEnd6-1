@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
+import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
 import com.iii._05_.customized.model.CustomizedBean;
 import com.iii._05_.customized.model.CustomizedService;
 
@@ -29,7 +30,8 @@ public class CustomizedController {
 	
 	@Autowired
 	CustomizedService CustomizedService;
-	
+	@Autowired
+	InputLiveStreamTimeService InputLiveStreamTimeService;
 	
 	
 	@RequestMapping(value = "/CustomizedControl", method = RequestMethod.POST)
@@ -46,6 +48,10 @@ public class CustomizedController {
 		Timestamp customizedTime = new java.sql.Timestamp(System.currentTimeMillis());
 		Integer customizedStatus = 1;
 		
+		InputLiveStreamTimeBean InputLiveStreamTimeBean= InputLiveStreamTimeService.getLiveStreamsByAccount(account);
+		
+		Integer Seq = InputLiveStreamTimeBean.getLiveStreamSeqNo();
+		
 		MultipartFile photo = cb.getPhoto();
 		String originalPhotoName = photo.getOriginalFilename();
 		cb.setCustomizedPic(originalPhotoName);
@@ -61,7 +67,7 @@ public class CustomizedController {
 
 		CustomizedService.saveCustomized(cb ,extPhoto ,photo);
 
-		return "redirect:"+target;
+		return "redirect:"+"/LiveStream/"+Seq;
 	}
 	
 //	@RequestMapping(value = "/sortable",method = RequestMethod.PUT)

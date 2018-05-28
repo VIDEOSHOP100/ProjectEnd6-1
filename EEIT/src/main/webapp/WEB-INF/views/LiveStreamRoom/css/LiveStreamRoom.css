@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 
+
 .suptitle{
  color:  #bdbdbd;
  font-size: 16px;
@@ -221,5 +222,7 @@ font-weight: bolder;
 /* 	border: solid red 1px; */
 /* 	display: block;	 */
 /* } */
-
+.container{
+	 style: margin-left:50px;
+}
 

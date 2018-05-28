@@ -31,10 +31,10 @@
       </h1>
 		
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-<!--           <a href="index.html">Home</a> -->
-        </li>
-<!--         <li class="breadcrumb-item active">Portfolio 2</li> -->
+		  <li class="breadcrumb-item">
+		    <a href="<c:url value='/' />">首頁</a>
+		  </li>
+		  <li class="breadcrumb-item active">喜歡的影片</li>
       </ol>
 
       <div class="row" style="margin-left:20px">
