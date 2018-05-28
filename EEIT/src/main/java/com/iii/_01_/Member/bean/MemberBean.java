@@ -44,6 +44,7 @@ public class MemberBean implements Serializable {
 	private Timestamp registerdate; // 會員註冊日期
 	private Timestamp lastlogin; // 最近登入日期
 	private Boolean ban; // 封鎖
+	private Boolean googleMark; //是否是google帳號
 
 	@Transient
 	private Integer memberSeqNo; // 流水編號
@@ -62,13 +63,17 @@ public class MemberBean implements Serializable {
 //	}
 
 
+
 	
 	
-	
+	public MemberBean() {
+		super();
+	}
+
 	public MemberBean(String account, String password, String nickname, String firstname, String lastname,
 			String gender, String email, String phone, String address, String photoPath, String photoName,
 			Date birthday, Integer subscription, Timestamp registerdate, Timestamp lastlogin, Boolean ban,
-			MultipartFile photo, Set<MemberBean> faqbean) {
+			Boolean googleMark, Integer memberSeqNo) {
 		super();
 		this.account = account;
 		this.password = password;
@@ -86,11 +91,8 @@ public class MemberBean implements Serializable {
 		this.registerdate = registerdate;
 		this.lastlogin = lastlogin;
 		this.ban = ban;
-		this.photo = photo;
-//		this.faqbean = faqbean;
-	}
-	public MemberBean() {
-		super();
+		this.googleMark = googleMark;
+		this.memberSeqNo = memberSeqNo;
 	}
 
 	public String getAccount() {
@@ -228,6 +230,14 @@ public class MemberBean implements Serializable {
 	}
 	public void setPhotoName(String photoName) {
 		this.photoName = photoName;
+	}
+
+	public Boolean getGoogleMark() {
+		return googleMark;
+	}
+
+	public void setGoogleMark(Boolean googleMark) {
+		this.googleMark = googleMark;
 	}
 
 

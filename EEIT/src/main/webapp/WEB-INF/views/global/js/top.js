@@ -41,7 +41,49 @@ $(document).ready(function() {
 				})
 			};
 		})
-
+		
+		var emailChk;
+	$('#regEmail').blur(
+			function() {
+				var inputEmail = $('#regEmail').val();
+				if((inputEmail).trim()!=0){
+					$.ajax({
+					url : "/EEIT/checkEmailDuplicate",
+					type : "POST",
+					data : {email : inputEmail},
+					success : function(result) {
+						emailChk = result.result;
+						if (result.result == true) {
+							$('#regEmail').grumble(
+								{
+									text:'電子信箱重複',
+									angle :270,
+									distance:100,
+									hideAfter: 1000,
+								}
+							)
+						}
+						
+						else {
+						$('#regEmail').grumble(
+							{
+								text:"電子信箱可用",
+								angle :270,
+								distance:100,
+								hideAfter: 1000,
+								type: 'alt-',
+							}
+						)
+						}
+					},
+					error : function(e) {
+						console.log("ERROR : ", e);
+//						alert(e);
+					}
+					})
+				};
+			})
+		
 		
 	 	$(document).on('click','#regBtn',function(){
 	 		var pho = $('#photo').get(0).files.length;
@@ -63,7 +105,16 @@ $(document).ready(function() {
 						hideAfter: 1000,
 					}
 				)
-	 		}else if (accChk==false && pho!=0){
+	 		}else if(emailChk==true ){
+	 			$('#regBtn').grumble(
+						{
+							text:'信箱重複',
+							angle :90,
+							distance:100,
+							hideAfter: 1000,
+						}
+					)
+	 		}else if (accChk==false && pho!=0 && emailChk==false){
 	 			$('#register').submit();
 	 		}
 	 		
@@ -152,7 +203,7 @@ function checkAccPwd(){
    	  $('#nickname').val('傑瑞');
    	  $('#firstname').val('張');
    	  $('#lastname').val('傑瑞');
-   	  $('#email').val('strike5931@gmail.com');
+   	  $('#regEmail').val('strike5931@gmail.com');
    	  $('#address').val('台北市大安區復興南路一段390號');
    	  $('#phone').val('0954873548');
    	  $('#birthday').val('1994-06-01');

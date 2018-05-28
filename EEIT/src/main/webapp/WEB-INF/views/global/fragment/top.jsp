@@ -264,7 +264,7 @@
 						
 			 			<div class="col-md-6 form-group">
 			 				<small><label for="email">電子信箱</label><span style="color: red">*</span></small>
-			 				<form:input path="email" id="email" type="email" class="form-control input-sm " placeholder="email"/>
+			 				<form:input path="email" id="regEmail" type="email" class="form-control input-sm " placeholder="email"/>
 			 			</div>		
 						 		
 							<div class="col-md-6 form-group">
