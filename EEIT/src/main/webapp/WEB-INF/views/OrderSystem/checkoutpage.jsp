@@ -208,12 +208,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="container">
-				
 				<button type="submit" class="btn btn-primary" id="confirmorder">送出訂單</button>
 			</form:form>
-				
-				</div>
+			
 			<br>
 			<br>
 			

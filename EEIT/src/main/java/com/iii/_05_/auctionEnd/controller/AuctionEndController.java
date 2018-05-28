@@ -93,7 +93,7 @@ public class AuctionEndController {
 		aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
 		// 付款成功後轉跳的頁面
 		// aio.setClientBackURL("http://localhost:8080/EEIT/");
-		
+		aio.setClientBackURL("https://eeitdemo10009.southeastasia.cloudapp.azure.com:8443/EEIT");
 		try {
 			String html = all.aioCheckOut(aio, invoice);
 			System.out.println(html);
