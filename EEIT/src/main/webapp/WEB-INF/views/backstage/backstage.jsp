@@ -95,10 +95,10 @@
 		<br>
 		問題類型:
 <%-- 		<form:input type="text" path="questionListType"/> --%>
-		<form:select  id="223" path="questionListType">
+		<form:select  id="TypeList" path="questionListType">
 			<form:option value="1">帳號問題</form:option>
 			<form:option value="2">密碼與登入</form:option>		
-			<form:option value="3">建立帳號或刪除帳號</form:option>		
+			<form:option value="3">運送與寄送商品</form:option>		
 			<form:option value="4">商品交易</form:option>		
 			<form:option value="5">直播拍賣</form:option>		
 			<form:option value="6">影片上傳</form:option>		

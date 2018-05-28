@@ -129,7 +129,7 @@ public class GoogleAccountController {
         	mb.setRegisterdate(now);
         	mb.setLastlogin(now);
         	mb.setSubscription(0);
-        	mb.setGoogleMark(true);
+        	mb.setGoogleMark(1);
         	registerService.saveMemberForGoogle(mb);
         	
         	session.setAttribute("LoginOK", mb);

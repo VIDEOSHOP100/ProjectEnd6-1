@@ -44,7 +44,7 @@ public class SubscriptionUploaderDAOImpl implements SubscriptionUploaderDAO {
 				"      ,member.phone" + 
 				"      ,member.registerdate" + 
 				"      ,member.lastlogin" + 
-				"      ,member.subscription,member.ban from SubscriptionUploader subscriptionUploader join Member member on member.account = subscriptionUploader.uploaderAccount WHERE subscriptionUploader.account = :account and subscriptionUploaderStatus = 'subscription'").setMaxResults(10).setParameter("account", account).addEntity("member",MemberBean.class).list();
+				"      ,member.subscription,member.ban,member.googleMark from SubscriptionUploader subscriptionUploader join Member member on member.account = subscriptionUploader.uploaderAccount WHERE subscriptionUploader.account = :account and subscriptionUploaderStatus = 'subscription'").setMaxResults(10).setParameter("account", account).addEntity("member",MemberBean.class).list();
 		
 	}
 
@@ -91,7 +91,7 @@ public class SubscriptionUploaderDAOImpl implements SubscriptionUploaderDAO {
 				"      ,member.phone" + 
 				"      ,member.registerdate" + 
 				"      ,member.lastlogin" + 
-				"      ,member.subscription,member.ban from SubscriptionUploader subscriptionUploader join Member member on member.account = subscriptionUploader.uploaderAccount WHERE subscriptionUploader.account = :account and subscriptionUploaderStatus = 'subscription'").setMaxResults(10).setFirstResult(pageNo).setParameter("account", account).addEntity("member",MemberBean.class).list();
+				"      ,member.subscription,member.ban,member.googleMark from SubscriptionUploader subscriptionUploader join Member member on member.account = subscriptionUploader.uploaderAccount WHERE subscriptionUploader.account = :account and subscriptionUploaderStatus = 'subscription'").setMaxResults(10).setFirstResult(pageNo).setParameter("account", account).addEntity("member",MemberBean.class).list();
 	}
 
 }

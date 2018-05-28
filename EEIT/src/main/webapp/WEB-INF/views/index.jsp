@@ -165,7 +165,7 @@
 
 		</div>
 		<h1 style="margin-top:20px;margin-bottom:10px">
-		<a class="indexTitle"  href="<c:url value='/goMarketHomePage' />">
+		<a class="indexTitle"  href="<c:url value='/goMarketHomePage' />" style="color:#4b367c;font-weight:900">
 			熱門商品
 		</a>
 		<small class="suptitle">點擊商品進入購買</small>

@@ -39,7 +39,7 @@ $(document).ready(function () {
                             }else if(QuestList.questionListType == 2){
                             	var cell3 = $('<td></td>').text("密碼與登入");
                             }else if(QuestList.questionListType == 3){
-                            	var cell3 = $('<td></td>').text("建立帳號與刪除帳號");
+                            	var cell3 = $('<td></td>').text("運送與寄送商品");
                             }else if(QuestList.questionListType == 4){
                             	var cell3 = $('<td></td>').text("商品交易");
                         	}else if(QuestList.questionListType == 5){

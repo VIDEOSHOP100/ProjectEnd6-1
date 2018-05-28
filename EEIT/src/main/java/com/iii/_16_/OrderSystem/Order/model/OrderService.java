@@ -29,7 +29,6 @@ public class OrderService {
 		int result = 0;
 		if (bean != null) {
 		result = dao.insertGetId(bean);
-		
 			return result;
 		}
 		return 0;
