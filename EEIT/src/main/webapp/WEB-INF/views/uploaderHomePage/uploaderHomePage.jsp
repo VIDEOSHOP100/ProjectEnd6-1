@@ -58,7 +58,7 @@
 		  <li class="breadcrumb-item active">${uploaderAccount }</li>
       </ol>
 
-      <img class="img-fluid rounded mb-6" src="<c:url value='/uploaderHomePage/images/images.jpg' />" alt="" width="1600px"><!--       http://placehold.it/1200x300 -->
+      <img class="rounded mb-6" src="<c:url value='/uploaderHomePage/images/images.jpg' />" alt="" height="300px" width="1580px"><!--       http://placehold.it/1200x300 -->
 <!-- 	  <hr> -->
       <div class="row titleBlock">
 	      <div class="col-md-3" style="padding:0px">
