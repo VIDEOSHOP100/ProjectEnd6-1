@@ -77,5 +77,12 @@ public class BidDAOImpl implements BidDAO {
 					.list();
 	}
 	
+	@Override
+	public List<AllBidtimeBean> getAllBidByYear() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createNativeQuery("select bidtime as date , MAX(bidPrice)as maxPrice  from Bid group by bidtime").addEntity(AllBidtimeBean.class)
+					.list();
+	}
+	
 	
 }

@@ -23,4 +23,6 @@ public interface BidDAO {
 	public List<AllBidBean> getAllBidByDay();
 	
 	public List<AllOrderCountBean> getAllorderQuantity();
+	
+	public List<AllBidtimeBean> getAllBidByYear();
 }
