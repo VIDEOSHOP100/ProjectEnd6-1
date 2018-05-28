@@ -66,7 +66,7 @@ $(document).ready(function(){
 	$('.Demo').click(function(){
 		upName.val('彭魚雁');
 		upTel.val('0921567432');
-		upHomeTel.val('02-33291938');
+		upHomeTel.val('0233291938');
 		upMail.val('marketuser@gmail.com');
 	})
 });
