@@ -43,6 +43,7 @@
 		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 		<div class="row" >
 			<div class="col-lg-8 mb-4 offset-2">
+		<button class="btn btn-warning Demo">Demo</button>
 				<h3>商品上架 *為必填</h3>
 				<form:form class="form-group" action="addProduct"
 					modelAttribute="productSaleBean" enctype="multipart/form-data"
@@ -177,7 +178,7 @@
 					<div class="control-group form-group">
 						<div class="controls">
 							<label>商品介紹: <span style="color: red">*</span></label>
-							<form:textarea class="form-control" rows="5" path="proDescription" />${param.proDescription}
+							<form:textarea class="form-control" rows="5" path="proDescription" id="proDescription"/>${param.proDescription}
 							<p class="help-block"></p>
 						</div>
 					</div>
@@ -211,8 +212,30 @@
 
 	</div>
 
+<script>
+	$('.Demo').click(function(){
+		
+		var proName = $('#proName');
+		var proPrice= $('#proPrice');
+		var proPcs  = $('#proPcs');
+		var proStatus=$('#proStatus');
+		var proPayTypeSeqNo=$('#proPayTypeSeqNo');
+		var proDescription=$('#proDescription');
+		proName.val('PS4 Slim主機 CUH-2117AB01 系列 500G (極致黑)');
+		proPrice.val('9980');
+		proPcs.val('50');
+		proStatus.val('1');
+		proPayTypeSeqNo.val('3');
+		proDescription.val('全新2117型系列主機 '+
+				'■支援HDR技術，畫面更逼真、生動 '+
+				'■新型主機體積縮小30%/重量減少25%'+
+				'■新系統更為節能，減少34%'+
+				'■原廠一年保固，產品保固採線上登記'+ 
+				'※直立架需另外購買')
+	})
 
 
+</script>
 </body>
 <%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </html>
