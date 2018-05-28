@@ -60,27 +60,35 @@ public class AllPayController {
 		//帳號+取得BEAN
 		OrderBean order = orderservice.findByorderSeqNo(orderSeqNo);
 		List<OrderProductBean> productlist = orderproductservice.getByorderSeqNo(orderSeqNo);
-		
-		
+		String proName = null;
+		String proPrice = null;
+		String proTotalName = null;
+		Long proTotalPrice = 0L;
 		for(OrderProductBean orderproductbean :productlist) {
 			ProductSaleBean realproduct = productsaleservice.getBySeqNo(orderproductbean.getProductSeqNo());
-			String proName = realproduct.getProName()+"#";
-		    String proPrice = String.valueOf(orderproductbean.getProductPrice());
-		    
-			Date date = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-	 		aio.setMerchantTradeDate(sdf.format(date));	
-	 		// 商品名稱＋單價＋數量
-	 		aio.setItemName(proName);
-	 		// 交易金額
-	 		aio.setTotalAmount(proPrice);
-	 		// 交易描述
-	 		aio.setTradeDesc("工");
-	 		aio.setHoldTradeAMT("0");
+			proName = realproduct.getProName()+"#";
+		    proPrice = String.valueOf(orderproductbean.getProductPrice());
+		    proTotalName = proTotalName+proName;
+		    proTotalPrice = proTotalPrice + orderproductbean.getProductTotal();
+//			Date date = new Date();
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+//	 		aio.setMerchantTradeDate(sdf.format(date));	
 	 		// 顯示付款成功的頁面（預設
-	 		aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
 	 		// 付款成功後轉跳的頁面
 			}
+		// 商品名稱＋單價＋數量
+//		System.out.println(proTotalName);
+		aio.setItemName(proTotalName);
+		// 交易金額
+		
+		aio.setTotalAmount(String.valueOf(proTotalPrice));
+		// 交易描述
+		aio.setTradeDesc("工");
+		aio.setHoldTradeAMT("0");
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+ 		aio.setMerchantTradeDate(sdf.format(date));	
+		aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
 //		aio.setClientBackURL("http://localhost:8080/EEIT/goMarketHomePage");
 		aio.setClientBackURL("https://eeitdemo10009.southeastasia.cloudapp.azure.com:8443/EEIT/goMarketHomePage");
 //		aio.setOrderResultURL("http://localhost:8080/EEIT/goMarketHomePage");
