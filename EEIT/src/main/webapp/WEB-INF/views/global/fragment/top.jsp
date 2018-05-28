@@ -99,7 +99,7 @@
 						<c:if test="${!empty LoginOK}">		 
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/sale.do">商品上架</a>
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/orderManage">我的訂單查詢</a>
-				<a class="dropdown-item" href="">追蹤商品查詢</a>
+<!-- 				<a class="dropdown-item" href="">追蹤商品查詢</a> -->
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/CartList/getCart/${LoginOK.account}">購物車</a>
 						</c:if>
 				</div>		
@@ -264,7 +264,7 @@
 						
 			 			<div class="col-md-6 form-group">
 			 				<small><label for="email">電子信箱</label><span style="color: red">*</span></small>
-			 				<form:input path="email" id="email" type="email" class="form-control input-sm " placeholder="email"/>
+			 				<form:input path="email" id="regEmail" type="email" class="form-control input-sm " placeholder="email"/>
 			 			</div>		
 						 		
 							<div class="col-md-6 form-group">

@@ -27,8 +27,10 @@
 			<button class="btn btn-danger delete-video">封鎖影片</button>
 		</c:if>
 		<ol class="breadcrumb">
-<!-- 			<li class="breadcrumb-item"><a href="">Home</a></li> -->
-<!-- 			<li class="breadcrumb-item active">Portfolio Item</li> -->
+			  <li class="breadcrumb-item">
+			    <a href="<c:url value='/' />">首頁</a>
+			  </li>
+			  <li class="breadcrumb-item active">影片間</li>
 		</ol>
 		<div class="row">
 			<div class="col-md-9">

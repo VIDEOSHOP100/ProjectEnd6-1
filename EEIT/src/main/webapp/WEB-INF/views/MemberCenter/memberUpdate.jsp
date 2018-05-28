@@ -37,9 +37,7 @@
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
-				href="${pageContext.request.contextPath}">Home</a></li>
-			<li class="breadcrumb-item"><a
-				href="${pageContext.request.contextPath}/MemberCenter">會員中心</a></li>
+				href="${pageContext.request.contextPath}">首頁</a></li>
 			<li class="breadcrumb-item active">更新會員資料</li>
 		</ol>
 

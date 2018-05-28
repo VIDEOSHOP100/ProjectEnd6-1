@@ -20,8 +20,6 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
 				href="${pageContext.request.contextPath}">Home</a></li>
-			<li class="breadcrumb-item"><a
-				href="${pageContext.request.contextPath}/MemberCenter">會員中心</a></li>
 			<li class="breadcrumb-item active">忘記密碼</li>
 		</ol>
 

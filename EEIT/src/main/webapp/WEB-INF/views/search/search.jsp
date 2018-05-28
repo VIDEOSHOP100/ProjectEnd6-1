@@ -24,6 +24,14 @@
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 		<div class="container"  style="margin-left:50px">
+			<h1 class="mt-4 mb-3">搜尋結果
+			</h1>
+			<ol class="breadcrumb">
+	  		  <li class="breadcrumb-item">
+			    <a href="<c:url value='/' />">首頁</a>
+			  </li>
+			  <li class="breadcrumb-item active">搜尋結果</li>
+			</ol>
 			<div class="row searchResultBlock">
 				<div class="col-lg-3 col-md-4  divOutside" style="padding:0px">
 					<div class="divInsideTitle">直播</div>

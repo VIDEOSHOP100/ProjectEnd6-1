@@ -16,10 +16,17 @@
 	<!-- Navigation -->
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	<!-- Portfolio Item Row -->
-<body>
+<div class="container" style="margin-left:50px">
 	<!-- Portfolio Item Row -->
 	<!--          訂購人資訊  --------------------------------------------------------- -->
-	<br>
+	<h1 class="my-4 account">
+			${getMemberBean.account}你好<small></small>
+		</h1>
+	<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">首頁</a></li>
+			<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/goMarketHomePage">超級商城</a></li>
+			<li class="breadcrumb-item active">訂單編輯</li>
+		</ol>
 	<br>
 	<div class="container-fluid">
 		<section class="container">
@@ -209,11 +216,12 @@
 		</div>
 		</section>
 	</div>
-	
+	</div>
 		<input type="hidden" id="selectacc" name="selectacc" value="${getMemberBean.account}"/> 
 		
 	
 	<script src="<c:url value='/OrderSystem/js/orderaddr.js'/> "></script>
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 
 </html>
