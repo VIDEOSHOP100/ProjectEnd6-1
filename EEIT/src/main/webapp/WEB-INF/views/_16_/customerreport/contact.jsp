@@ -16,7 +16,7 @@
 
 <title>Modern Business - Start Bootstrap Template</title>
 
-   <!-- Bootstrap core CSS -->
+<!-- Bootstrap core CSS -->
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 
 <!-- Custom styles for this template -->
