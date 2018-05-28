@@ -82,7 +82,7 @@ public class AllPayController {
 	 		// 付款成功後轉跳的頁面
 			}
 //		aio.setClientBackURL("http://localhost:8080/EEIT/goMarketHomePage");
-		aio.setClientBackURL("https://eeitdemo10005.southeastasia.cloudapp.azure.com:8443/EEIT/goMarketHomePage");
+		aio.setClientBackURL("https://eeitdemo10009.southeastasia.cloudapp.azure.com:8443/EEIT/goMarketHomePage");
 //		aio.setOrderResultURL("http://localhost:8080/EEIT/goMarketHomePage");
 //		aio.setOrderResultURL("https://eeitdemo10005.southeastasia.cloudapp.azure.com:8443/EEIT/goMarketHomePage");
 				try {

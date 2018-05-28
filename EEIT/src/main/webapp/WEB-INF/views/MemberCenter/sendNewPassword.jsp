@@ -8,6 +8,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>忘記密碼</title>
+<style type="text/css">
+.newPassBox{
+
+border:1px #DDDDDD solid
+
+}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
@@ -19,16 +26,20 @@
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
-				href="${pageContext.request.contextPath}">Home</a></li>
+				href="${pageContext.request.contextPath}">首頁</a></li>
 			<li class="breadcrumb-item active">忘記密碼</li>
 		</ol>
 
 		<!-- Contact Form -->
 		<!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
 		<div class="row">
-			<div class="col-lg-8 mb-4">
-	<p>${message}</p>
-	
+			<div class="col-md-6 offset-3 newPassBox mt-5 pt-3">
+			<div style="font-size:10em; color:#E63F00" class="text-center">
+		<i class="fas fa-unlock-alt"></i>
+		</div>
+		<hr>
+			<p class="text-center">${message}</p>
+			<a href="<c:url value='/' />"><button  class="btn btn-primary btn-block">回到首頁</button></a>
 			</div>
 		</div>
 		<!-- /.row -->
