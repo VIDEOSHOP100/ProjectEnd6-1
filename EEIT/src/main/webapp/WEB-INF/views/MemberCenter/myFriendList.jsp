@@ -32,6 +32,12 @@ width:240px;
 
 	<div class="container" style="margin-left:50px">
 		<h1 class="mt-4 mb-3">我的好友</h1>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a
+				href="${pageContext.request.contextPath}">首頁</a></li>
+			<li class="breadcrumb-item active">我的好友</li>
+		</ol>
+		
 		<div class="row">
 			
 			<c:forEach var="friend" items="${myFriendList}"> 

@@ -20,6 +20,11 @@
         
       <div class="container" style="margin-left:50px">
         	<h1 class="mt-4 mb-3">回報完成</h1>
+	        <ol class="breadcrumb">
+				<li class="breadcrumb-item"><a
+					href="${pageContext.request.contextPath}">首頁</a></li>
+				<li class="breadcrumb-item active">回報完成</li>
+			</ol>
         	<div class="row">
         	
         		<div class="col-md-4 offset-4">
