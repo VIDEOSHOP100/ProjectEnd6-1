@@ -28,6 +28,8 @@ public class RootAppConfig {
 		ds.setPassword("sa123456");
 //		ds.setUser("memberuser");
 //		ds.setPassword("P@ssw0rd1234");
+//		ds.setUser("memberuser");
+//		ds.setPassword("ji394wu6ai4@");
 		try {
 			ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		} catch (PropertyVetoException e) {
@@ -38,6 +40,7 @@ public class RootAppConfig {
 //		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10019.database.windows.net;DatabaseName=EEITDB");
 //		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10016.database.windows.net;DatabaseName=EEITDB");
 //		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10005.database.windows.net;DatabaseName=EEITDB");
+//		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10009.database.windows.net;DatabaseName=EEITDB");
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 		return ds;
