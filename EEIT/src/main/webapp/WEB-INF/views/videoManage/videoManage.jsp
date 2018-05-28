@@ -39,10 +39,10 @@
 				</div>
 			</div>
 			<ol class="breadcrumb">
-<!-- 				<li class="breadcrumb-item"> -->
-<!-- 					<a href="index.html">Home</a> -->
-<!-- 				</li> -->
-<!-- 				<li class="breadcrumb-item active">Portfolio 1</li> -->
+			  <li class="breadcrumb-item">
+			    <a href="<c:url value='/' />">首頁</a>
+			  </li>
+			  <li class="breadcrumb-item active">影片管理</li>
 			</ol>
 			<div class="row divOutsideRow">
 				<c:forEach var="videoBean" items="${videos}">

@@ -25,8 +25,10 @@
 		</h1>
 			
 		<ol class="breadcrumb">
-		  <li class="breadcrumb-item">
-		  </li>
+		   <li class="breadcrumb-item">
+			    <a href="<c:url value='/' />">首頁</a>
+			</li>
+			<li class="breadcrumb-item active">稍後觀看</li>
 		</ol>
 			<div class="row" style="margin-left:20px">
 				<c:forEach var="aVideoBean" items="${watchLaterVideo}">

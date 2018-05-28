@@ -50,11 +50,13 @@
       <h1 class="mt-4 mb-3">${uploaderAccount }
       	<input type="hidden" class="uploaderAccountForUploaderHomePage" value="${uploaderAccount }">
       </h1>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a
-				href="${pageContext.request.contextPath}">首頁</a></li>
-			<li class="breadcrumb-item active">個人頁面</li>
-		</ol>
+
+      <ol class="breadcrumb">
+      	  <li class="breadcrumb-item">
+		    <a href="<c:url value='/' />">首頁</a>
+		  </li>
+		  <li class="breadcrumb-item active">${uploaderAccount }</li>
+      </ol>
 
       <img class="img-fluid rounded mb-6" src="<c:url value='/uploaderHomePage/images/images.jpg' />" alt="" width="1600px"><!--       http://placehold.it/1200x300 -->
 <!-- 	  <hr> -->
