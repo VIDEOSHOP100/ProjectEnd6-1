@@ -28,7 +28,11 @@
 		<h1 class="my-4">
 			${productSaleBean.proName } <small></small>
 		</h1>
-
+	<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">首頁</a></li>
+			<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/goMarketHomePage">超級商城</a></li>
+			<li class="breadcrumb-item active">商品</li>
+		</ol>
 				<input type="hidden" name="productSeqNo" id="productSeqNo"
 					value="${productSaleBean.productSeqNo}"> 
 		<!-- Portfolio Item Row -->
@@ -74,10 +78,7 @@
 				<c:if test="${ propcs <= 0 }" >
 					<span><button type="button" class="btn btn-warning">商品 補貨中~~</button></span>
 				</c:if>
-				
 			</div>
-
-
 		</div>
 		<!-- /.row -->
 

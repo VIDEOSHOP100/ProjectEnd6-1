@@ -26,19 +26,18 @@
 	<%@ include file="/WEB-INF/views/global/fragment/top.jsp"%>
 	
 	 <!-- Page Content -->
-    <div class="container">
+    <div class="container" style="margin-left:50px">
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">商品新增成功!
         <small></small>
       </h1>
-
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="index.html">Home</a>
-        </li>
-        <li class="breadcrumb-item active">Contact</li>
-      </ol>
+<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">首頁</a></li>
+			<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/goMarketHomePage">超級商城</a></li>
+			<li class="breadcrumb-item active">商品上架完成</li>
+		</ol>
+    
 
     
       <!-- Contact Form -->
@@ -46,6 +45,7 @@
       <div class="row">
         <div class="col-lg-8 mb-4">
           <h3>${createOK.account}商品新增成功~</h3>
+          <br>
             <div class="control-group form-group">
               <div class="controls">
                 <label>商品流水號 :</label>
@@ -92,6 +92,7 @@
             <div id="success"></div>
             <!-- For success/fail messages -->
 
+	<a href="${pageContext.request.contextPath}/goMarketHomePage"><button class="btn btn-primary" id="confirmorder">商城首頁</button></a>
 
         </div>
 
@@ -102,18 +103,10 @@
     <!-- /.container -->
 
 	<br><br>
-	<a href="/EEIT">回首頁</a>
 	
 	
 	
-	<!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-      </div>
-      <!-- /.container -->
-   </footer>
-
+<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 
 </body>
 </html>
