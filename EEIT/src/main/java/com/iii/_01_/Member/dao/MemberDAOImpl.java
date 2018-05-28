@@ -28,7 +28,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberBean getMemberByEmail(String email) {
 		Session session = sessionFactory.getCurrentSession();
 
-		return session.createQuery("from MemberBean where email = :email and googleMark = 0", MemberBean.class)
+		return session.createQuery("from MemberBean where email = :email and googleMark = '0'", MemberBean.class)
 				.setParameter("email", email).uniqueResult();
 
 	}
