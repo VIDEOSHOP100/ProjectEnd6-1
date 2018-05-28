@@ -30,8 +30,8 @@
   </head>
 
   <body>
-      <div class="container" style="margin-left:50px">
 	  <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
+      <div class="container" style="margin-left:50px">
 <!--   <img class="img-fluid rounded mb-6" src="/EEIT/uploaderHomePage/images/images.jpg" alt="" width="2000px"> -->
   
      <ol class="breadcrumb">
@@ -74,7 +74,7 @@
    
 
 
-</div>
+	</div>
 
 
 <!--     <footer class="py-5 bg-dark"> -->
