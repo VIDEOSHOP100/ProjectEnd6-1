@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,13 +75,16 @@ public class AllPayController {
 	 		// 交易金額
 	 		aio.setTotalAmount(proPrice);
 	 		// 交易描述
-	 		aio.setTradeDesc("工三小");
+	 		aio.setTradeDesc("工");
 	 		aio.setHoldTradeAMT("0");
 	 		// 顯示付款成功的頁面（預設
 	 		aio.setReturnURL("https://developers.opay.tw/AioMock/MerchantReturnUrl");
 	 		// 付款成功後轉跳的頁面
-	 		
 			}
+//		aio.setClientBackURL("http://localhost:8080/EEIT/goMarketHomePage");
+		aio.setClientBackURL("https://eeitdemo10005.southeastasia.cloudapp.azure.com:8443/EEIT/goMarketHomePage");
+//		aio.setOrderResultURL("http://localhost:8080/EEIT/goMarketHomePage");
+//		aio.setOrderResultURL("https://eeitdemo10005.southeastasia.cloudapp.azure.com:8443/EEIT/goMarketHomePage");
 				try {
 					String html = all.aioCheckOut(aio, invoice);
 					System.out.println(html);
@@ -88,4 +93,10 @@ public class AllPayController {
 					throw new Error(e.getNewExceptionMessage());
 				}
 			}
+	@RequestMapping(value="/getAllPayOrder",method=RequestMethod.POST,produces="text/html;charset=UTF-8")
+	public String getAllPayOrder(HttpServletRequest request,Map<String,String> map) {
+
+		
+		return "OrderSystem/allorder";
+	}
 }

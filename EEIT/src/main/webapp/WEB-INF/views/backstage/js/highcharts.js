@@ -207,7 +207,13 @@ $(document)
 																.highcharts(
 																		{
 																			chart : {
-																				type : "line",
+																				type : "column", 
+																				options3d: {
+																		            enabled: true,
+																		            alpha: 10,
+																		            beta: 5,
+																		            depth: 70
+																		        }
 																				
 																			},  xAxis: {
 																		        categories:removedays,
@@ -253,7 +259,83 @@ $(document)
 									 })	 
 							 
 							 
-							 
+									//--------------------伯恩數量圖表---------------------------	 
+										$.ajax({
+									                type: "GET",
+									                url: "/EEIT/bidtimebackstageroll",
+									                dataType: "json",
+									                timeout: 600000,
+//									                data: AAA,
+									                success: function (data) {
+									                		
+									                	 
+//									                		 console.log(data.OrderdayArray);
+									                		 console.log(data.BidTimeArray);
+//									                		 var ret = new Date(InputLiveStreamTimeBean.liveStart);
+//									                            var formated = ret.getFullYear() + '/' +(ret.getMonth()+1) +'/' +ret.getDate() + ' ' +ret.getHours() + ':' +ret.getMinutes()
+//									                		 console.log(formated);
+
+									                            var tab4 = $('<div></div>').addClass('antai87777');
+																$('#content>h2').after(tab4);
+																	var BidTimeArray = data.BidTimeArray;
+//																	var day = data.OrderdayArray;
+																	var arrayorderQuantity = BidTimeArray.split(',').map(String);
+																	
+																	
+																	
+//																	var arrayday = day.split(',');
+//																	var removedays =  arrayday.map(Number);
+																	
+																	 console.log("new1"+arrayorderQuantity);
+//																	 console.log(removedays);
+//																	 console.log(['bob','micky','snoopy']);
+																$(".antai87777")
+																		.highcharts('container',
+																				{
+																			 chart: {
+																	                zoomType: 'x'
+																	            },
+																						
+																					 xAxis: {
+																						 type: 'datetime'
+																				    }, 
+																				    
+																					title : {
+																						text : '每日訂單數量統計圖'
+																					},yAxis: {
+																				        min: 0,
+																				        title: {
+																				            text: '訂單數量(筆)',
+																				            align: 'high'
+																				        }
+																				        },
+																					tooltip : {
+																						valueSuffix: ' 筆'
+																					},
+//																					plotOptions : {
+//																						pie : {
+//																							allowPointSelect : true,
+//																							cursor : 'pointer',
+//																							depth : 35,
+//																							dataLabels : {
+//																								enabled : true,
+//																								format : '{point.name}'
+//																							}
+				//
+//																						}
+//																					},
+																					 series: [{
+																						   type: 'area',
+																					        name: '訂單數量',
+																					        data: [arrayorderQuantity]
+																					    }]
+																				})
+
+//															$('.highcharts-credits').remove();
+									                },error:function(){
+									                	alert("安泰北七")
+									                }
+											 })	 
 							 
 							 
 							 

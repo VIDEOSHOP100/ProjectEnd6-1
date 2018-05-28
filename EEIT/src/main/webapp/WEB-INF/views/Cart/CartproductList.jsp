@@ -37,7 +37,11 @@
 		<h1 class="my-4 account">
 			${getMemberBean.account}你好<small></small>
 		</h1>
-
+<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">首頁</a></li>
+			<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/goMarketHomePage">超級商城</a></li>
+			<li class="breadcrumb-item active">購物車</li>
+		</ol>
 		<!-- Portfolio Item Row -->
 		<div class="">
 			<div class="card">

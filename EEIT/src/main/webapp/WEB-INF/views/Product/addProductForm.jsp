@@ -29,7 +29,8 @@
 		</h1>
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="/EEIT">首頁</a></li>
+			<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">首頁</a></li>
+			<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/goMarketHomePage">超級商城</a></li>
 			<li class="breadcrumb-item active">商品上架</li>
 		</ol>
 

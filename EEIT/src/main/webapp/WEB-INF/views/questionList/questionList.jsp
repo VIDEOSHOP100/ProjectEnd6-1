@@ -32,8 +32,7 @@
   <body>
 	  <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
       <div class="container" style="margin-left:50px">
-<!--   <img class="img-fluid rounded mb-6" src="/EEIT/uploaderHomePage/images/images.jpg" alt="" width="2000px"> -->
-  
+       <h1 class="mt-4 mb-3">常見問題</h1>
      <ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}">首頁</a></li>
         <li class="breadcrumb-item active">常見問題</li>
