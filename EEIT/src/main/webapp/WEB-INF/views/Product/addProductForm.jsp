@@ -202,7 +202,7 @@
 					<!-- For success/fail messages -->
 					
 					<input type="submit" class="btn btn-primary" id="sendMessageButton"
-						value="submit" />
+						value="送出" />
 						
 				    
 					</form:form>
