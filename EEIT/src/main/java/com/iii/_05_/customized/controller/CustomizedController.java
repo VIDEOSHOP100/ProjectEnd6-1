@@ -11,12 +11,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iii._01_.AdviceReport.bean.AdviceReportBean;
 import com.iii._01_.Member.bean.MemberBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeBean;
 import com.iii._05_.InputLiveStreamTime.model.InputLiveStreamTimeService;
@@ -32,6 +34,17 @@ public class CustomizedController {
 	CustomizedService CustomizedService;
 	@Autowired
 	InputLiveStreamTimeService InputLiveStreamTimeService;
+	
+	
+
+	
+	@RequestMapping(value = "/CustomizedGet/{account}", method = RequestMethod.GET)
+	public @ResponseBody List<CustomizedBean> getAllAdviceReport(@PathVariable("account") String account) {
+
+		List<CustomizedBean> list = CustomizedService.getAllByAccount(account);
+
+		return list;
+	}
 	
 	
 	@RequestMapping(value = "/CustomizedControl", method = RequestMethod.POST)

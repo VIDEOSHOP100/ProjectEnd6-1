@@ -156,6 +156,113 @@ $(document).ready(function() {
 	$(document).on('click','.storePageButton',function(event){
 		event.preventDefault();
 		$('.showResultBlock').empty()
+		var account = uploaderAccount;
+	$.ajax({
+    		
+    		type:"GET",
+    		url:"/EEIT/CustomizedGet/"+account,
+    		
+    		success:function(datareturn){
+    			$.each(datareturn.pageResult, function (idx,data) {
+    			var pageResultBlock = $(
+//    					'<div class="row editform hidden col-lg-4 mb-4 offset-4">'+
+//    					'<div class="" id="" tabindex="-1"role="dialog" aria-labelledby="exampleModalCenterTitle"aria-hidden="true">'+
+//    						'<div class="modal-dialog modal-dialog-centered" role="document">'+
+//    							'<div class="modal-content">'+
+//    								'<div class="modal-header">'+
+//    									'<h5 class="modal-title" id="exampleModalLongTitle">直播介紹控制列</h5>'+
+//    									'<button type="button" class="close" data-dismiss="modal"aria-label="Close">'+
+//    										'<span aria-hidden="true">&times;</span>'+
+//    									'</button>'+
+//    								'</div>'+
+//    								'<div class="modal-body">'+
+//
+//
+//    									'<form id="CustomizedControl" method="POST"action="${pageContext.request.contextPath}/CustomizedControl"modelAttribute="CustomizedBean" class=""enctype="multipart/form-data">'+
+//    										'<p class="reasontitle modal-title">介面標題</p>'+
+//    										'<div class="form-group">'+
+//    											'<input path="customizedTitle" type="text"class="form-control input-sm" id="customizedTitle"placeholder="請輸入標題" />'+
+//    										'</div>'+
+//    										'<p class="reasontitle modal-title">新增影像</p>'+
+//    										'<input path="photo" type="file" name="customizedPic" id="customizedPic" class="text ui-widget-content ui-corner-all"/>'+
+//    									'<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>'+
+//    								
+//    				  						'<br><br>'+
+//    							'<p class="reasontitle modal-title">描述</p>'+
+//    										'<div class="form-group">'+
+//    											'<textarea path="customizedDesc" type="text"class="form-control input-sm" id="customizedDesc"placeholder="描述內容" />'+
+//    										'</div>'+
+//    									'<button type="button" class="btn btn-outline-info" id="cancel"data-dismiss="modal">取消</button>'+
+//    											'<input type="submit" class="btn btn-primary" id="customizedSubmit" value="確定"/>'+
+//    									'</form>'+
+//    								'</div>'+
+//    							'</div>'+
+//    						'</div>'+
+//    					'</div>'+
+//    					'</div>'+
+    					 '<div class="row onsaleitems">'+
+    				      '<div class="col-lg-12 text-center">'+
+    				        '<h2 class="sellproduct testclass">賣家介紹</h2>'+
+    				        '</div>'+
+    				        '<div class="row text-center" id="sexmove" style="width: 1200px; margin: 0 auto;">'+
+    								'<div class="col-lg-3 col-md-6 mb-4" id="id_'+data.sortNum+'">'+
+    									'<div class="card">'+
+    									'<h4 class="card-title JQellipsisTitle">'+data.customizedTitle+'</h4>'+
+    										'<img class="card-img-top"src="EEIT/getImage/customizedPic/'+data.customizedSeqNo+'"width="500px" height="238px" alt="">'+
+    										'<div class="card-body ccc">'+
+    											
+    											'<p class="card-text">'+data.customizedDesc+'</p>'+
+    										'</div>'+
+    							
+    									'</div>'+
+    								'</div>'+
+    							
+    						'</div>'
+    			
+    				) 
+      				$('.showResultBlock').append(pageResultBlock)
+    			})
+    		},
+    		error: function (xhr, ajaxOptions, thrownError) {
+        
+                alert(thrownError);
+            
+        },
+   
+    		
+    	})
+  	
+    
+    
+    
+    $(document).on("click",'#replyMemberReportButton',function(){
+    	
+    	
+    	var customizedTitle = $('#customizedTitle').val();
+    	var customizedDesc = $('#customizedDesc').val();
+    	
+    	$.ajax({
+    		
+    		type:"POST",
+    		url:"/EEIT/CustomizedControl",
+    		data:{ _method : "PUT" ,customizedTitle:customizedTitle ,customizedDesc:customizedDesc},
+    		
+    		success:function(){
+    		
+    			alert('完成!');
+    		
+    		},
+    		
+    		error:function(e){
+    			alert(e);
+    		}
+    		
+    	})
+    	
+    })
+    
+		
+		
 	})
 	
 	var myaccount = $('#account').val();
