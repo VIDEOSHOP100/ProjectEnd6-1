@@ -115,8 +115,8 @@
 		</div>
       </div>
       <div class="modal-footer">
-        <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
-        <button type="button" id="updateQuestListButton" class="btn btn-primary">Save changes</button>
+        <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal" >取消</button>
+        <button type="button" id="updateQuestListButton" class="btn btn-primary">儲存變更</button>
       </div>
     </div>
   </div>
