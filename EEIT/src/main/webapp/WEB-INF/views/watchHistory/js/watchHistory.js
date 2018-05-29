@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$('.deleteBlock').click(function(){
 		var thisDeleteButton = $(this) 
 		var videoSeqNo = thisDeleteButton.parents('.col-md-9').find('input').val();
-		alert(videoSeqNo)
+//		alert(videoSeqNo)
 		$.ajax({
 			type: "POST",
 			url: "/EEIT/watchHistory",
