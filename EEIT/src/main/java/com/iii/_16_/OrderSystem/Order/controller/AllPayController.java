@@ -62,7 +62,7 @@ public class AllPayController {
 		List<OrderProductBean> productlist = orderproductservice.getByorderSeqNo(orderSeqNo);
 		String proName = null;
 		String proPrice = null;
-		String proTotalName = null;
+		String proTotalName = "";
 		Long proTotalPrice = 0L;
 		for(OrderProductBean orderproductbean :productlist) {
 			ProductSaleBean realproduct = productsaleservice.getBySeqNo(orderproductbean.getProductSeqNo());

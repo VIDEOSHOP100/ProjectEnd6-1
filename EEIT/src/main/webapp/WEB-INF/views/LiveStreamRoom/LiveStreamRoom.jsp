@@ -357,8 +357,8 @@ justify-content: center;
 	
 <!-- 拍賣表格 -->
 <div class="modal fade" id="addAuctionForm" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+		<div class="modal-dialog modal-dialog-centered" role="document" >
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLongTitle">新增拍賣</h5>
@@ -377,7 +377,7 @@ justify-content: center;
 					<p class="reasontitle modal-title">拍賣結束時間：</p><form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00"/><br>
 <%-- 					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br> --%>
 						<p class="reasontitle modal-title">請選擇欲拍賣商品：</p>
-			 				<form:select path="productSeqNo">
+			 				<form:select path="productSeqNo" style="width:200px">
 								  <form:options items="${productNameMapnoonsale}" />
 							</form:select><br><br>
 					<p class="reasontitle modal-title">請輸入起標價格：</p><form:input id="proPrice" path="proPrice" type="text" class="form-control input-sm"/><br>
