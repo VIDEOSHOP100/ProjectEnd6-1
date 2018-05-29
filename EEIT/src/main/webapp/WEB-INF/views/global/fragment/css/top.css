@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
 
-.notification:hover{
-	color: #d2cdde !important;
-}
+/* .notification:hover{ */
+/* 	color: #d2cdde !important; */
+/* } */
 
 
 .searchButtonli {
@@ -38,7 +38,7 @@
 }
 
 .notificationAlert{
-	color : #F50000;
+	color : #F50000 !important;
 }
 
 .notificationNone:hover{

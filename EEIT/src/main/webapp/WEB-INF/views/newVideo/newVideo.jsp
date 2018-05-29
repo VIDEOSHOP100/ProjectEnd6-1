@@ -34,7 +34,7 @@
 		<div class="row">
 			<c:forEach var="aVideoBean" items="${newVideos}">
 				<div class="col-lg-2 col-sm-6 portfolio-item videoBlock">
-					<div class="card h-100 videoBlockInner">
+					<div class="card h-100 videoBlockInner" style="border:none">
 						<a href="<c:url value='/videoRoom/${aVideoBean.videoSeqNo}' />">
 							<img height="130px" width="235px" src='${pageContext.request.contextPath}/getImage/video/${aVideoBean.videoSeqNo}'>
 						</a>
@@ -53,11 +53,6 @@
 				</div>
 			</c:forEach>
 		</div>
-	</div>
-	<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2018</p>
 	</div>
 	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 	</footer>
