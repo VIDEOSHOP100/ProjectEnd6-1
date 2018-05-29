@@ -60,11 +60,12 @@ public class UploaderHomePageController {
 		}
 		List<VideoBean> videoBeanList = uploaderHomePageService.getUserTopTwelveVideos(uploaderAccount);
 		List<InputLiveStreamTimeBean> inputLiveStreamTimeBeanList =  uploaderHomePageService.getUserTopTwelveLiveStream(uploaderAccount);
-		List<ProductSaleBean> productSaleBeanList = uploaderHomePageService.getUserTopTwelveProducts(uploaderAccount);
+		List<ProductSaleBean> productSaleBeanListupload = uploaderHomePageService.getUserTopTwelveProducts(uploaderAccount);
+		
 		map.put("videoBeanList", videoBeanList);
 		map.put("uploaderAccount", uploaderAccount);
 		map.put("inputLiveStreamTimeBeanList", inputLiveStreamTimeBeanList);
-		map.put("productSaleBeanList", productSaleBeanList);
+		map.put("productSaleBeanListupload", productSaleBeanListupload);
 		return "uploaderHomePage/uploaderHomePage";
 	}
 	

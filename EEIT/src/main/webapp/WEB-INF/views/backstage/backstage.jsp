@@ -41,7 +41,7 @@
             <a class="list-group-item pointer text-primary replyMessage">回覆留言</a>
             <a class="list-group-item pointer text-primary questionManage">問答集管理</a>
             <a class="list-group-item pointer text-primary memberReport">會員客訴</a>
-            <a class="list-group-item pointer text-primary productReport">商品客訴</a>
+<!--             <a class="list-group-item pointer text-primary productReport">商品客訴</a> -->
             <a class="list-group-item pointer text-primary liveStreamReport">直播客訴</a>
             <a class="list-group-item pointer text-primary videoReport">影片客訴</a>
             <a class="list-group-item pointer text-primary homePageManage">首頁管理</a>

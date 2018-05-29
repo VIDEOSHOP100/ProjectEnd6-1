@@ -100,7 +100,7 @@
 	      <div class="col-lg-12">
 	      	<h1>熱門商品</h1>
 	      </div>
-	      	<c:forEach var="aVideoBean" items="${productSaleBeanList}">
+	      	<c:forEach var="aVideoBean" items="${productSaleBeanListupload}">
 		      	<div class="col-lg-2 mb-4">
 		          <div class="card h-100">
 		            <div class="card-body">
