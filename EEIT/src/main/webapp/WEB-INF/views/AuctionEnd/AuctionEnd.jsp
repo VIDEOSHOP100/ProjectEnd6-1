@@ -23,7 +23,7 @@ font-family: 'Noto Sans', sans-serif;
 <input id="catch-account" type="hidden" name = "account" value= "${LoginOK.account}">
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3 testclass">	得標管理
-      <button type="button" id="allPay" class="btn btn-outline-info col-md-auto"><i class="fas fa-hand-point-right"></i>&nbsp;&nbsp;點我結帳</button>
+   <a href="${pageContext.request.contextPath}/order.do"><button type="button" class="btn btn-outline-info col-md-auto"><i class="fas fa-hand-point-right"></i>&nbsp;&nbsp;點我結帳</button></a>
 <!--         <small>Subheading</small> -->
       </h1>
        
@@ -53,7 +53,8 @@ font-family: 'Noto Sans', sans-serif;
             </div>
             <div class="col-lg-6">
 <!--設置時間+切割 -->
-              <h2 class="card-title">${AllAuctionLista.proName}</h2>
+              <h2 class="card-title">得標物品：${AllAuctionLista.proName}</h2>
+              <h2 class="card-title">得標價格：${AllAuctionLista.proPrice}元</h2>
         <c:set var="string1" value="${AllAuctionLista.proTime}"/>
 		<c:set var="string2" value="${fn:substring(string1, 0, 19)}" />
               

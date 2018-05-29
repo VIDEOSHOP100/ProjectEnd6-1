@@ -91,7 +91,7 @@
 <!-- 	        <a class="btn btn-lg btn-secondary btn-block videoListPageButton" href="#">影片列表</a> -->
 <!-- 	      </div> -->
 	      <div class="col-md-3" style="padding:0px">
-	        <a class="btn btn-lg btn-secondary btn-block storePageButton" href="" style="margin-right:0px;margin-left:0px;">商店資料</a>
+	        <a class="btn btn-lg btn-secondary btn-block storePageButton" href="" style="margin-right:0px;margin-left:0px;">商店資料</a> 
 	      </div>
       </div>
       
