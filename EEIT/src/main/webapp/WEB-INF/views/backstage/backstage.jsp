@@ -84,18 +84,19 @@
         </button>
       </div>
       <div class="modal-body">
-		<form:form id="updateQList" modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post">
+		<div class="container marketcontain">
+		<form:form id="updateQList" modelAttribute="questionListBean" action="/EEIT/QuestionList/update" method="post" >
 		<form:input type="hidden" id="QSeqNum" value="" path="questionListSeqNo" />
 
-		修改問題標題:<form:input type="text" path="questionListTitle" />
-		<br>
-		修改問題內容:<form:input type="text" path="questionListArticle"/>
-		<br>
-		修改管理員:<form:input type="text" path="managerId"/>
-		<br>
+		修改問題標題:<form:input type="text" path="questionListTitle" class="text ui-widget-content ui-corner-all"/>
+		<hr>
+		修改問題內容:<form:textarea  path="questionListArticle" class="form-control" />
+		<hr>
+		修改管理員:<form:input type="text" path="managerId" class="text ui-widget-content ui-corner-all"/>
+		<hr>
 		問題類型:
 <%-- 		<form:input type="text" path="questionListType"/> --%>
-		<form:select  id="TypeList" path="questionListType">
+		<form:select  id="TypeList" path="questionListType" class="text ui-widget-content ui-corner-all">
 			<form:option value="1">帳號問題</form:option>
 			<form:option value="2">密碼與登入</form:option>		
 			<form:option value="3">運送與寄送商品</form:option>		
@@ -103,14 +104,15 @@
 			<form:option value="5">直播拍賣</form:option>		
 			<form:option value="6">影片上傳</form:option>		
 		</form:select>
-		<br>
+		<hr>
       	問題顯示與否:
-      	<form:select  id="topic" path="questionListStatus">
+      	<form:select  id="topic" path="questionListStatus" class="text ui-widget-content ui-corner-all">
 			<form:option value="1">顯示</form:option>
 			<form:option value="0">不顯示</form:option>		
 		</form:select>
 <!--        	 <input type="submit" value="Update"/> -->
 		</form:form>
+		</div>
       </div>
       <div class="modal-footer">
         <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>

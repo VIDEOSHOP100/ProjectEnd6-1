@@ -23,7 +23,7 @@ $(document).ready(function () {
    
                 success: function (data) {
                     var tab = $('<table></table>').addClass('table table-striped').html('<thead><tr><th class="text-center">問題編號</th><th>編輯人員</th><th>問題類型</th><th>標題</th><th>上傳時間</th><th>是否顯示</th></tr></thead><tbody></tbody>');
-                    $('#content>h2').after(tab).after('<a href =" /EEIT/QuestionList/addQuestionList">新增問題</a>');
+                    $('#content>h2').after(tab).after('<hr><div class="container marketcontain"><a href =" /EEIT/QuestionList/addQuestionList" class="btn btn-primary">新增問題</a></div><HR>');
                         var docFrag = $(document.createDocumentFragment());
                         console.log(data);
                         $.each(data, function (idx,QuestList) {

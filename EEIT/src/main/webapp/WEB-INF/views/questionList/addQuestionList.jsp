@@ -34,36 +34,35 @@
 <!-- 						<div class="control-group form-group"> -->
 <!-- 							<div class="controls"> -->
 									<div class="control-group form-group col-md-6 offset-3">
-										<label for="questionListTitle">問題標題</label>
+										<label for="questionListTitle">問題標題:</label>
 										<form:input path="questionListTitle" type="text"
 											name="questionListTitle" id="questionListTitle" class="form-control" />
 									</div>
 									<div class="control-group form-group col-md-6 offset-3">
-										<label for="questionListArticle">問題內容</label>
-										<form:input border="1" width="400px"
-											path="questionListArticle" type="text"
+										<label for="questionListArticle">問題內容:</label>
+										<form:textarea  border="1" width="400px"
+										path="questionListArticle" type="text" 
 											name="questionListArticle" id="questionListArticle" value=""
-											class="form-control" />
+											class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 200px;"/>
 									</div>
 									<div class="control-group form-group col-md-6 offset-3">
-										<label for="managerId">管理員帳號</label>
+										<label for="managerId">管理員帳號:</label>
 										<form:input path="managerId" type="text" name="managerId"
 											id="managerId" value=""
 											class="form-control" />
 									</div>
 									<div class="control-group form-group col-md-6 offset-3">
-										<label for="questionListType">問題類型</label>
+										<label for="questionListType">問題類型:</label>
 										<form:select id="TypeList" path="questionListType" class="form-control">
 											<form:option value="1">帳號問題</form:option>
 											<form:option value="2">密碼與登入</form:option>
-											<form:option value="3">建立帳號或刪除帳號</form:option>
+											<form:option value="3">運送與寄送商品</form:option>
 											<form:option value="4">商品交易</form:option>
 											<form:option value="5">直播拍賣</form:option>
 											<form:option value="6">影片上傳</form:option>
 										</form:select>
 									</div>
-<!-- 							</div> -->
-<!-- 						</div> -->
+ 					
 								
 					
 				</div>
