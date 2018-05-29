@@ -104,11 +104,51 @@ $(document).ready(function() {
 								data : data,
 								timeout : 600000,
 								success : function(data) {
-									console.log("SUCCESS : ", data);
-									selectedtbodyOutside.remove();
-									location.reload();
-							
+//									console.log("SUCCESS : ", data);
 									dialog.dialog("close");
+									selectedtbodyOutside.remove();
+									
+									$('.cartbar').remove();
+									$('.success').remove();
+									//.ajax
+									$.ajax({
+										type : 'GET',
+										url : "/EEIT/CartList/getCartDetailList",
+										dataType : 'json',
+										success : 
+										function(data,result) {
+															//增加一張圖片  可以移動的
+															//放入購物車的字上面
+															var product;
+															var totalPrice;
+															var docFrag = $(document.createDocumentFragment());
+																$.each(data.cartDetailList,function(key, oneproductBean){
+																	
+																	product = '<div class="sidebar-name cart">'+
+																	'<input type="hidden" class="cartbarhide" value="'+oneproductBean.productSeqNo+'"/>'+
+																	'<a href="/EEIT/searchProductIntro/'+oneproductBean.productSeqNo+'">'+
+																	'<button type="button" class="sidebarUserButton sidebarUserButtonNone">'+
+																	'<img width="40" height="40" src="/EEIT/getImage/Product/'+oneproductBean.productSeqNo+'">'+
+																	'<p class="shoppingCartProductName">'+oneproductBean.productbean.proName+'</p><p class="shoppingCartProductDescription"><small class="subtitle">'+
+																	oneproductBean.productbean.proDescription+'</small></p><span  class="shoppingCartProductNumber">'+
+																	oneproductBean.productCount+'</span></button></a></div>';
+																	docFrag.append(product);	
+																})
+																	$('.cartoutside').html(docFrag) ;
+																console.log();
+																console.log(result);
+																
+																totalPrice = '<tr class="success"><td></td><td></td><td>訂單總價</td><td></td><td></td><td></td>'+
+																			 '<td>NT '+ data.totalcartprice +'</td><td></td></tr>';
+																$('tfoot').html(totalPrice);	
+																
+										},	
+										error : function(e) {
+
+											console.log("ERROR : ", e);
+										
+										}
+									})
 									
 								},
 								error : function(e) {
@@ -145,6 +185,8 @@ $(document).ready(function() {
 
 						$(".kill").button().on("click", function() {
 							dialog.dialog("open");
+						
+						
 						});
 					});
 
