@@ -73,11 +73,9 @@
 												var docFrag = $(document.createDocumentFragment());
 													$.each(data.cartDetailList,function(key, oneproductBean){
 														
-														
-														
-														
-														
-														product = '<div class="sidebar-name cart"><a href="/EEIT/searchProductIntro/'+oneproductBean.productSeqNo+'">'+
+														product = '<div class="sidebar-name cart">'+
+														'<input type="hidden" class="cartbarhide" value="'+oneproductBean.productSeqNo+'"/>'+
+														'<a href="/EEIT/searchProductIntro/'+oneproductBean.productSeqNo+'">'+
 														'<button type="button" class="sidebarUserButton sidebarUserButtonNone">'+
 														'<img width="40" height="40" src="/EEIT/getImage/Product/'+oneproductBean.productSeqNo+'">'+
 														'<p class="shoppingCartProductName">'+oneproductBean.productbean.proName+'</p><p class="shoppingCartProductDescription"><small class="subtitle">'+

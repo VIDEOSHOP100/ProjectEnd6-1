@@ -103,11 +103,18 @@ public class ProCartListController {
 		MemberBean memberbean = (MemberBean)session.getAttribute("LoginOK");
 		String account = memberbean.getAccount();
 		List<ProCartListBean> list = procartlistservice.getByAccountStatus(account);
+		
+		Integer Total = 0;
+		
 		for(ProCartListBean bean :list) {
 			bean.setProductbean(productsaleservice.getBySeqNo(bean.getProductSeqNo()));
+			Integer temp = (int) (bean.getProductCount() * bean.getProductbean().getProPrice());
+			Total = Total + temp;
 		}
+		
 		map.put("cartDetailList", list);
-		System.out.println(list);
+//		System.out.println("目前購物車金額===   === "+Total);
+		map.put("totalcartprice", Total);
 		return map;
 	}
 	

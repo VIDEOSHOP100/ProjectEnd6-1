@@ -102,7 +102,7 @@
 								<td></td>
 								<td></td>
 								<td></td>
-								<td>NT <fmt:formatNumber value="${total}" pattern="#,##0" /></td>
+								<td class="totalPrice">NT <fmt:formatNumber value="${total}" pattern="#,##0" /></td>
 								<td></td>
 							</tr>
 						</tfoot>
