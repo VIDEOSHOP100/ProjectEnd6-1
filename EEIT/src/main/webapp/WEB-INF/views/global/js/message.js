@@ -257,6 +257,7 @@ $(document).ready(function() {
 																		'</div>'+
 																	'</a>'))
     			    	if(!notificationKey){
+//    			    		alert(notificationKey)
     			    		notificationKey = setInterval(function(){ 
         			    		if($('.notification').is('.notificationAlert')){
         			    			$('.notification').addClass('notificationNone').removeClass('notificationAlert')

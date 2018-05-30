@@ -412,7 +412,7 @@
 	diplay: inline-block;
 /* 	border: solid red 1px; */
 /* 	float: left; */
-	width:300px;
+	width:400px;
 	
 }
 
@@ -529,7 +529,7 @@
 }
 .subscribeIcon{
 	float:right;
-	margin-top: -5px;
+	margin-top: -25px;
 }
 
 .sidebarUserButton .shoppingCartProductDescription{
