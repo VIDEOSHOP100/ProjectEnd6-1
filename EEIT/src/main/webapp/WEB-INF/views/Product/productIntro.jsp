@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>商品頁面</title>
+<title>商品頁面-${productSaleBean.proName }</title>
 
 <link
 	href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "

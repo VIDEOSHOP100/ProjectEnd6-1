@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Modern Business - Start Bootstrap Template</title>
+    <title>商品上架成功~</title>
 
      <!-- Bootstrap core CSS -->
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">

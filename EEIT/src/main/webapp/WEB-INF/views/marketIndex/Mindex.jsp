@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>首頁</title>
+<title>超級商城</title>
 <link
 	href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> "
 	rel="stylesheet">
