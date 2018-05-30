@@ -8,7 +8,7 @@
 <link href="<c:url value='/global/vendor/bootstrap/css/bootstrap.min.css'/> " rel="stylesheet">
 <link href="<c:url value='/global/css/modern-business.css'/>" rel="stylesheet">
 <link href="<c:url value='/uploaderHomePage/css/uploaderHomePage.css'/>" rel="stylesheet">
-<title>上傳者首頁</title>
+<title>個人首頁</title>
 <style type="text/css">
 .memberPhoto {
 	position: absolute;

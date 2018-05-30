@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://www.google.com/recaptcha/api.js"></script>
-<title>登入</title>
+<title>登入頁面</title>
 <style>
 .myfooter {
 	height: 100px;
