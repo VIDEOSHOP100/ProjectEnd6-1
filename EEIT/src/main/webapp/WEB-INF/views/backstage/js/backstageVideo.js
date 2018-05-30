@@ -53,7 +53,6 @@ $(document).ready(function () {
                 },
 
                 error: function (xhr, ajaxOptions, thrownError) {
-                        alert(thrownError);
                 },
             })
 
@@ -110,7 +109,6 @@ $(document).ready(function () {
     		},
     		error: function (xhr, ajaxOptions, thrownError) {
         
-                alert(thrownError);
             
         },
    
@@ -139,7 +137,6 @@ $(document).ready(function () {
     		},
     		
     		error:function(e){
-    			alert(e);
     		}
     		
     	})
