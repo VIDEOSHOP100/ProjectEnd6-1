@@ -98,7 +98,7 @@
 							},
 							error : function(e) {
 								console.log("ERROR : ", e);
-								alert(e);
+								
 							}
 			          
 			          })

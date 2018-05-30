@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>購物車頁面</title>
+<title>購物車</title>
 
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -102,7 +102,7 @@
 								<td></td>
 								<td></td>
 								<td></td>
-								<td>NT <fmt:formatNumber value="${total}" pattern="#,##0" /></td>
+								<td class="totalPrice">NT <fmt:formatNumber value="${total}" pattern="#,##0" /></td>
 								<td></td>
 							</tr>
 						</tfoot>

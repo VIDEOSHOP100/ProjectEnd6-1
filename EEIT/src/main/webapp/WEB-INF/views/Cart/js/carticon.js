@@ -14,7 +14,7 @@ $(document).ready(function() {
         	$('#counter').append(data.productcount);    
     									},//success結束
     	error: function() {
-			            alert('error');
+			           
 			        	  }	
 		
 			  })

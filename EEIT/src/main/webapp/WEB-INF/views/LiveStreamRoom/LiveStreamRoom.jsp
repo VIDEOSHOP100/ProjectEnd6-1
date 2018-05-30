@@ -217,7 +217,6 @@ justify-content: center;
 								placeholder="請輸入標題" />
 						</div>
 						<p class="reasontitle modal-title">新增影像</p>
-<!-- 						<input type="file" id="file"/> -->
 						<form:input path="photo" type="file" name="customizedPic" id="customizedPic" class="text ui-widget-content ui-corner-all"/>
 					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
 				
@@ -228,13 +227,6 @@ justify-content: center;
 								class="form-control input-sm" id="customizedDesc"
 								placeholder="描述內容" />
 						</div>
-						<!-- 						<div class="form-group"> -->
-						<!-- 							附加照片 -->
-						<%-- 							<form:input path="reportPhoto" type="file" accept="image/*" /> --%>
-						<!-- 						</div> -->
-				
-				
-
 					<button type="button" class="btn btn-outline-info" id="cancel"
 						data-dismiss="modal">取消</button>
 							<input type="submit" class="btn btn-primary" id="customizedSubmit" value="確定"/>
@@ -328,12 +320,6 @@ justify-content: center;
       <div class="col-lg-12 text-center">
         <h2 class="sellproduct testclass">賣家介紹</h2>
         </div>
-<%--         <c:forEach var="AllProduct0" items="${AllProduct0}">  --%>
-<!--         <div class="col-lg-2 col-sm-4 mb-4"> -->
-<%--           <img class="img-fluid" src="${pageContext.request.contextPath}/getImage/Product/${AllProduct0.picSeqNo}" alt=""> --%>
-<%--          <h4 class="card-title">品名：${AllProduct0.proName}</h4> --%>
-<!--         </div> -->
-<%--          </c:forEach> --%>
         <div class="row text-center" id="sexmove" style="width: 1200px; margin: 0 auto;">
 			<c:forEach var="CustomizedLista" items="${CustomizedList}">
 				<div class="col-lg-3 col-md-6 mb-4" id="id_${CustomizedLista.sortNum}">
@@ -345,13 +331,8 @@ justify-content: center;
 						<div class="card-body ccc">
 							
 							<p class="card-text">${CustomizedLista.customizedDesc}</p>
-<%-- 							<p class="card-text JQellipsis" id="JQellipsis">${product.proDescription}</p> --%>
 						</div>
-					
-<!-- 							<a -->
-<%-- 								href="${pageContext.request.contextPath}/searchProductIntro/${product.productSeqNo}" --%>
-<!-- 								class="btn btn-primary">點我購買</a> -->
-						
+			
 					</div>
 				</div>
 			</c:forEach>

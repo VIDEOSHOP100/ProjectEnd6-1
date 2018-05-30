@@ -170,14 +170,14 @@ font-family: 'Noto Sans', sans-serif;
 <%--${pageContext.request.contextPath}/Auction --%>
 					<form:form  id="Auction" method="POST" action="${pageContext.request.contextPath}/Auction" modelAttribute="AuctionItemSelectBean" class = "form-horizontal" enctype="multipart/form-data" >
 					<form:input id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
-					aucBegin<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00"/><br>
-					aucEnd<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00"/><br>
+					拍賣開始時間：<form:input id="aucBegin" path="aucBegin" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00"/><br>
+					拍賣結束時間：<form:input id="aucEnd" path="aucEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00"/><br>
 <%-- 					productSeqNo<form:input id="productSeqNo" path="productSeqNo" type="text" class="form-control input-sm"/><br> --%>
 						
 			 				<form:select path="productSeqNo">
 								  <form:options items="${AllProductList}" />
 							</form:select>
-					proPrice<form:input id="proPrice" path="proPrice" type="text" class="form-control input-sm"/><br>
+					請輸入起標價格：<form:input id="proPrice" path="proPrice" type="text" class="form-control input-sm"/><br>
 				</div>
 				
 
@@ -210,9 +210,9 @@ font-family: 'Noto Sans', sans-serif;
 					<form:input id="liveStreamSeqNo" value="${sb.liveStreamSeqNo}" path="liveStreamSeqNo" type="hidden" />
 <%-- 					LiveStart<form:input id="LiveStart" path="LiveStart" type="text" class="form-control input-sm" placeholder="2018-05-06 17:00:00"/><br> --%>
 <%-- 					LiveEnd<form:input id="LiveEnd" path="LiveEnd" type="text" class="form-control input-sm" placeholder="2018-05-06 18:00:00"/><br> --%>
-					streamName<form:input id="streamName" path="streamName" type="text" class="form-control input-sm"/><br>
-					liveStreamPath<form:input id="liveStreamPath" path="liveStreamPath" type="text" class="form-control input-sm"/><br>
-				 	photo<form:input path="photo" type="file"  accept="image/*"/><br>
+					請輸入直播名稱：<form:input id="streamName" path="streamName" type="text" class="form-control input-sm"/><br>
+					請輸入直播網址：<form:input id="liveStreamPath" path="liveStreamPath" type="text" class="form-control input-sm"/><br>
+				 	上傳照片：<form:input path="photo" type="file"  accept="image/*"/><br>
 				</div>
 				
 
@@ -235,7 +235,7 @@ font-family: 'Noto Sans', sans-serif;
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">${sb.account}的直播介紹控制列</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">${accountStream.account}的直播介紹控制列</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
