@@ -16,7 +16,7 @@
 	                resizable: false,
 			    });
 			
-			var $dialogCheck = $('<div></div>').append('庫存數量不足!請重新選擇')
+			var $dialogCheck = $('<div></div>').append('庫存數量不足!請重新選擇 ...')
 			.dialog({
 			      autoOpen: false,
 			      show: {
@@ -68,7 +68,6 @@
 							function(data,result) {
 												//增加一張圖片  可以移動的
 												//放入購物車的字上面
-												
 												var product;
 												var docFrag = $(document.createDocumentFragment());
 													$.each(data.cartDetailList,function(key, oneproductBean){
@@ -92,14 +91,15 @@
 							}
 						})}
 						else if(data.errorMessage == 2){
-							$dialogCheck.dialog('open');						
+							$dialogCheck.dialog('open');
+							setTimeout(function(){ location.reload(); }, 3000);
 						}
 							
 					},
 					error : function(e) {
 
 						console.log("ERROR : ", e);
-						alert(e);
+						
 					}
 				});
 			});//直接購買事件結束
