@@ -99,7 +99,7 @@
 					error : function(e) {
 
 						console.log("ERROR : ", e);
-						alert(e);
+						
 					}
 				});
 			});//直接購買事件結束
