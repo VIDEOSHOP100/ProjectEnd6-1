@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title> 
+<title>直播間</title> 
 <link href="<c:url value='/LiveStreamRoom/css/bootstrap-switch.css'/>" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
 <link href="<c:url value='/InsertLiveStream/css/bootstrap-datetimepicker.css'/> " rel="stylesheet">
@@ -279,7 +279,7 @@ justify-content: center;
 <%--          <h4 class="card-title">品名：${AllProduct0.proName}</h4> --%>
 <!--         </div> -->
 <%--          </c:forEach> --%>
-        <div class="row text-center" style="width: 1200px; margin: 0 auto;">
+        <div class="row text-center" style="width: 1200px; margin: 0 auto; height: 490px;overflow-x:auto;">
 			<c:forEach var="product" items="${AllProduct0}">
 				<div class="col-lg-3 col-md-6 mb-4">
 					<div class="card">
@@ -321,10 +321,12 @@ justify-content: center;
         <h2 class="sellproduct testclass">賣家介紹</h2>
         </div>
         <div class="row text-center" id="sexmove" style="width: 1200px; margin: 0 auto;">
+        
 			<c:forEach var="CustomizedLista" items="${CustomizedList}">
 				<div class="col-lg-3 col-md-6 mb-4" id="id_${CustomizedLista.sortNum}">
 					<div class="card">
 					<h4 class="card-title JQellipsisTitle">${CustomizedLista.customizedTitle}</h4>
+					
 						<img class="card-img-top"
 							src="${pageContext.request.contextPath}/getImage/customizedPic/${CustomizedLista.customizedSeqNo}"
 							width="500px" height="238px" alt="">
@@ -337,6 +339,7 @@ justify-content: center;
 				</div>
 			</c:forEach>
 		</div>
+	
 <!-- 		<button>Ready</button> -->
       <!-- /.網格測試-->
       

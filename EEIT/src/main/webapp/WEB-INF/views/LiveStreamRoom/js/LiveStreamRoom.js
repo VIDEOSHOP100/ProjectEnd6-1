@@ -514,6 +514,7 @@ $(document).on('click','.chatrow',function(){
 		    $( "#sexmove" ).disableSelection();
 		  });
 	 
+	 
 //	  $("#sexmove").sortable({
 //	        update: function (event, ui) {
 //	            var order = $(this).sortable('serialize');

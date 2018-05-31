@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>得標管理</title>
 <link href="<c:url value='/AuctionEnd/css/AuctionEnd.css'/>" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 
