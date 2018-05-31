@@ -40,7 +40,8 @@ public class RootAppConfig {
 //		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10019.database.windows.net;DatabaseName=EEITDB");
 //		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10016.database.windows.net;DatabaseName=EEITDB");
 //		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10005.database.windows.net;DatabaseName=EEITDB");
-		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10009.database.windows.net;DatabaseName=EEITDB");
+//		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10009.database.windows.net;DatabaseName=EEITDB");
+		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit100team3.database.windows.net;DatabaseName=EEITDB");
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 		return ds;

@@ -178,7 +178,7 @@
 							 <c:if test="${ !empty notificationRecordingBeanList}">
 								<c:forEach var="notificationRecordingBean" items="${notificationRecordingBeanList }" >
 									<a class="dropdown-item notificationItemLink" href="${pageContext.request.contextPath}/videoRoom/${notificationRecordingBean.eventPK}">
-										<div class="notificationItem">
+										<div class="notificationItem" style="width:500px">
 											<img class="notificationItemImage" height="70px" width="30px"	src='${pageContext.request.contextPath}/getImage/member/${notificationRecordingBean.account}'>
 											<div class="notificationItemInner">
 												<c:set var="string1" value="${notificationRecordingBean.notificationDate}"/>

@@ -42,7 +42,7 @@
 					<div class="sidebar-name">
 						<a href="<c:url value='/profile/${subscriptionBean.account}' />">
 							<button type="button" class="sidebarUserButton sidebarUserButtonNone">
-								<img width="40" height="40" src="${pageContext.request.contextPath}/getImage/member/${subscriptionBean.account}"> <p>${subscriptionBean.account}</p><p><small class="subtitle">點擊觀看及時串流直播</small></p><span class="subscribeIcon"><i class="fas fa-heart"></i></span>
+								<img width="40" height="40" src="${pageContext.request.contextPath}/getImage/member/${subscriptionBean.account}"> <p>${subscriptionBean.account}</p><p><small class="subtitle">點擊觀看個人頁面</small></p><span class="subscribeIcon"><i class="fas fa-heart"></i></span>
 							</button>				
 						</a>
 					</div>
