@@ -149,15 +149,7 @@ $(document).ready(function() {
 		 }
 	
 	})
-	
-
-		      
- 	{
-      gapi.load('auth2', function() {
-        gapi.auth2.init();
-      });
-    }
-	      
+      
 	
 function checkAccPwd(){
 		
@@ -203,7 +195,7 @@ function checkAccPwd(){
    	  $('#nickname').val('傑瑞');
    	  $('#firstname').val('張');
    	  $('#lastname').val('傑瑞');
-   	  $('#regEmail').val('kings86170@gmail.com');
+   	  $('#regEmail').val('mickyeeit100@gmail.com');
    	  $('#address').val('台北市大安區復興南路一段390號');
    	  $('#phone').val('0954873548');
    	  $('#birthday').val('1994-06-01');

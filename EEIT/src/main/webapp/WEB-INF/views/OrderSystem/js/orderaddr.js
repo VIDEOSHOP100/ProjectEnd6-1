@@ -46,7 +46,7 @@ $(document).ready(function(){
       
             },//success結束
             error: function() {
-                alert('error');
+              
             }
 		})
 	})//sel1 change事件結束

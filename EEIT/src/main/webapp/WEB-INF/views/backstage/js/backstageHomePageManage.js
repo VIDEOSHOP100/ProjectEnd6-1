@@ -22,7 +22,7 @@ $(document).ready(function () {
   
                 success: function (data) {
                 	var list = data.VideoBeanList;
-                	var row = $('<div></div>').css({'height':'620px','overflow-x':'scroll'});
+                	var row = $('<div></div>').css({'height':'620px','overflow-x':'auto'});
                 	var docFrag = $(document.createDocumentFragment());
                 	$.each(list,function(idx,videoBean){
                 		var cell = $('<img class="col-md-3 mt-2 choose">').attr('src','/EEIT/getImage/video/'+videoBean.videoSeqNo).attr('title',videoBean.videoTitle).attr('VideoSeqNo',videoBean.videoSeqNo);
@@ -36,7 +36,6 @@ $(document).ready(function () {
                 },
 
                 error: function (xhr, ajaxOptions, thrownError) {
-                        alert(thrownError);
                 },
             })
 
@@ -49,32 +48,30 @@ $(document).ready(function () {
 //    -----------------------------------以上影片圖片選擇------------------------------------------
     	
     	$(document).on('mouseenter','.choose',function(){
-    		$(this).animate({'opacity':'0.5'},200);
+    		$(this).animate({'opacity':'0.6'},150);
     		
     	})
 
     	$(document).on('mouseleave','.choose',function(){
-    		$(this).animate({'opacity':'1'},200);
+    		$(this).animate({'opacity':'1'},150);
     	})
 
     	$(document).on('click','.choose',function(){
-    		$(this).css(
-    			
-    			'border','5px #7700FF solid'
     		
-    		).addClass('choosed').removeClass('unchoose');
+    		$(this).toggleClass('choosed');
+    		
     	})
     	
-    	$(document).on('dblclick','.choose',function(){
-    		
-    		$(this).css(
-    			
-    			'border','none'
-    		
-    		).addClass('unchoose').removeClass('choosed');
-    	})
-    	
-    	
+//    	$(document).on('dblclick','.choose',function(){
+//    		
+//    		$(this).css(
+//    			
+//    			'border','none'
+//    		
+//    		).addClass('unchoose').removeClass('choosed');
+//    	})
+//    	
+//    	
     	
     	
     	$(document).on('click','#setVideoWallButton',function(){

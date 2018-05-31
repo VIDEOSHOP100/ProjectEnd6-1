@@ -334,9 +334,9 @@
 						<div id="rec2"></div> 
 					</div>
 					<div class="form-group col-md-6" >
-						<a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword"><button  type="button" id="#regButton" class="btn btn-primary">忘記密碼?</button></a>
+						<a href="${pageContext.request.contextPath}/MemberCenter/forgotPassword"><button  type="button" id="#regButton" class="btn btn-primary btn-block">忘記密碼?</button></a>
 					</div>
-					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+					<div class="g-signin2" data-onsuccess="onSignIn" data-width="228" data-height="38"></div>
 				</div>
 				<div class="modal-footer">
 					<p id="loginErrMsg">${ErrorMessageKey.error}</p>
@@ -400,7 +400,8 @@
         // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
 
         widgetId2 = grecaptcha.render(document.getElementById('rec2'), {
-          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF'
+          'sitekey' : '6LeoQVkUAAAAAFMUIP7AwlaMPIxl-BXGMsx9xaOF',
+          
         });
 	
 	
@@ -434,7 +435,6 @@
 	        	},
 	        	error : function(e) {
 					console.log("ERROR : ", e);
-					alert(e);
 				}
 	        })
 	      };
@@ -460,7 +460,6 @@
 	    		  },
 	  			error : function(e) {
 					console.log("ERROR : ", e);
-					alert(e);
 				}  
 	    	 }) 
 	     }
