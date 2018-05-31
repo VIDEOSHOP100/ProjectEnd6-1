@@ -24,28 +24,24 @@ public class RootAppConfig {
 	public DataSource dataSource() {
 		ComboPooledDataSource ds = new ComboPooledDataSource();
 
-		ds.setUser("sa");
-		ds.setPassword("sa123456");
+//		ds.setUser("sa");
+//		ds.setPassword("sa123456");
 //		ds.setUser("memberuser");
 //		ds.setPassword("P@ssw0rd1234");
-//		ds.setUser("memberuser");
-//		ds.setPassword("ji394wu6ai4@");
+		ds.setUser("memberuser");
+		ds.setPassword("ji394wu6ai4@");
 		try {
 			ds.setDriverClass("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		} catch (PropertyVetoException e) {
 			e.printStackTrace();
 		}
 		
-		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;DatabaseName=EEITDB");
+//		ds.setJdbcUrl("jdbc:sqlserver://localhost:1433;DatabaseName=EEITDB");
 //		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10019.database.windows.net;DatabaseName=EEITDB");
 //		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10016.database.windows.net;DatabaseName=EEITDB");
 //		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10005.database.windows.net;DatabaseName=EEITDB");
 //		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit10009.database.windows.net;DatabaseName=EEITDB");
-<<<<<<< HEAD
 		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit100team3.database.windows.net;DatabaseName=EEITDB");
-=======
-//		ds.setJdbcUrl("jdbc:sqlserver://dbservereeit100team3.database.windows.net;DatabaseName=EEITDB");
->>>>>>> branch 'master' of https://github.com/VIDEOSHOP100/ProjectEnd6-1.git
 		ds.setInitialPoolSize(4);
 		ds.setMaxPoolSize(8);
 		return ds;

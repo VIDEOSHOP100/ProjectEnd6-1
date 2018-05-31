@@ -27,7 +27,7 @@ font-family: 'Noto Sans', sans-serif;
 
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" style="margin-left:50px">
 
       <!-- Page Heading/Breadcrumbs -->
 <%--         <c:forEach var="AllProductListBean" items="${AllProductList}"> --%>
