@@ -18,7 +18,7 @@ font-family: 'Noto Sans', sans-serif;
 </style>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-left:50px">
 <%@ include file="/WEB-INF/views/global/fragment/top.jsp" %>
 <input id="catch-account" type="hidden" name = "account" value= "${LoginOK.account}">
       <!-- Page Heading/Breadcrumbs -->
@@ -87,6 +87,7 @@ font-family: 'Noto Sans', sans-serif;
   <div id="responce">
     </div>
   <!-- /.container -->
+  <%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
   <script src="<c:url value='/AuctionEnd/js/AuctionEnd.js'/> "></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </body>

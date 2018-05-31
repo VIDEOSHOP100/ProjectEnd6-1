@@ -37,7 +37,7 @@
 <%-- 	</c:forEach> --%>
 
    <!-- Page Content -->
-    <div class="container">
+    <div class="container"style="margin-left:50px" >
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">直播大廳
@@ -110,6 +110,6 @@
 <!-- 	</div> -->
 <!-- 	</footer> -->
 	
-	
+	<%@ include file="/WEB-INF/views/global/fragment/message.jsp" %>
 </body>
 </html>
